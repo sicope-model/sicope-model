@@ -1,0 +1,39 @@
+security:
+    encoders:
+        App\Entity\Account\User:
+            algorithm: auto
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER]
+    providers:
+        pdadmin_auth:
+            entity:
+                class: App\Entity\Account\User
+                property: email
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern: ^/(admin|login|logout|register|resetting)
+            provider: pdadmin_auth
+            user_checker: Pd\UserBundle\Security\UserChecker
+            access_denied_handler: App\Security\AccessDeniedHandler
+            anonymous: true
+            switch_user: { role: CAN_SWITCH_USER }
+            http_basic: ~
+            form_login:
+                use_referer: true
+                login_path: security_login
+                check_path: security_login
+                default_target_path: "%user_login_redirect%"
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path: security_logout
+                target: '%user_logout_redirect%'
+            remember_me:
+                secret:   '%env(APP_SECRET)%'
+                lifetime: 604800 # 1 Week - 1 Month -> 2592000
+                path:     /
+    access_control:
+        # Admin Panel
+        - { path: '^/admin', role: 'ROLE_ADMIN' }
