@@ -1,17 +1,23 @@
 {
-  "name": "appaydin/pd-admin",
-  "description": "Symfony Powerful Admin Dashboard",
-  "homepage": "https://github.com/appaydin/pd-admin",
+  "name": "sicope-model/sicope-model",
+  "description": "Model Based Testing Tool",
+  "homepage": "https://github.com/sicope-model/sicope-model",
   "type": "project",
   "license": "MIT",
   "authors": [
     {
+      "name": "Tien Xuan Vo",
+      "homepage": "https://tienvx.github.io/",
+      "role": "Maintainer & Developer"
+    },
+    {
       "name": "Ramazan APAYDIN",
-      "homepage": "http://github.com/appaydin"
+      "homepage": "http://github.com/appaydin",
+      "role": "Maintainer & Developer"
     }
   ],
   "require": {
-    "php": "^7.3.0",
+    "php": "^7.4",
     "ext-ctype": "*",
     "ext-iconv": "*",
     "ext-json": "*",
