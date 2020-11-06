@@ -2,8 +2,6 @@ security:
     encoders:
         App\Entity\Account\User:
             algorithm: auto
-    role_hierarchy:
-        ROLE_ADMIN: [ROLE_USER]
     providers:
         pdadmin_auth:
             entity:
@@ -14,7 +12,6 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            pattern: ^/(admin|login|logout|register|resetting)
             provider: pdadmin_auth
             user_checker: Pd\UserBundle\Security\UserChecker
             access_denied_handler: App\Security\AccessDeniedHandler
@@ -34,6 +31,3 @@ security:
                 secret:   '%env(APP_SECRET)%'
                 lifetime: 604800 # 1 Week - 1 Month -> 2592000
                 path:     /
-    access_control:
-        # Admin Panel
-        - { path: '^/admin', role: 'ROLE_ADMIN' }

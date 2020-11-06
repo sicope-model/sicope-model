@@ -11,7 +11,6 @@
 
 namespace App\Security;
 
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -23,12 +22,12 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
     /**
      * @var TranslatorInterface
      */
-    private $translator;
+    private TranslatorInterface $translator;
 
     /**
      * @var RouterInterface
      */
-    private $router;
+    private RouterInterface $router;
 
     public function __construct(TranslatorInterface $translator, RouterInterface $router)
     {
@@ -53,13 +52,5 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
 
         // Set Flash Message
         $request->getSession()->getBag('flashes')->add('error', $message);
-
-        // Disable Login
-        if (parse_url($request->headers->get('referer'), PHP_URL_PATH) === $this->router->generate('security_login')) {
-            return new RedirectResponse($this->router->generate('homepage'));
-        }
-
-        // Send Response
-        return new RedirectResponse($request->headers->get('referer', $this->router->generate('homepage')));
     }
 }

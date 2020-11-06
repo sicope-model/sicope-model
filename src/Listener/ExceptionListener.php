@@ -14,6 +14,7 @@ namespace App\Listener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Twig\Environment;
@@ -42,6 +43,10 @@ class ExceptionListener implements EventSubscriberInterface
 
         if ($exception instanceof NotFoundHttpException) {
             $event->setResponse(new Response($this->engine->render('Admin/_other/notFound.html.twig'), 404));
+        }
+
+        if ($exception instanceof AccessDeniedHttpException) {
+            $event->setResponse(new Response($this->engine->render('Admin/_other/accessDenied.html.twig'), 403));
         }
     }
 
