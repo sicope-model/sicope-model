@@ -27,5 +27,6 @@ src/*/Entity/*/*~
 ###> Other ###
 node_modules
 .idea
+/nbproject/
 /build/
 .DS_Store
