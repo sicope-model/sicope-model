@@ -149,6 +149,18 @@ nav_profile_password: Change Password
 nav_profile_return_admin: Return Admin
 nav_profile_logout: Log Out
 
+nav_testing: Testing
+nav_model: Model
+nav_task: Task
+nav_bug: Bug
+testing_task_list_title: Tasks
+testing_task_list_desc: Testing Tasks
+task_title: Task Title
+model_label: Model Label
+progress: Progress
+settings_testing: Testing Settings
+settings_testing_desc: Task, model & bug settings
+
 search_keyword: Keyword
 search_keyword_account_placeholder: Name / Email / Phone
 nav_account: Accounts
@@ -178,8 +190,8 @@ account_groups: Groups
 account_roles_title: Private Authorization
 
 nav_group: Groups
-accouunt_group_list_title: User Groups
-accouunt_group_list_desc: Members groups
+account_group_list_title: User Groups
+account_group_list_desc: Members groups
 group_name: Group Name
 group_roles: Authorities
 account_group_edit_title: Edit Group

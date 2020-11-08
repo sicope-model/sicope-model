@@ -165,4 +165,40 @@ class SettingsController extends AbstractController
             'page_description' => 'settings_user_desc',
         ]);
     }
+
+    /**
+     * Testing Settings.
+     *
+     * @IsGranted("ROLE_SETTINGS_TESTING")
+     * @Route(name="admin_settings_testing", path="/settings/testing")
+     *
+     * @return RedirectResponse|Response
+     */
+    public function testing(Request $request, ConfigBag $bag)
+    {
+        // Create Form
+        $form = $this->createForm(TestingForm::class, $bag->getAll(), ['router' => $this->get('router')]);
+
+        // Handle Request
+        $form->handleRequest($request);
+
+        // Submit & Valid Form
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Save Config
+            $bag->saveToDB($this->getDoctrine()->getManager(), $form);
+
+            // Flash Message
+            $this->addFlash('success', 'changes_saved');
+
+            // Refresh Page
+            return $this->redirectToRoute('admin_settings_testing');
+        }
+
+        // Render Page
+        return $this->render('Admin/Settings/index.html.twig', [
+            'form' => $form->createView(),
+            'page_title' => 'settings_testing',
+            'page_description' => 'settings_testing_desc',
+        ]);
+    }
 }

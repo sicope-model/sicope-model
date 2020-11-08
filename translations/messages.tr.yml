@@ -149,6 +149,18 @@ nav_profile_password: Şifre Değiştir
 nav_profile_return_admin: Admin'e Dön
 nav_profile_logout: Çıkış Yap
 
+nav_testing: Test yapmak
+nav_model: Modeli
+nav_task: Görev
+nav_bug: Hata
+testing_task_list_title: Görevler
+testing_task_list_desc: Test Görevleri
+task_title: Görev Başlığı
+model_label: Model Etiketi
+progress: İlerleme
+settings_testing: Test Ayarları
+settings_testing_desc: Görev, model ve hata ayarları
+
 search_keyword: Anahtar Kelime
 search_keyword_account_placeholder: İsim / E-posta / Telefon
 nav_account: Hesaplar
@@ -178,8 +190,8 @@ account_groups: Gruplar
 account_roles_title: Özel Yetkilendirme
 
 nav_group: Gruplar
-accouunt_group_list_title: Kullanıcı Grupları
-accouunt_group_list_desc: Üyelerin katıldığı gruplar
+account_group_list_title: Kullanıcı Grupları
+account_group_list_desc: Üyelerin katıldığı gruplar
 group_name: Grup Adı
 group_roles: Yetkiler
 account_group_edit_title: Grup Düzenle

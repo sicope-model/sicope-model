@@ -33,6 +33,32 @@ class Main extends Menu
             ->setRoles(['ROLE_DASHBOARD'])
             ->setExtra('label_icon', 'dashboard');
 
+        // Create Testing Section
+        $menu
+            ->addChild('nav_testing', 10)
+            ->setLabel('nav_testing')
+            ->setRoute('admin_task_list')
+            ->setRoles(['ROLE_TASK_LIST'])
+            ->setExtra('label_icon', 'important_devices')
+            // Task List
+            ->addChild('nav_task', 10)
+            ->setLabel('nav_task')
+            ->setRoute('admin_task_list')
+            ->setRoles(['ROLE_TASK_LIST'])
+            ->setExtra('label_icon', 'assignment')
+            // Model List
+            ->addChildParent('nav_model', 20)
+            ->setLabel('nav_model')
+            ->setRoute('admin_model_list')
+            ->setRoles(['ROLE_MODEL_LIST'])
+            ->setExtra('label_icon', 'device_hub')
+            // Task List
+            ->addChildParent('nav_bug', 30)
+            ->setLabel('nav_bug')
+            ->setRoute('admin_bug_list')
+            ->setRoles(['ROLE_BUG_LIST'])
+            ->setExtra('label_icon', 'bug_report');
+
         // Create Account Section
         $menu
             ->addChild('nav_account', 20)
