@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f8f23aae4a2a5e632c29657a04d50ed",
+    "content-hash": "10a21d5a44171a09bd90b29981585cb4",
     "packages": [
         {
             "name": "appaydin/pd-mailer",
@@ -8151,16 +8151,16 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v2.0.0-beta.1",
+            "version": "v2.0.0-beta.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "1fb158fcfe64affe7ccdf52eb69039a7bae896a6"
+                "reference": "536f3da76dd2ca88696bdd41623796d892fb326d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/1fb158fcfe64affe7ccdf52eb69039a7bae896a6",
-                "reference": "1fb158fcfe64affe7ccdf52eb69039a7bae896a6",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/536f3da76dd2ca88696bdd41623796d892fb326d",
+                "reference": "536f3da76dd2ca88696bdd41623796d892fb326d",
                 "shasum": ""
             },
             "require": {
@@ -8215,22 +8215,22 @@
             "authors": [
                 {
                     "name": "Tien Xuan Vo",
-                    "email": "tien.xuan.vo@gmail.com",
-                    "role": "Developer"
+                    "homepage": "https://tienvx.github.io/",
+                    "role": "Maintainer & Developer"
                 },
                 {
                     "name": "Community contributions",
                     "homepage": "https://github.com/tienvx/mbt-bundle/contributors"
                 }
             ],
-            "description": "Provide tools to test a system using Model Based Testing technique.",
+            "description": "Core Library For SICOPE Model Project",
             "keywords": [
                 "model based testing",
                 "testing tools"
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-beta.1"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-beta.2"
             },
             "funding": [
                 {
@@ -8238,7 +8238,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-10-30T11:48:23+00:00"
+            "time": "2020-11-09T16:45:17+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",
@@ -9498,7 +9498,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3.0",
+        "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*"

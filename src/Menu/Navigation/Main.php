@@ -71,11 +71,13 @@ class Main extends Menu
             ->setLabel('nav_account')
             ->setRoute('admin_account_list')
             ->setRoles(['ROLE_ACCOUNT_LIST'])
+            ->setExtra('label_icon', 'person')
             // Group List
             ->addChildParent('nav_group', 20)
             ->setLabel('nav_group')
             ->setRoute('admin_group_list')
-            ->setRoles(['ROLE_GROUP_LIST']);
+            ->setRoles(['ROLE_GROUP_LIST'])
+            ->setExtra('label_icon', 'group');
 
         // Create Settings Section
         $menu
@@ -95,6 +97,7 @@ class Main extends Menu
             ->setLabel('nav_system')
             ->setRoute('admin_settings_general')
             ->setRoles(['ROLE_SETTINGS_GENERAL'])
+            ->setExtra('label_icon', 'settings')
             // Mail Manager
             ->addChildParent('nav_mailer_header', 20)
             ->setLabel('nav_mailer_header')
@@ -105,10 +108,12 @@ class Main extends Menu
             ->setLabel('nav_mailer_template')
             ->setRoute('mail_template')
             ->setRoles(['ROLE_MAIL_TEMPLATE'])
+            ->setExtra('label_icon', 'drafts')
             ->addChildParent('nav_mailer_log', 22)
             ->setLabel('nav_mailer_logs')
             ->setRoute('mail_log')
             ->setRoles(['ROLE_MAIL_LOGGER'])
+            ->setExtra('label_icon', 'contact_mail')
         ;
 
         return $menu;

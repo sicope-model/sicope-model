@@ -15,5 +15,6 @@ return [
     Pd\WidgetBundle\PdWidgetBundle::class => ['all' => true],
     Pd\MenuBundle\PdMenuBundle::class => ['all' => true],
     Pd\UserBundle\PdUserBundle::class => ['all' => true],
-    Pd\MailerBundle\PdMailerBundle::class => ['all' => true]
+    Pd\MailerBundle\PdMailerBundle::class => ['all' => true],
+    Tienvx\Bundle\MbtBundle\TienvxMbtBundle::class => ['all' => true]
 ];
