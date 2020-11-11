@@ -154,12 +154,16 @@ nav_model: Model
 nav_task: Task
 nav_bug: Bug
 testing_task_list_title: Tasks
-testing_task_list_desc: Testing Tasks
+testing_task_list_desc: Managing Tasks
 task_title: Task Title
 model_label: Model Label
 progress: Progress
 settings_testing: Testing Settings
 settings_testing_desc: Task, model & bug settings
+testing_model_list_title: Models
+testing_model_list_desc: Managing Models
+model_tags: Model Tags
+model_image: Model Image
 
 search_keyword: Keyword
 search_keyword_account_placeholder: Name / Email / Phone

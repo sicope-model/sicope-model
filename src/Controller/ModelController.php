@@ -52,12 +52,34 @@ class ModelController extends AbstractController
     }
 
     /**
+     * Create New Model.
+     *
+     * @IsGranted("ROLE_MODEL_CREATE")
+     * @Route(name="admin_model_create", path="/model/create")
+     */
+    public function create(Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
+    {
+        return new Response();
+    }
+
+    /**
      * View Model.
      *
      * @IsGranted("ROLE_MODEL_VIEW")
      * @Route(name="admin_model_view", path="/model/{model}")
      */
     public function view(Request $request, EntityManagerInterface $em, Model $model): Response
+    {
+        return new Response();
+    }
+
+    /**
+     * View Model Image.
+     *
+     * @IsGranted("ROLE_MODEL_IMAGE")
+     * @Route(name="admin_model_image", path="/model/{model}/image")
+     */
+    public function image(Request $request, EntityManagerInterface $em, Model $model): Response
     {
         return new Response();
     }

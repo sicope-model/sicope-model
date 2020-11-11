@@ -1,0 +1,60 @@
+{# Template Parts #}
+{% extends "Admin/base.html.twig" %}
+
+{# Document #}
+{% block head_title %}{{ title('testing_model_list_title'|trans) }}{% endblock %}
+
+{# Content Title #}
+{% block content_head %}
+    <span class="text">{{ 'testing_model_list_title'|trans }}</span>
+    <span class="desc">{{ 'testing_model_list_desc'|trans }}</span>
+{% endblock %}
+
+{# Content Body #}
+{% block content_body %}
+    <!-- Action Button -->
+    <div id="actions">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="{{ path('admin_model_create') }}" data-tooltip title="{{ 'add_new'|trans }}"><i class="material-icons">add</i></a>
+        </div>
+    </div>
+
+    <!-- Table List -->
+    <form id="pageForm" method="post">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="wid-15">{{ knp_pagination_sortable(models, 'model_label'|trans, 'm.label') }}</th>
+                        <th class="wid-15">{{ 'model_tags'|trans }}</th>
+                        <th class="wid-15">{{ 'model_image'|trans }}</th>
+                        <th class="wid-15">{{ 'created_at'|trans }}</th>
+                        <th class="wid-15">{{ 'updated_at'|trans }}</th>
+                        <th class="process"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for model in models %}
+                    <tr>
+                        <td class="wid-15">{{ model.label }}</td>
+                        <td class="wid-15">{{ model.tags|join(', ') }}</td>
+                        <td class="wid-15"><img src="{{ path('admin_model_image', { 'model': model.id }) }}" alt="{{ 'model_image'|trans }}"></td>
+                        <td class="wid-15">{{ model.created_at }}</td>
+                        <td class="wid-15">{{ model.updated_at }}</td>
+                        <td class="process">
+                            <div class="floating-menu">
+                                <a><i class="material-icons">more_horiz</i></a>
+                                {{ pd_menu_render('App\\Menu\\Action\\Model', {'model': model}) }}
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+    <!-- Pagination -->
+    {{ knp_pagination_render(models) }}
+{% endblock %}

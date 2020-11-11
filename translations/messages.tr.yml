@@ -154,12 +154,16 @@ nav_model: Modeli
 nav_task: Görev
 nav_bug: Hata
 testing_task_list_title: Görevler
-testing_task_list_desc: Test Görevleri
+testing_task_list_desc: Görevleri Yönetme
 task_title: Görev Başlığı
 model_label: Model Etiketi
 progress: İlerleme
 settings_testing: Test Ayarları
 settings_testing_desc: Görev, model ve hata ayarları
+testing_model_list_title: Modeller
+testing_model_list_desc: Modelleri Yönetme
+model_tags: Model Etiketleri
+model_image: Model Resmi
 
 search_keyword: Anahtar Kelime
 search_keyword_account_placeholder: İsim / E-posta / Telefon
