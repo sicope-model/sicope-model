@@ -1,0 +1,34 @@
+name: main
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Test PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['7.4']
+    steps:
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        coverage: pcov
+        tools: phpstan, php-cs-fixer, composer:v2
+        #extensions: mbstring, intl
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install
+      run: composer install
+
+    - name: Run PHP CS Fixer
+      run: php-cs-fixer fix --diff --dry-run
+
+    - name: Run PHPStan
+      run: phpstan analyse src tests
+
+    - name: Test & Generate Code Coverage
+      run: ./vendor/bin/simple-phpunit

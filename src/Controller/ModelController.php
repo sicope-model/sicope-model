@@ -1,17 +1,23 @@
 <?php
 
+/**
+ * This file is part of the SICOPE Model package.
+ *
+ * @package     sicope-model
+ * @license     LICENSE
+ * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
+ */
+
 namespace App\Controller;
 
-use App\Entity\Account\Group;
-use App\Form\Account\RolesType;
-use App\Menu\GroupsMenu;
-use App\Repository\GroupRepository;
+use App\Form\Testing\ModelType;
 use App\Repository\TaskRepository;
 use App\Service\ConfigBag;
-use App\Service\SecurityService;
+use App\Service\ModelBuilderInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Pd\UserBundle\Form\GroupType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -28,6 +34,13 @@ use Tienvx\Bundle\MbtBundle\Entity\Model;
  */
 class ModelController extends AbstractController
 {
+    protected ModelBuilderInterface $modelBuilder;
+
+    public function __construct(ModelBuilderInterface $modelBuilder)
+    {
+        $this->modelBuilder = $modelBuilder;
+    }
+
     /**
      * List Model.
      *
@@ -52,14 +65,31 @@ class ModelController extends AbstractController
     }
 
     /**
-     * Create New Model.
+     * Build New Model.
      *
-     * @IsGranted("ROLE_MODEL_CREATE")
-     * @Route(name="admin_model_create", path="/model/create")
+     * @IsGranted("ROLE_MODEL_BUILD")
+     * @Route(name="admin_model_build", path="/model-build")
+     *
+     * @return RedirectResponse|Response
      */
-    public function create(Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
+    public function build(Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {
-        return new Response();
+        $form = $this->createForm(ModelType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $model = $this->modelBuilder->build($data);
+
+            $em->persist($model);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_model_list');
+        }
+
+        return $this->render('Admin/Testing/buildModel.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**

@@ -154,16 +154,43 @@ nav_model: Modeli
 nav_task: Görev
 nav_bug: Hata
 testing_task_list_title: Görevler
-testing_task_list_desc: Görevleri Yönetme
+testing_task_list_desc: Görevleri yönetme
 task_title: Görev Başlığı
-model_label: Model Etiketi
+task_model_label: Model Etiketi
 progress: İlerleme
 settings_testing: Test Ayarları
 settings_testing_desc: Görev, model ve hata ayarları
 testing_model_list_title: Modeller
-testing_model_list_desc: Modelleri Yönetme
-model_tags: Model Etiketleri
-model_image: Model Resmi
+testing_model_list_desc: Modelleri yönetme
+model_label: Etiket
+model_tags: Etiketleri
+model_image: Resim
+build: İnşa etmek
+testing_model_build_title: Model Oluştur
+testing_model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
+created_at: Oluşturulma Tarihi
+updated_at: Güncelleme Tarihi
+model_places: Yerler
+model_transitions: Geçişler
+model_connect_place_to_transition: Yeri Geçişe Bağlayın
+model_connect_transition_to_place: Yere Geçiş Bağlayın
+place_label: Etiket
+place_init: Başlatıldı
+place_assertions: İddialar
+transition_label: Etiket
+transition_guard: Muhafız
+transition_actions: Hareketler
+command_command: Komut
+command_target: Hedef
+command_value: Değer
+arc_place: Yer
+arc_transition: Geçiş
+output_arc_expression: İfade
+add_place: Yer Ekle
+add_transition: Geçiş Ekle
+add_assertion: Onay Ekle
+add_action: Eylem Ekle
+add_tag: Etiket Ekle
 
 search_keyword: Anahtar Kelime
 search_keyword_account_placeholder: İsim / E-posta / Telefon
@@ -187,7 +214,6 @@ phone: Telefon
 website: Website
 company: Şirket
 language: Dil
-created_at: Oluşturma Tarihi
 account_change_password_title: Şifre Değiştir
 account_add_group_title: Grup
 account_groups: Gruplar

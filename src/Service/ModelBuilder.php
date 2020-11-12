@@ -10,19 +10,15 @@
  * @link        https://github.com/sicope-model/sicope-model
  */
 
-namespace App\Entity\Account;
+namespace App\Service;
 
-use Doctrine\ORM\Mapping as ORM;
-use Pd\UserBundle\Model\Profile as BaseProfile;
+use Tienvx\Bundle\MbtBundle\Entity\Model;
+use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
 
-/**
- * User Profile Table.
- *
- * @ORM\Table(name="user_profile")
- * @ORM\Entity
- *
- * @author Ramazan APAYDIN <apaydin541@gmail.com>
- */
-class Profile extends BaseProfile
+class ModelBuilder implements ModelBuilderInterface
 {
+    public function build(array $data): ModelInterface
+    {
+        return new Model();
+    }
 }
