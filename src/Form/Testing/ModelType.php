@@ -18,7 +18,6 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 
@@ -34,32 +33,22 @@ class ModelType extends AbstractType
                     new Type('string'),
                 ],
             ])
-            ->add('tags', CollectionType::class, [
+            ->add('tags', TextType::class, [
                 'label' => 'model_tags',
-                'entry_type' => TextType::class,
-                'entry_options' => ['label' => false],
-                'allow_add' => true,
-                'constraints' => [
-                    new All([
-                        new Type('string'),
-                    ]),
-                ],
                 'attr' => [
-                    'data-widget-entries' => '<li></li>',
-                    'class' => 'tags',
-                ],
-            ])
-            ->add('add_tag', ButtonType::class, [
-                'label' => 'add_tag',
-                'attr' => [
-                    'data-list-selector' => '.tags',
-                    'class' => 'btn-secondary add-tag',
+                    'data-toggle' => 'tagsinput',
+                    'data-tags' => '',
                 ],
             ])
             ->add('places', CollectionType::class, [
                 'label' => 'model_places',
                 'entry_type' => PlaceType::class,
-                'entry_options' => ['label' => false],
+                'entry_options' => [
+                    'label' => false,
+                    'attr' => [
+                        'class' => 'col',
+                    ],
+                ],
                 'allow_add' => true,
                 'attr' => [
                     'data-widget-entries' => '<li class="list-group-item"></li>',
@@ -76,7 +65,12 @@ class ModelType extends AbstractType
             ->add('transitions', CollectionType::class, [
                 'label' => 'model_transitions',
                 'entry_type' => TransitionType::class,
-                'entry_options' => ['label' => false],
+                'entry_options' => [
+                    'label' => false,
+                    'attr' => [
+                        'class' => 'col',
+                    ],
+                ],
                 'allow_add' => true,
                 'attr' => [
                     'data-widget-entries' => '<li class="list-group-item"></li>',

@@ -40,7 +40,12 @@ class PlaceType extends AbstractType
             ->add('assertions', CollectionType::class, [
                 'label' => 'place_assertions',
                 'entry_type' => CommandType::class,
-                'entry_options' => ['label' => false],
+                'entry_options' => [
+                    'label' => false,
+                    'attr' => [
+                        'class' => 'col',
+                    ],
+                ],
                 'allow_add' => true,
                 'attr' => [
                     'data-widget-entries' => '<li class="list-group-item"></li>',

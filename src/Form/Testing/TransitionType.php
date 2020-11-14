@@ -39,7 +39,12 @@ class TransitionType extends AbstractType
             ->add('actions', CollectionType::class, [
                 'label' => 'transition_actions',
                 'entry_type' => CommandType::class,
-                'entry_options' => ['label' => false],
+                'entry_options' => [
+                    'label' => false,
+                    'attr' => [
+                        'class' => 'col',
+                    ],
+                ],
                 'allow_add' => true,
                 'attr' => [
                     'data-widget-entries' => '<li class="list-group-item"></li>',
