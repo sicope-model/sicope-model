@@ -1,12 +1,13 @@
 <?php
 
 /**
- * This file is part of the pdAdmin package.
+ * This file is part of the SICOPE Model package.
  *
- * @package     pd-admin
+ * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
- * @link        https://github.com/appaydin/pd-admin
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
  */
 
 namespace App\Twig;
@@ -44,8 +45,6 @@ class FilterExtension extends AbstractExtension
 
     /**
      * Time Ago.
-     *
-     * @return string
      */
     public function timeDiff(Environment $env, $date, $now = null, $text = 'diff.ago', $domain = 'messages', $length = 1): string
     {
@@ -59,8 +58,8 @@ class FilterExtension extends AbstractExtension
         ];
 
         // Date Time
-        $date = twig_date_converter($env, $date);
-        $now = twig_date_converter($env, $now);
+        $date = twig_date_converter($env, $date); /* @phpstan-ignore-line */
+        $now = twig_date_converter($env, $now); /* @phpstan-ignore-line */
 
         // Convert
         $diff = $date->diff($now);
@@ -85,8 +84,6 @@ class FilterExtension extends AbstractExtension
 
     /**
      * Phone Formatter.
-     *
-     * @return string
      */
     public function phoneFormat($phone): string
     {
@@ -100,8 +97,6 @@ class FilterExtension extends AbstractExtension
 
     /**
      * Basename Formatter.
-     *
-     * @return string
      */
     public function basename($path): string
     {

@@ -1,12 +1,13 @@
 <?php
 
 /**
- * This file is part of the pdAdmin package.
+ * This file is part of the SICOPE Model package.
  *
- * @package     pd-admin
+ * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
- * @link        https://github.com/appaydin/pd-admin
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
  */
 
 namespace App\Menu\Navigation;
@@ -33,6 +34,32 @@ class Main extends Menu
             ->setRoles(['ROLE_DASHBOARD'])
             ->setExtra('label_icon', 'dashboard');
 
+        // Create Testing Section
+        $menu
+            ->addChild('nav_testing', 10)
+            ->setLabel('nav_testing')
+            ->setRoute('admin_task_list')
+            ->setRoles(['ROLE_TASK_LIST'])
+            ->setExtra('label_icon', 'important_devices')
+            // Task List
+            ->addChild('nav_task', 10)
+            ->setLabel('nav_task')
+            ->setRoute('admin_task_list')
+            ->setRoles(['ROLE_TASK_LIST'])
+            ->setExtra('label_icon', 'assignment')
+            // Model List
+            ->addChildParent('nav_model', 20)
+            ->setLabel('nav_model')
+            ->setRoute('admin_model_list')
+            ->setRoles(['ROLE_MODEL_LIST'])
+            ->setExtra('label_icon', 'device_hub')
+            // Task List
+            ->addChildParent('nav_bug', 30)
+            ->setLabel('nav_bug')
+            ->setRoute('admin_bug_list')
+            ->setRoles(['ROLE_BUG_LIST'])
+            ->setExtra('label_icon', 'bug_report');
+
         // Create Account Section
         $menu
             ->addChild('nav_account', 20)
@@ -45,11 +72,13 @@ class Main extends Menu
             ->setLabel('nav_account')
             ->setRoute('admin_account_list')
             ->setRoles(['ROLE_ACCOUNT_LIST'])
+            ->setExtra('label_icon', 'person')
             // Group List
             ->addChildParent('nav_group', 20)
             ->setLabel('nav_group')
             ->setRoute('admin_group_list')
-            ->setRoles(['ROLE_GROUP_LIST']);
+            ->setRoles(['ROLE_GROUP_LIST'])
+            ->setExtra('label_icon', 'group');
 
         // Create Settings Section
         $menu
@@ -69,6 +98,7 @@ class Main extends Menu
             ->setLabel('nav_system')
             ->setRoute('admin_settings_general')
             ->setRoles(['ROLE_SETTINGS_GENERAL'])
+            ->setExtra('label_icon', 'settings')
             // Mail Manager
             ->addChildParent('nav_mailer_header', 20)
             ->setLabel('nav_mailer_header')
@@ -79,10 +109,12 @@ class Main extends Menu
             ->setLabel('nav_mailer_template')
             ->setRoute('mail_template')
             ->setRoles(['ROLE_MAIL_TEMPLATE'])
+            ->setExtra('label_icon', 'drafts')
             ->addChildParent('nav_mailer_log', 22)
             ->setLabel('nav_mailer_logs')
             ->setRoute('mail_log')
             ->setRoles(['ROLE_MAIL_LOGGER'])
+            ->setExtra('label_icon', 'contact_mail')
         ;
 
         return $menu;

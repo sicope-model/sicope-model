@@ -1,12 +1,13 @@
 <?php
 
 /**
- * This file is part of the pdAdmin package.
+ * This file is part of the SICOPE Model package.
  *
- * @package     pd-admin
+ * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
- * @link        https://github.com/appaydin/pd-admin
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
  */
 
 namespace App\Service;
@@ -123,7 +124,7 @@ class ConfigBag
         // Load Cache|Repository
         $store = $this->configRepo->findAll();
         foreach ($store as $config) {
-            if (count($config->getValue()) === 1) {
+            if (1 === \count($config->getValue())) {
                 $val = $config->getValue()[0];
 
                 if ('true' === $val) {
@@ -160,11 +161,11 @@ class ConfigBag
         // Update
         foreach ($data as $item) {
             if (\array_key_exists($item->getName(), $configs)) {
-                if (is_bool($configs[$item->getName()])) {
+                if (\is_bool($configs[$item->getName()])) {
                     $item->setValue($configs[$item->getName()] ? 'true' : 'false');
-                 } else {
+                } else {
                     $item->setValue($configs[$item->getName()]);
-                 }
+                }
                 $em->persist($item);
 
                 unset($configs[$item->getName()]);
@@ -202,7 +203,7 @@ class ConfigBag
                         if (\is_object($itemData)) {
                             // Get Entity Function
                             $choiceValue = $form->get($itemName)->getConfig()->getOption('choice_value');
-                            $entityGetter = \is_string($choiceValue) ? 'get' . ucfirst($choiceValue) : 'getId';
+                            $entityGetter = \is_string($choiceValue) ? 'get'.ucfirst($choiceValue) : 'getId';
 
                             if (\is_array($itemData) || $itemData instanceof ArrayCollection) {
                                 $data = [];

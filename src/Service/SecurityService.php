@@ -1,12 +1,13 @@
 <?php
 
 /**
- * This file is part of the pdAdmin package.
+ * This file is part of the SICOPE Model package.
  *
- * @package     pd-admin
+ * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
- * @link        https://github.com/appaydin/pd-admin
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
  */
 
 namespace App\Service;
@@ -90,7 +91,7 @@ class SecurityService
             if ($customRoles = $reflection->getConstant('CUSTOM_ROLES')) {
                 foreach ($customRoles as $role) {
                     $roleObject = explode('_', $role);
-                    if (3 === count($roleObject)) {
+                    if (3 === \count($roleObject)) {
                         $access = $roleObject[2];
                         $roleObject = $roleObject[0].'_'.$roleObject[1];
 

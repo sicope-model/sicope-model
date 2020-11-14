@@ -1,0 +1,64 @@
+{# Template Parts #}
+{% extends "Admin/base.html.twig" %}
+
+{# Document #}
+{% block head_title %}{{ title('testing_task_list_title'|trans) }}{% endblock %}
+
+{# Content Title #}
+{% block content_head %}
+    <span class="text">{{ 'testing_task_list_title'|trans }}</span>
+    <span class="desc">{{ 'testing_task_list_desc'|trans }}</span>
+{% endblock %}
+
+{# Content Body #}
+{% block content_body %}
+    <!-- Action Button -->
+    <div id="actions">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="{{ path('admin_task_create') }}" data-tooltip title="{{ 'add_new'|trans }}"><i class="material-icons">add</i></a>
+        </div>
+    </div>
+
+    <!-- Table List -->
+    <form id="pageForm" method="post">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="wid-15">{{ knp_pagination_sortable(tasks, 'task_title'|trans, 't.title') }}</th>
+                        <th class="wid-15">{{ 'task_model_label'|trans }}</th>
+                        <th class="wid-15">{{ 'progress'|trans }}</th>
+                        <th class="wid-15">{{ 'created_at'|trans }}</th>
+                        <th class="wid-15">{{ 'updated_at'|trans }}</th>
+                        <th class="process"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td class="wid-15">{{ task.title }}</td>
+                        <td class="wid-15"><a class="btn btn-primary" href="{{ path('admin_model_view', { 'model': task.model.id }) }}">{{ task.model.label }}</a></td>
+                        <td class="wid-15">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ task.progress.processed }}" aria-valuemin="0" aria-valuemax="{{ task.progress.total }}" style="width: {{ task.progress.processed/task.progress.total*100 }}%"></div>
+                            </div>
+                        </td>
+                        <td class="wid-15">{{ task.created_at }}</td>
+                        <td class="wid-15">{{ task.updated_at }}</td>
+                        <td class="process">
+                            <div class="floating-menu">
+                                <a><i class="material-icons">more_horiz</i></a>
+                                {{ pd_menu_render('App\\Menu\\Action\\Task', {'task': task}) }}
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+    <!-- Pagination -->
+    {{ knp_pagination_render(tasks) }}
+{% endblock %}

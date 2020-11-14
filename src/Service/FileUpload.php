@@ -1,12 +1,13 @@
 <?php
 
 /**
- * This file is part of the pdAdmin package.
+ * This file is part of the SICOPE Model package.
  *
- * @package     pd-admin
+ * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
- * @link        https://github.com/appaydin/pd-admin
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
  */
 
 namespace App\Service;
@@ -51,8 +52,6 @@ class FileUpload
      *
      * @param $files array|UploadedFile
      * @param bool $rawUpload
-     *
-     * @return array
      */
     public function upload($files, $rawUpload = false): array
     {
@@ -103,8 +102,6 @@ class FileUpload
      * Start Upload.
      *
      * @param $rawUpload boolean
-     *
-     * @return string
      */
     private function uploadProcess(UploadedFile $file, bool $rawUpload): string
     {

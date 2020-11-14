@@ -1,12 +1,13 @@
 <?php
 
 /**
- * This file is part of the pdAdmin package.
+ * This file is part of the SICOPE Model package.
  *
- * @package     pd-admin
+ * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
- * @link        https://github.com/appaydin/pd-admin
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
  */
 
 namespace App\Form\Config;
@@ -61,7 +62,7 @@ abstract class ConfigAbstractType implements FormTypeInterface
         foreach ($form->all() as $key => $formInterface) {
             if ('file' === $formInterface->getConfig()->getType()->getBlockPrefix()) {
                 if ($formInterface->getViewData()) {
-                    $view->children[$key]->vars['file_path'] = !is_array($formInterface->getViewData()) ? [$formInterface->getViewData()] : $formInterface->getViewData();
+                    $view->children[$key]->vars['file_path'] = !\is_array($formInterface->getViewData()) ? [$formInterface->getViewData()] : $formInterface->getViewData();
                 } elseif (!$formInterface->getViewData() && isset($options['data'][$key])) {
                     $view->children[$key]->vars['file_path'] = $options['data'][$key];
                 }

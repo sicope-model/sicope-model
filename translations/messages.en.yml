@@ -149,6 +149,49 @@ nav_profile_password: Change Password
 nav_profile_return_admin: Return Admin
 nav_profile_logout: Log Out
 
+nav_testing: Testing
+nav_model: Model
+nav_task: Task
+nav_bug: Bug
+testing_task_list_title: Tasks
+testing_task_list_desc: Managing tasks
+task_title: Task Title
+task_model_label: Model Label
+progress: Progress
+settings_testing: Testing Settings
+settings_testing_desc: Task, model & bug settings
+testing_model_list_title: Models
+testing_model_list_desc: Managing Models
+model_label: Label
+model_tags: Tags
+model_image: Image
+build: Build
+testing_model_build_title: Build Model
+testing_model_build_desc: Create new model with states and transitions
+created_at: Created At
+updated_at: Updated At
+model_places: Places
+model_transitions: Transitions
+model_connect_place_to_transition: Connect Place To Transition
+model_connect_transition_to_place: Connect Transition To Place
+place_label: Label
+place_init: Initiated
+place_assertions: Assertions
+transition_label: Label
+transition_guard: Guard
+transition_actions: Actions
+command_command: Command
+command_target: Target
+command_value: Value
+arc_place: Place
+arc_transition: Transition
+output_arc_expression: Expression
+add_place: Add Place
+add_transition: Add Transition
+add_assertion: Add Assertion
+add_action: Add Action
+add_tag: Add Tag
+
 search_keyword: Keyword
 search_keyword_account_placeholder: Name / Email / Phone
 nav_account: Accounts
@@ -171,15 +214,14 @@ phone: Phone
 website: Website
 company: Company
 language: Language
-created_at: Creation Date
 account_change_password_title: Change Password
 account_add_group_title: Group
 account_groups: Groups
 account_roles_title: Private Authorization
 
 nav_group: Groups
-accouunt_group_list_title: User Groups
-accouunt_group_list_desc: Members groups
+account_group_list_title: User Groups
+account_group_list_desc: Members groups
 group_name: Group Name
 group_roles: Authorities
 account_group_edit_title: Edit Group

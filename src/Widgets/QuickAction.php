@@ -1,12 +1,13 @@
 <?php
 
 /**
- * This file is part of the pdAdmin package.
+ * This file is part of the SICOPE Model package.
  *
- * @package     pd-admin
+ * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
- * @link        https://github.com/appaydin/pd-admin
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
  */
 
 namespace App\Widgets;
@@ -41,7 +42,7 @@ class QuickAction
             ],
             'action_group' => [
                 'name' => 'nav_group',
-                'description' => 'accouunt_group_list_title',
+                'description' => 'account_group_list_title',
                 'route' => 'admin_group_list',
                 'icons' => 'group',
                 'linkClass' => 'btn btn-primary',
