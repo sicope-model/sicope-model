@@ -56,7 +56,7 @@ class PlaceType extends AbstractType
                 'label' => 'add_assertion',
                 'attr' => [
                     'data-list-selector' => '.list-group.assertions',
-                    'class' => 'btn-secondary add-assertion',
+                    'class' => 'add-assertion',
                 ],
             ])
         ;

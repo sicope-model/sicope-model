@@ -55,7 +55,7 @@ class TransitionType extends AbstractType
                 'label' => 'add_action',
                 'attr' => [
                     'data-list-selector' => '.list-group.actions',
-                    'class' => 'btn-secondary add-action',
+                    'class' => 'add-action',
                 ],
             ])
         ;

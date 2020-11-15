@@ -172,8 +172,8 @@ created_at: Oluşturulma Tarihi
 updated_at: Güncelleme Tarihi
 model_places: Yerler
 model_transitions: Geçişler
-model_connect_place_to_transition: Yeri Geçişe Bağlayın
-model_connect_transition_to_place: Yere Geçiş Bağlayın
+model_place_to_transition_arcs: Geçiş Bağlantılarına Yerleştirme
+model_transition_to_place_arcs: Bağlantıları Yerleştirmek İçin Geçiş
 place_label: Etiket
 place_init: Başlatıldı
 place_assertions: İddialar
@@ -191,6 +191,7 @@ add_transition: Geçiş Ekle
 add_assertion: Onay Ekle
 add_action: Eylem Ekle
 add_tag: Etiket Ekle
+add_arc: Bağlan
 
 search_keyword: Anahtar Kelime
 search_keyword_account_placeholder: İsim / E-posta / Telefon

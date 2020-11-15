@@ -172,8 +172,8 @@ created_at: Created At
 updated_at: Updated At
 model_places: Places
 model_transitions: Transitions
-model_connect_place_to_transition: Connect Place To Transition
-model_connect_transition_to_place: Connect Transition To Place
+model_place_to_transition_arcs: Place To Transition Connections
+model_transition_to_place_arcs: Transition To Place Connections
 place_label: Label
 place_init: Initiated
 place_assertions: Assertions
@@ -191,6 +191,7 @@ add_transition: Add Transition
 add_assertion: Add Assertion
 add_action: Add Action
 add_tag: Add Tag
+add_arc: Connect
 
 search_keyword: Keyword
 search_keyword_account_placeholder: Name / Email / Phone
