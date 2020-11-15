@@ -36,7 +36,6 @@ class ModelType extends AbstractType
             ->add('tags', TextType::class, [
                 'label' => 'model_tags',
                 'attr' => [
-                    'data-toggle' => 'tagsinput',
                     'data-tags' => '',
                 ],
             ])
@@ -59,7 +58,7 @@ class ModelType extends AbstractType
                 'label' => 'add_place',
                 'attr' => [
                     'data-list-selector' => '.list-group.places',
-                    'class' => 'btn-secondary add-place',
+                    'class' => 'add-place',
                 ],
             ])
             ->add('transitions', CollectionType::class, [
@@ -81,20 +80,52 @@ class ModelType extends AbstractType
                 'label' => 'add_transition',
                 'attr' => [
                     'data-list-selector' => '.list-group.transitions',
-                    'class' => 'btn-secondary add-transition',
+                    'class' => 'add-transition',
                 ],
             ])
             ->add('place_to_transition_arcs', CollectionType::class, [
-                'label' => 'model_connect_place_to_transition',
+                'label' => 'model_place_to_transition_arcs',
                 'entry_type' => PlaceToTransitionArcType::class,
-                'entry_options' => ['label' => false],
+                'entry_options' => [
+                    'label' => false,
+                    'attr' => [
+                        'class' => 'col',
+                    ],
+                ],
                 'allow_add' => true,
+                'attr' => [
+                    'data-widget-entries' => '<li class="list-group-item"></li>',
+                    'class' => 'list-group place-to-transition-arcs',
+                ],
+            ])
+            ->add('add_place_to_transition_arc', ButtonType::class, [
+                'label' => 'add_arc',
+                'attr' => [
+                    'data-list-selector' => '.list-group.place-to-transition-arcs',
+                    'class' => 'add-arc',
+                ],
             ])
             ->add('transition_to_place_arcs', CollectionType::class, [
-                'label' => 'model_connect_transition_to_place',
+                'label' => 'model_transition_to_place_arcs',
                 'entry_type' => TransitionToPlaceArcType::class,
-                'entry_options' => ['label' => false],
+                'entry_options' => [
+                    'label' => false,
+                    'attr' => [
+                        'class' => 'col',
+                    ],
+                ],
                 'allow_add' => true,
+                'attr' => [
+                    'data-widget-entries' => '<li class="list-group-item"></li>',
+                    'class' => 'list-group transition-to-place-arcs',
+                ],
+            ])
+            ->add('add_transition_to_place_arc', ButtonType::class, [
+                'label' => 'add_arc',
+                'attr' => [
+                    'data-list-selector' => '.list-group.transition-to-place-arcs',
+                    'class' => 'add-arc',
+                ],
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',

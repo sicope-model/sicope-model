@@ -93,6 +93,20 @@
     {% endif %}
 {% endblock submit_row %}
 
+{% block button_row -%}
+    {% set attr = attr|merge({class: ('btn btn-secondary ' ~ attr.class|default(''))|trim}) %}
+    {% if attr.mbutton is defined %}
+        {{ form_widget(form, {'attr': {'class': attr.class}}) }}
+    {% else %}
+        <div class="form-group row">
+            <div class="{{ block('form_label_class') }}"></div>
+            <div class="{{ block('form_group_class') }}">
+                {{ form_widget(form, {'attr': {'class': attr.class}}) }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock button_row %}
+
 {% block form_group_class -%}
     col-md-8 col-sm-8 col-xs-12
 {%- endblock form_group_class %}

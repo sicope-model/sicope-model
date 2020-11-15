@@ -21,8 +21,8 @@
 
 {% block scripts %}
     <script>
-        jQuery(document).on('click', '.add-place, .add-transition, .add-assertion, .add-action', function () {
-            var list = $(this).parent().prev().find($(this).attr('data-list-selector'));
+        jQuery(document).on('click', '.add-place, .add-transition, .add-assertion, .add-action, .add-arc', function () {
+            var list = $(this).parent().parent().prev().find($(this).attr('data-list-selector'));
             // Try to find the counter of the list or use the length of the list
             var counter = list.data('widget-counter') || list.children().length;
 
