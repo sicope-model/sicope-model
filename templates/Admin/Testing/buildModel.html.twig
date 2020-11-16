@@ -21,8 +21,28 @@
 
 {% block scripts %}
     <script>
-        jQuery(document).on('click', '.add-place, .add-transition, .add-assertion, .add-action, .add-arc', function () {
-            var list = $(this).parent().parent().prev().find($(this).attr('data-list-selector'));
+        jQuery(document).on('click', '.add-assertion, .add-action', function () {
+            addElement(this);
+        });
+
+        jQuery(document).on('click', '.add-place', function () {
+            addElement(this);
+            updatePlacesSelect();
+        });
+
+        jQuery(document).on('click', '.add-transition', function () {
+            addElement(this);
+            updateTransitionsSelect();
+        });
+
+        jQuery(document).on('click', '.add-arc', function () {
+            addElement(this);
+            updatePlacesSelect();
+            updateTransitionsSelect();
+        });
+
+        function addElement(button) {
+            var list = $(button).parent().parent().prev().find($(button).attr('data-list-selector'));
             // Try to find the counter of the list or use the length of the list
             var counter = list.data('widget-counter') || list.children().length;
 
@@ -40,6 +60,42 @@
             // create a new list element and add it to the list
             var newElem = $(list.attr('data-widget-entries')).html(newWidget);
             newElem.appendTo(list);
+        }
+
+        jQuery(document).on('change', '.place-label', function (text) {
+            updatePlacesSelect();
         });
+
+        jQuery(document).on('change', '.transition-label', function (text) {
+            updateTransitionsSelect();
+        });
+
+        function updatePlacesSelect() {
+            var places = [];
+            $('.place-label').each(function (index, label) {
+                places.push({id: index, label: $(label).val()});
+            });
+            $('.places-select').selectize({
+                valueField: 'id',
+                labelField: 'label',
+                searchField: 'label',
+                options: places,
+                maxItems: 1,
+            });
+        }
+
+        function updateTransitionsSelect() {
+            var transitions = [];
+            $('.transition-label').each(function (index, label) {
+                transitions.push({id: index, label: $(label).val()});
+            });
+            $('.transitions-select').selectize({
+                valueField: 'id',
+                labelField: 'label',
+                searchField: 'label',
+                options: transitions,
+                maxItems: 1,
+            });
+        }
     </script>
 {% endblock %}

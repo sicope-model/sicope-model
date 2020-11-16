@@ -29,6 +29,9 @@ class TransitionType extends AbstractType
                 'constraints' => [
                     new Type('string'),
                 ],
+                'attr' => [
+                    'class' => 'transition-label',
+                ],
             ])
             ->add('guard', TextType::class, [
                 'label' => 'transition_guard',

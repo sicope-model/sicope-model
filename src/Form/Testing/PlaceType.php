@@ -30,6 +30,9 @@ class PlaceType extends AbstractType
                 'constraints' => [
                     new Type('string'),
                 ],
+                'attr' => [
+                    'class' => 'place-label',
+                ],
             ])
             ->add('init', CheckboxType::class, [
                 'label' => 'place_init',
