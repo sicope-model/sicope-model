@@ -46,20 +46,25 @@ class PlaceType extends AbstractType
                 'entry_options' => [
                     'label' => false,
                     'attr' => [
-                        'class' => 'col',
+                        'class' => 'col list-group-item assertion',
                     ],
                 ],
                 'allow_add' => true,
+                'allow_delete' => true,
                 'attr' => [
-                    'data-widget-entries' => '<li class="list-group-item"></li>',
-                    'class' => 'list-group assertions',
+                    'class' => 'list-group assertions col pl-3',
                 ],
             ])
             ->add('add_assertion', ButtonType::class, [
                 'label' => 'add_assertion',
                 'attr' => [
-                    'data-list-selector' => '.list-group.assertions',
                     'class' => 'add-assertion',
+                ],
+            ])
+            ->add('remove_place', ButtonType::class, [
+                'label' => 'remove_place',
+                'attr' => [
+                    'class' => 'remove-place',
                 ],
             ])
         ;

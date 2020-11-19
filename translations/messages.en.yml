@@ -172,8 +172,6 @@ created_at: Created At
 updated_at: Updated At
 model_places: Places
 model_transitions: Transitions
-model_place_to_transition_arcs: Place To Transition Connections
-model_transition_to_place_arcs: Transition To Place Connections
 place_label: Label
 place_init: Initiated
 place_assertions: Assertions
@@ -183,15 +181,19 @@ transition_actions: Actions
 command_command: Command
 command_target: Target
 command_value: Value
-arc_place: Place
-arc_transition: Transition
 output_arc_expression: Expression
 add_place: Add Place
 add_transition: Add Transition
 add_assertion: Add Assertion
 add_action: Add Action
 add_tag: Add Tag
-add_arc: Connect
+remove_place: Remove Place
+remove_transition: Remove Transition
+from_places: From Places
+to_places: To Places
+remove_command: Remove Command
+place: Place
+expression: Expression
 
 search_keyword: Keyword
 search_keyword_account_placeholder: Name / Email / Phone
