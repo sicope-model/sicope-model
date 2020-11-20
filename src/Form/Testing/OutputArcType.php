@@ -13,31 +13,36 @@
 namespace App\Form\Testing;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Type;
 
-class PlaceToTransitionArcType extends AbstractType
+class OutputArcType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('place', ChoiceType::class, [
-                'label' => 'arc_place',
+                'label' => 'place',
+                'attr' => [
+                    'class' => 'to-place',
+                ],
                 'constraints' => [
                     new Type('integer'),
-                ],
-                'attr' => [
-                    'class' => 'places-select',
                 ],
             ])
-            ->add('transition', ChoiceType::class, [
-                'label' => 'arc_transition',
+            ->add('expression', TextType::class, [
+                'label' => 'expression',
                 'constraints' => [
-                    new Type('integer'),
+                    new Type('string'),
                 ],
+            ])
+            ->add('remove_place', ButtonType::class, [
+                'label' => 'remove_place',
                 'attr' => [
-                    'class' => 'transitions-select',
+                    'class' => 'remove-place',
                 ],
             ])
         ;

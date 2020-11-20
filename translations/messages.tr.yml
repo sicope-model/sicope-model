@@ -172,8 +172,6 @@ created_at: Oluşturulma Tarihi
 updated_at: Güncelleme Tarihi
 model_places: Yerler
 model_transitions: Geçişler
-model_place_to_transition_arcs: Geçiş Bağlantılarına Yerleştirme
-model_transition_to_place_arcs: Bağlantıları Yerleştirmek İçin Geçiş
 place_label: Etiket
 place_init: Başlatıldı
 place_assertions: İddialar
@@ -183,15 +181,19 @@ transition_actions: Hareketler
 command_command: Komut
 command_target: Hedef
 command_value: Değer
-arc_place: Yer
-arc_transition: Geçiş
 output_arc_expression: İfade
 add_place: Yer Ekle
 add_transition: Geçiş Ekle
 add_assertion: Onay Ekle
 add_action: Eylem Ekle
 add_tag: Etiket Ekle
-add_arc: Bağlan
+remove_place: Yeri Kaldır
+remove_transition: Geçişi Kaldır
+from_places: Yerlerden
+to_places: Yerlere
+remove_command: Komutu Kaldır
+place: Yer
+expression: İfade
 
 search_keyword: Anahtar Kelime
 search_keyword_account_placeholder: İsim / E-posta / Telefon
