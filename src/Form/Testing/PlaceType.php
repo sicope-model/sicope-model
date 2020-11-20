@@ -20,7 +20,6 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Type;
 
 class PlaceType extends AbstractType
 {
@@ -29,18 +28,12 @@ class PlaceType extends AbstractType
         $builder
             ->add('label', TextType::class, [
                 'label' => 'place_label',
-                'constraints' => [
-                    new Type('string'),
-                ],
                 'attr' => [
                     'class' => 'place-label',
                 ],
             ])
             ->add('init', CheckboxType::class, [
                 'label' => 'place_init',
-                'constraints' => [
-                    new Type('boolean'),
-                ],
             ])
             ->add('assertions', CollectionType::class, [
                 'label' => 'place_assertions',

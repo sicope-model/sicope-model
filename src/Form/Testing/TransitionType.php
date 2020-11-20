@@ -20,7 +20,6 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Type;
 
 class TransitionType extends AbstractType
 {
@@ -29,18 +28,12 @@ class TransitionType extends AbstractType
         $builder
             ->add('label', TextType::class, [
                 'label' => 'transition_label',
-                'constraints' => [
-                    new Type('string'),
-                ],
                 'attr' => [
                     'class' => 'transition-label',
                 ],
             ])
             ->add('guard', TextType::class, [
                 'label' => 'transition_guard',
-                'constraints' => [
-                    new Type('string'),
-                ],
             ])
             ->add('actions', CollectionType::class, [
                 'label' => 'transition_actions',
@@ -71,7 +64,7 @@ class TransitionType extends AbstractType
             ])
             ->add('to_places', CollectionType::class, [
                 'label' => 'to_places',
-                'entry_type' => OutputArcType::class,
+                'entry_type' => ToPlaceType::class,
                 'entry_options' => [
                     'label' => false,
                     'attr' => [

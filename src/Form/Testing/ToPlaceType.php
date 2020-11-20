@@ -19,9 +19,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Type;
 
-class OutputArcType extends AbstractType
+class ToPlaceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -31,15 +30,9 @@ class OutputArcType extends AbstractType
                 'attr' => [
                     'class' => 'to-place',
                 ],
-                'constraints' => [
-                    new Type('integer'),
-                ],
             ])
             ->add('expression', TextType::class, [
                 'label' => 'expression',
-                'constraints' => [
-                    new Type('string'),
-                ],
             ])
             ->add('remove_place', ButtonType::class, [
                 'label' => 'remove_place',

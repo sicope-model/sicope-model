@@ -12,8 +12,19 @@
 
 namespace App\Dto;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class ToPlaceDto
 {
+    /**
+     * @Assert\All({
+     *     @Assert\Type("integer")
+     * })
+     */
     public $place;
+
+    /**
+     * @Assert\Type("string")
+     */
     public $expression;
 }

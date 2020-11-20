@@ -20,8 +20,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Type;
 
 class ModelType extends AbstractType
 {
@@ -30,10 +28,6 @@ class ModelType extends AbstractType
         $builder
             ->add('label', TextType::class, [
                 'label' => 'model_label',
-                'constraints' => [
-                    new NotBlank(),
-                    new Type('string'),
-                ],
             ])
             ->add('tags', TextType::class, [
                 'label' => 'model_tags',

@@ -12,9 +12,24 @@
 
 namespace App\Dto;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class CommandDto
 {
+    /**
+     * @Assert\NotBlank
+     * @Assert\Type("string")
+     */
     public $command;
+
+    /**
+     * @Assert\NotBlank
+     * @Assert\Type("string")
+     */
     public $target;
+
+    /**
+     * @Assert\Type("string")
+     */
     public $value;
 }

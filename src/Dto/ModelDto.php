@@ -12,10 +12,35 @@
 
 namespace App\Dto;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class ModelDto
 {
+    /**
+     * @Assert\NotBlank
+     * @Assert\Type("string")
+     */
     public $label;
+
+    /**
+     * @Assert\All({
+     *     @Assert\NotBlank,
+     *     @Assert\Type("string")
+     * })
+     */
     public $tags;
+
+    /**
+     * @Assert\All({
+     *     @Assert\Valid
+     * })
+     */
     public $places;
+
+    /**
+     * @Assert\All({
+     *     @Assert\Valid
+     * })
+     */
     public $transitions;
 }

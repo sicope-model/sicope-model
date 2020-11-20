@@ -18,7 +18,6 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Type;
 
 class CommandType extends AbstractType
 {
@@ -27,21 +26,12 @@ class CommandType extends AbstractType
         $builder
             ->add('command', TextType::class, [
                 'label' => 'command_command',
-                'constraints' => [
-                    new Type('string'),
-                ],
             ])
             ->add('target', TextType::class, [
                 'label' => 'command_target',
-                'constraints' => [
-                    new Type('string'),
-                ],
             ])
             ->add('value', TextType::class, [
                 'label' => 'command_value',
-                'constraints' => [
-                    new Type('string'),
-                ],
             ])
             ->add('remove_command', ButtonType::class, [
                 'label' => 'remove_command',

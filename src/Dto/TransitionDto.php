@@ -12,11 +12,39 @@
 
 namespace App\Dto;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class TransitionDto
 {
+    /**
+     * @Assert\NotBlank
+     * @Assert\Type("string")
+     */
     public $label;
+
+    /**
+     * @Assert\Type("string")
+     */
     public $guard;
+
+    /**
+     * @Assert\All({
+     *     @Assert\Valid
+     * })
+     */
     public $actions;
+
+    /**
+     * @Assert\All({
+     *     @Assert\Type("integer")
+     * })
+     */
     public $fromPlaces;
+
+    /**
+     * @Assert\All({
+     *     @Assert\Valid
+     * })
+     */
     public $toPlaces;
 }
