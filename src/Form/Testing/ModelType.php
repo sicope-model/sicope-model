@@ -18,10 +18,12 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Valid;
+use Tienvx\Bundle\MbtBundle\Entity\Model;
 
 class ModelType extends AbstractType
 {
@@ -63,9 +65,7 @@ class ModelType extends AbstractType
                     'class' => 'list-group places col pl-3',
                 ],
                 'constraints' => [
-                    new All([
-                        new Valid(),
-                    ]),
+                    new Valid(),
                 ],
             ])
             ->add('add_place', ButtonType::class, [
@@ -89,9 +89,7 @@ class ModelType extends AbstractType
                     'class' => 'list-group transitions col pl-3',
                 ],
                 'constraints' => [
-                    new All([
-                        new Valid(),
-                    ]),
+                    new Valid(),
                 ],
             ])
             ->add('add_transition', ButtonType::class, [
@@ -104,5 +102,12 @@ class ModelType extends AbstractType
                 'label' => 'save',
             ])
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Model::class,
+        ]);
     }
 }

@@ -155,7 +155,7 @@ nav_task: Görev
 nav_bug: Hata
 testing_task_list_title: Görevler
 testing_task_list_desc: Görevleri yönetme
-task_title: Görev Başlığı
+task_title: Başlık
 task_model_label: Model Etiketi
 progress: İlerleme
 settings_testing: Test Ayarları
@@ -194,6 +194,15 @@ to_places: Yerlere
 remove_command: Komutu Kaldır
 place: Yer
 expression: İfade
+testing_bug_list_title: Hatalar
+testing_bug_list_desc: Hataları yönetme
+bug_title: Başlık
+bug_model_label: Model Etiketi
+steps_count: Adım Sayısı
+message: İleti
+closed: Kapalı
+model_version: Model Sürümü
+version: Sürüm
 
 search_keyword: Anahtar Kelime
 search_keyword_account_placeholder: İsim / E-posta / Telefon

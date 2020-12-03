@@ -10,15 +10,16 @@
  * @link        https://github.com/sicope-model/sicope-model
  */
 
-namespace App\Service;
+namespace App\Repository;
 
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
-use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
 
-class ModelBuilder implements ModelBuilderInterface
+class ModelRepository extends ServiceEntityRepository
 {
-    public function build(array $data): ModelInterface
+    public function __construct(ManagerRegistry $registry)
     {
-        return new Model();
+        parent::__construct($registry, Model::class);
     }
 }

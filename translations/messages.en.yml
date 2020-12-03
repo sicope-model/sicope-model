@@ -155,7 +155,7 @@ nav_task: Task
 nav_bug: Bug
 testing_task_list_title: Tasks
 testing_task_list_desc: Managing tasks
-task_title: Task Title
+task_title: Title
 task_model_label: Model Label
 progress: Progress
 settings_testing: Testing Settings
@@ -194,6 +194,15 @@ to_places: To Places
 remove_command: Remove Command
 place: Place
 expression: Expression
+testing_bug_list_title: Bugs
+testing_bug_list_desc: Managing bugs
+bug_title: Title
+bug_model_label: Model Label
+steps_count: Steps Count
+message: Message
+closed: Closed
+model_version: Model Version
+version: Version
 
 search_keyword: Keyword
 search_keyword_account_placeholder: Name / Email / Phone

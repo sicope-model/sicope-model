@@ -12,6 +12,7 @@
 
 namespace App\Controller;
 
+use App\Repository\BugRepository;
 use App\Repository\TaskRepository;
 use App\Service\ConfigBag;
 use Knp\Component\Pager\PaginatorInterface;
@@ -36,12 +37,12 @@ class BugController extends AbstractController
      */
     public function list(
         Request $request,
-        TaskRepository $taskRepository,
+        BugRepository $bugRepository,
         ConfigBag $bag,
         PaginatorInterface $paginator
     ): Response {
         // Get Bugs
-        $query = $taskRepository->createQueryBuilder('b');
+        $query = $bugRepository->createQueryBuilder('b');
 
         // Get Result
         $pagination = $paginator->paginate(
@@ -52,7 +53,7 @@ class BugController extends AbstractController
 
         // Render Page
         return $this->render('Admin/Testing/listBug.html.twig', [
-            'models' => $pagination,
+            'bugs' => $pagination,
         ]);
     }
 }

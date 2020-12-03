@@ -18,10 +18,12 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Valid;
+use Tienvx\Bundle\MbtBundle\ValueObject\Model\Place;
 
 class PlaceType extends AbstractType
 {
@@ -59,9 +61,7 @@ class PlaceType extends AbstractType
                     'class' => 'list-group assertions col pl-3',
                 ],
                 'constraints' => [
-                    new All([
-                        new Valid(),
-                    ]),
+                    new Valid(),
                 ],
             ])
             ->add('add_assertion', ButtonType::class, [
@@ -77,5 +77,12 @@ class PlaceType extends AbstractType
                 ],
             ])
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Place::class,
+        ]);
     }
 }

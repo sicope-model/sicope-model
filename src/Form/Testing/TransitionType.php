@@ -18,10 +18,12 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Valid;
+use Tienvx\Bundle\MbtBundle\ValueObject\Model\Transition;
 
 class TransitionType extends AbstractType
 {
@@ -59,9 +61,7 @@ class TransitionType extends AbstractType
                     'class' => 'list-group actions col pl-3',
                 ],
                 'constraints' => [
-                    new All([
-                        new Valid(),
-                    ]),
+                    new Valid(),
                 ],
             ])
             ->add('add_action', ButtonType::class, [
@@ -96,9 +96,7 @@ class TransitionType extends AbstractType
                     'class' => 'list-group to-places col pl-3',
                 ],
                 'constraints' => [
-                    new All([
-                        new Valid(),
-                    ]),
+                    new Valid(),
                 ],
             ])
             ->add('add_place', ButtonType::class, [
@@ -114,5 +112,12 @@ class TransitionType extends AbstractType
                 ],
             ])
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Transition::class,
+        ]);
     }
 }
