@@ -42,13 +42,18 @@ class GroupController extends AbstractController
      * @IsGranted("ROLE_GROUP_LIST")
      * @Route(name="admin_group_list", path="/group")
      */
-    public function list(Request $request, GroupRepository $groupRepo, ConfigBag $bag, PaginatorInterface $paginator): Response
-    {
+    public function list(
+        Request $request,
+        GroupRepository $groupRepo,
+        ConfigBag $bag,
+        PaginatorInterface $paginator
+    ): Response {
         // Get Groups
         $query = $groupRepo->createQueryBuilder('g');
 
         // Get Result
-        $pagination = $paginator->paginate($query,
+        $pagination = $paginator->paginate(
+            $query,
             $request->query->getInt('page', 1),
             $bag->get('list_count')
         );
@@ -131,8 +136,12 @@ class GroupController extends AbstractController
      * @IsGranted("ROLE_GROUP_ROLES")
      * @Route(name="admin_group_roles", path="/group/{group}/roles")
      */
-    public function roles(Group $group, Request $request, EntityManagerInterface $em, SecurityService $security): Response
-    {
+    public function roles(
+        Group $group,
+        Request $request,
+        EntityManagerInterface $em,
+        SecurityService $security
+    ): Response {
         // Set Form & Request
         $form = $this->createForm(RolesType::class, null, [
             'roles' => $security->getRoles(),

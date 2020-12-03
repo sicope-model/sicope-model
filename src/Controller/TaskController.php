@@ -36,13 +36,18 @@ class TaskController extends AbstractController
      * @IsGranted("ROLE_TASK_LIST")
      * @Route(name="admin_task_list", path="/task")
      */
-    public function list(Request $request, TaskRepository $taskRepository, ConfigBag $bag, PaginatorInterface $paginator): Response
-    {
+    public function list(
+        Request $request,
+        TaskRepository $taskRepository,
+        ConfigBag $bag,
+        PaginatorInterface $paginator
+    ): Response {
         // Get Tasks
         $query = $taskRepository->createQueryBuilder('t');
 
         // Get Result
-        $pagination = $paginator->paginate($query,
+        $pagination = $paginator->paginate(
+            $query,
             $request->query->getInt('page', 1),
             $bag->get('list_count')
         );

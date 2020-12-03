@@ -47,13 +47,18 @@ class ModelController extends AbstractController
      * @IsGranted("ROLE_MODEL_LIST")
      * @Route(name="admin_model_list", path="/model")
      */
-    public function list(Request $request, TaskRepository $taskRepository, ConfigBag $bag, PaginatorInterface $paginator): Response
-    {
+    public function list(
+        Request $request,
+        TaskRepository $taskRepository,
+        ConfigBag $bag,
+        PaginatorInterface $paginator
+    ): Response {
         // Get Models
         $query = $taskRepository->createQueryBuilder('m');
 
         // Get Result
-        $pagination = $paginator->paginate($query,
+        $pagination = $paginator->paginate(
+            $query,
             $request->query->getInt('page', 1),
             $bag->get('list_count')
         );

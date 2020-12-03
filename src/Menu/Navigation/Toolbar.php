@@ -87,7 +87,11 @@ class Toolbar extends Menu
             ->setExtra('label_icon', 'person')
             // Hello
             ->addChild('nav_profile_hello')
-            ->setLabel(sprintf('%s %s', $options['user']->getProfile()->getFirstname(), $options['user']->getProfile()->getLastname()))
+            ->setLabel(sprintf(
+                '%s %s',
+                $options['user']->getProfile()->getFirstname(),
+                $options['user']->getProfile()->getLastname()
+            ))
             ->setExtra('label_translate', false)
             ->setLabelAttr(['class' => 'disabled dropdown-header dropdown-item'])
             // Profile

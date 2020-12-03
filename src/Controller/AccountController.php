@@ -60,8 +60,12 @@ class AccountController extends AbstractController
      * @IsGranted("ROLE_ACCOUNT_LIST")
      * @Route(name="admin_account_list", path="/account")
      */
-    public function list(Request $request, UserRepository $userRepo, ConfigBag $bag, PaginatorInterface $paginator): Response
-    {
+    public function list(
+        Request $request,
+        UserRepository $userRepo,
+        ConfigBag $bag,
+        PaginatorInterface $paginator
+    ): Response {
         // Query
         $query = $userRepo->filter();
 
@@ -76,12 +80,19 @@ class AccountController extends AbstractController
         }
         if ($request->get('filter')) {
             $query
-                ->where('(u.email LIKE :filter) or (p.firstname LIKE :filter) or (p.lastname LIKE :filter) or (p.phone LIKE :filter) or (p.company LIKE :filter)')
+                ->where(implode(' or ', [
+                    '(u.email LIKE :filter)',
+                    '(p.firstname LIKE :filter)',
+                    '(p.lastname LIKE :filter)',
+                    '(p.phone LIKE :filter)',
+                    '(p.company LIKE :filter)',
+                ]))
                 ->setParameter('filter', "%{$request->get('filter')}%");
         }
 
         // Get Result
-        $pagination = $paginator->paginate($query->getQuery(),
+        $pagination = $paginator->paginate(
+            $query->getQuery(),
             $request->query->getInt('page', 1),
             $bag->get('list_count')
         );
@@ -173,8 +184,12 @@ class AccountController extends AbstractController
      * @IsGranted("ROLE_ACCOUNT_PASSWORD")
      * @Route(name="admin_account_password", path="/account/{user}/password")
      */
-    public function changePassword(Request $request, User $user, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder): Response
-    {
+    public function changePassword(
+        Request $request,
+        User $user,
+        EntityManagerInterface $em,
+        UserPasswordEncoderInterface $encoder
+    ): Response {
         // Check Read Only
         $this->checkOwner($user, 'ADMIN_ACCOUNT_ALLREAD');
 

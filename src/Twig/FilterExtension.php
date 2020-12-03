@@ -46,8 +46,14 @@ class FilterExtension extends AbstractExtension
     /**
      * Time Ago.
      */
-    public function timeDiff(Environment $env, $date, $now = null, $text = 'diff.ago', $domain = 'messages', $length = 1): string
-    {
+    public function timeDiff(
+        Environment $env,
+        $date,
+        $now = null,
+        $text = 'diff.ago',
+        $domain = 'messages',
+        $length = 1
+    ): string {
         $units = [
             'y' => $this->translator->trans('diff.year', [], $domain),
             'm' => $this->translator->trans('diff.month', [], $domain),
@@ -70,7 +76,7 @@ class FilterExtension extends AbstractExtension
             $count = $diff->$key;
 
             if (0 !== $count) {
-                $format .= $count.' '.$val.' ';
+                $format .= $count . ' ' . $val . ' ';
 
                 ++$counter;
                 if ($counter === $length) {
@@ -79,7 +85,7 @@ class FilterExtension extends AbstractExtension
             }
         }
 
-        return $format ? $format.$this->translator->trans($text, [], $domain) : '';
+        return $format ? $format . $this->translator->trans($text, [], $domain) : '';
     }
 
     /**
@@ -92,7 +98,7 @@ class FilterExtension extends AbstractExtension
             return '';
         }
 
-        return mb_substr($phone, 0, 3).'-'.mb_substr($phone, 3, 3).'-'.mb_substr($phone, 6);
+        return mb_substr($phone, 0, 3) . '-' . mb_substr($phone, 3, 3) . '-' . mb_substr($phone, 6);
     }
 
     /**

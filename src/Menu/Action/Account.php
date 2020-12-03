@@ -44,7 +44,10 @@ class Account extends Menu
 
             ->addChildParent('admin_account_activate', 1)
             ->setLabel('activate_deactivate')
-            ->setRoute('admin_account_activate', ['user' => $options['user']->getId(), 'status' => $options['user']->isEnabled() ? 0 : 1])
+            ->setRoute(
+                'admin_account_activate',
+                ['user' => $options['user']->getId(), 'status' => $options['user']->isEnabled() ? 0 : 1]
+            )
             ->setRoles(['ROLE_ACCOUNT_ACTIVATE'])
             ->setExtra('label_icon', 'check_circle')
             ->setLinkAttr([
@@ -56,7 +59,10 @@ class Account extends Menu
 
             ->addChildParent('admin_account_freeze', 1)
             ->setLabel('freeze_unfreeze')
-            ->setRoute('admin_account_freeze', ['user' => $options['user']->getId(), 'status' => $options['user']->isFreeze() ? 0 : 1])
+            ->setRoute(
+                'admin_account_freeze',
+                ['user' => $options['user']->getId(), 'status' => $options['user']->isFreeze() ? 0 : 1]
+            )
             ->setRoles(['ROLE_ACCOUNT_FREEZE'])
             ->setExtra('label_icon', 'check_circle')
             ->setLinkAttr([
