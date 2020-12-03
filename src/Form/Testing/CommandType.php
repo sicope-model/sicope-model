@@ -13,9 +13,13 @@
 namespace App\Form\Testing;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
+use Tienvx\Bundle\MbtBundle\ValueObject\Model\Command;
 
 class CommandType extends AbstractType
 {
@@ -25,12 +29,14 @@ class CommandType extends AbstractType
             ->add('command', TextType::class, [
                 'label' => 'command_command',
                 'constraints' => [
+                    new NotBlank(),
                     new Type('string'),
                 ],
             ])
             ->add('target', TextType::class, [
                 'label' => 'command_target',
                 'constraints' => [
+                    new NotBlank(),
                     new Type('string'),
                 ],
             ])
@@ -40,6 +46,19 @@ class CommandType extends AbstractType
                     new Type('string'),
                 ],
             ])
+            ->add('remove_command', ButtonType::class, [
+                'label' => 'remove_command',
+                'attr' => [
+                    'class' => 'remove-command',
+                ],
+            ])
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Command::class,
+        ]);
     }
 }

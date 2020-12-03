@@ -6586,6 +6586,11 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
+symfony-collection-js@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/symfony-collection-js/-/symfony-collection-js-3.0.2.tgz#98531c10df5a76e9f5f6ffbfe65645cddf8d5be9"
+  integrity sha512-yGnrFeYm3PWyNA3/ymmISS6uK9qojt4LGYev/RS4+ao5LTtAEUidnyJC1z4LT51BFlrM4bkQB3WfAOgNtmUzyQ==
+
 tapable@^1.0.0, tapable@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.1.3.tgz#a1fccc06b58db61fd7a45da2da44f5f3a3e67ba2"

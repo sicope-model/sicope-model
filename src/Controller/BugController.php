@@ -12,6 +12,7 @@
 
 namespace App\Controller;
 
+use App\Repository\BugRepository;
 use App\Repository\TaskRepository;
 use App\Service\ConfigBag;
 use Knp\Component\Pager\PaginatorInterface;
@@ -34,20 +35,25 @@ class BugController extends AbstractController
      * @IsGranted("ROLE_BUG_LIST")
      * @Route(name="admin_bug_list", path="/bug")
      */
-    public function list(Request $request, TaskRepository $taskRepository, ConfigBag $bag, PaginatorInterface $paginator): Response
-    {
+    public function list(
+        Request $request,
+        BugRepository $bugRepository,
+        ConfigBag $bag,
+        PaginatorInterface $paginator
+    ): Response {
         // Get Bugs
-        $query = $taskRepository->createQueryBuilder('b');
+        $query = $bugRepository->createQueryBuilder('b');
 
         // Get Result
-        $pagination = $paginator->paginate($query,
+        $pagination = $paginator->paginate(
+            $query,
             $request->query->getInt('page', 1),
             $bag->get('list_count')
         );
 
         // Render Page
         return $this->render('Admin/Testing/listBug.html.twig', [
-            'models' => $pagination,
+            'bugs' => $pagination,
         ]);
     }
 }

@@ -13,9 +13,9 @@
 namespace App\Controller;
 
 use App\Form\Testing\ModelType;
+use App\Repository\ModelRepository;
 use App\Repository\TaskRepository;
 use App\Service\ConfigBag;
-use App\Service\ModelBuilderInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -34,26 +34,24 @@ use Tienvx\Bundle\MbtBundle\Entity\Model;
  */
 class ModelController extends AbstractController
 {
-    protected ModelBuilderInterface $modelBuilder;
-
-    public function __construct(ModelBuilderInterface $modelBuilder)
-    {
-        $this->modelBuilder = $modelBuilder;
-    }
-
     /**
      * List Model.
      *
      * @IsGranted("ROLE_MODEL_LIST")
      * @Route(name="admin_model_list", path="/model")
      */
-    public function list(Request $request, TaskRepository $taskRepository, ConfigBag $bag, PaginatorInterface $paginator): Response
-    {
+    public function list(
+        Request $request,
+        ModelRepository $modelRepository,
+        ConfigBag $bag,
+        PaginatorInterface $paginator
+    ): Response {
         // Get Models
-        $query = $taskRepository->createQueryBuilder('m');
+        $query = $modelRepository->createQueryBuilder('m');
 
         // Get Result
-        $pagination = $paginator->paginate($query,
+        $pagination = $paginator->paginate(
+            $query,
             $request->query->getInt('page', 1),
             $bag->get('list_count')
         );
@@ -74,13 +72,11 @@ class ModelController extends AbstractController
      */
     public function build(Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {
-        $form = $this->createForm(ModelType::class);
+        $model = new Model();
+        $form = $this->createForm(ModelType::class, $model);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $model = $this->modelBuilder->build($data);
-
             $em->persist($model);
             $em->flush();
 

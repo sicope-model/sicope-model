@@ -33,7 +33,7 @@ class RolesType extends AbstractType
                 'expanded' => true,
                 'choices' => $options['acl'],
                 'choice_label' => static function ($val, $key, $index) {
-                    return $key.'.title';
+                    return $key . '.title';
                 },
                 'mapped' => false,
                 'data' => key(array_intersect($options['acl'], $options['userRoles'])),
@@ -57,7 +57,7 @@ class RolesType extends AbstractType
                 'choice_label' => static function ($val, $key, $index) {
                     $s = explode('_', $val);
 
-                    return 3 === \count($s) ? $s[0].'_'.$s[1].'.'.$key : $val;
+                    return 3 === \count($s) ? $s[0] . '_' . $s[1] . '.' . $key : $val;
                 },
                 'choice_name' => static function ($val) {
                     return $val;

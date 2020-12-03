@@ -106,14 +106,14 @@ class FileUpload
     private function uploadProcess(UploadedFile $file, bool $rawUpload): string
     {
         // Create Filename
-        $fileName = Tools::webalize(Tools::randomStr(6).$file->getClientOriginalName(), '.');
+        $fileName = Tools::webalize(Tools::randomStr(6) . $file->getClientOriginalName(), '.');
 
         // Upload File and Optimize Images
         if (!$rawUpload) {
             switch ($file->getClientMimeType()) {
                 case image_type_to_mime_type(IMAGETYPE_JPEG):
                 case image_type_to_mime_type(IMAGETYPE_PNG):
-                    $this->imageManager($file, $this->currentPath.'/'.$fileName);
+                    $this->imageManager($file, $this->currentPath . '/' . $fileName);
                     break;
                 default:
                     $file->move($this->currentPath, $fileName);
@@ -123,7 +123,7 @@ class FileUpload
         }
 
         // Return Filename
-        return $this->currentDir.'/'.$fileName;
+        return $this->currentDir . '/' . $fileName;
     }
 
     /**
@@ -139,10 +139,14 @@ class FileUpload
 
         // Image Optimize
         if ($this->bag->get('media_optimize')) {
-            $img->resize($this->bag->get('media_max_height'), $this->bag->get('media_max_width'), static function ($constraint) {
-                $constraint->upsize();
-                $constraint->aspectRatio();
-            });
+            $img->resize(
+                $this->bag->get('media_max_height'),
+                $this->bag->get('media_max_width'),
+                static function ($constraint) {
+                    $constraint->upsize();
+                    $constraint->aspectRatio();
+                }
+            );
         }
 
         // Image Add Watermark
@@ -171,7 +175,10 @@ class FileUpload
         // Add Text Watermark
         $img->text($this->bag->get('media_wm_font_text'), $xOrdinate, $yOrdinate, function ($font) {
             // Exist Font File
-            if (!empty($this->bag->get('media_wm_font')) && file_exists($fontPath = Tools::uploadDir($this->bag->get('media_wm_font')))) {
+            if (
+                !empty($this->bag->get('media_wm_font'))
+                && file_exists($fontPath = Tools::uploadDir($this->bag->get('media_wm_font')))
+            ) {
                 $font->file($fontPath);
             }
 
@@ -189,7 +196,8 @@ class FileUpload
     private function addImageWatermark(Image $img): void
     {
         if (file_exists($imagePath = Tools::uploadDir($this->bag->get('media_wm_image')))) {
-            $img->insert($imagePath,
+            $img->insert(
+                $imagePath,
                 $this->bag->get('media_wm_image_position'),
                 $this->bag->get('media_wm_image_x'),
                 $this->bag->get('media_wm_image_y')

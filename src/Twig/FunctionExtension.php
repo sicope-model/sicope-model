@@ -57,7 +57,9 @@ class FunctionExtension extends AbstractExtension
      */
     public function title($title, $parent = true)
     {
-        return !$parent ? $title : str_replace(['&T', '&P'], [$title, $this->bag->get('head_title')], $this->bag->get('head_title_pattern'));
+        return !$parent ?
+            $title :
+            str_replace(['&T', '&P'], [$title, $this->bag->get('head_title')], $this->bag->get('head_title_pattern'));
     }
 
     /**

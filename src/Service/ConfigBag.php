@@ -203,7 +203,7 @@ class ConfigBag
                         if (\is_object($itemData)) {
                             // Get Entity Function
                             $choiceValue = $form->get($itemName)->getConfig()->getOption('choice_value');
-                            $entityGetter = \is_string($choiceValue) ? 'get'.ucfirst($choiceValue) : 'getId';
+                            $entityGetter = \is_string($choiceValue) ? 'get' . ucfirst($choiceValue) : 'getId';
 
                             if (\is_array($itemData) || $itemData instanceof ArrayCollection) {
                                 $data = [];

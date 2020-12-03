@@ -1,0 +1,65 @@
+{# Template Parts #}
+{% extends "Admin/base.html.twig" %}
+
+{# Document #}
+{% block head_title %}{{ title('testing_bug_list_title'|trans) }}{% endblock %}
+
+{# Content Title #}
+{% block content_head %}
+    <span class="text">{{ 'testing_bug_list_title'|trans }}</span>
+    <span class="desc">{{ 'testing_bug_list_desc'|trans }}</span>
+{% endblock %}
+
+{# Content Body #}
+{% block content_body %}
+    <!-- Table List -->
+    <form id="pageForm" method="post">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="wid-10">{{ knp_pagination_sortable(bugs, 'bug_title'|trans, 'b.title') }}</th>
+                        <th class="wid-10">{{ 'steps_count'|trans }}</th>
+                        <th class="wid-10">{{ 'bug_model_label'|trans }}</th>
+                        <th class="wid-10">{{ 'message'|trans }}</th>
+                        <th class="wid-10">{{ 'progress'|trans }}</th>
+                        <th class="wid-10">{{ 'closed'|trans }}</th>
+                        <th class="wid-10">{{ 'model_version'|trans }}</th>
+                        <th class="wid-10">{{ 'created_at'|trans }}</th>
+                        <th class="wid-10">{{ 'updated_at'|trans }}</th>
+                        <th class="process"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {% for bug in bugs %}
+                    <tr>
+                        <td class="wid-10">{{ bug.title }}</td>
+                        <td class="wid-10">{{ bug.steps|length }}</td>
+                        <td class="wid-10"><a class="btn btn-primary" href="{{ path('admin_model_view', { 'model': bug.model.id }) }}">{{ bug.model.label }}</a></td>
+                        <td class="wid-10">{{ bug.message }}</td>
+                        <td class="wid-10">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ bug.progress.processed }}" aria-valuemin="0" aria-valuemax="{{ bug.progress.total }}" style="width: {{ task.progress.processed/task.progress.total*100 }}%"></div>
+                            </div>
+                        </td>
+                        <td class="wid-10">{{ bug.closed }}</td>
+                        <td class="wid-10">{{ bug.model.version }}</td>
+                        <td class="wid-10">{{ bug.created_at }}</td>
+                        <td class="wid-10">{{ bug.updated_at }}</td>
+                        <td class="process">
+                            <div class="floating-menu">
+                                <a><i class="material-icons">more_horiz</i></a>
+                                {{ pd_menu_render('App\\Menu\\Action\\Bug', {'bug': bug}) }}
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+    <!-- Pagination -->
+    {{ knp_pagination_render(bugs) }}
+{% endblock %}

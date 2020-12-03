@@ -9,7 +9,8 @@
     "jquery": "3.4.*",
     "popper.js": "1.16.*",
     "selectize": "^0.12.6",
-    "sortablejs": "1.*"
+    "sortablejs": "1.*",
+    "symfony-collection-js": "^3.0.2"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "0.28.3",

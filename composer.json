@@ -26,7 +26,6 @@
     "appaydin/pd-user": "2.*",
     "appaydin/pd-widget": "2.*",
     "beberlei/doctrineextensions": "1.*",
-    "florianv/petrinet": "dev-update as 2.0.1",
     "intervention/image": "2.*",
     "knplabs/knp-paginator-bundle": "5.*",
     "sensio/framework-extra-bundle": "5.*",
@@ -46,7 +45,7 @@
     "symfony/twig-bundle": "5.*",
     "symfony/validator": "5.*",
     "symfony/yaml": "5.*",
-    "tienvx/mbt-bundle": "^2.0@beta"
+    "tienvx/mbt-bundle": "^2.0@rc"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
@@ -96,12 +95,6 @@
   "conflict": {
     "symfony/symfony": "*"
   },
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/tienvx/petrinet.git"
-    }
-  ],
   "minimum-stability": "beta",
   "extra": {
     "symfony": {

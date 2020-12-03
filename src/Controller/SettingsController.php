@@ -43,7 +43,11 @@ class SettingsController extends AbstractController
     public function general(Request $request, ConfigBag $bag): Response
     {
         // Create Form
-        $form = $this->createForm(GeneralForm::class, $bag->getAll(), ['active_language' => $bag->get('active_language')]);
+        $form = $this->createForm(
+            GeneralForm::class,
+            $bag->getAll(),
+            ['active_language' => $bag->get('active_language')]
+        );
 
         // Handle Request
         $form->handleRequest($request);

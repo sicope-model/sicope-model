@@ -18,8 +18,12 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Constraints\Valid;
+use Tienvx\Bundle\MbtBundle\Entity\Model;
 
 class ModelType extends AbstractType
 {
@@ -38,6 +42,12 @@ class ModelType extends AbstractType
                 'attr' => [
                     'data-tags' => '',
                 ],
+                'constraints' => [
+                    new All([
+                        new NotBlank(),
+                        new Type('string'),
+                    ]),
+                ],
             ])
             ->add('places', CollectionType::class, [
                 'label' => 'model_places',
@@ -45,19 +55,22 @@ class ModelType extends AbstractType
                 'entry_options' => [
                     'label' => false,
                     'attr' => [
-                        'class' => 'col',
+                        'class' => 'col list-group-item place',
+                        'index' => '__name__',
                     ],
                 ],
                 'allow_add' => true,
+                'allow_delete' => true,
                 'attr' => [
-                    'data-widget-entries' => '<li class="list-group-item"></li>',
-                    'class' => 'list-group places',
+                    'class' => 'list-group places col pl-3',
+                ],
+                'constraints' => [
+                    new Valid(),
                 ],
             ])
             ->add('add_place', ButtonType::class, [
                 'label' => 'add_place',
                 'attr' => [
-                    'data-list-selector' => '.list-group.places',
                     'class' => 'add-place',
                 ],
             ])
@@ -67,69 +80,34 @@ class ModelType extends AbstractType
                 'entry_options' => [
                     'label' => false,
                     'attr' => [
-                        'class' => 'col',
+                        'class' => 'col list-group-item transition',
                     ],
                 ],
                 'allow_add' => true,
+                'allow_delete' => true,
                 'attr' => [
-                    'data-widget-entries' => '<li class="list-group-item"></li>',
-                    'class' => 'list-group transitions',
+                    'class' => 'list-group transitions col pl-3',
+                ],
+                'constraints' => [
+                    new Valid(),
                 ],
             ])
             ->add('add_transition', ButtonType::class, [
                 'label' => 'add_transition',
                 'attr' => [
-                    'data-list-selector' => '.list-group.transitions',
                     'class' => 'add-transition',
-                ],
-            ])
-            ->add('place_to_transition_arcs', CollectionType::class, [
-                'label' => 'model_place_to_transition_arcs',
-                'entry_type' => PlaceToTransitionArcType::class,
-                'entry_options' => [
-                    'label' => false,
-                    'attr' => [
-                        'class' => 'col',
-                    ],
-                ],
-                'allow_add' => true,
-                'attr' => [
-                    'data-widget-entries' => '<li class="list-group-item"></li>',
-                    'class' => 'list-group place-to-transition-arcs',
-                ],
-            ])
-            ->add('add_place_to_transition_arc', ButtonType::class, [
-                'label' => 'add_arc',
-                'attr' => [
-                    'data-list-selector' => '.list-group.place-to-transition-arcs',
-                    'class' => 'add-arc',
-                ],
-            ])
-            ->add('transition_to_place_arcs', CollectionType::class, [
-                'label' => 'model_transition_to_place_arcs',
-                'entry_type' => TransitionToPlaceArcType::class,
-                'entry_options' => [
-                    'label' => false,
-                    'attr' => [
-                        'class' => 'col',
-                    ],
-                ],
-                'allow_add' => true,
-                'attr' => [
-                    'data-widget-entries' => '<li class="list-group-item"></li>',
-                    'class' => 'list-group transition-to-place-arcs',
-                ],
-            ])
-            ->add('add_transition_to_place_arc', ButtonType::class, [
-                'label' => 'add_arc',
-                'attr' => [
-                    'data-list-selector' => '.list-group.transition-to-place-arcs',
-                    'class' => 'add-arc',
                 ],
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',
             ])
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Model::class,
+        ]);
     }
 }

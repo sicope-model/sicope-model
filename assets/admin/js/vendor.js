@@ -8,6 +8,9 @@ require('bootstrap');
 // Load Sumoselect
 global.Selectize = require('selectize');
 
+// Load SymfonyCollection
+require('symfony-collection-js');
+
 // Load SCSS
 require('../scss/vendor.scss');
 

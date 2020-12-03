@@ -18,7 +18,12 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\All;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Constraints\Valid;
+use Tienvx\Bundle\MbtBundle\ValueObject\Model\Place;
 
 class PlaceType extends AbstractType
 {
@@ -27,14 +32,18 @@ class PlaceType extends AbstractType
         $builder
             ->add('label', TextType::class, [
                 'label' => 'place_label',
+                'attr' => [
+                    'class' => 'place-label',
+                ],
                 'constraints' => [
+                    new NotBlank(),
                     new Type('string'),
                 ],
             ])
             ->add('init', CheckboxType::class, [
                 'label' => 'place_init',
                 'constraints' => [
-                    new Type('boolean'),
+                    new Type('bool'),
                 ],
             ])
             ->add('assertions', CollectionType::class, [
@@ -43,22 +52,37 @@ class PlaceType extends AbstractType
                 'entry_options' => [
                     'label' => false,
                     'attr' => [
-                        'class' => 'col',
+                        'class' => 'col list-group-item assertion',
                     ],
                 ],
                 'allow_add' => true,
+                'allow_delete' => true,
                 'attr' => [
-                    'data-widget-entries' => '<li class="list-group-item"></li>',
-                    'class' => 'list-group assertions',
+                    'class' => 'list-group assertions col pl-3',
+                ],
+                'constraints' => [
+                    new Valid(),
                 ],
             ])
             ->add('add_assertion', ButtonType::class, [
                 'label' => 'add_assertion',
                 'attr' => [
-                    'data-list-selector' => '.list-group.assertions',
                     'class' => 'add-assertion',
                 ],
             ])
+            ->add('remove_place', ButtonType::class, [
+                'label' => 'remove_place',
+                'attr' => [
+                    'class' => 'remove-place',
+                ],
+            ])
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Place::class,
+        ]);
     }
 }

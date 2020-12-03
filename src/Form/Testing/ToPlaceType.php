@@ -13,34 +13,47 @@
 namespace App\Form\Testing;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Type;
+use Tienvx\Bundle\MbtBundle\ValueObject\Model\ToPlace;
 
-class TransitionToPlaceArcType extends AbstractType
+class ToPlaceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('transition', IntegerType::class, [
-                'label' => 'arc_transition',
-                'constraints' => [
-                    new Type('integer'),
+            ->add('place', ChoiceType::class, [
+                'label' => 'place',
+                'attr' => [
+                    'class' => 'to-place',
                 ],
-            ])
-            ->add('place', IntegerType::class, [
-                'label' => 'arc_place',
                 'constraints' => [
                     new Type('integer'),
                 ],
             ])
             ->add('expression', TextType::class, [
-                'label' => 'output_arc_expression',
+                'label' => 'expression',
                 'constraints' => [
                     new Type('string'),
                 ],
             ])
+            ->add('remove_place', ButtonType::class, [
+                'label' => 'remove_place',
+                'attr' => [
+                    'class' => 'remove-place',
+                ],
+            ])
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => ToPlace::class,
+        ]);
     }
 }

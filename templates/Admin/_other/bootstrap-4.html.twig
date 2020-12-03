@@ -156,7 +156,7 @@
 {%- endblock dateinterval_widget -%}
 
 {%- block choice_widget_collapsed -%}
-    {% set attr = attr|merge({class: (attr.class|default('') ~ 'custom-select form-control')|trim}) %}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' custom-select form-control')|trim}) %}
     {{- parent() -}}
 {%- endblock choice_widget_collapsed -%}
 
