@@ -12,14 +12,16 @@
 
 namespace App\Form\Testing;
 
-use App\Dto\ModelDto;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\All;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class ModelType extends AbstractType
 {
@@ -28,11 +30,21 @@ class ModelType extends AbstractType
         $builder
             ->add('label', TextType::class, [
                 'label' => 'model_label',
+                'constraints' => [
+                    new NotBlank(),
+                    new Type('string'),
+                ],
             ])
             ->add('tags', TextType::class, [
                 'label' => 'model_tags',
                 'attr' => [
                     'data-tags' => '',
+                ],
+                'constraints' => [
+                    new All([
+                        new NotBlank(),
+                        new Type('string'),
+                    ]),
                 ],
             ])
             ->add('places', CollectionType::class, [
@@ -49,6 +61,11 @@ class ModelType extends AbstractType
                 'allow_delete' => true,
                 'attr' => [
                     'class' => 'list-group places col pl-3',
+                ],
+                'constraints' => [
+                    new All([
+                        new Valid(),
+                    ]),
                 ],
             ])
             ->add('add_place', ButtonType::class, [
@@ -71,6 +88,11 @@ class ModelType extends AbstractType
                 'attr' => [
                     'class' => 'list-group transitions col pl-3',
                 ],
+                'constraints' => [
+                    new All([
+                        new Valid(),
+                    ]),
+                ],
             ])
             ->add('add_transition', ButtonType::class, [
                 'label' => 'add_transition',
@@ -82,12 +104,5 @@ class ModelType extends AbstractType
                 'label' => 'save',
             ])
         ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => ModelDto::class,
-        ]);
     }
 }

@@ -12,14 +12,16 @@
 
 namespace App\Form\Testing;
 
-use App\Dto\TransitionDto;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\All;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Constraints\Valid;
 
 class TransitionType extends AbstractType
 {
@@ -31,9 +33,16 @@ class TransitionType extends AbstractType
                 'attr' => [
                     'class' => 'transition-label',
                 ],
+                'constraints' => [
+                    new NotBlank(),
+                    new Type('string'),
+                ],
             ])
             ->add('guard', TextType::class, [
                 'label' => 'transition_guard',
+                'constraints' => [
+                    new Type('string'),
+                ],
             ])
             ->add('actions', CollectionType::class, [
                 'label' => 'transition_actions',
@@ -49,6 +58,11 @@ class TransitionType extends AbstractType
                 'attr' => [
                     'class' => 'list-group actions col pl-3',
                 ],
+                'constraints' => [
+                    new All([
+                        new Valid(),
+                    ]),
+                ],
             ])
             ->add('add_action', ButtonType::class, [
                 'label' => 'add_action',
@@ -60,6 +74,11 @@ class TransitionType extends AbstractType
                 'label' => 'from_places',
                 'attr' => [
                     'class' => 'from-places',
+                ],
+                'constraints' => [
+                    new All([
+                        new Type('integer'),
+                    ]),
                 ],
             ])
             ->add('to_places', CollectionType::class, [
@@ -76,6 +95,11 @@ class TransitionType extends AbstractType
                 'attr' => [
                     'class' => 'list-group to-places col pl-3',
                 ],
+                'constraints' => [
+                    new All([
+                        new Valid(),
+                    ]),
+                ],
             ])
             ->add('add_place', ButtonType::class, [
                 'label' => 'add_place',
@@ -90,12 +114,5 @@ class TransitionType extends AbstractType
                 ],
             ])
         ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => TransitionDto::class,
-        ]);
     }
 }
