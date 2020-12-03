@@ -4,11 +4,11 @@ on: [push, pull_request]
 
 jobs:
   test:
-    name: Test PHP ${{ matrix.php }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
         php-versions: ['7.4']
+    name: PHP ${{ matrix.php-versions }}
     steps:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
