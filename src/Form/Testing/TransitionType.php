@@ -34,6 +34,7 @@ class TransitionType extends AbstractType
             ])
             ->add('guard', TextType::class, [
                 'label' => 'transition_guard',
+                'required' => false,
             ])
             ->add('actions', CollectionType::class, [
                 'label' => 'transition_actions',

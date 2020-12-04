@@ -29,6 +29,7 @@ class CommandType extends AbstractType
             ])
             ->add('value', TextType::class, [
                 'label' => 'command_value',
+                'required' => false,
             ])
             ->add('remove_command', ButtonType::class, [
                 'label' => 'remove_command',

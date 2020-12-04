@@ -34,6 +34,7 @@ class ModelType extends AbstractType
                 'attr' => [
                     'data-tags' => '',
                 ],
+                'required' => false,
             ])
             ->add('places', CollectionType::class, [
                 'label' => 'model_places',

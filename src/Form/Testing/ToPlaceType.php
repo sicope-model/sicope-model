@@ -33,6 +33,7 @@ class ToPlaceType extends AbstractType
             ])
             ->add('expression', TextType::class, [
                 'label' => 'expression',
+                'required' => false,
             ])
             ->add('remove_place', ButtonType::class, [
                 'label' => 'remove_place',
