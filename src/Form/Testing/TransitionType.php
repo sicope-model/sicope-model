@@ -12,9 +12,10 @@
 
 namespace App\Form\Testing;
 
+use App\Form\DataTransformer\FromPlacesTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,6 +24,13 @@ use Tienvx\Bundle\MbtBundle\ValueObject\Model\Transition;
 
 class TransitionType extends AbstractType
 {
+    protected DataTransformerInterface $transformer;
+
+    public function __construct(FromPlacesTransformer $transformer)
+    {
+        $this->transformer = $transformer;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -57,10 +65,10 @@ class TransitionType extends AbstractType
                     'class' => 'add-action',
                 ],
             ])
-            ->add('from_places', ChoiceType::class, [
+            ->add('from_places', TextType::class, [
                 'label' => 'from_places',
                 'attr' => [
-                    'class' => 'from-places',
+                    'class' => 'select-from-places',
                 ],
             ])
             ->add('to_places', CollectionType::class, [
@@ -91,6 +99,9 @@ class TransitionType extends AbstractType
                 ],
             ])
         ;
+
+        $builder->get('from_places')
+            ->addModelTransformer($this->transformer);
     }
 
     public function configureOptions(OptionsResolver $resolver)

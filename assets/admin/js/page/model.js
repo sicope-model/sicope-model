@@ -32,13 +32,13 @@ $(function () {
                 'other_btn_add': $new_elem.find('.add-place'),
                 'btn_delete_selector': '.remove-place',
                 'post_add': function($new_elem, context) {
-                    $new_elem.find('select.to-place').selectize({
+                    $new_elem.find('.select-to-place').selectize({
                         maxItems: 1,
                         options: Object.values(options)
                     });
                 }
             });
-            $new_elem.find('select.from-places').selectize({
+            $new_elem.find('.select-from-places').selectize({
                 maxItems: null,
                 options: Object.values(options)
             });
@@ -78,7 +78,7 @@ function removePlace(index) {
 }
 
 function updateSelects(callback) {
-    $('select.from-places, select.to-place').each(function () {
+    $('.select-from-places, .select-to-place').each(function () {
         let control = this.selectize;
         console.log('control', control);
         callback(control);
