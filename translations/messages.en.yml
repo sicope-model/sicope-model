@@ -178,7 +178,8 @@ place_assertions: Assertions
 transition_label: Label
 transition_guard: Guard
 transition_actions: Actions
-command_command: Command
+command_assertion: Assertion
+command_action: Action
 command_target: Target
 command_value: Value
 output_arc_expression: Expression

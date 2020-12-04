@@ -37,7 +37,7 @@ class TransitionType extends AbstractType
             ])
             ->add('actions', CollectionType::class, [
                 'label' => 'transition_actions',
-                'entry_type' => CommandType::class,
+                'entry_type' => ActionType::class,
                 'entry_options' => [
                     'label' => false,
                     'attr' => [
