@@ -29,10 +29,10 @@ class Model extends Menu
 
         // Add Menu Items
         $menu
-            ->addChild('admin_account_group_delete', 1)
+            ->addChild('admin_testing_model_delete', 1)
             ->setLabel('delete')
-            ->setRoute('admin_group_delete', ['group' => $options['group']->getId()])
-            ->setRoles(['ROLE_GROUP_DELETE'])
+            ->setRoute('admin_model_delete', ['model' => $options['model']->getId()])
+            ->setRoles(['ROLE_MODEL_DELETE'])
             ->setExtra('label_icon', 'delete')
             ->setLinkAttr([
                 'class' => 'text-danger',
@@ -42,21 +42,10 @@ class Model extends Menu
             ])
             ->setLabelAttr(['class' => 'hidden'])
 
-            ->addChildParent('admin_account_group_roles', 1)
-            ->setLabel('edit_roles')
-            ->setRoute('admin_group_roles', ['group' => $options['group']->getId()])
-            ->setRoles(['ROLE_ACCOUNT_ACTIVATE'])
-            ->setExtra('label_icon', 'lock')
-            ->setLinkAttr([
-                'data-tooltip' => '',
-                'title' => 'edit_roles',
-            ])
-            ->setLabelAttr(['class' => 'hidden'])
-
-            ->addChildParent('admin_account_group_edit', 1)
+            ->addChildParent('admin_testing_model_edit', 1)
             ->setLabel('edit')
-            ->setRoute('admin_group_edit', ['group' => $options['group']->getId()])
-            ->setRoles(['ROLE_ACCOUNT_FREEZE'])
+            ->setRoute('admin_model_edit', ['model' => $options['model']->getId()])
+            ->setRoles(['ROLE_MODEL_EDIT'])
             ->setExtra('label_icon', 'mode_edit')
             ->setLinkAttr([
                 'data-tooltip' => '',

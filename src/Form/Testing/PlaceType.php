@@ -19,10 +19,6 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\All;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Type;
-use Symfony\Component\Validator\Constraints\Valid;
 use Tienvx\Bundle\MbtBundle\ValueObject\Model\Place;
 
 class PlaceType extends AbstractType
@@ -35,20 +31,14 @@ class PlaceType extends AbstractType
                 'attr' => [
                     'class' => 'place-label',
                 ],
-                'constraints' => [
-                    new NotBlank(),
-                    new Type('string'),
-                ],
             ])
             ->add('init', CheckboxType::class, [
                 'label' => 'place_init',
-                'constraints' => [
-                    new Type('bool'),
-                ],
+                'required' => false,
             ])
             ->add('assertions', CollectionType::class, [
                 'label' => 'place_assertions',
-                'entry_type' => CommandType::class,
+                'entry_type' => AssertionType::class,
                 'entry_options' => [
                     'label' => false,
                     'attr' => [
@@ -59,9 +49,6 @@ class PlaceType extends AbstractType
                 'allow_delete' => true,
                 'attr' => [
                     'class' => 'list-group assertions col pl-3',
-                ],
-                'constraints' => [
-                    new Valid(),
                 ],
             ])
             ->add('add_assertion', ButtonType::class, [

@@ -14,11 +14,10 @@ namespace App\Form\Testing;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Type;
 use Tienvx\Bundle\MbtBundle\ValueObject\Model\ToPlace;
 
 class ToPlaceType extends AbstractType
@@ -26,20 +25,15 @@ class ToPlaceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('place', ChoiceType::class, [
+            ->add('place', IntegerType::class, [
                 'label' => 'place',
                 'attr' => [
-                    'class' => 'to-place',
-                ],
-                'constraints' => [
-                    new Type('integer'),
+                    'class' => 'select-to-place',
                 ],
             ])
             ->add('expression', TextType::class, [
                 'label' => 'expression',
-                'constraints' => [
-                    new Type('string'),
-                ],
+                'required' => false,
             ])
             ->add('remove_place', ButtonType::class, [
                 'label' => 'remove_place',

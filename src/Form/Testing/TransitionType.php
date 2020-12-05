@@ -12,21 +12,25 @@
 
 namespace App\Form\Testing;
 
+use App\Form\DataTransformer\FromPlacesTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\All;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Type;
-use Symfony\Component\Validator\Constraints\Valid;
 use Tienvx\Bundle\MbtBundle\ValueObject\Model\Transition;
 
 class TransitionType extends AbstractType
 {
+    protected DataTransformerInterface $transformer;
+
+    public function __construct(FromPlacesTransformer $transformer)
+    {
+        $this->transformer = $transformer;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -35,20 +39,14 @@ class TransitionType extends AbstractType
                 'attr' => [
                     'class' => 'transition-label',
                 ],
-                'constraints' => [
-                    new NotBlank(),
-                    new Type('string'),
-                ],
             ])
             ->add('guard', TextType::class, [
                 'label' => 'transition_guard',
-                'constraints' => [
-                    new Type('string'),
-                ],
+                'required' => false,
             ])
             ->add('actions', CollectionType::class, [
                 'label' => 'transition_actions',
-                'entry_type' => CommandType::class,
+                'entry_type' => ActionType::class,
                 'entry_options' => [
                     'label' => false,
                     'attr' => [
@@ -60,9 +58,6 @@ class TransitionType extends AbstractType
                 'attr' => [
                     'class' => 'list-group actions col pl-3',
                 ],
-                'constraints' => [
-                    new Valid(),
-                ],
             ])
             ->add('add_action', ButtonType::class, [
                 'label' => 'add_action',
@@ -70,15 +65,10 @@ class TransitionType extends AbstractType
                     'class' => 'add-action',
                 ],
             ])
-            ->add('from_places', ChoiceType::class, [
+            ->add('from_places', TextType::class, [
                 'label' => 'from_places',
                 'attr' => [
-                    'class' => 'from-places',
-                ],
-                'constraints' => [
-                    new All([
-                        new Type('integer'),
-                    ]),
+                    'class' => 'select-from-places',
                 ],
             ])
             ->add('to_places', CollectionType::class, [
@@ -95,9 +85,6 @@ class TransitionType extends AbstractType
                 'attr' => [
                     'class' => 'list-group to-places col pl-3',
                 ],
-                'constraints' => [
-                    new Valid(),
-                ],
             ])
             ->add('add_place', ButtonType::class, [
                 'label' => 'add_place',
@@ -112,6 +99,9 @@ class TransitionType extends AbstractType
                 ],
             ])
         ;
+
+        $builder->get('from_places')
+            ->addModelTransformer($this->transformer);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -26,6 +26,9 @@ Encore
     .addEntry('plugin/ace', './assets/admin/js/plugin/ace.js')
     .addEntry('plugin/chart', 'chart.js/dist/Chart.min.js')
 
+    // Add JS For Pages
+    .addEntry('page/model', './assets/admin/js/page/model.js')
+
     // Authorization Page
     .addStyleEntry('auth/auth', './assets/admin/scss/auth.scss')
 
