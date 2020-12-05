@@ -1,14 +1,21 @@
 const options = {};
 
 $(function () {
-    $('.places').formCollection({
+    initOptions();
+    initPlaces($('.places'));
+    initTransitions($('.transitions'));
+    initCommand($('.actions,.assertions'));
+    initToPlaces($('.to-places'));
+    initToPlace($('.select-to-place'));
+    initFromPlaces($('.select-from-places'));
+});
+
+function initPlaces(elements) {
+    elements.formCollection({
         'other_btn_add': '.add-place',
         'btn_delete_selector': '.remove-place',
         'post_add': function($new_elem, context) {
-            $new_elem.find('.assertions').formCollection({
-                'other_btn_add': $new_elem.find('.add-assertion'),
-                'btn_delete_selector': '.assertion .remove-command'
-            });
+            initCommand($new_elem.find('.assertions'));
             const index = $new_elem.find('.place').attr('index');
             addPlace(index);
             $new_elem.find('.place-label').change(function () {
@@ -20,31 +27,67 @@ $(function () {
             return true;
         },
     });
-    $('.transitions').formCollection({
+}
+
+function initTransitions(elements) {
+    elements.formCollection({
         'other_btn_add': '.add-transition',
         'btn_delete_selector': '.remove-transition',
         'post_add': function($new_elem, context) {
-            $new_elem.find('.actions').formCollection({
-                'other_btn_add': $new_elem.find('.add-action'),
-                'btn_delete_selector': '.action .remove-command'
-            });
-            $new_elem.find('.to-places').formCollection({
-                'other_btn_add': $new_elem.find('.add-place'),
-                'btn_delete_selector': '.remove-place',
-                'post_add': function($new_elem, context) {
-                    $new_elem.find('.select-to-place').selectize({
-                        maxItems: 1,
-                        options: Object.values(options)
-                    });
-                }
-            });
-            $new_elem.find('.select-from-places').selectize({
-                maxItems: null,
-                options: Object.values(options)
-            });
+            initCommand($new_elem.find('.actions'));
+            initToPlaces($new_elem.find('.to-places'));
+            initFromPlaces($new_elem.find('.select-from-places'));
         }
     });
-});
+}
+
+function initCommand(elements) {
+    const place = elements.parents('.place');
+    if (place.length) {
+        elements.formCollection({
+            'other_btn_add': place.find('.add-assertion'),
+            'btn_delete_selector': '.assertion .remove-command'
+        });
+    }
+    const transition = elements.parents('.transition');
+    if (transition.length) {
+        elements.formCollection({
+            'other_btn_add': transition.find('.add-action'),
+            'btn_delete_selector': '.action .remove-command'
+        });
+    }
+}
+
+function initToPlaces(elements) {
+    elements.formCollection({
+        'other_btn_add': elements.parents('.transition').find('.add-place'),
+        'btn_delete_selector': '.remove-place',
+        'post_add': function($new_elem, context) {
+            initToPlace($new_elem.find('.select-to-place'));
+        }
+    });
+}
+
+function initToPlace(elements) {
+    elements.selectize({
+        maxItems: 1,
+        options: Object.values(options)
+    });
+}
+
+function initFromPlaces(elements) {
+    const $select = elements.selectize({
+        maxItems: null,
+        options: Object.values(options)
+    });
+    $select[0].selectize.setValue(elements.val());
+}
+
+function initOptions() {
+    $('.place-label').each(function (index) {
+        options[index] = $(this).val();
+    });
+}
 
 function addPlace(index) {
     console.log('add', index);
