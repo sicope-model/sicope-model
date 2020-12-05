@@ -70,7 +70,7 @@ class ModelController extends AbstractController
      *
      * @return RedirectResponse|Response
      */
-    public function build(Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
+    public function build(Request $request, EntityManagerInterface $em): Response
     {
         $model = new Model();
         $form = $this->createForm(ModelType::class, $model);
@@ -89,14 +89,46 @@ class ModelController extends AbstractController
     }
 
     /**
-     * View Model.
+     * Edit Model.
      *
-     * @IsGranted("ROLE_MODEL_VIEW")
-     * @Route(name="admin_model_view", path="/model/{model}")
+     * @IsGranted("ROLE_MODEL_EDIT")
+     * @Route(name="admin_model_edit", path="/model/{model}")
      */
-    public function view(Request $request, EntityManagerInterface $em, Model $model): Response
+    public function edit(Request $request, Model $model, EntityManagerInterface $em): Response
     {
-        return new Response();
+        $form = $this->createForm(ModelType::class, $model);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($model);
+            $em->flush();
+
+            // Message
+            $this->addFlash('success', 'changes_saved');
+        }
+
+        return $this->render('Admin/Testing/buildModel.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * Delete Model.
+     *
+     * @IsGranted("ROLE_MODEL_DELETE")
+     * @Route(name="admin_model_delete", path="/group/{model}/delete")
+     */
+    public function delete(Request $request, Model $model, EntityManagerInterface $em): RedirectResponse
+    {
+        // Remove
+        $em->remove($model);
+        $em->flush();
+
+        // Add Flash
+        $this->addFlash('success', 'changes_saved');
+
+        // Redirect back
+        return $this->redirect($request->headers->get('referer', $this->generateUrl('admin_model_list')));
     }
 
     /**
@@ -105,7 +137,7 @@ class ModelController extends AbstractController
      * @IsGranted("ROLE_MODEL_IMAGE")
      * @Route(name="admin_model_image", path="/model/{model}/image")
      */
-    public function image(Request $request, EntityManagerInterface $em, Model $model): Response
+    public function image(Request $request, Model $model, EntityManagerInterface $em): Response
     {
         return new Response();
     }
