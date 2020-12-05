@@ -95,7 +95,6 @@
   "conflict": {
     "symfony/symfony": "*"
   },
-  "minimum-stability": "beta",
   "extra": {
     "symfony": {
       "allow-contrib": false,
