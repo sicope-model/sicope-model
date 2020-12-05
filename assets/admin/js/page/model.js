@@ -69,18 +69,24 @@ function initToPlaces(elements) {
 }
 
 function initToPlace(elements) {
-    elements.selectize({
-        maxItems: 1,
-        options: Object.values(options)
+    elements.each(function () {
+        const selected = this.defaultValue;
+        const $select = $(this).selectize({
+            maxItems: 1,
+            options: Object.values(options)
+        });
+        $select[0].selectize.addItem(selected);
     });
 }
 
 function initFromPlaces(elements) {
-    const $select = elements.selectize({
-        maxItems: null,
-        options: Object.values(options)
+    elements.each(function () {
+        const $select = $(this).selectize({
+            maxItems: null,
+            options: Object.values(options)
+        });
+        $select[0].selectize.addItem($(this).val());
     });
-    $select[0].selectize.setValue(elements.val());
 }
 
 function initOptions() {
