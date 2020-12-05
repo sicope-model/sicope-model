@@ -85,7 +85,10 @@ function initFromPlaces(elements) {
 
 function initOptions() {
     $('.place-label').each(function (index) {
-        options[index] = $(this).val();
+        options[index] = {
+            value: index,
+            text: $(this).val()
+        };
     });
 }
 
