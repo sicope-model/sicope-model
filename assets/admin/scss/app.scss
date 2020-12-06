@@ -685,6 +685,22 @@ header {
       text-align: left;
     }
 
+    .wid-5 {
+      width: 5%;
+      white-space: nowrap;
+      word-break: break-all;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .wid-10 {
+      width: 10%;
+      white-space: nowrap;
+      word-break: break-all;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     .wid-15 {
       width: 15%;
       white-space: nowrap;

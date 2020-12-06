@@ -25,12 +25,12 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th class="wid-14">{{ knp_pagination_sortable(models, 'model_label'|trans, 'm.label') }}</th>
-                        <th class="wid-14">{{ 'model_tags'|trans }}</th>
-                        <th class="wid-14">{{ 'model_image'|trans }}</th>
-                        <th class="wid-14">{{ 'version'|trans }}</th>
-                        <th class="wid-14">{{ 'created_at'|trans }}</th>
-                        <th class="wid-14">{{ 'updated_at'|trans }}</th>
+                        <th class="wid-15">{{ knp_pagination_sortable(models, 'model_label'|trans, 'm.label') }}</th>
+                        <th class="wid-10">{{ 'model_tags'|trans }}</th>
+                        <th class="wid-40">{{ 'model_image'|trans }}</th>
+                        <th class="wid-5">{{ 'version'|trans }}</th>
+                        <th class="wid-15">{{ 'created_at'|trans }}</th>
+                        <th class="wid-15">{{ 'updated_at'|trans }}</th>
                         <th class="process"></th>
                     </tr>
                 </thead>
@@ -38,12 +38,12 @@
                 <tbody>
                 {% for model in models %}
                     <tr>
-                        <td class="wid-14">{{ model.label }}</td>
-                        <td class="wid-14">{{ model.tags|join(', ') }}</td>
-                        <td class="wid-14"><img src="{{ path('admin_model_image', { 'model': model.id }) }}" alt="{{ 'model_image'|trans }}"></td>
-                        <td class="wid-14">{{ model.version }}</td>
-                        <td class="wid-14">{{ model.created_at }}</td>
-                        <td class="wid-14">{{ model.updated_at }}</td>
+                        <td class="wid-15">{{ model.label }}</td>
+                        <td class="wid-10">{{ model.tags|join(', ') }}</td>
+                        <td class="wid-40"><img src="{{ path('admin_model_image', { 'model': model.id }) }}" alt="{{ 'model_image'|trans }}"></td>
+                        <td class="wid-5">{{ model.version }}</td>
+                        <td class="wid-15">{{ model.createdAt|date("Y-m-d H:i:s") }}</td>
+                        <td class="wid-15">{{ model.updatedAt|date("Y-m-d H:i:s") }}</td>
                         <td class="process">
                             <div class="floating-menu">
                                 <a><i class="material-icons">more_horiz</i></a>

@@ -15,6 +15,7 @@ namespace App\Controller;
 use App\Form\Testing\ModelType;
 use App\Repository\ModelRepository;
 use App\Repository\TaskRepository;
+use App\Service\CommandHelper;
 use App\Service\ConfigBag;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -23,9 +24,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
+use Tienvx\Bundle\MbtBundle\Service\Model\ModelDumper;
 
 /**
  * Controller managing the models.
@@ -137,8 +141,22 @@ class ModelController extends AbstractController
      * @IsGranted("ROLE_MODEL_IMAGE")
      * @Route(name="admin_model_image", path="/model/{model}/image")
      */
-    public function image(Request $request, Model $model, EntityManagerInterface $em): Response
+    public function image(Model $model, CommandHelper $commandHelper, ModelDumper $modelDumper): Response
     {
-        return new Response();
+        $response = new Response();
+        if ($commandHelper->verifyCommand('dot')) {
+            $process = Process::fromShellCommandline('echo "$DUMP" | dot -Tsvg');
+            $process->run(null, ['DUMP' => $modelDumper->dump($model)]);
+
+            $disposition = $response->headers->makeDisposition(
+                ResponseHeaderBag::DISPOSITION_INLINE,
+                $model->getLabel() . '.svg'
+            );
+            $response->headers->set('Content-Disposition', $disposition);
+            $response->headers->set('Content-Type', 'image/svg+xml');
+            $response->setContent($process->getOutput());
+        }
+
+        return $response;
     }
 }
