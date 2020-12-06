@@ -11,6 +11,7 @@ function initPlaces(elements) {
         'other_btn_add': '.add-place',
         'btn_delete_selector': '.remove-place',
         'post_add': function($new_elem) {
+            $new_elem.attr('index', $new_elem.index());
             initCommand($new_elem.find('.assertions'));
             addPlace($new_elem.index(), $new_elem.find('.place-label').val());
             $new_elem.find('.place-label').change(function () {
@@ -18,7 +19,7 @@ function initPlaces(elements) {
             });
         },
         'post_delete': function($delete_elem) {
-            removePlace($delete_elem.index());
+            removePlace($delete_elem.attr('index'));
         },
     });
 }
