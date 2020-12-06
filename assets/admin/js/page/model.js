@@ -90,7 +90,6 @@ function addPlace(index, label) {
         value: index,
         text: label
     };
-    console.log('add', option);
     options[index] = option;
     updateSelects(function (control) {
         control.addOption(option);
@@ -98,7 +97,6 @@ function addPlace(index, label) {
 }
 
 function updatePlace(index, label) {
-    console.log('update', index, label);
     options[index].text = label;
     updateSelects(function (control) {
         control.updateOption(index, {
@@ -109,7 +107,6 @@ function updatePlace(index, label) {
 }
 
 function removePlace(index) {
-    console.log('remove', index);
     delete options[index];
     updateSelects(function (control) {
         control.removeOption(index);
@@ -119,7 +116,6 @@ function removePlace(index) {
 function updateSelects(callback) {
     $('.select-from-places, .select-to-place').each(function () {
         let control = this.selectize;
-        console.log('control', control);
         if (control) {
             callback(control);
         }
