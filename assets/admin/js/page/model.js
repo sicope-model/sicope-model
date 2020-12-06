@@ -1,39 +1,34 @@
 const options = {};
 
 $(function () {
-    initOptions();
     initPlaces($('.places'));
     initTransitions($('.transitions'));
-    initCommand($('.actions,.assertions'));
-    initToPlaces($('.to-places'));
-    initToPlace($('.select-to-place'));
-    initFromPlaces($('.select-from-places'));
 });
 
 function initPlaces(elements) {
     elements.formCollection({
+        'call_post_add_on_init': true,
         'other_btn_add': '.add-place',
         'btn_delete_selector': '.remove-place',
-        'post_add': function($new_elem, context) {
+        'post_add': function($new_elem) {
             initCommand($new_elem.find('.assertions'));
-            const index = $new_elem.find('.place').attr('index');
-            addPlace(index);
+            addPlace($new_elem.index(), $new_elem.find('.place-label').val());
             $new_elem.find('.place-label').change(function () {
-                updatePlace(index, $(this).val());
+                updatePlace($new_elem.index(), $(this).val());
             });
         },
-        'post_delete': function($delete_elem, context) {
-            removePlace($delete_elem.find('.place').attr('index'));
-            return true;
+        'post_delete': function($delete_elem) {
+            removePlace($delete_elem.index());
         },
     });
 }
 
 function initTransitions(elements) {
     elements.formCollection({
+        'call_post_add_on_init': true,
         'other_btn_add': '.add-transition',
         'btn_delete_selector': '.remove-transition',
-        'post_add': function($new_elem, context) {
+        'post_add': function($new_elem) {
             initCommand($new_elem.find('.actions'));
             initToPlaces($new_elem.find('.to-places'));
             initFromPlaces($new_elem.find('.select-from-places'));
@@ -60,6 +55,7 @@ function initCommand(elements) {
 
 function initToPlaces(elements) {
     elements.formCollection({
+        'call_post_add_on_init': true,
         'other_btn_add': elements.parents('.transition').find('.add-place'),
         'btn_delete_selector': '.remove-place',
         'post_add': function($new_elem, context) {
@@ -89,24 +85,16 @@ function initFromPlaces(elements) {
     });
 }
 
-function initOptions() {
-    $('.place-label').each(function (index) {
-        options[index] = {
-            value: index,
-            text: $(this).val()
-        };
-    });
-}
-
-function addPlace(index) {
-    console.log('add', index);
+function addPlace(index, label) {
     const option = {
         value: index,
-        text: ''
+        text: label
     };
+    console.log('add', option);
     options[index] = option;
     updateSelects(function (control) {
         control.addOption(option);
+        control.refreshOptions();
     });
 }
 
@@ -118,6 +106,7 @@ function updatePlace(index, label) {
             value: index,
             text: label
         });
+        control.refreshOptions();
     });
 }
 
@@ -126,6 +115,7 @@ function removePlace(index) {
     delete options[index];
     updateSelects(function (control) {
         control.removeOption(index);
+        control.refreshOptions();
     });
 }
 
@@ -133,6 +123,8 @@ function updateSelects(callback) {
     $('.select-from-places, .select-to-place').each(function () {
         let control = this.selectize;
         console.log('control', control);
-        callback(control);
+        if (control) {
+            callback(control);
+        }
     });
 }
