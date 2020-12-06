@@ -14,7 +14,6 @@ namespace App\Form\Testing;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,7 +24,7 @@ class ToPlaceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('place', IntegerType::class, [
+            ->add('place', TextType::class, [
                 'label' => 'place',
                 'attr' => [
                     'class' => 'select-to-place',

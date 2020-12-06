@@ -43,7 +43,6 @@ class ModelType extends AbstractType
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item place',
-                        'index' => '__name__',
                     ],
                 ],
                 'allow_add' => true,
