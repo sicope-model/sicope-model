@@ -94,7 +94,6 @@ function addPlace(index, label) {
     options[index] = option;
     updateSelects(function (control) {
         control.addOption(option);
-        control.refreshOptions();
     });
 }
 
@@ -106,7 +105,6 @@ function updatePlace(index, label) {
             value: index,
             text: label
         });
-        control.refreshOptions();
     });
 }
 
@@ -115,7 +113,6 @@ function removePlace(index) {
     delete options[index];
     updateSelects(function (control) {
         control.removeOption(index);
-        control.refreshOptions();
     });
 }
 
