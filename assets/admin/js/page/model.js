@@ -56,7 +56,7 @@ function initCommand(elements) {
 function initToPlaces(elements) {
     elements.formCollection({
         'call_post_add_on_init': true,
-        'other_btn_add': elements.parents('.transition').find('.add-place'),
+        'other_btn_add': elements.parents('.transition').find('.add-to-place'),
         'btn_delete_selector': '.remove-place',
         'post_add': function($new_elem, context) {
             initToPlace($new_elem.find('.select-to-place'));

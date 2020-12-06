@@ -86,10 +86,10 @@ class TransitionType extends AbstractType
                     'class' => 'list-group to-places col pl-3',
                 ],
             ])
-            ->add('add_place', ButtonType::class, [
+            ->add('add_to_place', ButtonType::class, [
                 'label' => 'add_place',
                 'attr' => [
-                    'class' => 'add-place',
+                    'class' => 'add-to-place',
                 ],
             ])
             ->add('remove_transition', ButtonType::class, [
