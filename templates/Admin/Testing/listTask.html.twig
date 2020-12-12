@@ -25,11 +25,17 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th class="wid-15">{{ knp_pagination_sortable(tasks, 'task_title'|trans, 't.title') }}</th>
-                        <th class="wid-15">{{ 'task_model_label'|trans }}</th>
-                        <th class="wid-15">{{ 'progress'|trans }}</th>
-                        <th class="wid-15">{{ 'created_at'|trans }}</th>
-                        <th class="wid-15">{{ 'updated_at'|trans }}</th>
+                        <th class="wid-10">{{ knp_pagination_sortable(tasks, 'task_title'|trans, 't.title') }}</th>
+                        <th class="wid-10">{{ 'task_model_label'|trans }}</th>
+                        <th class="wid-5">{{ 'email'|trans }}</th>
+                        <th class="wid-10">{{ 'provider'|trans }}</th>
+                        <th class="wid-10">{{ 'platform'|trans }}</th>
+                        <th class="wid-10">{{ 'browser'|trans }}</th>
+                        <th class="wid-5">{{ 'version'|trans }}</th>
+                        <th class="wid-10">{{ 'resolution'|trans }}</th>
+                        <th class="wid-10">{{ 'progress'|trans }}</th>
+                        <th class="wid-10">{{ 'created_at'|trans }}</th>
+                        <th class="wid-10">{{ 'updated_at'|trans }}</th>
                         <th class="process"></th>
                     </tr>
                 </thead>
@@ -37,15 +43,21 @@
                 <tbody>
                 {% for task in tasks %}
                     <tr>
-                        <td class="wid-15">{{ task.title }}</td>
-                        <td class="wid-15"><a class="btn btn-primary" href="{{ path('admin_model_view', { 'model': task.model.id }) }}">{{ task.model.label }}</a></td>
-                        <td class="wid-15">
+                        <td class="wid-10">{{ task.title }}</td>
+                        <td class="wid-10">{{ task.model.label }}</td>
+                        <td class="wid-5"></td>
+                        <td class="wid-10">{{ task.seleniumConfig.provider }}</td>
+                        <td class="wid-10">{{ task.seleniumConfig.platform }}</td>
+                        <td class="wid-10">{{ task.seleniumConfig.browser }}</td>
+                        <td class="wid-5">{{ task.seleniumConfig.browserVersion }}</td>
+                        <td class="wid-10">{{ task.seleniumConfig.resolution }}</td>
+                        <td class="wid-10">
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ task.progress.processed }}" aria-valuemin="0" aria-valuemax="{{ task.progress.total }}" style="width: {{ task.progress.processed/task.progress.total*100 }}%"></div>
                             </div>
                         </td>
-                        <td class="wid-15">{{ task.created_at }}</td>
-                        <td class="wid-15">{{ task.updated_at }}</td>
+                        <td class="wid-10">{{ task.createdAt|date("Y-m-d") }}</td>
+                        <td class="wid-10">{{ task.updatedAt|date("Y-m-d") }}</td>
                         <td class="process">
                             <div class="floating-menu">
                                 <a><i class="material-icons">more_horiz</i></a>

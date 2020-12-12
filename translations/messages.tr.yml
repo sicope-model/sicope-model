@@ -153,21 +153,17 @@ nav_testing: Test yapmak
 nav_model: Modeli
 nav_task: Görev
 nav_bug: Hata
-testing_task_list_title: Görevler
-testing_task_list_desc: Görevleri yönetme
 task_title: Başlık
 task_model_label: Model Etiketi
+task_model: Modeli
+task_send_email: Bana email gönder
 progress: İlerleme
 settings_testing: Test Ayarları
 settings_testing_desc: Görev, model ve hata ayarları
-testing_model_list_title: Modeller
-testing_model_list_desc: Modelleri yönetme
 model_label: Etiket
 model_tags: Etiketleri
 model_image: Resim
 build: İnşa etmek
-testing_model_build_title: Model Oluştur
-testing_model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
 created_at: Oluşturulma Tarihi
 updated_at: Güncelleme Tarihi
 model_places: Yerler
@@ -204,6 +200,16 @@ message: İleti
 closed: Kapalı
 model_version: Model Sürümü
 version: Sürüm
+testing_model_list_title: Modeller
+testing_model_list_desc: Modelleri yönetme
+testing_model_build_title: Model Oluştur
+testing_model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
+testing_task_list_title: Görevler
+testing_task_list_desc: Görevleri yönetme
+testing_task_create_title: Görev Oluştur
+testing_task_create_desc: Yeni görev oluştur
+testing_task_edit_title: Görevi Düzenle
+testing_task_edit_desc: Görevi düzenleyin
 
 search_keyword: Anahtar Kelime
 search_keyword_account_placeholder: İsim / E-posta / Telefon

@@ -22,3 +22,9 @@ services:
             - { name: kernel.event_listener, event: widget.start, method: builder }
 
     Pd\UserBundle\Configuration\ConfigInterface: '@App\Service\ConfigBag'
+
+    # Simple fix to install tienvx/mbt-bundle, wait for https://github.com/thephpleague/flysystem-bundle/pull/59
+    League\Flysystem\FilesystemWriter:
+        class: League\Flysystem\FilesystemWriter
+
+    Tienvx\Bundle\MbtBundle\Service\ConfigLoaderInterface: '@App\Service\ConfigLoader'
