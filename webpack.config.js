@@ -28,6 +28,7 @@ Encore
 
     // Add JS For Pages
     .addEntry('page/model', './assets/admin/js/page/model.js')
+    .addEntry('page/task', './assets/admin/js/page/task.js')
 
     // Authorization Page
     .addStyleEntry('auth/auth', './assets/admin/scss/auth.scss')

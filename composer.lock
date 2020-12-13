@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20043f1fcca4a365dc2bfaed24ac9f6d",
+    "content-hash": "9b7abb45f3b723012c2da370026235b0",
     "packages": [
         {
             "name": "appaydin/pd-mailer",
@@ -782,16 +782,16 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "2.2.1",
+            "version": "2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "9e07bb1ff35d35d9ec4597b79e5d05502d7d4d43"
+                "reference": "044d33eeffdb236d5013b6b4af99f87519e10751"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/9e07bb1ff35d35d9ec4597b79e5d05502d7d4d43",
-                "reference": "9e07bb1ff35d35d9ec4597b79e5d05502d7d4d43",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/044d33eeffdb236d5013b6b4af99f87519e10751",
+                "reference": "044d33eeffdb236d5013b6b4af99f87519e10751",
                 "shasum": ""
             },
             "require": {
@@ -815,7 +815,7 @@
                 "doctrine/coding-standard": "^8.0",
                 "doctrine/orm": "^2.6",
                 "ocramius/proxy-manager": "^2.1",
-                "phpunit/phpunit": "^7.5 || ^9.3",
+                "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
                 "symfony/phpunit-bridge": "^4.2",
                 "symfony/property-info": "^4.3.3|^5.0",
                 "symfony/proxy-manager-bridge": "^3.4|^4.3.3|^5.0",
@@ -872,7 +872,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/DoctrineBundle/issues",
-                "source": "https://github.com/doctrine/DoctrineBundle/tree/2.2.1"
+                "source": "https://github.com/doctrine/DoctrineBundle/tree/2.2.2"
             },
             "funding": [
                 {
@@ -888,7 +888,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-10T20:42:15+00:00"
+            "time": "2020-12-05T15:07:10+00:00"
         },
         {
             "name": "doctrine/doctrine-migrations-bundle",
@@ -1072,16 +1072,16 @@
         },
         {
             "name": "doctrine/inflector",
-            "version": "1.4.3",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "4650c8b30c753a76bf44fb2ed00117d6f367490c"
+                "reference": "9cf661f4eb38f7c881cac67c75ea9b00bf97b210"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/4650c8b30c753a76bf44fb2ed00117d6f367490c",
-                "reference": "4650c8b30c753a76bf44fb2ed00117d6f367490c",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/9cf661f4eb38f7c881cac67c75ea9b00bf97b210",
+                "reference": "9cf661f4eb38f7c881cac67c75ea9b00bf97b210",
                 "shasum": ""
             },
             "require": {
@@ -1102,7 +1102,6 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Doctrine\\Common\\Inflector\\": "lib/Doctrine/Common/Inflector",
                     "Doctrine\\Inflector\\": "lib/Doctrine/Inflector"
                 }
             },
@@ -1148,7 +1147,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/inflector/issues",
-                "source": "https://github.com/doctrine/inflector/tree/1.4.x"
+                "source": "https://github.com/doctrine/inflector/tree/2.0.x"
             },
             "funding": [
                 {
@@ -1164,7 +1163,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-29T07:19:59+00:00"
+            "time": "2020-05-29T15:13:26+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -1317,16 +1316,16 @@
         },
         {
             "name": "doctrine/migrations",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "100e85a8509b521f010901890f042e9401a3043b"
+                "reference": "af915024d41669600354efe78664ee86dfca62e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/100e85a8509b521f010901890f042e9401a3043b",
-                "reference": "100e85a8509b521f010901890f042e9401a3043b",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/af915024d41669600354efe78664ee86dfca62e1",
+                "reference": "af915024d41669600354efe78664ee86dfca62e1",
                 "shasum": ""
             },
             "require": {
@@ -1334,7 +1333,7 @@
                 "doctrine/dbal": "^2.9",
                 "ocramius/proxy-manager": "^2.0.2",
                 "php": "^7.1",
-                "symfony/console": "^3.4||^4.0||^5.0",
+                "symfony/console": "^3.4||^4.4.16||^5.0",
                 "symfony/stopwatch": "^3.4||^4.0||^5.0"
             },
             "require-dev": {
@@ -1347,7 +1346,7 @@
                 "phpstan/phpstan-deprecation-rules": "^0.10",
                 "phpstan/phpstan-phpunit": "^0.10",
                 "phpstan/phpstan-strict-rules": "^0.10",
-                "phpunit/phpunit": "^7.0",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.4",
                 "symfony/process": "^3.4||^4.0||^5.0",
                 "symfony/yaml": "^3.4||^4.0||^5.0"
             },
@@ -1397,7 +1396,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/migrations/issues",
-                "source": "https://github.com/doctrine/migrations/tree/2.3.0"
+                "source": "https://github.com/doctrine/migrations/tree/2.3.1"
             },
             "funding": [
                 {
@@ -1413,7 +1412,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-04T16:28:35+00:00"
+            "time": "2020-12-05T19:13:58+00:00"
         },
         {
             "name": "doctrine/orm",
@@ -2269,6 +2268,195 @@
                 }
             ],
             "time": "2020-09-14T14:23:00+00:00"
+        },
+        {
+            "name": "league/flysystem",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "88ab4780a5cc573fb943c8a6987da880b3ec0474"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/88ab4780a5cc573fb943c8a6987da880b3ec0474",
+                "reference": "88ab4780a5cc573fb943c8a6987da880b3ec0474",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "league/mime-type-detection": "^1.0.0",
+                "php": "^7.2 || ^8.0"
+            },
+            "conflict": {
+                "guzzlehttp/ringphp": "<1.1.1"
+            },
+            "require-dev": {
+                "async-aws/s3": "^1.5",
+                "async-aws/simple-s3": "^1.0",
+                "aws/aws-sdk-php": "^3.132.4",
+                "composer/semver": "^3.0",
+                "ext-fileinfo": "*",
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "google/cloud-storage": "^1.23",
+                "phpseclib/phpseclib": "^2.0",
+                "phpstan/phpstan": "^0.12.26",
+                "phpunit/phpunit": "^8.5 || ^9.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "File storage abstraction for PHP",
+            "keywords": [
+                "WebDAV",
+                "aws",
+                "cloud",
+                "file",
+                "files",
+                "filesystem",
+                "filesystems",
+                "ftp",
+                "s3",
+                "sftp",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/flysystem/issues",
+                "source": "https://github.com/thephpleague/flysystem/tree/2.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://offset.earth/frankdejonge",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/frankdejonge",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-11-24T14:30:57+00:00"
+        },
+        {
+            "name": "league/flysystem-bundle",
+            "version": "dev-flysystem-v2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Lustmored/flysystem-bundle",
+                "reference": "6af3083dc90ca01b0b2883dd60afa1c92fb054c2"
+            },
+            "require": {
+                "league/flysystem": "^2.0",
+                "php": "^7.2 || ^8.0",
+                "symfony/config": "^4.2|^5.0",
+                "symfony/dependency-injection": "^4.2|^5.0",
+                "symfony/http-kernel": "^4.2|^5.0",
+                "symfony/options-resolver": "^4.2|^5.0"
+            },
+            "require-dev": {
+                "async-aws/flysystem-s3": "^0.3",
+                "league/flysystem-aws-s3-v3": "^2.0",
+                "league/flysystem-memory": "^2.0",
+                "lustmored/flysystem-v2-simple-cache-adapter": "^0.1.0",
+                "phpunit/phpunit": "^7.4",
+                "symfony/dotenv": "^4.2|^5.0",
+                "symfony/framework-bundle": "^4.2|^5.0",
+                "symfony/var-dumper": "^4.1|^5.0",
+                "symfony/yaml": "^4.2|^5.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "League\\FlysystemBundle\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\League\\FlysystemBundle\\": "tests"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Titouan Galopin",
+                    "email": "galopintitouan@gmail.com"
+                }
+            ],
+            "description": "Symfony bundle integrating Flysystem into Symfony 4.2+ applications",
+            "time": "2020-12-10T13:20:06+00:00"
+        },
+        {
+            "name": "league/mime-type-detection",
+            "version": "1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/mime-type-detection.git",
+                "reference": "353f66d7555d8a90781f6f5e7091932f9a4250aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/353f66d7555d8a90781f6f5e7091932f9a4250aa",
+                "reference": "353f66d7555d8a90781f6f5e7091932f9a4250aa",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.36",
+                "phpunit/phpunit": "^8.5.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\MimeTypeDetection\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "Mime-type detection for Flysystem",
+            "support": {
+                "issues": "https://github.com/thephpleague/mime-type-detection/issues",
+                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.5.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/frankdejonge",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-10-18T11:50:25+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -7738,22 +7926,22 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v2.0.0-rc.13",
+            "version": "v2.0.0-rc.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "90c7abcf3ba77b7e81450ca7478a717527550381"
+                "reference": "8a6eca67c6f7212ac948487d9fcc3cd74032e37a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/90c7abcf3ba77b7e81450ca7478a717527550381",
-                "reference": "90c7abcf3ba77b7e81450ca7478a717527550381",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/8a6eca67c6f7212ac948487d9fcc3cd74032e37a",
+                "reference": "8a6eca67c6f7212ac948487d9fcc3cd74032e37a",
                 "shasum": ""
             },
             "require": {
-                "doctrine/doctrine-bundle": "^2.2",
                 "doctrine/orm": "^2.8",
                 "jmgq/a-star": "^1.1",
+                "league/flysystem": "^2.0",
                 "php": ">=7.4",
                 "php-webdriver/webdriver": "^1.9",
                 "symfony/config": "^5.2",
@@ -7762,6 +7950,7 @@
                 "symfony/http-kernel": "^5.2",
                 "symfony/messenger": "^5.2",
                 "symfony/notifier": "^5.2",
+                "symfony/security-core": "^5.2",
                 "symfony/translation": "^5.2",
                 "symfony/validator": "^5.2",
                 "tienvx/single-color-petrinet": "^1.0"
@@ -7816,7 +8005,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-rc.13"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-rc.22"
             },
             "funding": [
                 {
@@ -7824,7 +8013,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-12-05T10:18:23+00:00"
+            "time": "2020-12-13T15:16:04+00:00"
         },
         {
             "name": "tienvx/petrinet",
@@ -8141,12 +8330,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "676668eda60bb8a32bd2a4efcb12c96d6e1c4bc6"
+                "reference": "d5961914bf7f90e81af509b81e51450bff419815"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/676668eda60bb8a32bd2a4efcb12c96d6e1c4bc6",
-                "reference": "676668eda60bb8a32bd2a4efcb12c96d6e1c4bc6",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/d5961914bf7f90e81af509b81e51450bff419815",
+                "reference": "d5961914bf7f90e81af509b81e51450bff419815",
                 "shasum": ""
             },
             "conflict": {
@@ -8220,6 +8409,8 @@
                 "friendsoftypo3/mediace": ">=7.6.2,<7.6.5",
                 "fuel/core": "<1.8.1",
                 "getgrav/grav": "<1.7-beta.8",
+                "getkirby/cms": ">=3,<3.4.5",
+                "getkirby/panel": "<2.5.14",
                 "gos/web-socket-bundle": "<1.10.4|>=2,<2.6.1|>=3,<3.3",
                 "gree/jose": "<=2.2",
                 "gregwar/rst": "<1.0.3",
@@ -8452,7 +8643,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-02T06:02:50+00:00"
+            "time": "2020-12-08T15:02:56+00:00"
         },
         {
             "name": "symfony/browser-kit",
@@ -8744,20 +8935,20 @@
         },
         {
             "name": "symfony/maker-bundle",
-            "version": "v1.24.2",
+            "version": "v1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "87620ef23319ebbdfc5b51dd6b6e7d12003f4564"
+                "reference": "6d2da12632f5c8b9aa7b159f0bb46f245289434a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/87620ef23319ebbdfc5b51dd6b6e7d12003f4564",
-                "reference": "87620ef23319ebbdfc5b51dd6b6e7d12003f4564",
+                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/6d2da12632f5c8b9aa7b159f0bb46f245289434a",
+                "reference": "6d2da12632f5c8b9aa7b159f0bb46f245289434a",
                 "shasum": ""
             },
             "require": {
-                "doctrine/inflector": "^1.2",
+                "doctrine/inflector": "^1.2|^2.0",
                 "nikic/php-parser": "^4.0",
                 "php": ">=7.1.3",
                 "symfony/config": "^3.4|^4.0|^5.0",
@@ -8812,7 +9003,7 @@
             ],
             "support": {
                 "issues": "https://github.com/symfony/maker-bundle/issues",
-                "source": "https://github.com/symfony/maker-bundle/tree/v1.24.2"
+                "source": "https://github.com/symfony/maker-bundle/tree/v1.25.0"
             },
             "funding": [
                 {
@@ -8828,7 +9019,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-27T17:49:17+00:00"
+            "time": "2020-12-07T14:47:57+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
@@ -9082,10 +9273,18 @@
             "time": "2020-10-28T21:46:03+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "league/flysystem-bundle",
+            "version": "dev-flysystem-v2",
+            "alias": "2.0.0",
+            "alias_normalized": "2.0.0.0"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
         "tienvx/mbt-bundle": 5,
+        "league/flysystem-bundle": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,

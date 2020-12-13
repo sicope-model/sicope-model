@@ -1,3 +1,4 @@
 tienvx_mbt:
-    selenium_dsn: http://localhost:4444
-    bug_url: http://localhost:8000/bug/{bug}
+    selenium_server: '%env(string:SELENIUM_SERVER)%'
+    admin_url: '%env(string:ADMIN_URL)%'
+    provider_name: '%env(string:PROVIDER_NAME)%'
