@@ -1,15 +1,15 @@
-function onChange(selector, findAndReplaceSelectors) {
-    $(document).on('change', selector, function () {
+function onChange(changed, findAndReplace) {
+    $(document).on('change', 'select.' + changed, function () {
         const $form = $(this).closest('form');
         const names = [
-            'task[selenium_config][provider]',
-            'task[selenium_config][platform]',
-            'task[selenium_config][browser]',
-            'task[selenium_config][browserVersion]',
-            'task[selenium_config][resolution]',
+            'provider',
+            'platform',
+            'browser',
+            'browserVersion',
+            'resolution',
         ];
         const data = $form.serializeArray().reduce(function(obj, item) {
-            if (names.includes(item.name)) {
+            if (names.map(name => 'task[selenium_config][' + name + ']').includes(item.name)) {
                 obj[item.name] = item.value;
             }
             return obj;
@@ -19,26 +19,21 @@ function onChange(selector, findAndReplaceSelectors) {
             type: $form.attr('method'),
             data: data,
             success: function (html) {
-                findAndReplaceSelectors.forEach(findAndReplace => {
-                    const options = $(html).find(findAndReplace + ' > option').map(function () {
-                        return {
-                            value: this.value,
-                            text: this.text
-                        };
-                    });
-                    const selectize = $(findAndReplace)[0].selectize;
-                    selectize.clear();
-                    selectize.clearOptions();
-                    selectize.addOption(Object.values(options));
-                    selectize.addItem(options[0].value);
+                findAndReplace.map(className => 'select.' + className).forEach(select => {
+                    const selectize = $(select)[0].selectize;
+                    selectize.destroy();
+                    $(select).replaceWith(
+                        $(html).find(select)
+                    );
                 });
+                selectReload();
             }
         });
     });
 }
 
 $(function () {
-    onChange('select.providers', ['select.platforms']);
-    onChange('select.platforms', ['select.browsers', 'select.resolutions']);
-    onChange('select.browsers', ['select.browser-versions']);
+    onChange('providers', ['platforms', 'browsers', 'browser-versions', 'resolutions']);
+    onChange('platforms', ['browsers', 'browser-versions', 'resolutions']);
+    onChange('browsers', ['browser-versions']);
 });

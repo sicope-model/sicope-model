@@ -34,7 +34,19 @@ class SeleniumConfigType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $formModifier = function (FormInterface $form, string $provider, string $platform, string $browser) {
+        $formModifier = function (
+            FormInterface $form,
+            ?string $provider = null,
+            ?string $platform = null,
+            ?string $browser = null
+        ) {
+            $providers = $this->providerManager->all();
+            $provider = in_array($provider, $providers) ? $provider : reset($providers);
+            $platforms = $this->providerManager->get($provider)->getPlatforms();
+            $platform = in_array($platform, $platforms) ? $platform : reset($platforms);
+            $browsers = $this->providerManager->get($provider)->getBrowsers($platform);
+            $browser = in_array($browser, $browsers) ? $browser : reset($browsers);
+
             $form->add('provider', ChoiceType::class, [
                 'label' => 'task_provider',
                 'choices' => $this->providerManager->all(),
@@ -87,14 +99,7 @@ class SeleniumConfigType extends AbstractType
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) use ($formModifier) {
-                $providers = $this->providerManager->all();
-                $provider = reset($providers);
-                $platforms = $this->providerManager->get($provider)->getPlatforms();
-                $platform = reset($platforms);
-                $browsers = $this->providerManager->get($provider)->getBrowsers($platform);
-                $browser = reset($browsers);
-
-                $formModifier($event->getForm(), $provider, $platform, $browser);
+                $formModifier($event->getForm());
             }
         );
 
@@ -103,7 +108,12 @@ class SeleniumConfigType extends AbstractType
             function (FormEvent $event) use ($formModifier) {
                 $data = $event->getData();
 
-                $formModifier($event->getForm(), $data['provider'], $data['platform'], $data['browser']);
+                $formModifier(
+                    $event->getForm(),
+                    $data['provider'] ?? null,
+                    $data['platform'] ?? null,
+                    $data['browser'] ?? null
+                );
             }
         );
     }
