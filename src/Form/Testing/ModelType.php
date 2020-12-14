@@ -12,6 +12,8 @@
 
 namespace App\Form\Testing;
 
+use App\Form\Testing\Model\PlaceType;
+use App\Form\Testing\Model\TransitionType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;

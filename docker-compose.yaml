@@ -10,6 +10,11 @@ services:
         ports:
             - 5432:5432
 
+    adminer:
+        image: adminer
+        ports:
+            - 8888:8080
+
     selenoid:
         network_mode: bridge
         image: aerokube/selenoid:latest-release

@@ -10,31 +10,34 @@
  * @link        https://github.com/sicope-model/sicope-model
  */
 
-namespace App\Form\Testing;
+namespace App\Form\Testing\Model;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Tienvx\Bundle\MbtBundle\ValueObject\Model\Command;
+use Tienvx\Bundle\MbtBundle\ValueObject\Model\ToPlace;
 
-class CommandType extends AbstractType
+class ToPlaceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('target', TextType::class, [
-                'label' => 'command_target',
+            ->add('place', TextType::class, [
+                'label' => 'place',
+                'attr' => [
+                    'class' => 'select-to-place',
+                ],
             ])
-            ->add('value', TextType::class, [
-                'label' => 'command_value',
+            ->add('expression', TextType::class, [
+                'label' => 'expression',
                 'required' => false,
             ])
-            ->add('remove_command', ButtonType::class, [
-                'label' => 'remove_command',
+            ->add('remove_place', ButtonType::class, [
+                'label' => 'remove_place',
                 'attr' => [
-                    'class' => 'remove-command',
+                    'class' => 'remove-place',
                 ],
             ])
         ;
@@ -43,7 +46,7 @@ class CommandType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Command::class,
+            'data_class' => ToPlace::class,
         ]);
     }
 }
