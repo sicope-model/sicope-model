@@ -12,9 +12,10 @@
 
 namespace App\Form\Testing;
 
+use App\Form\Testing\Task\SeleniumConfigType;
+use App\Form\Testing\Task\TaskConfigType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -43,11 +44,13 @@ class TaskType extends AbstractType
                 'label' => 'task_model',
                 'choice_label' => 'label',
             ])
-            ->add('send_email', CheckboxType::class, [
-                'label' => 'task_send_email',
-                'required' => false,
+            ->add('seleniumConfig', SeleniumConfigType::class, [
+                'label' => 'task_selenium_config',
+                'attr' => [
+                    'class' => 'col list-group-item',
+                ],
             ])
-            ->add('selenium_config', SeleniumConfigType::class, [
+            ->add('taskConfig', TaskConfigType::class, [
                 'label' => 'task_selenium_config',
                 'attr' => [
                     'class' => 'col list-group-item',

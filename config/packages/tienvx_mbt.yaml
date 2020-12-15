@@ -2,3 +2,4 @@ tienvx_mbt:
     selenium_server: '%env(string:SELENIUM_SERVER)%'
     admin_url: '%env(string:ADMIN_URL)%'
     provider_name: '%env(string:PROVIDER_NAME)%'
+    max_steps: '%env(int:MAX_STEPS)%'

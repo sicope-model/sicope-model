@@ -10,18 +10,17 @@
  * @link        https://github.com/sicope-model/sicope-model
  */
 
-namespace App\Form\Testing;
+namespace App\Form\Testing\Task;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Tienvx\Bundle\MbtBundle\Entity\SeleniumConfig;
 use Tienvx\Bundle\MbtBundle\Provider\ProviderManager;
+use Tienvx\Bundle\MbtBundle\Entity\Task\SeleniumConfig;
 
 class SeleniumConfigType extends AbstractType
 {

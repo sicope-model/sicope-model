@@ -10,7 +10,7 @@
  * @link        https://github.com/sicope-model/sicope-model
  */
 
-namespace App\Form\Testing;
+namespace App\Form\Testing\Model;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;

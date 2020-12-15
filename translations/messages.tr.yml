@@ -156,7 +156,8 @@ nav_bug: Hata
 task_title: Başlık
 task_model_label: Model Etiketi
 task_model: Modeli
-task_send_email: Bana email gönder
+task_send_email: Eposta gönder
+task_send_email_info: Bir hata bulunduğunda bana e-posta gönder
 progress: İlerleme
 settings_testing: Test Ayarları
 settings_testing_desc: Görev, model ve hata ayarları
