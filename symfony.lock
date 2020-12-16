@@ -539,9 +539,6 @@
             "ref": "78464b7d1373d35994cfe408fc2b21ce42a808ba"
         }
     },
-    "tienvx/petrinet": {
-        "version": "v1.0.1"
-    },
     "tienvx/single-color-petrinet": {
         "version": "v1.0.0-beta.6"
     },

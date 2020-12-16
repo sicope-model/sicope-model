@@ -1,6 +1,9 @@
 imports:
     - { resource: "defaults.yaml" }
 
+parameters:
+    container.dumper.inline_factories: true
+
 services:
     _defaults:
         autowire: true

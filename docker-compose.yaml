@@ -1,19 +1,14 @@
-version: '3'
+version: '3.4'
 
 services:
     postgres:
-        image: postgres:13-alpine
+        image: postgres:${POSTGRES_VERSION:-13}-alpine
         environment:
-            POSTGRES_USER: user
-            POSTGRES_PASSWORD: pass
-            POSTGRES_DB: db
+            POSTGRES_USER: ${POSTGRES_USER:-user}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pass}
+            POSTGRES_DB: ${POSTGRES_DB:-db}
         ports:
             - 5432:5432
-
-    adminer:
-        image: adminer
-        ports:
-            - 8888:8080
 
     selenoid:
         network_mode: bridge
@@ -29,9 +24,41 @@ services:
         ports:
             - "4444:4444"
 
-    selenoid-ui:
-        network_mode: bridge
-        image: "aerokube/selenoid-ui"
+    admin:
+        image: tienvx/sicope-model-admin
+        build:
+            context: .
+            target: admin
+        depends_on:
+            - postgres
+        environment:
+          DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@postgres:5432/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-13}&charset=UTF-8
+
+    worker:
+        image: tienvx/sicope-model-worker
+        build:
+            context: .
+            target: worker
+        depends_on:
+            - postgres
+        environment:
+            DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@postgres:5432/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-13}&charset=UTF-8
+
+    caddy:
+        build:
+            context: .
+            target: caddy
+        depends_on:
+            - admin
+        environment:
+            SERVER_NAME: ${SERVER_NAME:-localhost, caddy:80}
         ports:
-            - "8080:8080"
-        command: ["--selenoid-uri", "http://selenoid:4444"]
+            - "80:80"
+            - "443:443"
+        volumes:
+            - caddy_data:/data
+            - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

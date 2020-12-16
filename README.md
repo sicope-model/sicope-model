@@ -6,10 +6,12 @@ Usage
 --------------------
 
 ```
-mkdir sicope-model
+git clone https://github.com/sicope-model/sicope-model.git
 cd sicope-model
-wget https://raw.githubusercontent.com/sicope-model/sicope-model/master/docker-compose.yaml
+composer install
 docker-compose up
+docker-compose exec admin bin/console doctrine:schema:update --force
+docker-compose exec admin bin/console user:create
 ```
 
 Screenshots
