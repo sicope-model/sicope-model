@@ -25,7 +25,7 @@ class FromPlacesTransformer implements DataTransformerInterface
      */
     public function transform($fromPlacesAsArray)
     {
-        return implode(',', $fromPlacesAsArray);
+        return implode(',', $fromPlacesAsArray ?? []);
     }
 
     /**

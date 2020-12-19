@@ -47,9 +47,11 @@ RUN set -eux; \
 
 FROM php:${PHP_VERSION}-fpm-alpine AS admin
 
-RUN apk --no-cache add postgresql-dev libpq acl; \
+RUN apk --no-cache add postgresql-dev libpq acl graphviz; \
     docker-php-ext-install pdo_pgsql; \
     apk del postgresql-dev
+
+COPY docker/fpm/pool.d/symfony.conf /usr/local/etc/php-fpm.d/z-symfony.conf
 
 COPY --from=nopublic /srv/app /srv/app
 COPY --from=public /srv/app/public /srv/app/public
