@@ -1,0 +1,15 @@
+{
+    experimental_http3
+}
+
+{$SERVER_NAME}
+
+log
+
+route {
+    root * /srv/app/public
+    push
+    php_fastcgi admin:9000
+    encode gzip
+    file_server
+}
