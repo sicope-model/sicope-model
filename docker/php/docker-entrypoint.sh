@@ -1,6 +1,14 @@
 #!/bin/sh
 set -e
 
+PHP_INI_RECOMMENDED="$PHP_INI_DIR/php.ini-production"
+if [ "$APP_ENV" != 'prod' ]; then
+  PHP_INI_RECOMMENDED="$PHP_INI_DIR/php.ini-development"
+fi
+ln -sf "$PHP_INI_RECOMMENDED" "$PHP_INI_DIR/php.ini"
+
+mkdir -p var/cache var/log
+
 echo "Waiting for db to be ready..."
 ATTEMPTS_LEFT_TO_REACH_DATABASE=60
 until [ $ATTEMPTS_LEFT_TO_REACH_DATABASE -eq 0 ] || bin/console doctrine:query:sql "SELECT 1" > /dev/null 2>&1; do
@@ -19,5 +27,8 @@ fi
 if ls -A migrations/*.php > /dev/null 2>&1; then
   bin/console doctrine:migrations:migrate --no-interaction
 fi
+
+setfacl -R -m u:www-data:rwX -m u:"$(whoami)":rwX var
+setfacl -dR -m u:www-data:rwX -m u:"$(whoami)":rwX var
 
 exec docker-php-entrypoint "$@"
