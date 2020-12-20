@@ -18,4 +18,5 @@ return [
     Pd\MailerBundle\PdMailerBundle::class => ['all' => true],
     Tienvx\Bundle\MbtBundle\TienvxMbtBundle::class => ['all' => true],
     League\FlysystemBundle\FlysystemBundle::class => ['all' => true],
+    Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
 ];

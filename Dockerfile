@@ -44,8 +44,8 @@ RUN set -eux; \
 
 FROM php:${PHP_VERSION}-fpm-alpine AS admin
 
-RUN apk --no-cache add postgresql-dev libpq acl graphviz; \
-    docker-php-ext-install pdo_pgsql; \
+RUN apk --no-cache add postgresql-dev libpq acl icu-libs graphviz; \
+    docker-php-ext-install pdo_pgsql intl; \
     apk del postgresql-dev
 
 COPY docker/php/conf.d/symfony.prod.ini $PHP_INI_DIR/conf.d/symfony.ini

@@ -28,3 +28,6 @@ services:
 
     Tienvx\Bundle\MbtBundle\Generator\RandomGenerator:
         class: App\Model\RandomGenerator
+
+    Tienvx\Bundle\MbtBundle\Service\UserNotifierInterface:
+        class: App\Service\UserNotifier

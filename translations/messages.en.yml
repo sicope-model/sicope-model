@@ -156,8 +156,8 @@ nav_bug: Bug
 task_title: Title
 task_model_label: Model Label
 task_model: Model
-task_send_email: Send Email
-task_send_email_info: Send me email when a bug was found
+task_notify_author: Notify Me
+task_notify_author_info: Send me email or sms message when a bug was found
 progress: Progress
 settings_testing: Testing Settings
 settings_testing_desc: Task, model & bug settings
