@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use App\Repository\UserRepository;
 use Pd\UserBundle\Model\ProfileInterface;
