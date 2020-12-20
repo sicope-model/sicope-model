@@ -2,4 +2,4 @@ framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
         envelope:
-            sender: 'notifications@example.com'
+            sender: '%env(MAILER_ENVELOPE_SENDER)'
