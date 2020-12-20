@@ -15,12 +15,18 @@ namespace App\Controller;
 use App\Repository\BugRepository;
 use App\Repository\TaskRepository;
 use App\Service\ConfigBag;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Tienvx\Bundle\MbtBundle\Entity\Bug;
+use Tienvx\Bundle\MbtBundle\Entity\Task;
 
 /**
  * Controller managing the bugs.
@@ -55,5 +61,56 @@ class BugController extends AbstractController
         return $this->render('Admin/Testing/listBug.html.twig', [
             'bugs' => $pagination,
         ]);
+    }
+
+    /**
+     * Edit Bug.
+     *
+     * @IsGranted("ROLE_BUG_EDIT")
+     * @Route(name="admin_bug_edit", path="/bug/{bug}")
+     */
+    public function edit(Request $request, Bug $bug, EntityManagerInterface $em): Response
+    {
+        $form = $this->createFormBuilder($bug)
+            ->add('title', TextType::class, [
+                'label' => 'task_title',
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'save',
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($bug);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_bug_list');
+        }
+
+        return $this->render('Admin/Testing/bug.html.twig', [
+            'page_title' => 'testing_bug_edit_title',
+            'page_description' => 'testing_bug_edit_desc',
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * Delete Bug.
+     *
+     * @IsGranted("ROLE_BUG_DELETE")
+     * @Route(name="admin_bug_delete", path="/bug/{bug}/delete")
+     */
+    public function delete(Request $request, Bug $bug, EntityManagerInterface $em): RedirectResponse
+    {
+        // Remove
+        $em->remove($bug);
+        $em->flush();
+
+        // Add Flash
+        $this->addFlash('success', 'changes_saved');
+
+        // Redirect back
+        return $this->redirect($request->headers->get('referer', $this->generateUrl('admin_bug_list')));
     }
 }

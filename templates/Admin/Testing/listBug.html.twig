@@ -36,17 +36,13 @@
                     <tr>
                         <td class="wid-10">{{ bug.title }}</td>
                         <td class="wid-10">{{ bug.steps|length }}</td>
-                        <td class="wid-10"><a class="btn btn-primary" href="{{ path('admin_model_view', { 'model': bug.model.id }) }}">{{ bug.model.label }}</a></td>
+                        <td class="wid-10"><a class="btn btn-primary" href="{{ path('admin_model_edit', { 'model': bug.task.model.id }) }}">{{ bug.task.model.label }}</a></td>
                         <td class="wid-10">{{ bug.message }}</td>
-                        <td class="wid-10">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ bug.progress.processed }}" aria-valuemin="0" aria-valuemax="{{ bug.progress.total }}" style="width: {{ task.progress.processed/task.progress.total*100 }}%"></div>
-                            </div>
-                        </td>
+                        <td class="wid-10">{{ ((bug.progress.total > 0) ? bug.progress.processed / bug.progress.total : 0) |format_number(style='percent') }}</td>
                         <td class="wid-10">{{ bug.closed }}</td>
-                        <td class="wid-10">{{ bug.model.version }}</td>
-                        <td class="wid-10">{{ bug.created_at }}</td>
-                        <td class="wid-10">{{ bug.updated_at }}</td>
+                        <td class="wid-10">{{ bug.modelVersion }}</td>
+                        <td class="wid-10">{{ bug.createdAt|date("Y-m-d") }}</td>
+                        <td class="wid-10">{{ bug.updatedAt|date("Y-m-d") }}</td>
                         <td class="process">
                             <div class="floating-menu">
                                 <a><i class="material-icons">more_horiz</i></a>
