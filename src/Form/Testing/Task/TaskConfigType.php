@@ -76,10 +76,10 @@ class TaskConfigType extends AbstractType
                 'choice_label' => fn ($reducer) => $reducer,
             ]);
 
-            $form->add('sendEmail', CheckboxType::class, [
-                'label' => 'task_send_email',
+            $form->add('notifyAuthor', CheckboxType::class, [
+                'label' => 'task_notify_author',
                 'required' => false,
-                'help' => 'task_send_email_info',
+                'help' => 'task_notify_author_info',
             ]);
 
             $form->add('notifyChannels', ChoiceType::class, [

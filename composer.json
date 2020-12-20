@@ -28,6 +28,7 @@
     "beberlei/doctrineextensions": "1.*",
     "intervention/image": "2.*",
     "knplabs/knp-paginator-bundle": "5.*",
+    "league/flysystem-bundle": "dev-flysystem-v2 as 2.0.0",
     "sensio/framework-extra-bundle": "5.*",
     "symfony/asset": "5.*",
     "symfony/console": "5.*",
@@ -46,7 +47,10 @@
     "symfony/validator": "5.*",
     "symfony/yaml": "5.*",
     "tienvx/mbt-bundle": "^2.0@rc",
-    "league/flysystem-bundle": "dev-flysystem-v2 as 2.0.0"
+    "twig/cssinliner-extra": "^3.1",
+    "twig/extra-bundle": "^3.1",
+    "twig/inky-extra": "^3.1",
+    "twig/intl-extra": "^3.1"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

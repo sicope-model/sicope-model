@@ -129,6 +129,9 @@
     "league/mime-type-detection": {
         "version": "1.5.1"
     },
+    "lorenzo/pinky": {
+        "version": "1.0.5"
+    },
     "monolog/monolog": {
         "version": "1.23.0"
     },
@@ -541,6 +544,21 @@
     },
     "tienvx/single-color-petrinet": {
         "version": "v1.0.0-beta.6"
+    },
+    "tijsverkoyen/css-to-inline-styles": {
+        "version": "2.2.3"
+    },
+    "twig/cssinliner-extra": {
+        "version": "v3.1.1"
+    },
+    "twig/extra-bundle": {
+        "version": "v3.1.1"
+    },
+    "twig/inky-extra": {
+        "version": "v3.1.1"
+    },
+    "twig/intl-extra": {
+        "version": "v3.1.1"
     },
     "twig/twig": {
         "version": "v2.4.4"

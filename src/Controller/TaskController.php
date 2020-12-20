@@ -17,6 +17,7 @@ use App\Repository\TaskRepository;
 use App\Service\ConfigBag;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Pd\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -25,7 +26,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Tienvx\Bundle\MbtBundle\Entity\Task;
 
 /**
@@ -76,8 +76,9 @@ class TaskController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($this->getUser() instanceof UserInterface) {
-                $task->setUser($this->getUser());
+            $user = $this->getUser();
+            if ($user instanceof UserInterface) {
+                $task->setAuthor($user->getId());
             }
             $em->persist($task);
             $em->flush();

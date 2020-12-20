@@ -19,6 +19,7 @@ use App\Service\CommandHelper;
 use App\Service\ConfigBag;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Pd\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -81,6 +82,10 @@ class ModelController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+            if ($user instanceof UserInterface) {
+                $model->setAuthor($user->getId());
+            }
             $em->persist($model);
             $em->flush();
 

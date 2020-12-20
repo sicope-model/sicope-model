@@ -44,8 +44,8 @@ RUN set -eux; \
 
 FROM php:${PHP_VERSION}-fpm-alpine AS admin
 
-RUN apk --no-cache add postgresql-dev libpq acl graphviz; \
-    docker-php-ext-install pdo_pgsql; \
+RUN apk --no-cache add postgresql-dev libpq acl icu-libs graphviz; \
+    docker-php-ext-install pdo_pgsql intl; \
     apk del postgresql-dev
 
 COPY docker/php/conf.d/symfony.prod.ini $PHP_INI_DIR/conf.d/symfony.ini
@@ -70,9 +70,9 @@ CMD ["php-fpm"]
 
 FROM php:${PHP_VERSION}-cli-alpine AS worker
 
-RUN apk --no-cache add postgresql-dev libpq acl; \
-    docker-php-ext-install pdo_pgsql; \
-    apk del postgresql-dev
+RUN apk --no-cache add postgresql-dev libpq acl libxslt-dev libxslt; \
+    docker-php-ext-install pdo_pgsql xsl; \
+    apk del postgresql-dev libxslt-dev
 
 COPY --from=nopublic /srv/app /srv/app
 VOLUME /srv/app/var

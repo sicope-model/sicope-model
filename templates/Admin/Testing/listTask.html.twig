@@ -51,11 +51,7 @@
                         <td class="wid-10">{{ task.seleniumConfig.browser }}</td>
                         <td class="wid-5">{{ task.seleniumConfig.browserVersion }}</td>
                         <td class="wid-10">{{ task.seleniumConfig.resolution }}</td>
-                        <td class="wid-10">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ task.progress.processed }}" aria-valuemin="0" aria-valuemax="{{ task.progress.total }}" style="width: {{ task.progress.processed/task.progress.total*100 }}%"></div>
-                            </div>
-                        </td>
+                        <td class="wid-10">{{ ((task.progress.total > 0) ? task.progress.processed / task.progress.total : 0) |format_number(style='percent') }}</td>
                         <td class="wid-10">{{ task.createdAt|date("Y-m-d") }}</td>
                         <td class="wid-10">{{ task.updatedAt|date("Y-m-d") }}</td>
                         <td class="process">
