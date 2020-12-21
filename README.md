@@ -5,13 +5,22 @@ Model Based Testing tool using Single Color Petrinet Model.
 Usage
 --------------------
 
+Download
 ```
 git clone https://github.com/sicope-model/sicope-model.git
 cd sicope-model
+```
+
+Development
+```
 composer install
 docker-compose up
-docker-compose exec admin bin/console doctrine:schema:update --force
 docker-compose exec admin bin/console user:create
+```
+
+[Production](https://github.com/dunglas/symfony-docker/blob/master/docs/production.md)
+```
+SERVER_NAME=your-domain-name.example.com docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml up
 ```
 
 Screenshots

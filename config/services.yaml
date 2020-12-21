@@ -3,6 +3,7 @@ imports:
 
 parameters:
     container.dumper.inline_factories: true
+    container.dumper.inline_class_loader: true
 
 services:
     _defaults:

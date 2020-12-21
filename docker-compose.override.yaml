@@ -15,7 +15,7 @@ services:
 
     admin:
         volumes:
-            - ./:/srv/app:rw,cached
+            - ./:/srv/app:rw
             - ./docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
             # If you develop on Linux, comment out the following volumes to just use bind-mounted project directory from host
             # - ./var:/srv/app/var:rw
@@ -24,7 +24,7 @@ services:
 
     worker:
         volumes:
-            - ./:/srv/app:rw,cached
+            - ./:/srv/app:rw
             - ./docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
             # If you develop on Linux, comment out the following volumes to just use bind-mounted project directory from host
             # - ./var:/srv/app/var:rw
