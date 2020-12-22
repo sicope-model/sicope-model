@@ -23,7 +23,7 @@ class AssertionType extends CommandType
         $builder
             ->add('command', ChoiceType::class, [
                 'label' => 'command_assertion',
-                'choices'  => array_combine(CommandInterface::ALL_ASSERTIONS, CommandInterface::ALL_ASSERTIONS),
+                'choices' => array_combine(CommandInterface::ALL_ASSERTIONS, CommandInterface::ALL_ASSERTIONS),
             ])
         ;
         parent::buildForm($builder, $options);

@@ -13,7 +13,6 @@
 namespace App\Controller;
 
 use App\Repository\BugRepository;
-use App\Repository\TaskRepository;
 use App\Service\ConfigBag;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -26,7 +25,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Bug;
-use Tienvx\Bundle\MbtBundle\Entity\Task;
 
 /**
  * Controller managing the bugs.

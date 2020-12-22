@@ -17,11 +17,16 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('public')
     ->exclude('assets')
     ->exclude('templates')
+    ->exclude('.github')
+    ->exclude('bin')
+    ->exclude('docker')
+    ->exclude('vendor')
 ;
 
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setRules([
+        '@PSR2' => true,
         '@Symfony' => true,
         '@Symfony:risky' => true,
         '@PHPUnit75Migration:risky' => true,
@@ -31,6 +36,7 @@ return PhpCsFixer\Config::create()
         'protected_to_private' => false,
         'combine_nested_dirname' => true,
         'header_comment' => ['header' => $fileHeaderComment, 'separate' => 'both', 'commentType' => 'PHPDoc'],
+        'concat_space' => ['spacing' => 'one'],
     ])
     ->setFinder($finder)
     ->setCacheFile(__DIR__.'/var/cache/.php_cs.cache')
