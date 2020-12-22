@@ -19,19 +19,10 @@ FROM php:${PHP_VERSION}-fpm-alpine AS build_admin
 # persistent / runtime deps
 RUN apk add --no-cache \
         acl \
-        git \
-        libpq \
-        icu-libs \
         graphviz \
-        libxslt \
-        libzip \
     ;
 
 # PHP extensions
-RUN apk add --no-cache --virtual .build-deps postgresql-dev libxslt-dev libzip-dev; \
-    docker-php-ext-install pdo_pgsql intl xsl zip; \
-    apk del .build-deps
-
 ARG APCU_VERSION=5.1.19
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
@@ -39,12 +30,16 @@ RUN set -eux; \
 	    icu-dev \
 	    libzip-dev \
 	    zlib-dev \
+	    postgresql-dev \
+	    libxslt-dev \
 	; \
 	\
 	docker-php-ext-configure zip; \
 	docker-php-ext-install -j$(nproc) \
 	    intl \
 	    zip \
+	    pdo_pgsql \
+	    xsl \
 	; \
 	pecl install \
 	    apcu-${APCU_VERSION} \
@@ -81,13 +76,15 @@ COPY . .
 
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
+	apk add --no-cache git; \
 	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
 	composer install --prefer-dist --no-dev --no-progress --no-scripts --no-interaction; \
 	composer dump-autoload --classmap-authoritative --no-dev; \
 	composer symfony:dump-env prod; \
 	composer run-script --no-dev post-install-cmd; sync; \
     composer clear-cache; \
-    rm /usr/local/bin/composer
+    rm /usr/local/bin/composer; \
+    apk del git
 VOLUME /srv/app/var
 
 COPY docker/php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
