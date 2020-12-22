@@ -23,7 +23,7 @@ class ActionType extends CommandType
         $builder
             ->add('command', ChoiceType::class, [
                 'label' => 'command_action',
-                'choices'  => array_combine(CommandInterface::ALL_ACTIONS, CommandInterface::ALL_ACTIONS),
+                'choices' => array_combine(CommandInterface::ALL_ACTIONS, CommandInterface::ALL_ACTIONS),
             ])
         ;
         parent::buildForm($builder, $options);

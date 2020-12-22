@@ -31,7 +31,7 @@ class FromPlacesTransformer implements DataTransformerInterface
     /**
      * Transforms from-places from a string to an array.
      *
-     * @param  string $fromPlacesAsString
+     * @param string $fromPlacesAsString
      *
      * @return array
      */

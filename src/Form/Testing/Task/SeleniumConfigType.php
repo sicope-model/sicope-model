@@ -19,8 +19,8 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Tienvx\Bundle\MbtBundle\Provider\ProviderManager;
 use Tienvx\Bundle\MbtBundle\Entity\Task\SeleniumConfig;
+use Tienvx\Bundle\MbtBundle\Provider\ProviderManager;
 
 class SeleniumConfigType extends AbstractType
 {
@@ -40,11 +40,11 @@ class SeleniumConfigType extends AbstractType
             ?string $browser = null
         ) {
             $providers = $this->providerManager->all();
-            $provider = in_array($provider, $providers) ? $provider : reset($providers);
+            $provider = \in_array($provider, $providers) ? $provider : reset($providers);
             $platforms = $this->providerManager->get($provider)->getPlatforms();
-            $platform = in_array($platform, $platforms) ? $platform : reset($platforms);
+            $platform = \in_array($platform, $platforms) ? $platform : reset($platforms);
             $browsers = $this->providerManager->get($provider)->getBrowsers($platform);
-            $browser = in_array($browser, $browsers) ? $browser : reset($browsers);
+            $browser = \in_array($browser, $browsers) ? $browser : reset($browsers);
 
             $form->add('provider', ChoiceType::class, [
                 'label' => 'task_provider',

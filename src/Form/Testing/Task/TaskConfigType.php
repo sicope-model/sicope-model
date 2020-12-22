@@ -22,9 +22,9 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tienvx\Bundle\MbtBundle\Channel\ChannelManager;
+use Tienvx\Bundle\MbtBundle\Entity\Task\TaskConfig;
 use Tienvx\Bundle\MbtBundle\Generator\GeneratorManager;
 use Tienvx\Bundle\MbtBundle\Reducer\ReducerManager;
-use Tienvx\Bundle\MbtBundle\Entity\Task\TaskConfig;
 
 class TaskConfigType extends AbstractType
 {
@@ -46,7 +46,7 @@ class TaskConfigType extends AbstractType
     {
         $formModifier = function (FormInterface $form, ?string $generator = null) {
             $generators = $this->generatorManager->all();
-            $generator = in_array($generator, $generators) ? $generator : reset($generators);
+            $generator = \in_array($generator, $generators) ? $generator : reset($generators);
 
             $form->add('generator', ChoiceType::class, [
                 'label' => 'task_generator',

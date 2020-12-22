@@ -1,21 +1,10 @@
 version: '3.4'
 
 services:
-    postgres:
-        restart: always
-
-    selenoid:
-        restart: always
-
     admin:
-        restart: always
         environment:
           APP_ENV: prod
 
     worker:
-        restart: always
         environment:
           APP_ENV: prod
-
-    caddy:
-        restart: always

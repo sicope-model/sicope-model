@@ -15,7 +15,7 @@ jobs:
       with:
         php-version: ${{ matrix.php-versions }}
         coverage: pcov
-        tools: phpstan, phpcs, composer:v2
+        tools: phpstan, phpcs, php-cs-fixer, composer:v2
         #extensions: mbstring, intl
 
     - name: Checkout
@@ -24,8 +24,11 @@ jobs:
     - name: Install
       run: composer install
 
+    - name: Run PHP CS
+      run: phpcs --standard=PSR12 --ignore=src/Migrations/ src
+
     - name: Run PHP CS Fixer
-      run: phpcs --standard=PSR12 src
+      run: php-cs-fixer fix --diff --dry-run
 
     - name: Run PHPStan
       run: phpstan analyse src tests

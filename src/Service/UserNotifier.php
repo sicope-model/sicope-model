@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * This file is part of the SICOPE Model package.
+ *
+ * @package     sicope-model
+ * @license     LICENSE
+ * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
+ */
+
 namespace App\Service;
 
 use App\Repository\UserRepository;
@@ -27,7 +37,7 @@ class UserNotifier implements UserNotifierInterface
         $phone = $profile instanceof ProfileInterface ? $profile->getPhone() : null;
 
         if ($email || $phone) {
-            return new Recipient((string)$email, (string)$phone);
+            return new Recipient((string) $email, (string) $phone);
         }
 
         return new NoRecipient();
