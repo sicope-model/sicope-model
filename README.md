@@ -20,6 +20,7 @@ docker-compose exec admin bin/console user:create
 
 [Production](https://github.com/dunglas/symfony-docker/blob/master/docs/production.md)
 ```
+docker-compose pull
 SERVER_NAME=your-domain-name.example.com docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml up
 ```
 
