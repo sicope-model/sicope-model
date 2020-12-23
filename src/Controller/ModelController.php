@@ -41,7 +41,7 @@ class ModelController extends AbstractController
      * List Model.
      *
      * @IsGranted("ROLE_MODEL_LIST")
-     * @Route(name="admin_model_list", path="/model")
+     * @Route(name="admin_model_list", path="/models")
      */
     public function list(
         Request $request,
@@ -69,7 +69,7 @@ class ModelController extends AbstractController
      * Build New Model.
      *
      * @IsGranted("ROLE_MODEL_BUILD")
-     * @Route(name="admin_model_build", path="/model-build")
+     * @Route(name="admin_model_build", path="/models/build")
      *
      * @return RedirectResponse|Response
      */
@@ -90,7 +90,9 @@ class ModelController extends AbstractController
             return $this->redirectToRoute('admin_model_list');
         }
 
-        return $this->render('Admin/Testing/buildModel.html.twig', [
+        return $this->render('Admin/Testing/editModel.html.twig', [
+            'page_title' => 'testing_model_build_title',
+            'page_description' => 'testing_model_build_desc',
             'form' => $form->createView(),
         ]);
     }
@@ -99,7 +101,7 @@ class ModelController extends AbstractController
      * Edit Model.
      *
      * @IsGranted("ROLE_MODEL_EDIT")
-     * @Route(name="admin_model_edit", path="/model/{model}")
+     * @Route(name="admin_model_edit", path="/model/{model}/edit")
      */
     public function edit(Request $request, Model $model, EntityManagerInterface $em): Response
     {
@@ -114,8 +116,23 @@ class ModelController extends AbstractController
             $this->addFlash('success', 'changes_saved');
         }
 
-        return $this->render('Admin/Testing/buildModel.html.twig', [
+        return $this->render('Admin/Testing/editModel.html.twig', [
+            'page_title' => 'testing_model_edit_title',
+            'page_description' => 'testing_model_edit_desc',
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * View Model.
+     *
+     * @IsGranted("ROLE_MODEL_VIEW")
+     * @Route(name="admin_model_view", path="/model/{model}")
+     */
+    public function view(Model $model): Response
+    {
+        return $this->render('Admin/Testing/viewModel.html.twig', [
+            'model' => $model,
         ]);
     }
 
@@ -123,7 +140,7 @@ class ModelController extends AbstractController
      * Delete Model.
      *
      * @IsGranted("ROLE_MODEL_DELETE")
-     * @Route(name="admin_model_delete", path="/group/{model}/delete")
+     * @Route(name="admin_model_delete", path="/model/{model}/delete")
      */
     public function delete(Request $request, Model $model, EntityManagerInterface $em): RedirectResponse
     {

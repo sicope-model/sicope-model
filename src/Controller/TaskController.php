@@ -39,7 +39,7 @@ class TaskController extends AbstractController
      * List Task.
      *
      * @IsGranted("ROLE_TASK_LIST")
-     * @Route(name="admin_task_list", path="/task")
+     * @Route(name="admin_task_list", path="/tasks")
      */
     public function list(
         Request $request,
@@ -67,7 +67,7 @@ class TaskController extends AbstractController
      * Create New Task.
      *
      * @IsGranted("ROLE_TASK_CREATE")
-     * @Route(name="admin_task_create", path="/task/create")
+     * @Route(name="admin_task_create", path="/tasks/create")
      */
     public function create(Request $request, EntityManagerInterface $em): Response
     {
@@ -86,7 +86,7 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('admin_task_list');
         }
 
-        return $this->render('Admin/Testing/task.html.twig', [
+        return $this->render('Admin/Testing/editTask.html.twig', [
             'page_title' => 'testing_task_create_title',
             'page_description' => 'testing_task_create_desc',
             'form' => $form->createView(),
@@ -97,7 +97,7 @@ class TaskController extends AbstractController
      * Edit Task.
      *
      * @IsGranted("ROLE_TASK_EDIT")
-     * @Route(name="admin_task_edit", path="/task/{task}")
+     * @Route(name="admin_task_edit", path="/task/{task}/edit")
      */
     public function edit(Request $request, Task $task, EntityManagerInterface $em): Response
     {
@@ -118,10 +118,23 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('admin_task_list');
         }
 
-        return $this->render('Admin/Testing/task.html.twig', [
+        return $this->render('Admin/Testing/editTask.html.twig', [
             'page_title' => 'testing_task_edit_title',
             'page_description' => 'testing_task_edit_desc',
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * View Task.
+     *
+     * @IsGranted("ROLE_TASK_VIEW")
+     * @Route(name="admin_task_view", path="/task/{task}")
+     */
+    public function view(Task $task): Response
+    {
+        return $this->render('Admin/Testing/viewTask.html.twig', [
+            'task' => $task,
         ]);
     }
 

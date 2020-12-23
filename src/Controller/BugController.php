@@ -37,7 +37,7 @@ class BugController extends AbstractController
      * List Bug.
      *
      * @IsGranted("ROLE_BUG_LIST")
-     * @Route(name="admin_bug_list", path="/bug")
+     * @Route(name="admin_bug_list", path="/bugs")
      */
     public function list(
         Request $request,
@@ -65,7 +65,7 @@ class BugController extends AbstractController
      * Edit Bug.
      *
      * @IsGranted("ROLE_BUG_EDIT")
-     * @Route(name="admin_bug_edit", path="/bug/{bug}")
+     * @Route(name="admin_bug_edit", path="/bug/{bug}/edit")
      */
     public function edit(Request $request, Bug $bug, EntityManagerInterface $em): Response
     {
@@ -86,10 +86,23 @@ class BugController extends AbstractController
             return $this->redirectToRoute('admin_bug_list');
         }
 
-        return $this->render('Admin/Testing/bug.html.twig', [
+        return $this->render('Admin/Testing/editBug.html.twig', [
             'page_title' => 'testing_bug_edit_title',
             'page_description' => 'testing_bug_edit_desc',
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * View Bug.
+     *
+     * @IsGranted("ROLE_BUG_VIEW")
+     * @Route(name="admin_bug_view", path="/bug/{bug}")
+     */
+    public function view(Bug $bug): Response
+    {
+        return $this->render('Admin/Testing/viewBug.html.twig', [
+            'bug' => $bug,
         ]);
     }
 
