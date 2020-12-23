@@ -58,7 +58,7 @@ class NotifyHelper implements NotifyHelperInterface
 
     public function getBugUrl(BugInterface $bug): string
     {
-        return $this->router->generate('admin_bug_view', ['bug' => $bug], UrlGeneratorInterface::ABSOLUTE_URL);
+        return $this->router->generate('admin_bug_view', ['bug' => $bug->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
     }
 
     public function getFromAddress(): Address
