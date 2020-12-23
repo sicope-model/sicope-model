@@ -37,8 +37,8 @@
                 <tbody>
                 {% for task in tasks %}
                     <tr>
-                        <td class="wid-30"><a href="{{ path('admin_task_view', { 'task': task }) }}">{{ task.title }}</a></td>
-                        <td class="wid-20"><a href="{{ path('admin_model_view', { 'model': bug.task.model }) }}">{{ task.model.label }}</a></td>
+                        <td class="wid-30"><a href="{{ path('admin_task_view', { 'task': task.id }) }}">{{ task.title }}</a></td>
+                        <td class="wid-20"><a href="{{ path('admin_model_view', { 'model': task.model.id }) }}">{{ task.model.label }}</a></td>
                         <td class="wid-10">{{ ((task.progress.total > 0) ? task.progress.processed / task.progress.total : 0) |format_number(style='percent') }}</td>
                         <td class="wid-10">{{ task.createdAt|date("Y-m-d") }}</td>
                         <td class="wid-10">{{ task.updatedAt|date("Y-m-d") }}</td>

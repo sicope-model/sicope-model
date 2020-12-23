@@ -72,12 +72,12 @@
         </dd>
 
         <dt class="col-sm-3">{{ 'progress'|trans }}</dt>
-        <dd class="col-sm-9">{{ ((bug.progress.total > 0) ? bug.progress.processed / bug.progress.total : 0) |format_number(style='percent') }}</dd>
+        <dd class="col-sm-9">{{ ((task.progress.total > 0) ? task.progress.processed / task.progress.total : 0) |format_number(style='percent') }}</dd>
 
         <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
-        <dd class="col-sm-9">{{ bug.createdAt|date("Y-m-d") }}</dd>
+        <dd class="col-sm-9">{{ task.createdAt|date("Y-m-d") }}</dd>
 
         <dt class="col-sm-3">{{ 'updated_at'|trans }}</dt>
-        <dd class="col-sm-9">{{ bug.updatedAt|date("Y-m-d") }}</dd>
+        <dd class="col-sm-9">{{ task.updatedAt|date("Y-m-d") }}</dd>
     </dl>
 {% endblock %}
