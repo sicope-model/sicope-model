@@ -16,10 +16,7 @@ cd sicope-model
 composer install
 cp docker/.env.dist docker/.env
 
-docker pull selenoid/vnc:firefox_74.0
-docker pull selenoid/vnc:chrome_80.0
-docker pull selenoid/vnc:opera_67.0
-docker pull selenoid/chrome-mobile:79.0
+cat config/selenoid/browsers.json | jq ".[].versions[].image" | xargs -L1 docker pull
 docker pull selenoid/video-recorder:latest-release
 ```
 
