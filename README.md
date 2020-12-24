@@ -5,23 +5,38 @@ Model Based Testing tool using Single Color Petrinet Model.
 Usage
 --------------------
 
-Download
+1. Download
 ```
 git clone https://github.com/sicope-model/sicope-model.git
 cd sicope-model
 ```
 
-Development
+2. Install
 ```
 composer install
-docker-compose --env-file ./docker/.env up
-docker-compose exec admin bin/console user:create
+cp docker/.env.dist docker/.env
+
+docker pull selenoid/vnc:firefox_74.0
+docker pull selenoid/vnc:chrome_80.0
+docker pull selenoid/vnc:opera_67.0
+docker pull selenoid/chrome-mobile:79.0
+docker pull selenoid/video-recorder:latest-release
 ```
 
-[Production](https://github.com/dunglas/symfony-docker/blob/master/docs/production.md)
+3. For Development
+```
+docker-compose --env-file ./docker/.env up
+```
+
+4. For [Production](https://github.com/dunglas/symfony-docker/blob/master/docs/production.md)
 ```
 docker-compose pull
 SERVER_NAME=your-domain-name.example.com docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env up
+```
+
+5. Create User
+```
+docker-compose --env-file ./docker/.env exec admin bin/console user:create
 ```
 
 Screenshots

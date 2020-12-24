@@ -7,11 +7,10 @@ services:
             - 8888:8080
 
     selenoid-ui:
-        network_mode: bridge
         image: "aerokube/selenoid-ui"
         ports:
             - "8080:8080"
-        command: ["--selenoid-uri", "http://selenoid:4444"]
+        command: ["--selenoid-uri", $SELENIUM_SERVER]
 
     admin:
         volumes:
