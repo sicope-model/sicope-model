@@ -1,3 +1,4 @@
+.idea/
 *.md
 .dockerignore
 .git/
