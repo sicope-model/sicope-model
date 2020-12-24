@@ -52,6 +52,7 @@ services:
         environment:
             - DATABASE_URL
             - SELENIUM_SERVER
+            - MAILER_DSN
 
     caddy:
         image: tienvx/sicope-model-caddy
