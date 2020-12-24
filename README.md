@@ -14,13 +14,14 @@ cd sicope-model
 Development
 ```
 composer install
-docker-compose up
+docker-compose --env-file ./docker/.env up
 docker-compose exec admin bin/console user:create
 ```
 
 [Production](https://github.com/dunglas/symfony-docker/blob/master/docs/production.md)
 ```
-SERVER_NAME=your-domain-name.example.com docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml up
+docker-compose pull
+SERVER_NAME=your-domain-name.example.com docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env up
 ```
 
 Screenshots

@@ -1,0 +1,46 @@
+{# Template Parts #}
+{% extends "Admin/base.html.twig" %}
+
+{# Document #}
+{% block head_title %}{{ title('testing_bug_view_title'|trans) }}{% endblock %}
+
+{# Content Title #}
+{% block content_head %}
+    <span class="text">{{ 'testing_bug_view_title'|trans }}</span>
+    <span class="desc">{{ 'testing_bug_view_desc'|trans }}</span>
+{% endblock %}
+
+{# Content Body #}
+{% block content_body %}
+    <dl class="row">
+        <dt class="col-sm-3">{{ 'bug_title'|trans }}</dt>
+        <dd class="col-sm-9">{{ bug.title }}</dd>
+
+        <dt class="col-sm-3">{{ 'steps_count'|trans }}</dt>
+        <dd class="col-sm-9">{{ bug.steps|length }}</dd>
+
+        <dt class="col-sm-3">{{ 'bug_task'|trans }}</dt>
+        <dd class="col-sm-9"><a href="{{ path('admin_task_view', { 'task': bug.task.id }) }}">{{ bug.task.title }}</a></dd>
+
+        <dt class="col-sm-3">{{ 'bug_model'|trans }}</dt>
+        <dd class="col-sm-9"><a href="{{ path('admin_model_view', { 'model': bug.task.model.id }) }}">{{ bug.task.model.label }}</a></dd>
+
+        <dt class="col-sm-3 text-truncate">{{ 'message'|trans }}</dt>
+        <dd class="col-sm-9">{{ bug.message }}</dd>
+
+        <dt class="col-sm-3">{{ 'progress'|trans }}</dt>
+        <dd class="col-sm-9">{{ ((bug.progress.total > 0) ? bug.progress.processed / bug.progress.total : 0) |format_number(style='percent') }}</dd>
+
+        <dt class="col-sm-3">{{ 'closed'|trans }}</dt>
+        <dd class="col-sm-9">{{ bug.closed }}</dd>
+
+        <dt class="col-sm-3">{{ 'model_version'|trans }}</dt>
+        <dd class="col-sm-9">{{ bug.modelVersion }}</dd>
+
+        <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
+        <dd class="col-sm-9">{{ bug.createdAt|date("Y-m-d") }}</dd>
+
+        <dt class="col-sm-3">{{ 'updated_at'|trans }}</dt>
+        <dd class="col-sm-9">{{ bug.updatedAt|date("Y-m-d") }}</dd>
+    </dl>
+{% endblock %}

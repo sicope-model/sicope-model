@@ -15,18 +15,31 @@ namespace App\Service;
 use App\Repository\UserRepository;
 use Pd\UserBundle\Model\ProfileInterface;
 use Pd\UserBundle\Model\UserInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Notifier\Recipient\NoRecipient;
 use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Notifier\Recipient\RecipientInterface;
-use Tienvx\Bundle\MbtBundle\Service\UserNotifierInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Tienvx\Bundle\MbtBundle\Model\BugInterface;
+use Tienvx\Bundle\MbtBundle\Service\NotifyHelperInterface;
 
-class UserNotifier implements UserNotifierInterface
+class NotifyHelper implements NotifyHelperInterface
 {
     protected UserRepository $userRepository;
+    protected UrlGeneratorInterface $router;
+    protected string $mailSenderAddress;
+    protected string $mailSenderName;
 
-    public function __construct(UserRepository $userRepository)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        UrlGeneratorInterface $router,
+        string $mailSenderAddress,
+        string $mailSenderName
+    ) {
         $this->userRepository = $userRepository;
+        $this->router = $router;
+        $this->mailSenderAddress = $mailSenderAddress;
+        $this->mailSenderName = $mailSenderName;
     }
 
     public function getRecipient(int $userId): RecipientInterface
@@ -41,5 +54,15 @@ class UserNotifier implements UserNotifierInterface
         }
 
         return new NoRecipient();
+    }
+
+    public function getBugUrl(BugInterface $bug): string
+    {
+        return $this->router->generate('admin_bug_view', ['bug' => $bug->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
+    }
+
+    public function getFromAddress(): Address
+    {
+        return new Address($this->mailSenderAddress, $this->mailSenderName);
     }
 }

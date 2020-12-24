@@ -8103,20 +8103,21 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v2.0.0-rc.32",
+            "version": "v2.0.0-rc.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "d0fbbdee659e9ee87eec6a9e72dc58f742b33e59"
+                "reference": "41bb5da5928fd578c68197d9b44501cb312a9e1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/d0fbbdee659e9ee87eec6a9e72dc58f742b33e59",
-                "reference": "d0fbbdee659e9ee87eec6a9e72dc58f742b33e59",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/41bb5da5928fd578c68197d9b44501cb312a9e1b",
+                "reference": "41bb5da5928fd578c68197d9b44501cb312a9e1b",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.8",
+                "egulias/email-validator": "^2.1",
                 "jmgq/a-star": "^1.1",
                 "league/flysystem": "^2.0",
                 "php": ">=7.4",
@@ -8126,6 +8127,7 @@
                 "symfony/expression-language": "^5.2",
                 "symfony/http-kernel": "^5.2",
                 "symfony/messenger": "^5.2",
+                "symfony/mime": "^5.2",
                 "symfony/notifier": "^5.2",
                 "symfony/security-core": "^5.2",
                 "symfony/translation": "^5.2",
@@ -8182,7 +8184,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-rc.32"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-rc.35"
             },
             "funding": [
                 {
@@ -8190,7 +8192,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-12-20T01:25:52+00:00"
+            "time": "2020-12-24T05:30:10+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",
@@ -9657,14 +9659,7 @@
             "time": "2020-12-08T17:03:37+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "league/flysystem-bundle",
-            "version": "dev-flysystem-v2",
-            "alias": "2.0.0",
-            "alias_normalized": "2.0.0.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "league/flysystem-bundle": 20,

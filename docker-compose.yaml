@@ -2,12 +2,12 @@ version: '3.4'
 
 services:
     postgres:
-        image: postgres:${POSTGRES_VERSION:-13}-alpine
+        image: postgres:${POSTGRES_VERSION}-alpine
         restart: unless-stopped
         environment:
-            POSTGRES_USER: ${POSTGRES_USER:-user}
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pass}
-            POSTGRES_DB: ${POSTGRES_DB:-db}
+            - POSTGRES_USER
+            - POSTGRES_PASSWORD
+            - POSTGRES_DB
         ports:
             - 5432:5432
 
@@ -40,7 +40,7 @@ services:
             retries: 3
             start_period: 30s
         environment:
-          DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@postgres:5432/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-13}&charset=UTF-8
+            - DATABASE_URL
 
     worker:
         image: tienvx/sicope-model-worker
@@ -51,7 +51,7 @@ services:
             - postgres
         restart: unless-stopped
         environment:
-            DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@postgres:5432/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-13}&charset=UTF-8
+            - DATABASE_URL
 
     caddy:
         image: tienvx/sicope-model-caddy
@@ -61,7 +61,7 @@ services:
         depends_on:
             - admin
         environment:
-            SERVER_NAME: ${SERVER_NAME:-localhost, caddy:80}
+            - SERVER_NAME
         restart: unless-stopped
         ports:
             - "80:80"

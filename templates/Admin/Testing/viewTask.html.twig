@@ -1,0 +1,83 @@
+{# Template Parts #}
+{% extends "Admin/base.html.twig" %}
+
+{# Document #}
+{% block head_title %}{{ title('testing_task_view_title'|trans) }}{% endblock %}
+
+{# Content Title #}
+{% block content_head %}
+    <span class="text">{{ 'testing_task_view_title'|trans }}</span>
+    <span class="desc">{{ 'testing_task_view_desc'|trans }}</span>
+{% endblock %}
+
+{# Content Body #}
+{% block content_body %}
+    <dl class="row">
+        <dt class="col-sm-3">{{ 'task_title'|trans }}</dt>
+        <dd class="col-sm-9">{{ task.title }}</dd>
+
+        <dt class="col-sm-3">{{ 'task_model'|trans }}</dt>
+        <dd class="col-sm-9"><a href="{{ path('admin_model_view', { 'model': task.model.id }) }}">{{ task.model.label }}</a></dd>
+
+        <dt class="col-sm-3">{{ 'selenium_configuration'|trans }}</dt>
+        <dd class="col-sm-9">
+            <dl class="row">
+                <dt class="col-sm-3">{{ 'provider'|trans }}</dt>
+                <dd class="col-sm-9">{{ task.seleniumConfig.provider }}</dd>
+
+                <dt class="col-sm-3">{{ 'platform'|trans }}</dt>
+                <dd class="col-sm-9">{{ task.seleniumConfig.platform }}</dd>
+
+                <dt class="col-sm-3">{{ 'browser'|trans }}</dt>
+                <dd class="col-sm-9">{{ task.seleniumConfig.browser }}</dd>
+
+                <dt class="col-sm-3">{{ 'browser_version'|trans }}</dt>
+                <dd class="col-sm-9">{{ task.seleniumConfig.browserVersion }}</dd>
+
+                <dt class="col-sm-3">{{ 'resolution'|trans }}</dt>
+                <dd class="col-sm-9">{{ task.seleniumConfig.resolution }}</dd>
+            </dl>
+        </dd>
+
+        <dt class="col-sm-3">{{ 'task_configuration'|trans }}</dt>
+        <dd class="col-sm-9">
+            <dl class="row">
+                <dt class="col-sm-3">{{ 'generator'|trans }}</dt>
+                <dd class="col-sm-9">{{ task.taskConfig.generator }}</dd>
+
+                <dt class="col-sm-3">{{ 'generator_config'|trans }}</dt>
+                <dd class="col-sm-9">
+                    <ul>
+                        {% for key, value in task.taskConfig.generatorConfig %}
+                            <li>{{ key|e }}: {{ value|e }}</li>
+                        {% endfor %}
+                    </ul>
+                </dd>
+
+                <dt class="col-sm-3">{{ 'reducer'|trans }}</dt>
+                <dd class="col-sm-9">{{ task.taskConfig.reducer }}</dd>
+
+                <dt class="col-sm-3">{{ 'notify_author'|trans }}</dt>
+                <dd class="col-sm-9">{{ task.taskConfig.notifyAuthor }}</dd>
+
+                <dt class="col-sm-3">{{ 'notify_channels'|trans }}</dt>
+                <dd class="col-sm-9">
+                    <ul>
+                        {% for channel in task.taskConfig.notifyChannels %}
+                            <li>{{ channel }}</li>
+                        {% endfor %}
+                    </ul>
+                </dd>
+            </dl>
+        </dd>
+
+        <dt class="col-sm-3">{{ 'progress'|trans }}</dt>
+        <dd class="col-sm-9">{{ ((task.progress.total > 0) ? task.progress.processed / task.progress.total : 0) |format_number(style='percent') }}</dd>
+
+        <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
+        <dd class="col-sm-9">{{ task.createdAt|date("Y-m-d") }}</dd>
+
+        <dt class="col-sm-3">{{ 'updated_at'|trans }}</dt>
+        <dd class="col-sm-9">{{ task.updatedAt|date("Y-m-d") }}</dd>
+    </dl>
+{% endblock %}

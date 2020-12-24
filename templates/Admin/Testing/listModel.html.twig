@@ -25,10 +25,9 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th class="wid-15">{{ knp_pagination_sortable(models, 'model_label'|trans, 'm.label') }}</th>
-                        <th class="wid-10">{{ 'model_tags'|trans }}</th>
-                        <th class="wid-40">{{ 'model_image'|trans }}</th>
-                        <th class="wid-5">{{ 'version'|trans }}</th>
+                        <th class="wid-30">{{ knp_pagination_sortable(models, 'model_label'|trans, 'm.label') }}</th>
+                        <th class="wid-20">{{ 'model_tags'|trans }}</th>
+                        <th class="wid-10">{{ 'version'|trans }}</th>
                         <th class="wid-15">{{ 'created_at'|trans }}</th>
                         <th class="wid-15">{{ 'updated_at'|trans }}</th>
                         <th class="process"></th>
@@ -38,10 +37,9 @@
                 <tbody>
                 {% for model in models %}
                     <tr>
-                        <td class="wid-15">{{ model.label }}</td>
-                        <td class="wid-10">{{ model.tags|join(', ') }}</td>
-                        <td class="wid-40"><img src="{{ path('admin_model_image', { 'model': model.id }) }}" alt="{{ 'model_image'|trans }}"></td>
-                        <td class="wid-5">{{ model.version }}</td>
+                        <td class="wid-30"><a href="{{ path('admin_model_view', { 'model': model.id }) }}">{{ model.label }}</a></td>
+                        <td class="wid-20">{{ model.tags|join(', ') }}</td>
+                        <td class="wid-10">{{ model.version }}</td>
                         <td class="wid-15">{{ model.createdAt|date("Y-m-d H:i:s") }}</td>
                         <td class="wid-15">{{ model.updatedAt|date("Y-m-d H:i:s") }}</td>
                         <td class="process">

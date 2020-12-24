@@ -1,3 +1,4 @@
 framework:
     router:
         utf8: true
+        default_uri: '%env(resolve:ADMIN_URL)%'

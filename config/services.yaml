@@ -30,5 +30,8 @@ services:
     Tienvx\Bundle\MbtBundle\Generator\RandomGenerator:
         class: App\Model\RandomGenerator
 
-    Tienvx\Bundle\MbtBundle\Service\UserNotifierInterface:
-        class: App\Service\UserNotifier
+    Tienvx\Bundle\MbtBundle\Service\NotifyHelperInterface:
+        class: App\Service\NotifyHelper
+        bind:
+            $mailSenderAddress: '%mail_sender_address%'
+            $mailSenderName: '%mail_sender_name%'

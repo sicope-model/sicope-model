@@ -154,8 +154,8 @@ nav_model: Model
 nav_task: Task
 nav_bug: Bug
 task_title: Title
-task_model_label: Model Label
 task_model: Model
+bug_task: Task
 task_notify_author: Notify Me
 task_notify_author_info: Send me email or sms message when a bug was found
 progress: Progress
