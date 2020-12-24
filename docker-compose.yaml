@@ -40,7 +40,7 @@ services:
             retries: 3
             start_period: 30s
         environment:
-            - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?serverVersion=${POSTGRES_VERSION}&charset=UTF-8
+            - DATABASE_URL
 
     worker:
         image: tienvx/sicope-model-worker
@@ -51,7 +51,7 @@ services:
             - postgres
         restart: unless-stopped
         environment:
-            - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?serverVersion=${POSTGRES_VERSION}&charset=UTF-8
+            - DATABASE_URL
 
     caddy:
         image: tienvx/sicope-model-caddy
