@@ -29,6 +29,16 @@
             }
         }
     },
+    "edge": {
+        "default": "89.0",
+        "versions": {
+            "89.0": {
+                "image": "browsers/edge:89.0",
+                "port": "4444",
+                "path": "/"
+            }
+        }
+    },
     "android": {
         "default": "10.0",
         "versions": {
@@ -46,16 +56,6 @@
                 "image": "selenoid/chrome-mobile:86.0",
                 "port": "4444",
                 "path": "/wd/hub"
-            }
-        }
-    },
-    "edge": {
-        "default": "89.0",
-        "versions": {
-            "89.0": {
-                "image": "browsers/edge:89.0",
-                "port": "4444",
-                "path": "/"
             }
         }
     }

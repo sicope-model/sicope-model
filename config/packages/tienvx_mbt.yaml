@@ -1,4 +1,43 @@
 tienvx_mbt:
-    selenium_server: '%env(string:SELENIUM_SERVER)%'
-    provider_name: '%env(string:PROVIDER_NAME)%'
     max_steps: '%env(int:MAX_STEPS)%'
+    providers:
+        selenoid:
+            selenium_server: '%env(string:SELENIUM_SERVER)%'
+            platforms:
+                LINUX:
+                    browsers:
+                        chrome:
+                            versions: ['87.0']
+                        firefox:
+                            versions: ['83.0']
+                        MicrosoftEdge:
+                            versions: ['89.0']
+                        opera:
+                            versions: ['72.0']
+                    resolutions:
+                        - '1024x768'
+                        - '1280x800'
+                        - '1280x1024'
+                        - '1366x768'
+                        - '1440x900'
+                        - '1680x1050'
+                        - '1600x1200'
+                        - '1920x1080'
+                        - '2048x1536'
+                ANDROID:
+                    browsers:
+                        android:
+                            versions: ['10.0']
+                        chrome:
+                            versions: ['86.0']
+                    resolutions:
+                        - '240x320'
+                        - '240x400'
+                        - '240x432'
+                        - '320x480'
+                        - '480x800'
+                        - '480x854'
+                        - '1024x600'
+                        - '720x1280'
+                        - '1280x800'
+                        - '800x1280'
