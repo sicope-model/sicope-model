@@ -6,22 +6,24 @@ Usage
 --------------------
 
 1. Download
-```
+```shell
 git clone https://github.com/sicope-model/sicope-model.git
 cd sicope-model
 ```
 
 2. Install
-```
+```shell
 composer install
 cp docker/.env.dist docker/.env
+bin/console app:dump-browsers
 
+# Pull docker images (some are BIG)
 cat config/selenoid/browsers.json | jq ".[].versions[].image" | xargs -L1 docker pull
 docker pull selenoid/video-recorder:latest-release
 ```
 
 3. For Development
-```
+```shell
 docker-compose --env-file ./docker/.env up
 ```
 
