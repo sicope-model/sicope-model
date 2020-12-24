@@ -154,8 +154,8 @@ nav_model: Modeli
 nav_task: Görev
 nav_bug: Hata
 task_title: Başlık
-task_model_label: Model Etiketi
 task_model: Modeli
+bug_task: Görev
 task_notify_author: Bana bildir
 task_notify_author_info: Bir hata bulunduğunda bana e-posta veya sms mesajı gönder
 progress: İlerleme
