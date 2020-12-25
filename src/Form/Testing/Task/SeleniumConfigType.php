@@ -39,7 +39,7 @@ class SeleniumConfigType extends AbstractType
             ?string $platform = null,
             ?string $browser = null
         ) {
-            $providers = $this->providerManager->all();
+            $providers = $this->providerManager->getProviders();
             $provider = \in_array($provider, $providers) ? $provider : reset($providers);
             $platforms = $this->providerManager->getPlatforms($provider);
             $platform = \in_array($platform, $platforms) ? $platform : reset($platforms);
@@ -48,7 +48,7 @@ class SeleniumConfigType extends AbstractType
 
             $form->add('provider', ChoiceType::class, [
                 'label' => 'task_provider',
-                'choices' => $this->providerManager->all(),
+                'choices' => $this->providerManager->getProviders(),
                 'choice_label' => fn ($provider) => $provider,
                 'attr' => [
                     'class' => 'providers',
