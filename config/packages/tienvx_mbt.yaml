@@ -6,6 +6,8 @@ tienvx_mbt:
             platforms:
                 LINUX:
                     browsers:
+                        safari:
+                            versions: ['13.0']
                         chrome:
                             versions: ['87.0']
                         firefox:
