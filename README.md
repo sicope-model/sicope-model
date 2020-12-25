@@ -31,9 +31,12 @@ bin/console user:create
 ```
 
 4. For [Production](https://github.com/dunglas/symfony-docker/blob/master/docs/production.md)
-```
+```shell
 cp docker/.env.dist docker/.env
+# Pull images
 docker-compose pull
+# Or build ourself
+# docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml build
 docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env up -d
 docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env run admin bin/console user:create
 ```
