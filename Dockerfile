@@ -1,8 +1,9 @@
 # https://github.com/dunglas/symfony-docker/blob/master/Dockerfile
 ARG PHP_VERSION=7.4
 ARG CADDY_VERSION=2
+ARG NODE_VERSION=15
 
-FROM node:15-alpine as build_public
+FROM node:${NODE_VERSION}-alpine as build_public
 
 WORKDIR /srv/app
 
@@ -70,6 +71,7 @@ RUN set -eux; \
 		echo 'ping.path = /ping'; \
 	} | tee /usr/local/etc/php-fpm.d/docker-healthcheck.conf
 
+ENV APP_ENV=prod
 WORKDIR /srv/app
 
 COPY . .
@@ -115,6 +117,7 @@ RUN apk add --no-cache --virtual .build-deps postgresql-dev libxslt-dev libzip-d
     docker-php-ext-install pdo_pgsql xsl zip; \
     apk del .build-deps
 
+ENV APP_ENV=prod
 WORKDIR /srv/app
 
 COPY --from=build_admin /srv/app /srv/app

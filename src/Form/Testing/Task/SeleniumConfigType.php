@@ -39,16 +39,16 @@ class SeleniumConfigType extends AbstractType
             ?string $platform = null,
             ?string $browser = null
         ) {
-            $providers = $this->providerManager->all();
+            $providers = $this->providerManager->getProviders();
             $provider = \in_array($provider, $providers) ? $provider : reset($providers);
-            $platforms = $this->providerManager->get($provider)->getPlatforms();
+            $platforms = $this->providerManager->getPlatforms($provider);
             $platform = \in_array($platform, $platforms) ? $platform : reset($platforms);
-            $browsers = $this->providerManager->get($provider)->getBrowsers($platform);
+            $browsers = $this->providerManager->getBrowsers($provider, $platform);
             $browser = \in_array($browser, $browsers) ? $browser : reset($browsers);
 
             $form->add('provider', ChoiceType::class, [
                 'label' => 'task_provider',
-                'choices' => $this->providerManager->all(),
+                'choices' => $this->providerManager->getProviders(),
                 'choice_label' => fn ($provider) => $provider,
                 'attr' => [
                     'class' => 'providers',
@@ -58,7 +58,7 @@ class SeleniumConfigType extends AbstractType
 
             $form->add('platform', ChoiceType::class, [
                 'label' => 'task_platform',
-                'choices' => $this->providerManager->get($provider)->getPlatforms(),
+                'choices' => $this->providerManager->getPlatforms($provider),
                 'attr' => [
                     'class' => 'platforms',
                 ],
@@ -68,7 +68,7 @@ class SeleniumConfigType extends AbstractType
 
             $form->add('browser', ChoiceType::class, [
                 'label' => 'task_browser',
-                'choices' => $this->providerManager->get($provider)->getBrowsers($platform),
+                'choices' => $this->providerManager->getBrowsers($provider, $platform),
                 'attr' => [
                     'class' => 'browsers',
                 ],
@@ -78,7 +78,7 @@ class SeleniumConfigType extends AbstractType
 
             $form->add('browserVersion', ChoiceType::class, [
                 'label' => 'task_browser_version',
-                'choices' => $this->providerManager->get($provider)->getBrowserVersions($platform, $browser),
+                'choices' => $this->providerManager->getBrowserVersions($provider, $platform, $browser),
                 'attr' => [
                     'class' => 'browser-versions',
                 ],
@@ -87,7 +87,7 @@ class SeleniumConfigType extends AbstractType
 
             $form->add('resolution', ChoiceType::class, [
                 'label' => 'task_resolution',
-                'choices' => $this->providerManager->get($provider)->getResolutions($platform),
+                'choices' => $this->providerManager->getResolutions($provider, $platform),
                 'attr' => [
                     'class' => 'resolutions',
                 ],

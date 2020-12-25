@@ -5,23 +5,40 @@ Model Based Testing tool using Single Color Petrinet Model.
 Usage
 --------------------
 
-Download
-```
+1. Download
+```shell
 git clone https://github.com/sicope-model/sicope-model.git
 cd sicope-model
 ```
 
-Development
-```
+2. Install
+```shell
 composer install
-docker-compose --env-file ./docker/.env up
-docker-compose exec admin bin/console user:create
+bin/console app:dump-browsers
+# Pull docker images (some are BIG)
+cat config/selenoid/browsers.json | jq ".[].versions[].image" | xargs -L1 docker pull
+docker pull selenoid/video-recorder:latest-release
 ```
 
-[Production](https://github.com/dunglas/symfony-docker/blob/master/docs/production.md)
+3. For Development
+```shell
+yarn build
+docker-compose up
+symfony serve
+bin/console doctrine:migrations:migrate
+bin/console messenger:consume async
+bin/console user:create
 ```
+
+4. For [Production](https://github.com/dunglas/symfony-docker/blob/master/docs/production.md)
+```shell
+cp docker/.env.dist docker/.env
+# Pull images
 docker-compose pull
-SERVER_NAME=your-domain-name.example.com docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env up
+# Or build ourself
+# docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml build
+docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env up -d
+docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env run admin bin/console user:create
 ```
 
 Screenshots

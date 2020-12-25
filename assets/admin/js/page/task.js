@@ -8,11 +8,11 @@ function onChange(changed, findAndReplace) {
                   'browser',
                   'browserVersion',
                   'resolution',
-            ].map(name => 'task[selenium_config][' + name + ']'),
+            ].map(name => 'task[seleniumConfig][' + name + ']'),
             ...[
                 'generator',
                 'reducer',
-            ].map(name => 'task[task_config][' + name + ']'),
+            ].map(name => 'task[taskConfig][' + name + ']'),
         ];
         const data = $form.serializeArray().reduce(function(obj, item) {
             if (names.includes(item.name)) {

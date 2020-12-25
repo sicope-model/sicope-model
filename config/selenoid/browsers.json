@@ -1,61 +1,67 @@
 {
-    "firefox": {
-        "default": "74.0",
+    "safari": {
+        "default": "13.0",
         "versions": {
-            "74.0": {
-                "image": "selenoid/vnc:firefox_74.0",
+            "13.0": {
+                "image": "browsers/safari:13.0",
+                "port": "4444",
+                "path": "/"
+            }
+        }
+    },
+    "chrome": {
+        "default": "87.0",
+        "versions": {
+            "87.0": {
+                "image": "selenoid/vnc:chrome_87.0",
+                "port": "4444",
+                "path": "/"
+            }
+        }
+    },
+    "firefox": {
+        "versions": {
+            "83.0": {
+                "image": "selenoid/vnc:firefox_83.0",
                 "port": "4444",
                 "path": "/wd/hub"
             }
         }
     },
-    "chrome": {
-        "default": "80.0",
+    "edge": {
+        "default": "89.0",
         "versions": {
-            "80.0": {
-                "image": "selenoid/vnc:chrome_80.0",
+            "89.0": {
+                "image": "browsers/edge:89.0",
                 "port": "4444",
                 "path": "/"
             }
         }
     },
     "opera": {
-        "default": "67.0",
         "versions": {
-            "67.0": {
-                "image": "selenoid/vnc:opera_67.0",
+            "72.0": {
+                "image": "selenoid/vnc:opera_72.0",
                 "port": "4444",
                 "path": "/"
             }
         }
     },
     "android": {
-        "default": "79.0",
         "versions": {
-            "79.0": {
-                "image": "selenoid/chrome-mobile:79.0",
+            "10.0": {
+                "image": "selenoid/android:10.0",
                 "port": "4444",
                 "path": "/wd/hub"
             }
         }
     },
-    "ie": {
-        "default": "11",
+    "chrome-mobile": {
         "versions": {
-            "11": {
-                "image": "windows/ie:11",
+            "86.0": {
+                "image": "selenoid/chrome-mobile:86.0",
                 "port": "4444",
-                "path": "/"
-            }
-        }
-    },
-    "edge": {
-        "default": "18",
-        "versions": {
-            "18": {
-                "image": "windows/edge:18",
-                "port": "4444",
-                "path": "/"
+                "path": "/wd/hub"
             }
         }
     }
