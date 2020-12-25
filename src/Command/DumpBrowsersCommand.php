@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * This file is part of the SICOPE Model package.
+ *
+ * @package     sicope-model
+ * @license     LICENSE
+ * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
+ */
+
 namespace App\Command;
 
 use Facebook\WebDriver\Remote\WebDriverBrowserType;
@@ -55,9 +65,11 @@ class DumpBrowsersCommand extends Command
                         $path = '/wd/hub';
                         break;
                     case WebDriverBrowserType::CHROME:
-                        $key = $platform === WebDriverPlatform::ANDROID ? 'chrome-mobile' : 'chrome';
-                        $prefix = $platform === WebDriverPlatform::ANDROID ? 'selenoid/chrome-mobile:' : 'selenoid/vnc:chrome_';
-                        $path = $platform === WebDriverPlatform::ANDROID ? '/wd/hub' : '/';
+                        $key = WebDriverPlatform::ANDROID === $platform ? 'chrome-mobile' : 'chrome';
+                        $prefix = WebDriverPlatform::ANDROID === $platform ?
+                            'selenoid/chrome-mobile:' :
+                            'selenoid/vnc:chrome_';
+                        $path = WebDriverPlatform::ANDROID === $platform ? '/wd/hub' : '/';
                         break;
                     case WebDriverBrowserType::ANDROID:
                         $key = 'android';
@@ -89,11 +101,11 @@ class DumpBrowsersCommand extends Command
         }
 
         if ($browsers) {
-            $path = dirname(__DIR__) . '/../config/selenoid/browsers.json';
-            $io->note(sprintf('Dumping %d browsers into %s', count($browsers), realpath($path)));
+            $path = \dirname(__DIR__) . '/../config/selenoid/browsers.json';
+            $io->note(sprintf('Dumping %d browsers into %s', \count($browsers), realpath($path)));
             file_put_contents($path, json_encode($browsers, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n");
 
-            $io->success(sprintf('Dumped %d browsers into %s.', count($browsers), realpath($path)));
+            $io->success(sprintf('Dumped %d browsers into %s.', \count($browsers), realpath($path)));
         }
 
         return Command::SUCCESS;
