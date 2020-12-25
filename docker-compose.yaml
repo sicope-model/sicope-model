@@ -1,13 +1,13 @@
 version: '3.4'
 
 services:
-    postgres:
-        image: postgres:${POSTGRES_VERSION}-alpine
+    database:
+        image: postgres:${POSTGRES_VERSION:-13}-alpine
         restart: unless-stopped
         environment:
-            - POSTGRES_USER
-            - POSTGRES_PASSWORD
-            - POSTGRES_DB
+            POSTGRES_USER: ${POSTGRES_USER:-user}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pass}
+            POSTGRES_DB: ${POSTGRES_DB:-db}
         ports:
             - 5432:5432
 
@@ -21,56 +21,6 @@ services:
         environment:
             - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD/config/selenoid/video
         restart: unless-stopped
-        command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-container-network", $DEFAULT_NETWORK]
+        command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-container-network", "${CONTAINER_NETWORK:-sicope-model_default}"]
         ports:
             - "4444:4444"
-
-    admin:
-        image: tienvx/sicope-model-admin
-        build:
-            context: .
-            target: build_admin
-        depends_on:
-            - postgres
-        restart: unless-stopped
-        healthcheck:
-            interval: 10s
-            timeout: 3s
-            retries: 3
-            start_period: 30s
-        environment:
-            - DATABASE_URL
-
-    worker:
-        image: tienvx/sicope-model-worker
-        build:
-            context: .
-            target: build_worker
-        depends_on:
-            - postgres
-        restart: unless-stopped
-        environment:
-            - DATABASE_URL
-            - SELENIUM_SERVER
-            - MAILER_DSN
-
-    caddy:
-        image: tienvx/sicope-model-caddy
-        build:
-            context: .
-            target: build_caddy
-        depends_on:
-            - admin
-        environment:
-            - SERVER_NAME
-        restart: unless-stopped
-        ports:
-            - "80:80"
-            - "443:443"
-        volumes:
-            - caddy_data:/data
-            - caddy_config:/config
-
-volumes:
-    caddy_data:
-    caddy_config:

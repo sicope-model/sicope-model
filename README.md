@@ -14,9 +14,7 @@ cd sicope-model
 2. Install
 ```shell
 composer install
-cp docker/.env.dist docker/.env
 bin/console app:dump-browsers
-
 # Pull docker images (some are BIG)
 cat config/selenoid/browsers.json | jq ".[].versions[].image" | xargs -L1 docker pull
 docker pull selenoid/video-recorder:latest-release
@@ -24,18 +22,20 @@ docker pull selenoid/video-recorder:latest-release
 
 3. For Development
 ```shell
-docker-compose --env-file ./docker/.env up
+yarn build
+docker-compose up
+symfony serve
+bin/console doctrine:migrations:migrate
+bin/console messenger:consume async
+bin/console user:create
 ```
 
 4. For [Production](https://github.com/dunglas/symfony-docker/blob/master/docs/production.md)
 ```
+cp docker/.env.dist docker/.env
 docker-compose pull
-SERVER_NAME=your-domain-name.example.com docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env up
-```
-
-5. Create User
-```
-docker-compose --env-file ./docker/.env exec admin bin/console user:create
+docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env up -d
+docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env run admin bin/console user:create
 ```
 
 Screenshots

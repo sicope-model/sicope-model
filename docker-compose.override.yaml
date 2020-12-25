@@ -7,7 +7,7 @@ services:
         ports:
             - 8888:8080
 
-    mailhog:
+    mailer:
         image: mailhog/mailhog:latest
         restart: unless-stopped
         ports:
@@ -19,27 +19,4 @@ services:
         restart: unless-stopped
         ports:
             - "8080:8080"
-        command: ["--selenoid-uri", $SELENIUM_SERVER]
-
-    admin:
-        volumes:
-            - ./:/srv/app:rw
-            - ./docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
-            # If you develop on Linux, comment out the following volumes to just use bind-mounted project directory from host
-            # - ./var:/srv/app/var:rw
-        environment:
-            APP_ENV: dev
-
-    worker:
-        volumes:
-            - ./:/srv/app:rw
-            - ./docker/php/conf.d/symfony.dev.ini:/usr/local/etc/php/conf.d/symfony.ini
-            # If you develop on Linux, comment out the following volumes to just use bind-mounted project directory from host
-            # - ./var:/srv/app/var:rw
-        environment:
-            APP_ENV: dev
-
-    caddy:
-        volumes:
-            - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-            - ./public:/srv/app/public:ro
+        command: ["--selenoid-uri", "http://selenoid:4444"]
