@@ -35,6 +35,11 @@ symfony console messenger:consume async
 symfony console user:create
 ```
 
+Tools:
+* [Adminer](http://localhost:8888)
+* [Mailhog](http://localhost:8025)
+* [Selenoid UI](http://localhost:8080)
+
 ## Production
 
 ```shell
