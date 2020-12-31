@@ -30,9 +30,9 @@ docker pull selenoid/video-recorder:latest-release
 yarn build
 docker-compose up
 symfony serve
-bin/console doctrine:migrations:migrate
-bin/console messenger:consume async
-bin/console user:create
+symfony console doctrine:migrations:migrate
+symfony console messenger:consume async
+symfony console user:create
 ```
 
 ## Production
