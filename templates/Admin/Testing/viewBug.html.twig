@@ -42,5 +42,13 @@
 
         <dt class="col-sm-3">{{ 'updated_at'|trans }}</dt>
         <dd class="col-sm-9">{{ bug.updatedAt|date("Y-m-d") }}</dd>
+
+        <dt class="col-sm-3">{{ 'bug_video'|trans }}</dt>
+        <dd class="col-sm-9">
+            <video width="100%" controls>
+                <source src="{{ path('admin_bug_video', { 'bug': bug.id }) }}">
+                Your browser does not support the video tag.
+            </video>
+        </dd>
     </dl>
 {% endblock %}

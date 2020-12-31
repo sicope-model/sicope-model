@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d57b8864d34fddfbe2cff9f7e9fcd72",
+    "content-hash": "96040217776b2c43ec0a4663667f8663",
     "packages": [
         {
             "name": "appaydin/pd-mailer",
@@ -2323,195 +2323,6 @@
                 }
             ],
             "time": "2020-09-14T14:23:00+00:00"
-        },
-        {
-            "name": "league/flysystem",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "88ab4780a5cc573fb943c8a6987da880b3ec0474"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/88ab4780a5cc573fb943c8a6987da880b3ec0474",
-                "reference": "88ab4780a5cc573fb943c8a6987da880b3ec0474",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "league/mime-type-detection": "^1.0.0",
-                "php": "^7.2 || ^8.0"
-            },
-            "conflict": {
-                "guzzlehttp/ringphp": "<1.1.1"
-            },
-            "require-dev": {
-                "async-aws/s3": "^1.5",
-                "async-aws/simple-s3": "^1.0",
-                "aws/aws-sdk-php": "^3.132.4",
-                "composer/semver": "^3.0",
-                "ext-fileinfo": "*",
-                "friendsofphp/php-cs-fixer": "^2.16",
-                "google/cloud-storage": "^1.23",
-                "phpseclib/phpseclib": "^2.0",
-                "phpstan/phpstan": "^0.12.26",
-                "phpunit/phpunit": "^8.5 || ^9.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "League\\Flysystem\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Frank de Jonge",
-                    "email": "info@frankdejonge.nl"
-                }
-            ],
-            "description": "File storage abstraction for PHP",
-            "keywords": [
-                "WebDAV",
-                "aws",
-                "cloud",
-                "file",
-                "files",
-                "filesystem",
-                "filesystems",
-                "ftp",
-                "s3",
-                "sftp",
-                "storage"
-            ],
-            "support": {
-                "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/2.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://offset.earth/frankdejonge",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/frankdejonge",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-11-24T14:30:57+00:00"
-        },
-        {
-            "name": "league/flysystem-bundle",
-            "version": "dev-flysystem-v2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Lustmored/flysystem-bundle",
-                "reference": "6af3083dc90ca01b0b2883dd60afa1c92fb054c2"
-            },
-            "require": {
-                "league/flysystem": "^2.0",
-                "php": "^7.2 || ^8.0",
-                "symfony/config": "^4.2|^5.0",
-                "symfony/dependency-injection": "^4.2|^5.0",
-                "symfony/http-kernel": "^4.2|^5.0",
-                "symfony/options-resolver": "^4.2|^5.0"
-            },
-            "require-dev": {
-                "async-aws/flysystem-s3": "^0.3",
-                "league/flysystem-aws-s3-v3": "^2.0",
-                "league/flysystem-memory": "^2.0",
-                "lustmored/flysystem-v2-simple-cache-adapter": "^0.1.0",
-                "phpunit/phpunit": "^7.4",
-                "symfony/dotenv": "^4.2|^5.0",
-                "symfony/framework-bundle": "^4.2|^5.0",
-                "symfony/var-dumper": "^4.1|^5.0",
-                "symfony/yaml": "^4.2|^5.0"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "League\\FlysystemBundle\\": "src"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\League\\FlysystemBundle\\": "tests"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Titouan Galopin",
-                    "email": "galopintitouan@gmail.com"
-                }
-            ],
-            "description": "Symfony bundle integrating Flysystem into Symfony 4.2+ applications",
-            "time": "2020-12-10T13:20:06+00:00"
-        },
-        {
-            "name": "league/mime-type-detection",
-            "version": "1.5.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/mime-type-detection.git",
-                "reference": "353f66d7555d8a90781f6f5e7091932f9a4250aa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/353f66d7555d8a90781f6f5e7091932f9a4250aa",
-                "reference": "353f66d7555d8a90781f6f5e7091932f9a4250aa",
-                "shasum": ""
-            },
-            "require": {
-                "ext-fileinfo": "*",
-                "php": "^7.2 || ^8.0"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^0.12.36",
-                "phpunit/phpunit": "^8.5.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "League\\MimeTypeDetection\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Frank de Jonge",
-                    "email": "info@frankdejonge.nl"
-                }
-            ],
-            "description": "Mime-type detection for Flysystem",
-            "support": {
-                "issues": "https://github.com/thephpleague/mime-type-detection/issues",
-                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.5.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/frankdejonge",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-10-18T11:50:25+00:00"
         },
         {
             "name": "lorenzo/pinky",
@@ -8103,23 +7914,22 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v2.0.0-rc.38",
+            "version": "v2.0.0-rc.41",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "ac4a0a6f04c4e1da012c10e4d71f65b0bef1dae1"
+                "reference": "bfd7759cd1e9e206dba3104c7196af91f3d67d08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/ac4a0a6f04c4e1da012c10e4d71f65b0bef1dae1",
-                "reference": "ac4a0a6f04c4e1da012c10e4d71f65b0bef1dae1",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/bfd7759cd1e9e206dba3104c7196af91f3d67d08",
+                "reference": "bfd7759cd1e9e206dba3104c7196af91f3d67d08",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.8",
                 "egulias/email-validator": "^2.1",
                 "jmgq/a-star": "^1.1",
-                "league/flysystem": "^2.0",
                 "php": ">=7.4",
                 "php-webdriver/webdriver": "^1.9",
                 "symfony/config": "^5.2",
@@ -8184,7 +7994,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-rc.38"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-rc.41"
             },
             "funding": [
                 {
@@ -8192,7 +8002,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-12-25T06:57:47+00:00"
+            "time": "2020-12-31T09:35:07+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",
@@ -9662,7 +9472,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "league/flysystem-bundle": 20,
         "tienvx/mbt-bundle": 5,
         "roave/security-advisories": 20
     },
@@ -9672,7 +9481,8 @@
         "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-curl": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
