@@ -43,7 +43,7 @@ class TaskType extends AbstractType
                 ],
             ])
             ->add('taskConfig', TaskConfigType::class, [
-                'label' => 'task_selenium_config',
+                'label' => 'task_task_config',
                 'attr' => [
                     'class' => 'col list-group-item',
                 ],
