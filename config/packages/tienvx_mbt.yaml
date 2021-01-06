@@ -11,7 +11,7 @@ tienvx_mbt:
                         chrome:
                             versions: ['87.0']
                         firefox:
-                            versions: ['83.0']
+                            versions: ['84.0']
                         MicrosoftEdge:
                             versions: ['89.0']
                         opera:
