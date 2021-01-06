@@ -31,5 +31,3 @@ node_modules
 /build/
 .DS_Store
 docker/.env
-config/selenoid/logs/*
-config/selenoid/video/*

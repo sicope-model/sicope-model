@@ -21,8 +21,8 @@
     },
     "firefox": {
         "versions": {
-            "83.0": {
-                "image": "selenoid/vnc:firefox_83.0",
+            "84.0": {
+                "image": "selenoid/vnc:firefox_84.0",
                 "port": "4444",
                 "path": "/wd/hub"
             }

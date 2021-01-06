@@ -14,12 +14,12 @@ services:
     selenoid:
         image: aerokube/selenoid:latest-release
         volumes:
-            - "$PWD/config/selenoid:/etc/selenoid"
             - "/var/run/docker.sock:/var/run/docker.sock"
-            - "$PWD/config/selenoid/video:/opt/selenoid/video"
-            - "$PWD/config/selenoid/logs:/opt/selenoid/logs"
+            - "$PWD/var/selenoid:/etc/selenoid"
+            - "$PWD/var/selenoid/video:/opt/selenoid/video"
+            - "$PWD/var/selenoid/logs:/opt/selenoid/logs"
         environment:
-            - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD/config/selenoid/video
+            - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD/var/selenoid/video
         restart: unless-stopped
         command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-container-network", "${CONTAINER_NETWORK:-sicope-model_default}"]
         ports:

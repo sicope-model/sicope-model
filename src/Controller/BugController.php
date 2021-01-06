@@ -23,8 +23,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Bug;
+use Tienvx\Bundle\MbtBundle\Provider\ProviderManager;
 
 /**
  * Controller managing the bugs.
@@ -123,5 +126,36 @@ class BugController extends AbstractController
 
         // Redirect back
         return $this->redirect($request->headers->get('referer', $this->generateUrl('admin_bug_list')));
+    }
+
+    /**
+     * View Model Video.
+     *
+     * @IsGranted("ROLE_BUG_VIDEO")
+     * @Route(name="admin_bug_video", path="/bug/{bug}/video")
+     */
+    public function video(Bug $bug, ProviderManager $providerManager): StreamedResponse
+    {
+        $providerName = $bug->getTask()->getSeleniumConfig()->getProvider();
+        $provider = $providerManager->get($providerName);
+        $response = new StreamedResponse();
+        $url = $provider->getVideoUrl($providerManager->getSeleniumServer($providerName), $bug->getId());
+
+        $response->headers->set('Content-Type', 'application/force-download');
+        $response->headers->set(
+            'Content-Disposition',
+            $response->headers->makeDisposition(
+                ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+                $provider->getVideoFilename($bug->getId())
+            )
+        );
+
+        $response->setCallback(function () use ($url) {
+            $c = curl_init($url);
+            curl_exec($c);
+            curl_close($c);
+        });
+
+        return $response;
     }
 }
