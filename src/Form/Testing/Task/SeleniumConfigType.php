@@ -20,13 +20,13 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tienvx\Bundle\MbtBundle\Entity\Task\SeleniumConfig;
-use Tienvx\Bundle\MbtBundle\Provider\ProviderManager;
+use Tienvx\Bundle\MbtBundle\Provider\ProviderManagerInterface;
 
 class SeleniumConfigType extends AbstractType
 {
-    protected ProviderManager $providerManager;
+    protected ProviderManagerInterface $providerManager;
 
-    public function __construct(ProviderManager $providerManager)
+    public function __construct(ProviderManagerInterface $providerManager)
     {
         $this->providerManager = $providerManager;
     }

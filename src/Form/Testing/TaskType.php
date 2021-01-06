@@ -22,17 +22,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Entity\Task;
-use Tienvx\Bundle\MbtBundle\Provider\ProviderManager;
 
 class TaskType extends AbstractType
 {
-    protected ProviderManager $providerManager;
-
-    public function __construct(ProviderManager $providerManager)
-    {
-        $this->providerManager = $providerManager;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
