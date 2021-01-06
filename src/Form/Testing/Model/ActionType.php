@@ -14,16 +14,23 @@ namespace App\Form\Testing\Model;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Tienvx\Bundle\MbtBundle\Model\Model\CommandInterface;
+use Tienvx\Bundle\MbtBundle\CommandRunner\CommandRunnerManagerInterface;
 
 class ActionType extends CommandType
 {
+    protected CommandRunnerManagerInterface $commandRunnerManager;
+
+    public function __construct(CommandRunnerManagerInterface $commandRunnerManager)
+    {
+        $this->commandRunnerManager = $commandRunnerManager;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('command', ChoiceType::class, [
                 'label' => 'command_action',
-                'choices' => array_combine(CommandInterface::ALL_ACTIONS, CommandInterface::ALL_ACTIONS),
+                'choices' => $this->commandRunnerManager->getActions(),
             ])
         ;
         parent::buildForm($builder, $options);
