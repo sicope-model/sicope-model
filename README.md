@@ -20,7 +20,7 @@ cd sicope-model
 composer install
 bin/console app:dump-browsers
 # Pull docker images (some are BIG)
-cat config/selenoid/browsers.json | jq ".[].versions[].image" | xargs -L1 docker pull
+cat var/selenoid/browsers.json | jq ".[].versions[].image" | xargs -L1 docker pull
 docker pull selenoid/video-recorder:latest-release
 ```
 
