@@ -12,8 +12,8 @@
 
 namespace App\Form\Testing\Model;
 
+use App\Form\Testing\CloseType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -34,8 +34,7 @@ class ToPlaceType extends AbstractType
                 'label' => 'expression',
                 'required' => false,
             ])
-            ->add('remove_place', ButtonType::class, [
-                'label' => 'remove_place',
+            ->add('remove_place', CloseType::class, [
                 'attr' => [
                     'class' => 'remove-place',
                 ],

@@ -110,3 +110,9 @@
 {% block form_group_class -%}
     col-md-8 col-sm-8 col-xs-12
 {%- endblock form_group_class %}
+
+{% block close_row %}
+    <button type="button" class="close {{ attr.class }}" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+{% endblock close_row %}

@@ -12,8 +12,8 @@
 
 namespace App\Form\Testing\Model;
 
+use App\Form\Testing\CloseType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,8 +31,7 @@ class CommandType extends AbstractType
                 'label' => 'command_value',
                 'required' => false,
             ])
-            ->add('remove_command', ButtonType::class, [
-                'label' => 'remove_command',
+            ->add('remove_command', CloseType::class, [
                 'attr' => [
                     'class' => 'remove-command',
                 ],

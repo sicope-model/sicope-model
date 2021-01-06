@@ -13,6 +13,7 @@
 namespace App\Form\Testing\Model;
 
 use App\Form\DataTransformer\FromPlacesTransformer;
+use App\Form\Testing\CloseType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
@@ -92,8 +93,7 @@ class TransitionType extends AbstractType
                     'class' => 'add-to-place',
                 ],
             ])
-            ->add('remove_transition', ButtonType::class, [
-                'label' => 'remove_transition',
+            ->add('remove_transition', CloseType::class, [
                 'attr' => [
                     'class' => 'remove-transition',
                 ],
