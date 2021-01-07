@@ -7909,20 +7909,21 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v2.0.0-rc.44",
+            "version": "v2.0.0-rc.45",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "379f5680bc4bf428740f3653f40a20519c208214"
+                "reference": "38cda4e1aa7cbd4810dc9af83fad84dd1bfbf57b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/379f5680bc4bf428740f3653f40a20519c208214",
-                "reference": "379f5680bc4bf428740f3653f40a20519c208214",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/38cda4e1aa7cbd4810dc9af83fad84dd1bfbf57b",
+                "reference": "38cda4e1aa7cbd4810dc9af83fad84dd1bfbf57b",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.8",
+                "egulias/email-validator": "^2.1",
                 "jmgq/a-star": "^1.1",
                 "php": ">=7.4",
                 "php-webdriver/webdriver": "^1.9",
@@ -7930,8 +7931,8 @@
                 "symfony/dependency-injection": "^5.2",
                 "symfony/expression-language": "^5.2",
                 "symfony/http-kernel": "^5.2",
-                "symfony/mailer": "^5.2",
                 "symfony/messenger": "^5.2",
+                "symfony/mime": "^5.2",
                 "symfony/notifier": "^5.2",
                 "symfony/security-core": "^5.2",
                 "symfony/translation": "^5.2",
@@ -7988,7 +7989,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-rc.44"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-rc.45"
             },
             "funding": [
                 {
@@ -7996,7 +7997,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-01-06T16:18:46+00:00"
+            "time": "2021-01-07T06:01:42+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",
