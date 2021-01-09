@@ -19,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
@@ -37,6 +38,12 @@ class ModelType extends AbstractType
                     'data-tags' => '',
                 ],
                 'required' => false,
+            ])
+            ->add('start_url', UrlType::class, [
+                'label' => 'model_start_url',
+            ])
+            ->add('start_expression', TextType::class, [
+                'label' => 'model_start_expression',
             ])
             ->add('places', CollectionType::class, [
                 'label' => 'model_places',

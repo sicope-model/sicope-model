@@ -26,6 +26,7 @@ class CommandType extends AbstractType
         $builder
             ->add('target', TextType::class, [
                 'label' => 'command_target',
+                'required' => false,
             ])
             ->add('value', TextType::class, [
                 'label' => 'command_value',

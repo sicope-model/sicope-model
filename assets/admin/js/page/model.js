@@ -31,7 +31,7 @@ function initTransitions(elements) {
         'btn_delete_selector': '.remove-transition',
         'post_add': function($new_elem) {
             initCommand($new_elem.find('.actions'));
-            initToPlaces($new_elem.find('.to-places'));
+            initToPlaces($new_elem.find('.select-to-places'));
             initFromPlaces($new_elem.find('.select-from-places'));
         }
     });
@@ -55,25 +55,7 @@ function initCommand(elements) {
 }
 
 function initToPlaces(elements) {
-    elements.formCollection({
-        'call_post_add_on_init': true,
-        'other_btn_add': elements.parents('.transition').find('.add-to-place'),
-        'btn_delete_selector': '.remove-place',
-        'post_add': function($new_elem, context) {
-            initToPlace($new_elem.find('.select-to-place'));
-        }
-    });
-}
-
-function initToPlace(elements) {
-    elements.each(function () {
-        const selected = this.defaultValue;
-        const $select = $(this).selectize({
-            maxItems: 1,
-            options: Object.values(options)
-        });
-        $select[0].selectize.addItem(selected);
-    });
+    initFromPlaces(elements);
 }
 
 function initFromPlaces(elements) {
@@ -115,7 +97,7 @@ function removePlace(index) {
 }
 
 function updateSelects(callback) {
-    $('.select-from-places, .select-to-place').each(function () {
+    $('.select-from-places, .select-to-places').each(function () {
         let control = this.selectize;
         if (control) {
             callback(control);

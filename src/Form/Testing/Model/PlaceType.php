@@ -33,8 +33,8 @@ class PlaceType extends AbstractType
                     'class' => 'place-label',
                 ],
             ])
-            ->add('init', CheckboxType::class, [
-                'label' => 'place_init',
+            ->add('start', CheckboxType::class, [
+                'label' => 'place_start',
                 'required' => false,
             ])
             ->add('assertions', CollectionType::class, [

@@ -45,6 +45,10 @@ class TransitionType extends AbstractType
                 'label' => 'transition_guard',
                 'required' => false,
             ])
+            ->add('expression', TextType::class, [
+                'label' => 'transition_expression',
+                'required' => false,
+            ])
             ->add('actions', CollectionType::class, [
                 'label' => 'transition_actions',
                 'entry_type' => ActionType::class,
@@ -72,25 +76,10 @@ class TransitionType extends AbstractType
                     'class' => 'select-from-places',
                 ],
             ])
-            ->add('to_places', CollectionType::class, [
+            ->add('to_places', TextType::class, [
                 'label' => 'to_places',
-                'entry_type' => ToPlaceType::class,
-                'entry_options' => [
-                    'label' => false,
-                    'attr' => [
-                        'class' => 'col list-group-item',
-                    ],
-                ],
-                'allow_add' => true,
-                'allow_delete' => true,
                 'attr' => [
-                    'class' => 'list-group to-places col pl-3',
-                ],
-            ])
-            ->add('add_to_place', ButtonType::class, [
-                'label' => 'add_place',
-                'attr' => [
-                    'class' => 'add-to-place',
+                    'class' => 'select-to-places',
                 ],
             ])
             ->add('remove_transition', CloseType::class, [
