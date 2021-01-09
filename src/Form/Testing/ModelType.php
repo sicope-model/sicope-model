@@ -52,6 +52,7 @@ class ModelType extends AbstractType
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item place',
+                        'delete_class' => 'remove-place',
                     ],
                 ],
                 'allow_add' => true,
@@ -73,6 +74,7 @@ class ModelType extends AbstractType
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item transition',
+                        'delete_class' => 'remove-transition',
                     ],
                 ],
                 'allow_add' => true,

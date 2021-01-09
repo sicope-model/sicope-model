@@ -12,7 +12,6 @@
 
 namespace App\Form\Testing\Model;
 
-use App\Form\Testing\CloseType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -44,6 +43,7 @@ class PlaceType extends AbstractType
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item assertion',
+                        'delete_class' => 'remove-command',
                     ],
                 ],
                 'allow_add' => true,
@@ -56,11 +56,6 @@ class PlaceType extends AbstractType
                 'label' => 'add_assertion',
                 'attr' => [
                     'class' => 'add-assertion',
-                ],
-            ])
-            ->add('remove_place', CloseType::class, [
-                'attr' => [
-                    'class' => 'remove-place',
                 ],
             ])
         ;
