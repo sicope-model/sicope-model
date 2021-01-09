@@ -12,7 +12,7 @@
 
 namespace App\Form\Testing\Model;
 
-use App\Form\DataTransformer\FromPlacesTransformer;
+use App\Form\DataTransformer\PlacesTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
@@ -26,7 +26,7 @@ class TransitionType extends AbstractType
 {
     protected DataTransformerInterface $transformer;
 
-    public function __construct(FromPlacesTransformer $transformer)
+    public function __construct(PlacesTransformer $transformer)
     {
         $this->transformer = $transformer;
     }
@@ -85,6 +85,8 @@ class TransitionType extends AbstractType
         ;
 
         $builder->get('from_places')
+            ->addModelTransformer($this->transformer);
+        $builder->get('to_places')
             ->addModelTransformer($this->transformer);
     }
 
