@@ -13,16 +13,32 @@
 namespace App\Form\Testing\Model;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Tienvx\Bundle\MbtBundle\CommandRunner\CommandRunnerManagerInterface;
 use Tienvx\Bundle\MbtBundle\ValueObject\Model\Command;
 
 class CommandType extends AbstractType
 {
+    protected CommandRunnerManagerInterface $commandRunnerManager;
+
+    public function __construct(CommandRunnerManagerInterface $commandRunnerManager)
+    {
+        $this->commandRunnerManager = $commandRunnerManager;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('command', ChoiceType::class, [
+                'label' => 'command_command',
+                'choices' => $this->commandRunnerManager->getAllCommands(),
+                'attr' => [
+                    'class' => 'select-command',
+                ],
+            ])
             ->add('target', TextType::class, [
                 'label' => 'command_target',
                 'required' => false,

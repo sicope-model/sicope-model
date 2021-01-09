@@ -178,8 +178,7 @@ transition_label: Etiket
 transition_guard: Muhafız
 transition_expression: İfade
 transition_actions: Hareketler
-command_assertion: İddia
-command_action: Aksiyon
+command_command: Komut
 command_target: Hedef
 command_value: Değer
 add_place: Yer Ekle

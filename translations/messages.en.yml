@@ -178,8 +178,7 @@ transition_label: Label
 transition_guard: Guard
 transition_expression: Expression
 transition_actions: Actions
-command_assertion: Assertion
-command_action: Action
+command_command: Command
 command_target: Target
 command_value: Value
 add_place: Add Place

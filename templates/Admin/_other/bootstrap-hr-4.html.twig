@@ -134,23 +134,14 @@
     </div>
 {% endblock transition_widget %}
 
-{% block action_widget %}
+{% block command_widget %}
     <div id="{{ id }}" class="{{ attr.class }}">
         {{ form_row(form.command) }}
         {{ form_row(form.target) }}
         {{ form_row(form.value) }}
         {{- block('delete_button_row') -}}
     </div>
-{% endblock action_widget %}
-
-{% block assertion_widget %}
-    <div id="{{ id }}" class="{{ attr.class }}">
-        {{ form_row(form.command) }}
-        {{ form_row(form.target) }}
-        {{ form_row(form.value) }}
-        {{- block('delete_button_row') -}}
-    </div>
-{% endblock assertion_widget %}
+{% endblock command_widget %}
 
 {% block delete_button_row -%}
     <button type="button" class="close {{ attr.delete_class }}" aria-label="Close">

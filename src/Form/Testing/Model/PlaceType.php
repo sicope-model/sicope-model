@@ -38,7 +38,7 @@ class PlaceType extends AbstractType
             ])
             ->add('assertions', CollectionType::class, [
                 'label' => 'place_assertions',
-                'entry_type' => AssertionType::class,
+                'entry_type' => CommandType::class,
                 'entry_options' => [
                     'label' => false,
                     'attr' => [
