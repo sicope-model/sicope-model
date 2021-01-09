@@ -7,7 +7,7 @@ services:
         ports:
             - 8888:8080
 
-    mailer:
+    mailhog:
         image: mailhog/mailhog:latest
         restart: unless-stopped
         ports:
