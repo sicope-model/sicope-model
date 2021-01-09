@@ -12,7 +12,7 @@
 
 namespace App\Form\Testing\Model;
 
-use App\Form\DataTransformer\FromPlacesTransformer;
+use App\Form\DataTransformer\PlacesTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
@@ -26,7 +26,7 @@ class TransitionType extends AbstractType
 {
     protected DataTransformerInterface $transformer;
 
-    public function __construct(FromPlacesTransformer $transformer)
+    public function __construct(PlacesTransformer $transformer)
     {
         $this->transformer = $transformer;
     }
@@ -44,13 +44,18 @@ class TransitionType extends AbstractType
                 'label' => 'transition_guard',
                 'required' => false,
             ])
+            ->add('expression', TextType::class, [
+                'label' => 'transition_expression',
+                'required' => false,
+            ])
             ->add('actions', CollectionType::class, [
                 'label' => 'transition_actions',
-                'entry_type' => ActionType::class,
+                'entry_type' => CommandType::class,
                 'entry_options' => [
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item action',
+                        'delete_class' => 'remove-command',
                     ],
                 ],
                 'allow_add' => true,
@@ -71,36 +76,17 @@ class TransitionType extends AbstractType
                     'class' => 'select-from-places',
                 ],
             ])
-            ->add('to_places', CollectionType::class, [
+            ->add('to_places', TextType::class, [
                 'label' => 'to_places',
-                'entry_type' => ToPlaceType::class,
-                'entry_options' => [
-                    'label' => false,
-                    'attr' => [
-                        'class' => 'col list-group-item',
-                    ],
-                ],
-                'allow_add' => true,
-                'allow_delete' => true,
                 'attr' => [
-                    'class' => 'list-group to-places col pl-3',
-                ],
-            ])
-            ->add('add_to_place', ButtonType::class, [
-                'label' => 'add_place',
-                'attr' => [
-                    'class' => 'add-to-place',
-                ],
-            ])
-            ->add('remove_transition', ButtonType::class, [
-                'label' => 'remove_transition',
-                'attr' => [
-                    'class' => 'remove-transition',
+                    'class' => 'select-to-places',
                 ],
             ])
         ;
 
         $builder->get('from_places')
+            ->addModelTransformer($this->transformer);
+        $builder->get('to_places')
             ->addModelTransformer($this->transformer);
     }
 

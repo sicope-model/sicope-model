@@ -14,7 +14,7 @@ namespace App\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 
-class FromPlacesTransformer implements DataTransformerInterface
+class PlacesTransformer implements DataTransformerInterface
 {
     /**
      * Transforms from-places from an array to a string.

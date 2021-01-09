@@ -7,12 +7,14 @@ services:
         ports:
             - 8888:8080
 
-    mailer:
+    mailhog:
         image: mailhog/mailhog:latest
         restart: unless-stopped
         ports:
             - 1025:1025
             - 8025:8025
+        logging:
+            driver: 'none'  # disable saving logs
 
     selenoid-ui:
         image: "aerokube/selenoid-ui"

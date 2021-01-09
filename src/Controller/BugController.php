@@ -27,7 +27,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Bug;
-use Tienvx\Bundle\MbtBundle\Provider\ProviderManager;
+use Tienvx\Bundle\MbtBundle\Provider\ProviderManagerInterface;
 
 /**
  * Controller managing the bugs.
@@ -134,10 +134,10 @@ class BugController extends AbstractController
      * @IsGranted("ROLE_BUG_VIDEO")
      * @Route(name="admin_bug_video", path="/bug/{bug}/video")
      */
-    public function video(Bug $bug, ProviderManager $providerManager): StreamedResponse
+    public function video(Bug $bug, ProviderManagerInterface $providerManager): StreamedResponse
     {
         $providerName = $bug->getTask()->getSeleniumConfig()->getProvider();
-        $provider = $providerManager->get($providerName);
+        $provider = $providerManager->getProvider($providerName);
         $response = new StreamedResponse();
         $url = $provider->getVideoUrl($providerManager->getSeleniumServer($providerName), $bug->getId());
 

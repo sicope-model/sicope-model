@@ -19,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
@@ -38,6 +39,12 @@ class ModelType extends AbstractType
                 ],
                 'required' => false,
             ])
+            ->add('start_url', UrlType::class, [
+                'label' => 'model_start_url',
+            ])
+            ->add('start_expression', TextType::class, [
+                'label' => 'model_start_expression',
+            ])
             ->add('places', CollectionType::class, [
                 'label' => 'model_places',
                 'entry_type' => PlaceType::class,
@@ -45,6 +52,7 @@ class ModelType extends AbstractType
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item place',
+                        'delete_class' => 'remove-place',
                     ],
                 ],
                 'allow_add' => true,
@@ -66,6 +74,7 @@ class ModelType extends AbstractType
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item transition',
+                        'delete_class' => 'remove-transition',
                     ],
                 ],
                 'allow_add' => true,

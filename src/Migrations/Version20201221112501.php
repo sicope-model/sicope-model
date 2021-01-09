@@ -54,7 +54,7 @@ final class Version20201221112501 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN mail_log.body IS \'(DC2Type:array)\'');
         $this->addSql('CREATE TABLE mail_template (id INT NOT NULL, template_id VARCHAR(50) NOT NULL, template TEXT DEFAULT NULL, template_data TEXT DEFAULT NULL, subject VARCHAR(255) DEFAULT NULL, language VARCHAR(3) NOT NULL, status BOOLEAN NOT NULL, PRIMARY KEY(id))');
         $this->addSql('COMMENT ON COLUMN mail_template.template_data IS \'(DC2Type:array)\'');
-        $this->addSql('CREATE TABLE model (id INT NOT NULL, author INT DEFAULT NULL, label VARCHAR(255) NOT NULL, tags VARCHAR(255) DEFAULT NULL, places TEXT NOT NULL, transitions TEXT NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, version INT NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE model (id INT NOT NULL, author INT DEFAULT NULL, label VARCHAR(255) NOT NULL, tags VARCHAR(255) DEFAULT NULL, start_url VARCHAR(255) NOT NULL, start_expression VARCHAR(255) DEFAULT NULL, places TEXT NOT NULL, transitions TEXT NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, version INT NOT NULL, PRIMARY KEY(id))');
         $this->addSql('COMMENT ON COLUMN model.places IS \'(DC2Type:array)\'');
         $this->addSql('COMMENT ON COLUMN model.transitions IS \'(DC2Type:array)\'');
         $this->addSql('CREATE TABLE task (id INT NOT NULL, model_id INT NOT NULL, title VARCHAR(255) NOT NULL, author INT DEFAULT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, selenium_config_provider VARCHAR(255) NOT NULL, selenium_config_platform VARCHAR(255) NOT NULL, selenium_config_browser VARCHAR(255) NOT NULL, selenium_config_browser_version VARCHAR(255) NOT NULL, selenium_config_resolution VARCHAR(255) NOT NULL, task_config_generator VARCHAR(255) NOT NULL, task_config_generator_config TEXT NOT NULL, task_config_reducer VARCHAR(255) NOT NULL, task_config_notify_author BOOLEAN NOT NULL, task_config_notify_channels TEXT NOT NULL, progress_total INT DEFAULT 0 NOT NULL, progress_processed INT DEFAULT 0 NOT NULL, PRIMARY KEY(id))');
@@ -76,6 +76,21 @@ final class Version20201221112501 extends AbstractMigration
         $this->addSql('CREATE TABLE widget_user (id INT NOT NULL, owner_id INT DEFAULT NULL, config TEXT NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_1564DDF67E3C61F9 ON widget_user (owner_id)');
         $this->addSql('COMMENT ON COLUMN widget_user.config IS \'(DC2Type:array)\'');
+        $this->addSql('CREATE TABLE messenger_messages (id BIGSERIAL NOT NULL, body TEXT NOT NULL, headers TEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, available_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, delivered_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE INDEX IDX_75EA56E0FB7336F0 ON messenger_messages (queue_name)');
+        $this->addSql('CREATE INDEX IDX_75EA56E0E3BD61CE ON messenger_messages (available_at)');
+        $this->addSql('CREATE INDEX IDX_75EA56E016BA31DB ON messenger_messages (delivered_at)');
+        $this->addSql('BEGIN;');
+        $this->addSql('LOCK TABLE messenger_messages;');
+        $this->addSql('CREATE OR REPLACE FUNCTION notify_messenger_messages() RETURNS TRIGGER AS $$
+            BEGIN
+                PERFORM pg_notify(\'messenger_messages\', NEW.queue_name::text);
+                RETURN NEW;
+            END;
+        $$ LANGUAGE plpgsql;');
+        $this->addSql('DROP TRIGGER IF EXISTS notify_trigger ON messenger_messages;');
+        $this->addSql('CREATE TRIGGER notify_trigger AFTER INSERT ON messenger_messages FOR EACH ROW EXECUTE PROCEDURE notify_messenger_messages();');
+        $this->addSql('COMMIT;');
         $this->addSql('ALTER TABLE bug ADD CONSTRAINT FK_358CBF148DB60186 FOREIGN KEY (task_id) REFERENCES task (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE task ADD CONSTRAINT FK_527EDB257975B7E7 FOREIGN KEY (model_id) REFERENCES model (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE users ADD CONSTRAINT FK_1483A5E9CCFA12B8 FOREIGN KEY (profile_id) REFERENCES user_profile (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
@@ -117,5 +132,6 @@ final class Version20201221112501 extends AbstractMigration
         $this->addSql('DROP TABLE users');
         $this->addSql('DROP TABLE user_group_tax');
         $this->addSql('DROP TABLE widget_user');
+        $this->addSql('DROP TABLE messenger_messages');
     }
 }

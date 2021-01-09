@@ -18,15 +18,15 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Tienvx\Bundle\MbtBundle\Provider\ProviderManager;
+use Tienvx\Bundle\MbtBundle\Provider\ProviderManagerInterface;
 use Tienvx\Bundle\MbtBundle\Provider\Selenoid;
 
 class DumpBrowsersCommand extends Command
 {
     protected static $defaultName = 'app:dump-browsers';
-    protected ProviderManager $providerManager;
+    protected ProviderManagerInterface $providerManager;
 
-    public function __construct(ProviderManager $providerManager, string $name = null)
+    public function __construct(ProviderManagerInterface $providerManager, string $name = null)
     {
         $this->providerManager = $providerManager;
         parent::__construct($name);

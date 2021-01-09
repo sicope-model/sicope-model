@@ -32,17 +32,18 @@ class PlaceType extends AbstractType
                     'class' => 'place-label',
                 ],
             ])
-            ->add('init', CheckboxType::class, [
-                'label' => 'place_init',
+            ->add('start', CheckboxType::class, [
+                'label' => 'place_start',
                 'required' => false,
             ])
             ->add('assertions', CollectionType::class, [
                 'label' => 'place_assertions',
-                'entry_type' => AssertionType::class,
+                'entry_type' => CommandType::class,
                 'entry_options' => [
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item assertion',
+                        'delete_class' => 'remove-command',
                     ],
                 ],
                 'allow_add' => true,
@@ -55,12 +56,6 @@ class PlaceType extends AbstractType
                 'label' => 'add_assertion',
                 'attr' => [
                     'class' => 'add-assertion',
-                ],
-            ])
-            ->add('remove_place', ButtonType::class, [
-                'label' => 'remove_place',
-                'attr' => [
-                    'class' => 'remove-place',
                 ],
             ])
         ;

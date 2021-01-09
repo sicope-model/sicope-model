@@ -110,3 +110,41 @@
 {% block form_group_class -%}
     col-md-8 col-sm-8 col-xs-12
 {%- endblock form_group_class %}
+
+{% block place_widget %}
+    <div id="{{ id }}" class="{{ attr.class }}">
+        {{ form_row(form.label) }}
+        {{ form_row(form.start) }}
+        {{ form_row(form.assertions) }}
+        {{ form_row(form.add_assertion) }}
+        {{- block('delete_button_row') -}}
+    </div>
+{% endblock place_widget %}
+
+{% block transition_widget %}
+    <div id="{{ id }}" class="{{ attr.class }}">
+        {{ form_row(form.label) }}
+        {{ form_row(form.guard) }}
+        {{ form_row(form.expression) }}
+        {{ form_row(form.actions) }}
+        {{ form_row(form.add_action) }}
+        {{ form_row(form.from_places) }}
+        {{ form_row(form.to_places) }}
+        {{- block('delete_button_row') -}}
+    </div>
+{% endblock transition_widget %}
+
+{% block command_widget %}
+    <div id="{{ id }}" class="{{ attr.class }}">
+        {{ form_row(form.command) }}
+        {{ form_row(form.target) }}
+        {{ form_row(form.value) }}
+        {{- block('delete_button_row') -}}
+    </div>
+{% endblock command_widget %}
+
+{% block delete_button_row -%}
+    <button type="button" class="close {{ attr.delete_class }}" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+{%- endblock delete_button_row %}

@@ -12,7 +12,6 @@
 
 namespace App\Form\Testing\Task;
 
-use App\Model\GeneratorInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -21,21 +20,21 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Tienvx\Bundle\MbtBundle\Channel\ChannelManager;
+use Tienvx\Bundle\MbtBundle\Channel\ChannelManagerInterface;
 use Tienvx\Bundle\MbtBundle\Entity\Task\TaskConfig;
-use Tienvx\Bundle\MbtBundle\Generator\GeneratorManager;
-use Tienvx\Bundle\MbtBundle\Reducer\ReducerManager;
+use Tienvx\Bundle\MbtBundle\Generator\GeneratorManagerInterface;
+use Tienvx\Bundle\MbtBundle\Reducer\ReducerManagerInterface;
 
 class TaskConfigType extends AbstractType
 {
-    protected GeneratorManager $generatorManager;
-    protected ReducerManager $reducerManager;
-    protected ChannelManager $channelManager;
+    protected GeneratorManagerInterface $generatorManager;
+    protected ReducerManagerInterface $reducerManager;
+    protected ChannelManagerInterface $channelManager;
 
     public function __construct(
-        GeneratorManager $generatorManager,
-        ReducerManager $reducerManager,
-        ChannelManager $channelManager
+        GeneratorManagerInterface $generatorManager,
+        ReducerManagerInterface $reducerManager,
+        ChannelManagerInterface $channelManager
     ) {
         $this->generatorManager = $generatorManager;
         $this->reducerManager = $reducerManager;
@@ -58,14 +57,12 @@ class TaskConfigType extends AbstractType
                 'data' => $generator,
             ]);
 
-            if ($this->generatorManager->get($generator) instanceof GeneratorInterface) {
-                $form->add('generatorConfig', $this->generatorManager->get($generator)->getConfigFormType(), [
-                    'label' => 'task_generator_config',
-                    'attr' => [
-                        'class' => 'col list-group-item generator-config',
-                    ],
-                ]);
-            }
+            $form->add('generatorConfig', $this->generatorManager->getGenerator($generator)->getConfigFormType(), [
+                'label' => 'task_generator_config',
+                'attr' => [
+                    'class' => 'col list-group-item generator-config',
+                ],
+            ]);
 
             $form->add('reducer', ChoiceType::class, [
                 'label' => 'task_reducer',
