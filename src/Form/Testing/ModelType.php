@@ -42,9 +42,6 @@ class ModelType extends AbstractType
             ->add('start_url', UrlType::class, [
                 'label' => 'model_start_url',
             ])
-            ->add('start_expression', TextType::class, [
-                'label' => 'model_start_expression',
-            ])
             ->add('places', CollectionType::class, [
                 'label' => 'model_places',
                 'entry_type' => PlaceType::class,

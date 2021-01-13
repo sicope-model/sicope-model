@@ -44,10 +44,6 @@ class TransitionType extends AbstractType
                 'label' => 'transition_guard',
                 'required' => false,
             ])
-            ->add('expression', TextType::class, [
-                'label' => 'transition_expression',
-                'required' => false,
-            ])
             ->add('actions', CollectionType::class, [
                 'label' => 'transition_actions',
                 'entry_type' => CommandType::class,

@@ -17,7 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Tienvx\Bundle\MbtBundle\CommandRunner\CommandRunnerManagerInterface;
+use Tienvx\Bundle\MbtBundle\Command\CommandRunnerManagerInterface;
 use Tienvx\Bundle\MbtBundle\ValueObject\Model\Command;
 
 class CommandType extends AbstractType
