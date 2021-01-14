@@ -45,7 +45,7 @@ class TransitionType extends AbstractType
                 'required' => false,
             ])
             ->add('commands', CollectionType::class, [
-                'label' => 'transition_commands',
+                'label' => 'commands',
                 'entry_type' => CommandType::class,
                 'entry_options' => [
                     'label' => false,

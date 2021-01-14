@@ -37,7 +37,7 @@ class PlaceType extends AbstractType
                 'required' => false,
             ])
             ->add('commands', CollectionType::class, [
-                'label' => 'place_commands',
+                'label' => 'commands',
                 'entry_type' => CommandType::class,
                 'entry_options' => [
                     'label' => false,

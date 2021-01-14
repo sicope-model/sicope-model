@@ -164,7 +164,6 @@ settings_testing_desc: Task, model & bug settings
 model_label: Label
 model_tags: Tags
 model_start_url: Start Url
-model_start_expression: Start Expression
 model_image: Image
 build: Build
 created_at: Created At
@@ -173,18 +172,15 @@ model_places: Places
 model_transitions: Transitions
 place_label: Label
 place_start: Start
-place_assertions: Assertions
 transition_label: Label
 transition_guard: Guard
-transition_expression: Expression
-transition_actions: Actions
+commands: Commands
 command_command: Command
 command_target: Target
 command_value: Value
 add_place: Add Place
 add_transition: Add Transition
-add_assertion: Add Assertion
-add_action: Add Action
+add_command: Add Command
 add_tag: Add Tag
 remove_place: Remove Place
 remove_transition: Remove Transition

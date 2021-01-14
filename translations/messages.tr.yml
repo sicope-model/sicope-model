@@ -164,7 +164,6 @@ settings_testing_desc: Görev, model ve hata ayarları
 model_label: Etiket
 model_tags: Etiketleri
 model_start_url: URL'yi başlat
-model_start_expression: İfadeyi Başlat
 model_image: Resim
 build: İnşa etmek
 created_at: Oluşturulma Tarihi
@@ -173,18 +172,15 @@ model_places: Yerler
 model_transitions: Geçişler
 place_label: Etiket
 place_start: Başlat
-place_assertions: İddialar
 transition_label: Etiket
 transition_guard: Muhafız
-transition_expression: İfade
-transition_actions: Hareketler
+commands: Komutlar
 command_command: Komut
 command_target: Hedef
 command_value: Değer
 add_place: Yer Ekle
 add_transition: Geçiş Ekle
-add_assertion: Onay Ekle
-add_action: Eylem Ekle
+add_command: Komut Ekle
 add_tag: Etiket Ekle
 remove_place: Yeri Kaldır
 remove_transition: Geçişi Kaldır
