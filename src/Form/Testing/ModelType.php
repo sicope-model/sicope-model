@@ -41,6 +41,7 @@ class ModelType extends AbstractType
             ])
             ->add('start_url', UrlType::class, [
                 'label' => 'model_start_url',
+                'required' => false,
             ])
             ->add('places', CollectionType::class, [
                 'label' => 'model_places',
