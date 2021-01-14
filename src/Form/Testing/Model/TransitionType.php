@@ -44,26 +44,26 @@ class TransitionType extends AbstractType
                 'label' => 'transition_guard',
                 'required' => false,
             ])
-            ->add('actions', CollectionType::class, [
-                'label' => 'transition_actions',
+            ->add('commands', CollectionType::class, [
+                'label' => 'transition_commands',
                 'entry_type' => CommandType::class,
                 'entry_options' => [
                     'label' => false,
                     'attr' => [
-                        'class' => 'col list-group-item action',
+                        'class' => 'col list-group-item command',
                         'delete_class' => 'remove-command',
                     ],
                 ],
                 'allow_add' => true,
                 'allow_delete' => true,
                 'attr' => [
-                    'class' => 'list-group actions col pl-3',
+                    'class' => 'list-group commands col pl-3',
                 ],
             ])
-            ->add('add_action', ButtonType::class, [
-                'label' => 'add_action',
+            ->add('add_command', ButtonType::class, [
+                'label' => 'add_command',
                 'attr' => [
-                    'class' => 'add-action',
+                    'class' => 'add-command',
                 ],
             ])
             ->add('from_places', TextType::class, [
