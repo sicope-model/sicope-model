@@ -149,65 +149,6 @@ nav_profile_password: Change Password
 nav_profile_return_admin: Return Admin
 nav_profile_logout: Log Out
 
-nav_testing: Testing
-nav_model: Model
-nav_task: Task
-nav_bug: Bug
-task_title: Title
-task_model: Model
-bug_task: Task
-task_notify_author: Notify Me
-task_notify_author_info: Send me email or sms message when a bug was found
-progress: Progress
-settings_testing: Testing Settings
-settings_testing_desc: Task, model & bug settings
-model_label: Label
-model_tags: Tags
-model_start_url: Start Url
-model_image: Image
-build: Build
-created_at: Created At
-updated_at: Updated At
-model_places: Places
-model_transitions: Transitions
-place_label: Label
-place_start: Start
-transition_label: Label
-transition_guard: Guard
-commands: Commands
-command_command: Command
-command_target: Target
-command_value: Value
-add_place: Add Place
-add_transition: Add Transition
-add_command: Add Command
-add_tag: Add Tag
-remove_place: Remove Place
-remove_transition: Remove Transition
-from_places: From Places
-to_places: To Places
-remove_command: Remove Command
-expression: Expression
-testing_bug_list_title: Bugs
-testing_bug_list_desc: Managing bugs
-bug_title: Title
-bug_model_label: Model Label
-steps_count: Steps Count
-message: Message
-closed: Closed
-model_version: Model Version
-version: Version
-testing_model_list_title: Models
-testing_model_list_desc: Managing Models
-testing_model_build_title: Build Model
-testing_model_build_desc: Create new model with states and transitions
-testing_task_list_title: Tasks
-testing_task_list_desc: Managing tasks
-testing_task_create_title: Create Task
-testing_task_create_desc: Create new task
-testing_task_edit_title: Edit Task
-testing_task_edit_desc: Edit task
-
 search_keyword: Keyword
 search_keyword_account_placeholder: Name / Email / Phone
 nav_account: Accounts
@@ -365,3 +306,65 @@ widget_quick_action:
     name: Hızlı Butonlar
     description: Menülere kolay erişim butonları oluşturur.
     add_button: Buton Ekle
+
+###
+# Testing
+###
+nav_testing: Testing
+nav_model: Model
+nav_task: Task
+nav_bug: Bug
+task_title: Title
+task_model: Model
+bug_task: Task
+task_notify_author: Notify Me
+task_notify_author_info: Send me email or sms message when a bug was found
+progress: Progress
+settings_testing: Testing Settings
+settings_testing_desc: Task, model & bug settings
+model_label: Label
+model_tags: Tags
+model_start_url: Start Url
+model_image: Image
+build: Build
+created_at: Created At
+updated_at: Updated At
+model_places: Places
+model_transitions: Transitions
+place_label: Label
+place_start: Start
+transition_label: Label
+transition_guard: Guard
+commands: Commands
+command_command: Command
+command_target: Target
+command_value: Value
+add_place: Add Place
+add_transition: Add Transition
+add_command: Add Command
+add_tag: Add Tag
+remove_place: Remove Place
+remove_transition: Remove Transition
+from_places: From Places
+to_places: To Places
+remove_command: Remove Command
+expression: Expression
+testing_bug_list_title: Bugs
+testing_bug_list_desc: Managing bugs
+bug_title: Title
+bug_model_label: Model Label
+steps_count: Steps Count
+message: Message
+closed: Closed
+model_version: Model Version
+version: Version
+testing_model_list_title: Models
+testing_model_list_desc: Managing Models
+testing_model_build_title: Build Model
+testing_model_build_desc: Create new model with states and transitions
+testing_task_list_title: Tasks
+testing_task_list_desc: Managing tasks
+testing_task_create_title: Create Task
+testing_task_create_desc: Create new task
+testing_task_edit_title: Edit Task
+testing_task_edit_desc: Edit task

@@ -149,65 +149,6 @@ nav_profile_password: Şifre Değiştir
 nav_profile_return_admin: Admin'e Dön
 nav_profile_logout: Çıkış Yap
 
-nav_testing: Test yapmak
-nav_model: Modeli
-nav_task: Görev
-nav_bug: Hata
-task_title: Başlık
-task_model: Modeli
-bug_task: Görev
-task_notify_author: Bana bildir
-task_notify_author_info: Bir hata bulunduğunda bana e-posta veya sms mesajı gönder
-progress: İlerleme
-settings_testing: Test Ayarları
-settings_testing_desc: Görev, model ve hata ayarları
-model_label: Etiket
-model_tags: Etiketleri
-model_start_url: URL'yi başlat
-model_image: Resim
-build: İnşa etmek
-created_at: Oluşturulma Tarihi
-updated_at: Güncelleme Tarihi
-model_places: Yerler
-model_transitions: Geçişler
-place_label: Etiket
-place_start: Başlat
-transition_label: Etiket
-transition_guard: Muhafız
-commands: Komutlar
-command_command: Komut
-command_target: Hedef
-command_value: Değer
-add_place: Yer Ekle
-add_transition: Geçiş Ekle
-add_command: Komut Ekle
-add_tag: Etiket Ekle
-remove_place: Yeri Kaldır
-remove_transition: Geçişi Kaldır
-from_places: Yerlerden
-to_places: Yerlere
-remove_command: Komutu Kaldır
-expression: İfade
-testing_bug_list_title: Hatalar
-testing_bug_list_desc: Hataları yönetme
-bug_title: Başlık
-bug_model_label: Model Etiketi
-steps_count: Adım Sayısı
-message: İleti
-closed: Kapalı
-model_version: Model Sürümü
-version: Sürüm
-testing_model_list_title: Modeller
-testing_model_list_desc: Modelleri yönetme
-testing_model_build_title: Model Oluştur
-testing_model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
-testing_task_list_title: Görevler
-testing_task_list_desc: Görevleri yönetme
-testing_task_create_title: Görev Oluştur
-testing_task_create_desc: Yeni görev oluştur
-testing_task_edit_title: Görevi Düzenle
-testing_task_edit_desc: Görevi düzenleyin
-
 search_keyword: Anahtar Kelime
 search_keyword_account_placeholder: İsim / E-posta / Telefon
 nav_account: Hesaplar
@@ -365,3 +306,65 @@ widget_quick_action:
     name: Hızlı Butonlar
     description: Menülere kolay erişim butonları oluşturur.
     add_button: Buton Ekle
+
+###
+# Testing
+###
+nav_testing: Test yapmak
+nav_model: Modeli
+nav_task: Görev
+nav_bug: Hata
+task_title: Başlık
+task_model: Modeli
+bug_task: Görev
+task_notify_author: Bana bildir
+task_notify_author_info: Bir hata bulunduğunda bana e-posta veya sms mesajı gönder
+progress: İlerleme
+settings_testing: Test Ayarları
+settings_testing_desc: Görev, model ve hata ayarları
+model_label: Etiket
+model_tags: Etiketleri
+model_start_url: URL'yi başlat
+model_image: Resim
+build: İnşa etmek
+created_at: Oluşturulma Tarihi
+updated_at: Güncelleme Tarihi
+model_places: Yerler
+model_transitions: Geçişler
+place_label: Etiket
+place_start: Başlat
+transition_label: Etiket
+transition_guard: Muhafız
+commands: Komutlar
+command_command: Komut
+command_target: Hedef
+command_value: Değer
+add_place: Yer Ekle
+add_transition: Geçiş Ekle
+add_command: Komut Ekle
+add_tag: Etiket Ekle
+remove_place: Yeri Kaldır
+remove_transition: Geçişi Kaldır
+from_places: Yerlerden
+to_places: Yerlere
+remove_command: Komutu Kaldır
+expression: İfade
+testing_bug_list_title: Hatalar
+testing_bug_list_desc: Hataları yönetme
+bug_title: Başlık
+bug_model_label: Model Etiketi
+steps_count: Adım Sayısı
+message: İleti
+closed: Kapalı
+model_version: Model Sürümü
+version: Sürüm
+testing_model_list_title: Modeller
+testing_model_list_desc: Modelleri yönetme
+testing_model_build_title: Model Oluştur
+testing_model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
+testing_task_list_title: Görevler
+testing_task_list_desc: Görevleri yönetme
+testing_task_create_title: Görev Oluştur
+testing_task_create_desc: Yeni görev oluştur
+testing_task_edit_title: Görevi Düzenle
+testing_task_edit_desc: Görevi düzenleyin

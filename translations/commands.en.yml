@@ -1,0 +1,73 @@
+###
+# Testing Commands
+###
+acceptAlert: Accept Alert
+acceptConfirmation: Accept Confirmation
+answerPrompt: Answer Prompt
+dismissConfirmation: Dismiss Confirmation
+dismissPrompt: Dismiss Prompt
+
+assert: Assert
+assertAlert: Assert Alert
+assertConfirmation: Assert Confirmation
+assertPrompt: Assert Prompt
+assertTitle: Assert Title
+assertText: Assert Text
+assertNotText: Assert Not Text
+assertValue: Assert Value
+assertEditable: Assert Editable
+assertNotEditable: Assert Not Editable
+assertElementPresent: Assert Element Present
+assertElementNotPresent: Assert Element Not Present
+assertChecked: Assert Checked
+assertNotChecked: Assert Not Checked
+assertSelectedValue: Assert Selected Value
+assertNotSelectedValue: Assert Not Selected Value
+assertSelectedLabel: Assert Selected Label
+assertNotSelectedLabel: Assert Not Selected Label
+
+type: Type
+sendKeys: Send Keys
+
+addSelection: Add Selection
+removeSelection: Remove Selection
+check: Check
+uncheck: Uncheck
+click: Click
+clickAt: Click At
+doubleClick: Double Click
+doubleClickAt: Double Click At
+dragAndDropToObject: Drag And Drop To Object
+mouseDown: Mouse Down
+mouseDownAt: Mouse Down At
+mouseMoveAt: Mouse Move At
+mouseOver: Mouse Over
+mouseUp: Mouse Up
+mouseUpAt: Mouse Up At
+select: Select
+
+runScript: Run Script
+executeScript: Execute Script
+executeAsyncScript: Execute Async Script
+
+store: Store
+storeAttribute: Store Attribute
+storeElementCount: Store Element Count
+storeJson: Store Json
+storeText: Store Text
+storeTitle: Store Title
+storeValue: Store Value
+storeWindowHandle: Store Window Handle
+
+waitForElementEditable: Wait For Element Editable
+waitForElementNotEditable: Wait For Element Not Editable
+waitForElementPresent: Wait For Element Present
+waitForElementNotPresent: Wait For Element Not Present
+waitForElementVisible: Wait For Element Visible
+waitForElementNotVisible: Wait For Element Not Visible
+
+open: Open
+setWindowSize: Set Window Size
+selectWindow: Select Window
+close: Close
+selectFrame: Select Frame

@@ -31,10 +31,12 @@ class CommandType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $commands = $this->commandRunnerManager->getAllCommands();
         $builder
             ->add('command', ChoiceType::class, [
                 'label' => 'command_command',
-                'choices' => $this->commandRunnerManager->getAllCommands(),
+                'choices' => array_combine($commands, $commands),
+                'choice_translation_domain' => 'commands',
                 'attr' => [
                     'class' => 'select-command',
                 ],
