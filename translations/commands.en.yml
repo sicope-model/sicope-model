@@ -41,6 +41,7 @@ dragAndDropToObject: Drag And Drop To Object
 mouseDown: Mouse Down
 mouseDownAt: Mouse Down At
 mouseMoveAt: Mouse Move At
+mouseOut: Mouse Out
 mouseOver: Mouse Over
 mouseUp: Mouse Up
 mouseUpAt: Mouse Up At
