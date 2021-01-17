@@ -362,6 +362,8 @@ testing_model_list_title: Modeller
 testing_model_list_desc: Modelleri yönetme
 testing_model_build_title: Model Oluştur
 testing_model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
+testing_model_edit_title: Modeli Düzenle
+testing_model_edit_desc: Bir modelin durumlarını ve geçişlerini düzenleme
 testing_task_list_title: Görevler
 testing_task_list_desc: Görevleri yönetme
 testing_task_create_title: Görev Oluştur
