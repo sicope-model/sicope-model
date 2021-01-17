@@ -1,6 +1,7 @@
 const options = {};
 
 $(function () {
+    initStartCommands();
     initPlaces($('.places'));
     initTransitions($('.transitions'));
 });
@@ -48,6 +49,16 @@ function initCommands(elements) {
             }
         });
     }
+}
+
+function initStartCommands() {
+    $('.start-commands').formCollection({
+        'other_btn_add': '.add-start-command',
+        'btn_delete_selector': '.command .remove-command',
+        'post_add': function($new_elem) {
+            initCommand($new_elem.find('.select-command'));
+        }
+    });
 }
 
 function initCommand(elements) {

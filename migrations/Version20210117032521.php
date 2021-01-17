@@ -2,16 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * This file is part of the SICOPE Model package.
- *
- * @package     sicope-model
- * @license     LICENSE
- * @author      Ramazan APAYDIN <apaydin541@gmail.com>
- * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
- * @link        https://github.com/sicope-model/sicope-model
- */
-
 namespace DoctrineMigrations;
 
 use Doctrine\DBAL\Schema\Schema;
@@ -20,17 +10,17 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20201221112501 extends AbstractMigration
+final class Version20210117032521 extends AbstractMigration
 {
-    public function getDescription(): string
+    public function getDescription() : string
     {
         return '';
     }
 
-    public function up(Schema $schema): void
+    public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE SEQUENCE app_config_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE bug_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
@@ -54,7 +44,8 @@ final class Version20201221112501 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN mail_log.body IS \'(DC2Type:array)\'');
         $this->addSql('CREATE TABLE mail_template (id INT NOT NULL, template_id VARCHAR(50) NOT NULL, template TEXT DEFAULT NULL, template_data TEXT DEFAULT NULL, subject VARCHAR(255) DEFAULT NULL, language VARCHAR(3) NOT NULL, status BOOLEAN NOT NULL, PRIMARY KEY(id))');
         $this->addSql('COMMENT ON COLUMN mail_template.template_data IS \'(DC2Type:array)\'');
-        $this->addSql('CREATE TABLE model (id INT NOT NULL, author INT DEFAULT NULL, label VARCHAR(255) NOT NULL, tags VARCHAR(255) DEFAULT NULL, start_url VARCHAR(255) DEFAULT NULL, places TEXT NOT NULL, transitions TEXT NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, version INT NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE model (id INT NOT NULL, author INT DEFAULT NULL, label VARCHAR(255) NOT NULL, tags VARCHAR(255) DEFAULT NULL, start_commands TEXT NOT NULL, places TEXT NOT NULL, transitions TEXT NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, version INT NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('COMMENT ON COLUMN model.start_commands IS \'(DC2Type:array)\'');
         $this->addSql('COMMENT ON COLUMN model.places IS \'(DC2Type:array)\'');
         $this->addSql('COMMENT ON COLUMN model.transitions IS \'(DC2Type:array)\'');
         $this->addSql('CREATE TABLE task (id INT NOT NULL, model_id INT NOT NULL, title VARCHAR(255) NOT NULL, author INT DEFAULT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, selenium_config_provider VARCHAR(255) NOT NULL, selenium_config_platform VARCHAR(255) NOT NULL, selenium_config_browser VARCHAR(255) NOT NULL, selenium_config_browser_version VARCHAR(255) NOT NULL, selenium_config_resolution VARCHAR(255) NOT NULL, task_config_generator VARCHAR(255) NOT NULL, task_config_generator_config TEXT NOT NULL, task_config_reducer VARCHAR(255) NOT NULL, task_config_notify_author BOOLEAN NOT NULL, task_config_notify_channels TEXT NOT NULL, progress_total INT DEFAULT 0 NOT NULL, progress_processed INT DEFAULT 0 NOT NULL, PRIMARY KEY(id))');
@@ -99,10 +90,10 @@ final class Version20201221112501 extends AbstractMigration
         $this->addSql('ALTER TABLE widget_user ADD CONSTRAINT FK_1564DDF67E3C61F9 FOREIGN KEY (owner_id) REFERENCES users (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
     }
 
-    public function down(Schema $schema): void
+    public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf('postgresql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'postgresql\'.');
+        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER TABLE task DROP CONSTRAINT FK_527EDB257975B7E7');

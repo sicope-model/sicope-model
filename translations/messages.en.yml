@@ -324,7 +324,6 @@ settings_testing: Testing Settings
 settings_testing_desc: Task, model & bug settings
 model_label: Label
 model_tags: Tags
-model_start_url: Start Url
 model_image: Image
 build: Build
 created_at: Created At
@@ -336,6 +335,7 @@ place_start: Start
 transition_label: Label
 transition_guard: Guard
 commands: Commands
+start_commands: Start Commands
 command_command: Command
 command_target: Target
 command_value: Value

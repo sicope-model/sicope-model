@@ -324,7 +324,6 @@ settings_testing: Test Ayarları
 settings_testing_desc: Görev, model ve hata ayarları
 model_label: Etiket
 model_tags: Etiketleri
-model_start_url: URL'yi başlat
 model_image: Resim
 build: İnşa etmek
 created_at: Oluşturulma Tarihi
@@ -336,6 +335,7 @@ place_start: Başlat
 transition_label: Etiket
 transition_guard: Muhafız
 commands: Komutlar
+start_commands: Komutları Başlat
 command_command: Komut
 command_target: Hedef
 command_value: Değer

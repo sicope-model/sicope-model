@@ -25,7 +25,7 @@ jobs:
       run: composer install
 
     - name: Run PHP CS
-      run: phpcs --standard=PSR12 --ignore=src/Migrations/ src
+      run: phpcs --standard=PSR12 src tests
 
     - name: Run PHP CS Fixer
       run: php-cs-fixer fix --diff --dry-run

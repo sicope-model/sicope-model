@@ -12,6 +12,7 @@
 
 namespace App\Form\Testing;
 
+use App\Form\Testing\Model\CommandType;
 use App\Form\Testing\Model\PlaceType;
 use App\Form\Testing\Model\TransitionType;
 use Symfony\Component\Form\AbstractType;
@@ -39,9 +40,27 @@ class ModelType extends AbstractType
                 ],
                 'required' => false,
             ])
-            ->add('start_url', UrlType::class, [
-                'label' => 'model_start_url',
-                'required' => false,
+            ->add('start_commands', CollectionType::class, [
+                'label' => 'start_commands',
+                'entry_type' => CommandType::class,
+                'entry_options' => [
+                    'label' => false,
+                    'attr' => [
+                        'class' => 'col list-group-item command',
+                        'delete_class' => 'remove-command',
+                    ],
+                ],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'attr' => [
+                    'class' => 'list-group start-commands col pl-3',
+                ],
+            ])
+            ->add('add_command', ButtonType::class, [
+                'label' => 'add_command',
+                'attr' => [
+                    'class' => 'add-start-command',
+                ],
             ])
             ->add('places', CollectionType::class, [
                 'label' => 'model_places',
