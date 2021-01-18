@@ -19,9 +19,9 @@
   "require": {
     "php": "^7.4",
     "ext-ctype": "*",
+    "ext-curl": "*",
     "ext-iconv": "*",
     "ext-json": "*",
-    "ext-curl": "*",
     "appaydin/pd-mailer": "2.*",
     "appaydin/pd-menu": "2.*",
     "appaydin/pd-user": "2.*",
