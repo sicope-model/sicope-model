@@ -17,7 +17,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 class PlacesTransformer implements DataTransformerInterface
 {
     /**
-     * Transforms from-places from an array to a string.
+     * Transforms places from an array to a string.
      *
      * @param array $fromPlacesAsArray
      *
@@ -29,7 +29,7 @@ class PlacesTransformer implements DataTransformerInterface
     }
 
     /**
-     * Transforms from-places from a string to an array.
+     * Transforms places from a string to an array.
      *
      * @param string $fromPlacesAsString
      *

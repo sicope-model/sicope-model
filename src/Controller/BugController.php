@@ -86,6 +86,9 @@ class BugController extends AbstractController
             $em->persist($bug);
             $em->flush();
 
+            // Add Flash
+            $this->addFlash('success', 'changes_saved');
+
             return $this->redirectToRoute('admin_bug_list');
         }
 
@@ -122,7 +125,7 @@ class BugController extends AbstractController
         $em->flush();
 
         // Add Flash
-        $this->addFlash('success', 'changes_saved');
+        $this->addFlash('success', 'remove_complete');
 
         // Redirect back
         return $this->redirect($request->headers->get('referer', $this->generateUrl('admin_bug_list')));

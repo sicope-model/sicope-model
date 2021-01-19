@@ -12,6 +12,7 @@
 
 namespace App\Controller;
 
+use App\Form\Testing\ModelImportType;
 use App\Form\Testing\ModelType;
 use App\Repository\ModelRepository;
 use App\Service\CommandHelper;
@@ -21,6 +22,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Pd\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -29,6 +31,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Service\Model\ModelDumper;
 
@@ -88,6 +92,9 @@ class ModelController extends AbstractController
             }
             $em->persist($model);
             $em->flush();
+
+            // Add Flash
+            $this->addFlash('success', 'changes_saved');
 
             return $this->redirectToRoute('admin_model_list');
         }
@@ -151,7 +158,7 @@ class ModelController extends AbstractController
         $em->flush();
 
         // Add Flash
-        $this->addFlash('success', 'changes_saved');
+        $this->addFlash('success', 'remove_complete');
 
         // Redirect back
         return $this->redirect($request->headers->get('referer', $this->generateUrl('admin_model_list')));
@@ -195,6 +202,49 @@ class ModelController extends AbstractController
                 ResponseHeaderBag::DISPOSITION_ATTACHMENT,
                 $model->getLabel() . '.json'
             ),
+        ]);
+    }
+
+    /**
+     * Import Model.
+     *
+     * @IsGranted("ROLE_MODEL_IMPORT")
+     * @Route(name="admin_model_import", path="/models/import")
+     *
+     * @return RedirectResponse|Response
+     */
+    public function import(
+        Request $request,
+        EntityManagerInterface $em,
+        ValidatorInterface $validator,
+        TranslatorInterface $translator
+    ): Response {
+        $form = $this->createForm(ModelImportType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $file */
+            $file = $form->get('file')->getData();
+            $model = new Model();
+            $model->denormalize(json_decode($file->getContent(), true) ?? []);
+            $errors = $validator->validate($model);
+            if (0 === \count($errors)) {
+                $em->persist($model);
+                $em->flush();
+
+                // Add Flash
+                $this->addFlash('success', 'changes_saved');
+
+                return $this->redirectToRoute('admin_model_list');
+            } else {
+                $this->addFlash('error', $translator->trans('model_invalid', ['%errors%' => $errors]));
+            }
+        }
+
+        return $this->render('Admin/Testing/editModel.html.twig', [
+            'page_title' => 'testing_model_import_title',
+            'page_description' => 'testing_model_import_desc',
+            'form' => $form->createView(),
         ]);
     }
 }
