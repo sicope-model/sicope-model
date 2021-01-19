@@ -111,8 +111,8 @@ class FileUpload
         // Upload File and Optimize Images
         if (!$rawUpload) {
             switch ($file->getClientMimeType()) {
-                case image_type_to_mime_type(IMAGETYPE_JPEG):
-                case image_type_to_mime_type(IMAGETYPE_PNG):
+                case image_type_to_mime_type(\IMAGETYPE_JPEG):
+                case image_type_to_mime_type(\IMAGETYPE_PNG):
                     $this->imageManager($file, $this->currentPath . '/' . $fileName);
                     break;
                 default:

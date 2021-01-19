@@ -103,7 +103,7 @@ class DumpBrowsersCommand extends Command
         if ($browsers) {
             $path = \dirname(__DIR__) . '/../var/selenoid/browsers.json';
             $io->note(sprintf('Dumping %d browsers into %s', \count($browsers), realpath($path)));
-            file_put_contents($path, json_encode($browsers, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n");
+            file_put_contents($path, json_encode($browsers, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES) . "\n");
 
             $io->success(sprintf('Dumped %d browsers into %s.', \count($browsers), realpath($path)));
         }

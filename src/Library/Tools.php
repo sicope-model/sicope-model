@@ -40,7 +40,7 @@ class Tools
         if (null !== $transliterator) {
             $s = $transliterator->transliterate($s);
         }
-        if (ICONV_IMPL === 'glibc') {
+        if (\ICONV_IMPL === 'glibc') {
             $s = str_replace(
                 ["\u{BB}", "\u{AB}", "\u{2026}", "\u{2122}", "\u{A9}", "\u{AE}"],
                 ['>>', '<<', '...', 'TM', '(c)', '(R)'],
