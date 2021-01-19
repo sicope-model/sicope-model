@@ -21,6 +21,8 @@ use Knp\Component\Pager\PaginatorInterface;
 use Pd\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\HeaderUtils;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -178,5 +180,21 @@ class ModelController extends AbstractController
         }
 
         return $response;
+    }
+
+    /**
+     * Export Model.
+     *
+     * @IsGranted("ROLE_MODEL_EXPORT")
+     * @Route(name="admin_model_export", path="/model/{model}/export")
+     */
+    public function export(Model $model): JsonResponse
+    {
+        return $this->json($model->normalize(), 200, [
+            'Content-Disposition' => HeaderUtils::makeDisposition(
+                ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+                $model->getLabel() . '.json'
+            ),
+        ]);
     }
 }

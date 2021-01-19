@@ -370,3 +370,4 @@ testing_task_create_title: Create Task
 testing_task_create_desc: Create new task
 testing_task_edit_title: Edit Task
 testing_task_edit_desc: Edit task
+export: Export
