@@ -1,6 +1,7 @@
 const options = {};
 
 $(function () {
+    initStartCommands();
     initPlaces($('.places'));
     initTransitions($('.transitions'));
 });
@@ -12,7 +13,7 @@ function initPlaces(elements) {
         'btn_delete_selector': '.remove-place',
         'post_add': function($new_elem) {
             $new_elem.attr('index', $new_elem.index());
-            initCommands($new_elem.find('.assertions'));
+            initCommands($new_elem.find('.commands'));
             addPlace($new_elem.index(), $new_elem.find('.place-label').val());
             $new_elem.find('.place-label').change(function () {
                 updatePlace($new_elem.index(), $(this).val());
@@ -30,7 +31,7 @@ function initTransitions(elements) {
         'other_btn_add': '.add-transition',
         'btn_delete_selector': '.remove-transition',
         'post_add': function($new_elem) {
-            initCommands($new_elem.find('.actions'));
+            initCommands($new_elem.find('.commands'));
             initToPlaces($new_elem.find('.select-to-places'));
             initFromPlaces($new_elem.find('.select-from-places'));
         }
@@ -38,26 +39,26 @@ function initTransitions(elements) {
 }
 
 function initCommands(elements) {
-    const place = elements.parents('.place');
-    if (place.length) {
+    const parent = elements.closest('.place, .transition');
+    if (parent.length) {
         elements.formCollection({
-            'other_btn_add': place.find('.add-assertion'),
-            'btn_delete_selector': '.assertion .remove-command',
+            'other_btn_add': parent.find('.add-command'),
+            'btn_delete_selector': '.command .remove-command',
             'post_add': function($new_elem) {
                 initCommand($new_elem.find('.select-command'));
             }
         });
     }
-    const transition = elements.parents('.transition');
-    if (transition.length) {
-        elements.formCollection({
-            'other_btn_add': transition.find('.add-action'),
-            'btn_delete_selector': '.action .remove-command',
-            'post_add': function($new_elem) {
-                initCommand($new_elem.find('.select-command'));
-            }
-        });
-    }
+}
+
+function initStartCommands() {
+    $('.start-commands').formCollection({
+        'other_btn_add': '.add-start-command',
+        'btn_delete_selector': '.command .remove-command',
+        'post_add': function($new_elem) {
+            initCommand($new_elem.find('.select-command'));
+        }
+    });
 }
 
 function initCommand(elements) {

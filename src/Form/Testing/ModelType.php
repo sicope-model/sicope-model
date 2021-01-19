@@ -12,6 +12,7 @@
 
 namespace App\Form\Testing;
 
+use App\Form\Testing\Model\CommandType;
 use App\Form\Testing\Model\PlaceType;
 use App\Form\Testing\Model\TransitionType;
 use Symfony\Component\Form\AbstractType;
@@ -19,7 +20,6 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
@@ -39,11 +39,27 @@ class ModelType extends AbstractType
                 ],
                 'required' => false,
             ])
-            ->add('start_url', UrlType::class, [
-                'label' => 'model_start_url',
+            ->add('start_commands', CollectionType::class, [
+                'label' => 'start_commands',
+                'entry_type' => CommandType::class,
+                'entry_options' => [
+                    'label' => false,
+                    'attr' => [
+                        'class' => 'col list-group-item command',
+                        'delete_class' => 'remove-command',
+                    ],
+                ],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'attr' => [
+                    'class' => 'list-group start-commands col pl-3',
+                ],
             ])
-            ->add('start_expression', TextType::class, [
-                'label' => 'model_start_expression',
+            ->add('add_command', ButtonType::class, [
+                'label' => 'add_command',
+                'attr' => [
+                    'class' => 'add-start-command',
+                ],
             ])
             ->add('places', CollectionType::class, [
                 'label' => 'model_places',

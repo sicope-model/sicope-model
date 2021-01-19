@@ -36,26 +36,26 @@ class PlaceType extends AbstractType
                 'label' => 'place_start',
                 'required' => false,
             ])
-            ->add('assertions', CollectionType::class, [
-                'label' => 'place_assertions',
+            ->add('commands', CollectionType::class, [
+                'label' => 'commands',
                 'entry_type' => CommandType::class,
                 'entry_options' => [
                     'label' => false,
                     'attr' => [
-                        'class' => 'col list-group-item assertion',
+                        'class' => 'col list-group-item command',
                         'delete_class' => 'remove-command',
                     ],
                 ],
                 'allow_add' => true,
                 'allow_delete' => true,
                 'attr' => [
-                    'class' => 'list-group assertions col pl-3',
+                    'class' => 'list-group commands col pl-3',
                 ],
             ])
-            ->add('add_assertion', ButtonType::class, [
-                'label' => 'add_assertion',
+            ->add('add_command', ButtonType::class, [
+                'label' => 'add_command',
                 'attr' => [
-                    'class' => 'add-assertion',
+                    'class' => 'add-command',
                 ],
             ])
         ;

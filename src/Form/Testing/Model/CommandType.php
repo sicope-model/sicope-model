@@ -17,7 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Tienvx\Bundle\MbtBundle\CommandRunner\CommandRunnerManagerInterface;
+use Tienvx\Bundle\MbtBundle\Command\CommandRunnerManagerInterface;
 use Tienvx\Bundle\MbtBundle\ValueObject\Model\Command;
 
 class CommandType extends AbstractType
@@ -31,10 +31,12 @@ class CommandType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $commands = $this->commandRunnerManager->getAllCommands();
         $builder
             ->add('command', ChoiceType::class, [
                 'label' => 'command_command',
-                'choices' => $this->commandRunnerManager->getAllCommands(),
+                'choices' => array_combine($commands, $commands),
+                'choice_translation_domain' => 'commands',
                 'attr' => [
                     'class' => 'select-command',
                 ],
