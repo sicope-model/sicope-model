@@ -43,7 +43,6 @@ class PlaceType extends AbstractType
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item command',
-                        'delete_class' => 'remove-command',
                     ],
                 ],
                 'allow_add' => true,
@@ -51,12 +50,22 @@ class PlaceType extends AbstractType
                 'attr' => [
                     'class' => 'list-group commands col pl-3',
                 ],
+                'prototype_name' => '__command__',
             ])
             ->add('add_command', ButtonType::class, [
                 'label' => 'add_command',
                 'attr' => [
-                    'class' => 'add-command',
+                    'class' => 'add-command btn-secondary',
                 ],
+            ])
+            ->add('remove_place', ButtonType::class, [
+                'attr' => [
+                    'class' => 'close remove-place',
+                    'aria-label' => 'Close',
+                ],
+                'label' => '<span aria-hidden="true">&times;</span>',
+                'label_html' => true,
+                'translation_domain' => false,
             ])
         ;
     }

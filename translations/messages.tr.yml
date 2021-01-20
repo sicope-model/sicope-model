@@ -364,9 +364,42 @@ testing_model_build_title: Model Oluştur
 testing_model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
 testing_model_edit_title: Modeli Düzenle
 testing_model_edit_desc: Bir modelin durumlarını ve geçişlerini düzenleme
+testing_model_import_title: Modeli İçe Aktar
+testing_model_import_desc: Yüklenen dosyadan yeni model oluştur
 testing_task_list_title: Görevler
 testing_task_list_desc: Görevleri yönetme
 testing_task_create_title: Görev Oluştur
 testing_task_create_desc: Yeni görev oluştur
 testing_task_edit_title: Görevi Düzenle
 testing_task_edit_desc: Görevi düzenleyin
+testing_bug_view_title: Hata
+testing_bug_view_desc: Önceden oluşturulmuş adımlar ve kaydedilmiş video ile ilgili hata
+export: İhracat
+import: İthalat
+model_file: Model (JSON dosyası)
+task_selenium_config: Selenium Yapılandırma
+task_provider: Sağlayıcı
+task_platform: Platform
+task_browser: Tarayıcı
+task_browser_version: Tarayıcı Sürümü
+task_resolution: çözüm
+task_task_config: Görev Yapılandırması
+task_generator: Jeneratör
+task_generator_config: Jeneratör Yapılandırması
+task_place_coverage: Yer Kapsamı
+task_transition_coverage: Geçiş Kapsamı
+task_reducer: Redüktör
+task_notify_channels: Kanalları Bildirin
+selenoid: Selenoid
+LINUX: Linux
+ANDROID: Android
+safari: Safari
+chrome: Chrome
+firefox: Firefox
+MicrosoftEdge: Edge (Chromium)
+opera: Opera
+random: Rastgele
+split: Bölünmüş
+email: Eposta
+bug_model: Modeli
+bug_video: Video

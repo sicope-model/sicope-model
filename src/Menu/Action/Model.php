@@ -51,6 +51,17 @@ class Model extends Menu
                 'data-tooltip' => '',
                 'title' => 'edit',
             ])
+            ->setLabelAttr(['class' => 'hidden'])
+
+            ->addChildParent('admin_testing_model_export', 1)
+            ->setLabel('export')
+            ->setRoute('admin_model_export', ['model' => $options['model']->getId()])
+            ->setRoles(['ROLE_MODEL_EXPORT'])
+            ->setExtra('label_icon', 'get_app')
+            ->setLinkAttr([
+                'data-tooltip' => '',
+                'title' => 'export',
+            ])
             ->setLabelAttr(['class' => 'hidden']);
 
         return $menu;

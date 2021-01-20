@@ -12,6 +12,7 @@
 
 namespace App\Controller;
 
+use App\Form\Testing\ModelImportType;
 use App\Form\Testing\ModelType;
 use App\Repository\ModelRepository;
 use App\Service\CommandHelper;
@@ -21,6 +22,8 @@ use Knp\Component\Pager\PaginatorInterface;
 use Pd\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\HeaderUtils;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,6 +31,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
+use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
 use Tienvx\Bundle\MbtBundle\Service\Model\ModelDumper;
 
 /**
@@ -86,6 +90,9 @@ class ModelController extends AbstractController
             }
             $em->persist($model);
             $em->flush();
+
+            // Add Flash
+            $this->addFlash('success', 'changes_saved');
 
             return $this->redirectToRoute('admin_model_list');
         }
@@ -149,7 +156,7 @@ class ModelController extends AbstractController
         $em->flush();
 
         // Add Flash
-        $this->addFlash('success', 'changes_saved');
+        $this->addFlash('success', 'remove_complete');
 
         // Redirect back
         return $this->redirect($request->headers->get('referer', $this->generateUrl('admin_model_list')));
@@ -178,5 +185,53 @@ class ModelController extends AbstractController
         }
 
         return $response;
+    }
+
+    /**
+     * Export Model.
+     *
+     * @IsGranted("ROLE_MODEL_EXPORT")
+     * @Route(name="admin_model_export", path="/model/{model}/export")
+     */
+    public function export(Model $model): JsonResponse
+    {
+        return $this->json($model->normalize(), 200, [
+            'Content-Disposition' => HeaderUtils::makeDisposition(
+                ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+                $model->getLabel() . '.json'
+            ),
+        ])->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | \JSON_PRETTY_PRINT);
+    }
+
+    /**
+     * Import Model.
+     *
+     * @IsGranted("ROLE_MODEL_IMPORT")
+     * @Route(name="admin_model_import", path="/models/import")
+     *
+     * @return RedirectResponse|Response
+     */
+    public function import(Request $request, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(ModelImportType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var ModelInterface $model */
+            $model = $form->get('model')->getData();
+            $em->persist($model);
+            $em->flush();
+
+            // Add Flash
+            $this->addFlash('success', 'changes_saved');
+
+            return $this->redirectToRoute('admin_model_list');
+        }
+
+        return $this->render('Admin/Testing/editModel.html.twig', [
+            'page_title' => 'testing_model_import_title',
+            'page_description' => 'testing_model_import_desc',
+            'form' => $form->createView(),
+        ]);
     }
 }

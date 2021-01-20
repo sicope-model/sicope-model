@@ -83,6 +83,9 @@ class TaskController extends AbstractController
             $em->persist($task);
             $em->flush();
 
+            // Add Flash
+            $this->addFlash('success', 'changes_saved');
+
             return $this->redirectToRoute('admin_task_list');
         }
 
@@ -114,6 +117,9 @@ class TaskController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($task);
             $em->flush();
+
+            // Add Flash
+            $this->addFlash('success', 'changes_saved');
 
             return $this->redirectToRoute('admin_task_list');
         }
@@ -151,7 +157,7 @@ class TaskController extends AbstractController
         $em->flush();
 
         // Add Flash
-        $this->addFlash('success', 'changes_saved');
+        $this->addFlash('success', 'remove_complete');
 
         // Redirect back
         return $this->redirect($request->headers->get('referer', $this->generateUrl('admin_task_list')));

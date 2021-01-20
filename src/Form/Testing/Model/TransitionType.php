@@ -51,7 +51,6 @@ class TransitionType extends AbstractType
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item command',
-                        'delete_class' => 'remove-command',
                     ],
                 ],
                 'allow_add' => true,
@@ -59,11 +58,12 @@ class TransitionType extends AbstractType
                 'attr' => [
                     'class' => 'list-group commands col pl-3',
                 ],
+                'prototype_name' => '__command__',
             ])
             ->add('add_command', ButtonType::class, [
                 'label' => 'add_command',
                 'attr' => [
-                    'class' => 'add-command',
+                    'class' => 'add-command btn-secondary',
                 ],
             ])
             ->add('from_places', TextType::class, [
@@ -77,6 +77,15 @@ class TransitionType extends AbstractType
                 'attr' => [
                     'class' => 'select-to-places',
                 ],
+            ])
+            ->add('remove_transition', ButtonType::class, [
+                'attr' => [
+                    'class' => 'close remove-transition',
+                    'aria-label' => 'Close',
+                ],
+                'label' => '<span aria-hidden="true">&times;</span>',
+                'label_html' => true,
+                'translation_domain' => false,
             ])
         ;
 

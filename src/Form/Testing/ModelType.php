@@ -46,7 +46,6 @@ class ModelType extends AbstractType
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item command',
-                        'delete_class' => 'remove-command',
                     ],
                 ],
                 'allow_add' => true,
@@ -58,7 +57,7 @@ class ModelType extends AbstractType
             ->add('add_command', ButtonType::class, [
                 'label' => 'add_command',
                 'attr' => [
-                    'class' => 'add-start-command',
+                    'class' => 'add-start-command btn-secondary',
                 ],
             ])
             ->add('places', CollectionType::class, [
@@ -68,7 +67,6 @@ class ModelType extends AbstractType
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item place',
-                        'delete_class' => 'remove-place',
                     ],
                 ],
                 'allow_add' => true,
@@ -80,7 +78,7 @@ class ModelType extends AbstractType
             ->add('add_place', ButtonType::class, [
                 'label' => 'add_place',
                 'attr' => [
-                    'class' => 'add-place',
+                    'class' => 'add-place btn-secondary',
                 ],
             ])
             ->add('transitions', CollectionType::class, [
@@ -90,7 +88,6 @@ class ModelType extends AbstractType
                     'label' => false,
                     'attr' => [
                         'class' => 'col list-group-item transition',
-                        'delete_class' => 'remove-transition',
                     ],
                 ],
                 'allow_add' => true,
@@ -102,7 +99,7 @@ class ModelType extends AbstractType
             ->add('add_transition', ButtonType::class, [
                 'label' => 'add_transition',
                 'attr' => [
-                    'class' => 'add-transition',
+                    'class' => 'add-transition btn-secondary',
                 ],
             ])
             ->add('save', SubmitType::class, [
