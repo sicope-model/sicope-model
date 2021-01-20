@@ -375,4 +375,3 @@ testing_task_edit_desc: Görevi düzenleyin
 export: İhracat
 import: İthalat
 model_file: Model (JSON dosyası)
-model_invalid: 'Model geçersiz: %errors%'

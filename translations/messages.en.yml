@@ -375,4 +375,3 @@ testing_task_edit_desc: Edit task
 export: Export
 import: Import
 model_file: Model (JSON file)
-model_invalid: 'Model invalid: %errors%'

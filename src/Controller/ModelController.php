@@ -22,7 +22,6 @@ use Knp\Component\Pager\PaginatorInterface;
 use Pd\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -31,9 +30,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
+use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
 use Tienvx\Bundle\MbtBundle\Service\Model\ModelDumper;
 
 /**
@@ -213,32 +211,21 @@ class ModelController extends AbstractController
      *
      * @return RedirectResponse|Response
      */
-    public function import(
-        Request $request,
-        EntityManagerInterface $em,
-        ValidatorInterface $validator,
-        TranslatorInterface $translator
-    ): Response {
+    public function import(Request $request, EntityManagerInterface $em): Response
+    {
         $form = $this->createForm(ModelImportType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $file */
-            $file = $form->get('file')->getData();
-            $model = new Model();
-            $model->denormalize(json_decode($file->getContent(), true) ?? []);
-            $errors = $validator->validate($model);
-            if (0 === \count($errors)) {
-                $em->persist($model);
-                $em->flush();
+            /** @var ModelInterface $model */
+            $model = $form->get('model')->getData();
+            $em->persist($model);
+            $em->flush();
 
-                // Add Flash
-                $this->addFlash('success', 'changes_saved');
+            // Add Flash
+            $this->addFlash('success', 'changes_saved');
 
-                return $this->redirectToRoute('admin_model_list');
-            } else {
-                $this->addFlash('error', $translator->trans('model_invalid', ['%errors%' => $errors]));
-            }
+            return $this->redirectToRoute('admin_model_list');
         }
 
         return $this->render('Admin/Testing/editModel.html.twig', [
