@@ -50,6 +50,7 @@ class PlaceType extends AbstractType
                 'attr' => [
                     'class' => 'list-group commands col pl-3',
                 ],
+                'prototype_name' => '__command__',
             ])
             ->add('add_command', ButtonType::class, [
                 'label' => 'add_command',

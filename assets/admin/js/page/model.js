@@ -44,6 +44,7 @@ function initCommands(elements) {
         elements.formCollection({
             'other_btn_add': parent.find('.add-command'),
             'btn_delete_selector': '.command .remove-command',
+            'prototype_name': '__command__',
             'post_add': function($new_elem) {
                 initCommand($new_elem.find('.select-command'));
             }
