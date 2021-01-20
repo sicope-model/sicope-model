@@ -200,7 +200,7 @@ class ModelController extends AbstractController
                 ResponseHeaderBag::DISPOSITION_ATTACHMENT,
                 $model->getLabel() . '.json'
             ),
-        ]);
+        ])->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | JSON_PRETTY_PRINT);
     }
 
     /**
