@@ -375,3 +375,27 @@ testing_task_edit_desc: Görevi düzenleyin
 export: İhracat
 import: İthalat
 model_file: Model (JSON dosyası)
+task_selenium_config: Selenium Yapılandırma
+task_provider: Sağlayıcı
+task_platform: Platform
+task_browser: Tarayıcı
+task_browser_version: Tarayıcı Sürümü
+task_resolution: çözüm
+task_task_config: Görev Yapılandırması
+task_generator: Jeneratör
+task_generator_config: Jeneratör Yapılandırması
+task_place_coverage: Yer Kapsamı
+task_transition_coverage: Geçiş Kapsamı
+task_reducer: Redüktör
+task_notify_channels: Kanalları Bildirin
+selenoid: Selenoid
+LINUX: Linux
+ANDROID: Android
+safari: Safari
+chrome: Chrome
+firefox: Firefox
+MicrosoftEdge: Edge (Chromium)
+opera: Opera
+random: Rastgele
+split: Bölünmüş
+email: Eposta

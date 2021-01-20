@@ -375,3 +375,27 @@ testing_task_edit_desc: Edit task
 export: Export
 import: Import
 model_file: Model (JSON file)
+task_selenium_config: Selenium Config
+task_provider: Provider
+task_platform: Platform
+task_browser: Browser
+task_browser_version: Browser Version
+task_resolution: Resolution
+task_task_config: Task Config
+task_generator: Generator
+task_generator_config: Generator Config
+task_place_coverage: Place Coverage
+task_transition_coverage: Transition Coverage
+task_reducer: Reducer
+task_notify_channels: Notify Channels
+selenoid: Selenoid
+LINUX: Linux
+ANDROID: Android
+safari: Safari
+chrome: Chrome
+firefox: Firefox
+MicrosoftEdge: Edge (Chromium)
+opera: Opera
+random: Random
+split: Split
+email: Email
