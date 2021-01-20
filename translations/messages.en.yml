@@ -372,6 +372,8 @@ testing_task_create_title: Create Task
 testing_task_create_desc: Create new task
 testing_task_edit_title: Edit Task
 testing_task_edit_desc: Edit task
+testing_bug_view_title: Bug
+testing_bug_view_desc: Bug with preproduce steps and recorded video
 export: Export
 import: Import
 model_file: Model (JSON file)
@@ -399,3 +401,5 @@ opera: Opera
 random: Random
 split: Split
 email: Email
+bug_model: Model
+bug_video: Video
