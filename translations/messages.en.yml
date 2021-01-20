@@ -353,7 +353,7 @@ testing_bug_list_title: Bugs
 testing_bug_list_desc: Managing bugs
 bug_title: Title
 bug_model_label: Model Label
-steps_count: Steps Count
+steps: Steps
 message: Message
 closed: Closed
 model_version: Model Version
@@ -403,3 +403,6 @@ split: Split
 email: Email
 bug_model: Model
 bug_video: Video
+transition: Transition
+places: Places
+variables: Variables

@@ -16,9 +16,6 @@
         <dt class="col-sm-3">{{ 'bug_title'|trans }}</dt>
         <dd class="col-sm-9">{{ bug.title }}</dd>
 
-        <dt class="col-sm-3">{{ 'steps_count'|trans }}</dt>
-        <dd class="col-sm-9">{{ bug.steps|length }}</dd>
-
         <dt class="col-sm-3">{{ 'bug_task'|trans }}</dt>
         <dd class="col-sm-9"><a href="{{ path('admin_task_view', { 'task': bug.task.id }) }}">{{ bug.task.title }}</a></dd>
 
@@ -43,6 +40,50 @@
         <dt class="col-sm-3">{{ 'updated_at'|trans }}</dt>
         <dd class="col-sm-9">{{ bug.updatedAt|date("Y-m-d") }}</dd>
 
+        <dt class="col-sm-3">{{ 'steps'|trans }}</dt>
+        <dd class="col-sm-9">
+            {% if steps is not defined %}
+                {{ 'steps_invalid'|trans }}
+            {% else %}
+                <table class="table steps-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">{{ 'transition'|trans }}</th>
+                            <th scope="col">{{ 'places'|trans }}</th>
+                            <th scope="col">{{ 'variables'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key, step in steps %}
+                            <tr>
+                                <th scope="row">{{ key + 1 }}</th>
+                                <td>{{ step.transition }}</td>
+                                <td>
+                                    {% if step.places|length > 1 %}
+                                        <ul>
+                                            {% for place in step.places %}
+                                                <li>{{ place }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        {{ step.places|first }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <ul class="text-left">
+                                        {% for key, value in step.color %}
+                                            <li>{{ key }}: {{ value }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </dd>
+
         <dt class="col-sm-3">{{ 'bug_video'|trans }}</dt>
         <dd class="col-sm-9">
             <video width="100%" controls>
@@ -51,4 +92,8 @@
             </video>
         </dd>
     </dl>
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ asset('page/bug.css', 'admin') }}">
 {% endblock %}
