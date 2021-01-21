@@ -406,3 +406,4 @@ bug_video: Video
 transition: Geçiş
 places: Yerler
 variables: Değişkenler
+steps_invalid: Geçersiz Adımlar
