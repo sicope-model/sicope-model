@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7325ec14e8e576f2d46399db6778534b",
+    "content-hash": "35aadb832e829b60385b9ae6b2a6214d",
     "packages": [
         {
             "name": "appaydin/pd-mailer",
@@ -7898,16 +7898,16 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v2.0.0-rc.65",
+            "version": "v2.0.0-rc.66",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "b46415db5002645c83f93dd003a5bb6fc064d359"
+                "reference": "b4ee830bd6884b8c62aef43f497660207c2a6843"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/b46415db5002645c83f93dd003a5bb6fc064d359",
-                "reference": "b46415db5002645c83f93dd003a5bb6fc064d359",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/b4ee830bd6884b8c62aef43f497660207c2a6843",
+                "reference": "b4ee830bd6884b8c62aef43f497660207c2a6843",
                 "shasum": ""
             },
             "require": {
@@ -7980,7 +7980,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-rc.65"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-rc.66"
             },
             "funding": [
                 {
@@ -7988,7 +7988,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-01-23T14:30:40+00:00"
+            "time": "2021-01-23T16:51:53+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",
