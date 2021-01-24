@@ -431,3 +431,19 @@ ROLE_BUG:
     VIEW: View Bug
     DELETE: Delete Bug
     VIDEO: View Bug Video
+
+###
+# Testing Widget
+###
+widget_model_info:
+    name: Model Info
+    description: Shows number of models
+    count: Models
+widget_task_info:
+    name: Task Info
+    description: Shows number of tasks
+    count: Tasks
+widget_bug_info:
+    name: Bug Info
+    description: Shows number of bugs
+    count: Bugs

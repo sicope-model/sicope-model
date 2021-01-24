@@ -431,3 +431,19 @@ ROLE_BUG:
     VIEW: Hatayı Görüntüle
     DELETE: Hatayı Sil
     VIDEO: Hata Videosunu Görüntüle
+
+###
+# Testing Widget
+###
+widget_model_info:
+    name: Model Bilgisi
+    description: Model sayısını gösterir
+    count: Modeller
+widget_task_info:
+    name: Görev Bilgisi
+    description: Görev sayısını gösterir
+    count: Görevler
+widget_bug_info:
+    name: Hata Bilgisi
+    description: Hata sayısını gösterir
+    count: Hatalar
