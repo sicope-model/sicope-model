@@ -62,6 +62,11 @@ ROLE_WIDGET:
     USERINFO: Kullanıcı Bilgisi
     QUICKACTION: Hızlı Menü
     USERSTATISTICS: Kullanıcı İstatistikleri
+    # Testing
+    MODELINFO: Model Bilgisi
+    TASKINFO: Görev Bilgisi
+    BUGINFO: Hata Bilgisi
+    TESTINGSTATISTICS: Test İstatistikleri
 
 ###
 # Time Ago
@@ -308,6 +313,16 @@ widget_quick_action:
     add_button: Buton Ekle
 
 ###
+# Chart
+###
+1week: Son 1 Hafta
+1month: Son 1 Ay
+3month: Son 3 Ay
+testing_statistics:
+    task: Görev
+    bug: Hata
+
+###
 # Testing
 ###
 nav_testing: Test yapmak
@@ -349,8 +364,6 @@ from_places: Yerlerden
 to_places: Yerlere
 remove_command: Komutu Kaldır
 expression: İfade
-testing_bug_list_title: Hatalar
-testing_bug_list_desc: Hataları yönetme
 bug_title: Başlık
 bug_model_label: Model Etiketi
 steps: Adımlar
@@ -372,6 +385,8 @@ testing_task_create_title: Görev Oluştur
 testing_task_create_desc: Yeni görev oluştur
 testing_task_edit_title: Görevi Düzenle
 testing_task_edit_desc: Görevi düzenleyin
+testing_bug_list_title: Hatalar
+testing_bug_list_desc: Hataları yönetme
 testing_bug_view_title: Hata
 testing_bug_view_desc: Önceden oluşturulmuş adımlar ve kaydedilmiş video ile ilgili hata
 export: İhracat
@@ -407,3 +422,43 @@ transition: Geçiş
 places: Yerler
 variables: Değişkenler
 steps_invalid: Geçersiz Adımlar
+ROLE_MODEL:
+    title: Test - Model
+    LIST: Liste Modeli
+    BUILD: Yeni model
+    EDIT: Modeli Düzenle
+    VIEW: Modeli Görüntüle
+    IMAGE: Model Resmini Görüntüle
+    DELETE: Modeli Sil
+    EXPORT: Modeli Dışa Aktar
+    IMPORT: Modeli İçe Aktar
+ROLE_TASK:
+    title: Test - Görev
+    LIST: Görevi Listele
+    CREATE: Görev Oluştur
+    EDIT: Görevi Düzenle
+    VIEW: Görevi Görüntüle
+    DELETE: Modeli Sil
+ROLE_BUG:
+    title: Test - Hata
+    LIST: Liste Hatası
+    EDIT: Hatayı Düzenle
+    VIEW: Hatayı Görüntüle
+    DELETE: Hatayı Sil
+    VIDEO: Hata Videosunu Görüntüle
+
+###
+# Testing Widget
+###
+widget_model_info:
+    name: Model Bilgisi
+    description: Model sayısını gösterir
+    count: Modeller
+widget_task_info:
+    name: Görev Bilgisi
+    description: Görev sayısını gösterir
+    count: Görevler
+widget_bug_info:
+    name: Hata Bilgisi
+    description: Hata sayısını gösterir
+    count: Hatalar

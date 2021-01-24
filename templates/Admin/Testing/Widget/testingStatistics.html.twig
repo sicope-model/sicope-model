@@ -11,14 +11,14 @@
             {% endembed %}
 
             {# Canvas #}
-            <canvas id="user-canvas"></canvas>
+            <canvas id="testing-canvas"></canvas>
 
             {# Load Data #}
             {% set widgetData = widget.data %}
 
             {# Draw Canvas #}
             <script>
-              var ctx = document.getElementById('user-canvas').getContext("2d");
+              var ctx = document.getElementById('testing-canvas').getContext("2d");
 
               Chart.defaults.global.defaultFontFamily = 'Roboto';
               Chart.defaults.global.defaultFontSize = 14;
@@ -36,15 +36,15 @@
                 data: {
                   labels: {{ widgetData.column|raw }},
                   datasets: [{
-                    label: '{{ "security.login_title"|trans }}',
-                    data: {{ widgetData.logged|raw }},
+                    label: '{{ "testing_statistics.task"|trans }}',
+                    data: {{ widgetData.task|raw }},
                     backgroundColor: gradientFillBlue,
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1,
                     fill: true,
                   }, {
-                    label: '{{ "security.register_title"|trans }}',
-                    data: {{ widgetData.created|raw }},
+                    label: '{{ "testing_statistics.bug"|trans }}',
+                    data: {{ widgetData.bug|raw }},
                     backgroundColor: gradientFillRed,
                     borderColor: 'red',
                     borderWidth: 1,

@@ -53,7 +53,7 @@ class Main extends Menu
             ->setRoute('admin_model_list')
             ->setRoles(['ROLE_MODEL_LIST'])
             ->setExtra('label_icon', 'device_hub')
-            // Task List
+            // Bug List
             ->addChildParent('nav_bug', 30)
             ->setLabel('nav_bug')
             ->setRoute('admin_bug_list')

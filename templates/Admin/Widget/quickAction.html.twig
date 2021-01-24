@@ -52,12 +52,12 @@
                 {% for index, item in widget.data.items %}
                     {% if widget.config[index] is defined %}
                         <li>
-                                <span>
-                                    <a href="{{ path(item.route) }}" class="{{ item.linkClass }}">
-                                        <i class="material-icons">{{ item.icons }}</i>
-                                        <span class="caption">{{ item.name|trans }}</span>
-                                    </a>
-                                </span>
+                            <span>
+                                <a href="{{ path(item.route) }}" class="{{ item.linkClass }}">
+                                    <i class="material-icons">{{ item.icons }}</i>
+                                    <span class="caption">{{ item.name|trans }}</span>
+                                </a>
+                            </span>
                         </li>
                     {% endif %}
                 {% endfor %}

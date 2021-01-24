@@ -55,7 +55,7 @@ class QuickAction
                 'linkClass' => 'btn btn-secondary',
             ],
             'mail_manager' => [
-                'name' => 'nav_mail_manager',
+                'name' => 'mail_manager_list',
                 'description' => 'mail_manager_list_desc',
                 'route' => 'mail_template',
                 'icons' => 'email',
@@ -66,6 +66,27 @@ class QuickAction
                 'description' => 'mail_manager_logger_desc',
                 'route' => 'mail_log',
                 'icons' => 'send',
+                'linkClass' => 'btn btn-secondary',
+            ],
+            'testing_model' => [
+                'name' => 'nav_model',
+                'description' => 'testing_model_list_desc',
+                'route' => 'admin_model_list',
+                'icons' => 'device_hub',
+                'linkClass' => 'btn btn-secondary',
+            ],
+            'testing_task' => [
+                'name' => 'nav_task',
+                'description' => 'testing_task_list_desc',
+                'route' => 'admin_task_list',
+                'icons' => 'assignment',
+                'linkClass' => 'btn btn-secondary',
+            ],
+            'testing_bug' => [
+                'name' => 'nav_bug',
+                'description' => 'testing_bug_list_desc',
+                'route' => 'admin_bug_list',
+                'icons' => 'bug_report',
                 'linkClass' => 'btn btn-secondary',
             ],
         ];
