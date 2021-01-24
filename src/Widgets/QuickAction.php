@@ -55,7 +55,7 @@ class QuickAction
                 'linkClass' => 'btn btn-secondary',
             ],
             'mail_manager' => [
-                'name' => 'nav_mail_manager',
+                'name' => 'mail_manager_list',
                 'description' => 'mail_manager_list_desc',
                 'route' => 'mail_template',
                 'icons' => 'email',
