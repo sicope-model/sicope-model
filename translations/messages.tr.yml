@@ -349,8 +349,6 @@ from_places: Yerlerden
 to_places: Yerlere
 remove_command: Komutu Kaldır
 expression: İfade
-testing_bug_list_title: Hatalar
-testing_bug_list_desc: Hataları yönetme
 bug_title: Başlık
 bug_model_label: Model Etiketi
 steps: Adımlar
@@ -372,6 +370,8 @@ testing_task_create_title: Görev Oluştur
 testing_task_create_desc: Yeni görev oluştur
 testing_task_edit_title: Görevi Düzenle
 testing_task_edit_desc: Görevi düzenleyin
+testing_bug_list_title: Hatalar
+testing_bug_list_desc: Hataları yönetme
 testing_bug_view_title: Hata
 testing_bug_view_desc: Önceden oluşturulmuş adımlar ve kaydedilmiş video ile ilgili hata
 export: İhracat
