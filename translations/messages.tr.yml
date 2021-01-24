@@ -385,6 +385,8 @@ testing_task_create_title: Görev Oluştur
 testing_task_create_desc: Yeni görev oluştur
 testing_task_edit_title: Görevi Düzenle
 testing_task_edit_desc: Görevi düzenleyin
+testing_task_view_title: Görevi Görüntüle
+testing_task_view_desc: Görevi görüntüle
 testing_bug_list_title: Hatalar
 testing_bug_list_desc: Hataları yönetme
 testing_bug_view_title: Hata

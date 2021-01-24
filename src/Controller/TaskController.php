@@ -89,7 +89,7 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('admin_task_list');
         }
 
-        return $this->render('Admin/Testing/editTask.html.twig', [
+        return $this->render('Admin/Testing/createTask.html.twig', [
             'page_title' => 'testing_task_create_title',
             'page_description' => 'testing_task_create_desc',
             'form' => $form->createView(),
