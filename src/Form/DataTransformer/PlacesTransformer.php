@@ -37,6 +37,6 @@ class PlacesTransformer implements DataTransformerInterface
      */
     public function reverseTransform($placesAsString)
     {
-        return is_string($placesAsString) && '' !== $placesAsString ? explode(',', $placesAsString) : [];
+        return \is_string($placesAsString) && '' !== $placesAsString ? explode(',', $placesAsString) : [];
     }
 }
