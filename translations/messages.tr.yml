@@ -407,3 +407,27 @@ transition: Geçiş
 places: Yerler
 variables: Değişkenler
 steps_invalid: Geçersiz Adımlar
+ROLE_MODEL:
+    title: Test - Model
+    LIST: Liste Modeli
+    BUILD: Yeni model
+    EDIT: Modeli Düzenle
+    VIEW: Modeli Görüntüle
+    IMAGE: Model Resmini Görüntüle
+    DELETE: Modeli Sil
+    EXPORT: Modeli Dışa Aktar
+    IMPORT: Modeli İçe Aktar
+ROLE_TASK:
+    title: Test - Görev
+    LIST: Görevi Listele
+    CREATE: Görev Oluştur
+    EDIT: Görevi Düzenle
+    VIEW: Görevi Görüntüle
+    DELETE: Modeli Sil
+ROLE_BUG:
+    title: Test - Hata
+    LIST: Liste Hatası
+    EDIT: Hatayı Düzenle
+    VIEW: Hatayı Görüntüle
+    DELETE: Hatayı Sil
+    VIDEO: Hata Videosunu Görüntüle

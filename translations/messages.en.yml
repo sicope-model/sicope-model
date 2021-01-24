@@ -407,3 +407,27 @@ transition: Transition
 places: Places
 variables: Variables
 steps_invalid: Steps Invalid
+ROLE_MODEL:
+    title: Testing - Model
+    LIST: List Model
+    BUILD: New Model
+    EDIT: Edit Model
+    VIEW: View Model
+    IMAGE: View Model Image
+    DELETE: Delete Model
+    EXPORT: Export Model
+    IMPORT: Import Model
+ROLE_TASK:
+    title: Testing - Task
+    LIST: List Task
+    CREATE: Create Task
+    EDIT: Edit Task
+    VIEW: View Task
+    DELETE: Delete Model
+ROLE_BUG:
+    title: Testing - Bug
+    LIST: List Bug
+    EDIT: Edit Bug
+    VIEW: View Bug
+    DELETE: Delete Bug
+    VIDEO: View Bug Video
