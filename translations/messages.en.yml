@@ -62,6 +62,11 @@ ROLE_WIDGET:
     USERINFO: User Information
     QUICKACTION: Quick Action
     USERSTATISTICS: User Statistics
+    # Testing
+    MODELINFO: Model Info
+    TASKINFO: Task Info
+    BUGINFO: Bug Info
+    TESTINGSTATISTICS: Testing Statistics
 
 ###
 # Time Ago
@@ -308,6 +313,16 @@ widget_quick_action:
     add_button: Add Button
 
 ###
+# Chart
+###
+1week: Last 1 Week
+1month: Last 1 Month
+3month: Last 3 Months
+testing_statistics:
+    task: Task
+    bug: Bug
+
+###
 # Testing
 ###
 nav_testing: Testing
@@ -447,3 +462,6 @@ widget_bug_info:
     name: Bug Info
     description: Shows number of bugs
     count: Bugs
+widget_testing_statistics:
+    name: Testing Statistics
+    description: Displays detailed testing statistics.

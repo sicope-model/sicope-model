@@ -62,6 +62,11 @@ ROLE_WIDGET:
     USERINFO: Kullanıcı Bilgisi
     QUICKACTION: Hızlı Menü
     USERSTATISTICS: Kullanıcı İstatistikleri
+    # Testing
+    MODELINFO: Model Bilgisi
+    TASKINFO: Görev Bilgisi
+    BUGINFO: Hata Bilgisi
+    TESTINGSTATISTICS: Test İstatistikleri
 
 ###
 # Time Ago
@@ -306,6 +311,16 @@ widget_quick_action:
     name: Hızlı Butonlar
     description: Menülere kolay erişim butonları oluşturur.
     add_button: Buton Ekle
+
+###
+# Chart
+###
+1week: Son 1 Hafta
+1month: Son 1 Ay
+3month: Son 3 Ay
+testing_statistics:
+    task: Görev
+    bug: Hata
 
 ###
 # Testing
