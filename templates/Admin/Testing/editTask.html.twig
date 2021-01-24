@@ -18,9 +18,3 @@
         {{ form_end(form) }}
     </div>
 {% endblock %}
-
-{% block scripts %}
-    {% if task.id is not defined %}
-        <script src="{{ asset('page/task.js', 'admin') }}"></script>
-    {%- endif -%}
-{% endblock %}
