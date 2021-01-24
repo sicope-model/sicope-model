@@ -303,9 +303,9 @@ widget_user_statistics:
     name: User Statistics
     description: Displays detailed user statistics.
 widget_quick_action:
-    name: Hızlı Butonlar
-    description: Menülere kolay erişim butonları oluşturur.
-    add_button: Buton Ekle
+    name: Quick Buttons
+    description: Creates easy access buttons to menus.
+    add_button: Add Button
 
 ###
 # Testing
