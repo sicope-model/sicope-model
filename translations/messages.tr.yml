@@ -353,7 +353,7 @@ testing_bug_list_title: Hatalar
 testing_bug_list_desc: Hataları yönetme
 bug_title: Başlık
 bug_model_label: Model Etiketi
-steps_count: Adım Sayısı
+steps: Adımlar
 message: İleti
 closed: Kapalı
 model_version: Model Sürümü
@@ -403,3 +403,7 @@ split: Bölünmüş
 email: Eposta
 bug_model: Modeli
 bug_video: Video
+transition: Geçiş
+places: Yerler
+variables: Değişkenler
+steps_invalid: Geçersiz Adımlar

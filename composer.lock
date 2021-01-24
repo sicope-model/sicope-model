@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36d08bc18049910425169a19cb235376",
+    "content-hash": "35aadb832e829b60385b9ae6b2a6214d",
     "packages": [
         {
             "name": "appaydin/pd-mailer",
@@ -1717,17 +1717,11 @@
         },
         {
             "name": "florianv/petrinet",
-            "version": "2.1.0",
+            "version": "dev-fix-empty-input-arcs",
             "source": {
                 "type": "git",
-                "url": "https://github.com/florianv/petrinet.git",
-                "reference": "0d3d087bf71c52daa44d76c3d43a58d0d663ff2d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/florianv/petrinet/zipball/0d3d087bf71c52daa44d76c3d43a58d0d663ff2d",
-                "reference": "0d3d087bf71c52daa44d76c3d43a58d0d663ff2d",
-                "shasum": ""
+                "url": "https://github.com/tienvx/petrinet.git",
+                "reference": "1a5d0ebcd1591f00d3d45d0190823b3bccd27219"
             },
             "require": {
                 "doctrine/collections": "^1.6",
@@ -1747,7 +1741,6 @@
                     "Petrinet\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1764,11 +1757,7 @@
                 "petrinet",
                 "workflow"
             ],
-            "support": {
-                "issues": "https://github.com/florianv/petrinet/issues",
-                "source": "https://github.com/florianv/petrinet/tree/2.1.0"
-            },
-            "time": "2020-12-15T13:37:27+00:00"
+            "time": "2021-01-23T10:27:03+00:00"
         },
         {
             "name": "friendsofphp/proxy-manager-lts",
@@ -7909,22 +7898,23 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v2.0.0-rc.61",
+            "version": "v2.0.0-rc.67",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "b2bb7163d94b432a24c4702d8a481cede99dc225"
+                "reference": "541768e8d02f1daae822fd3a907b60fda0003111"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/b2bb7163d94b432a24c4702d8a481cede99dc225",
-                "reference": "b2bb7163d94b432a24c4702d8a481cede99dc225",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/541768e8d02f1daae822fd3a907b60fda0003111",
+                "reference": "541768e8d02f1daae822fd3a907b60fda0003111",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.8",
                 "egulias/email-validator": "^2.1",
                 "ext-json": "*",
+                "florianv/petrinet": "dev-fix-empty-input-arcs as 2.1.1",
                 "jmgq/a-star": "^1.1",
                 "php": ">=7.4",
                 "php-webdriver/webdriver": "^1.9",
@@ -7990,7 +7980,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-rc.61"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.0-rc.67"
             },
             "funding": [
                 {
@@ -7998,7 +7988,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-01-20T16:43:54+00:00"
+            "time": "2021-01-24T01:53:59+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",
@@ -9420,9 +9410,17 @@
             "time": "2020-12-08T17:03:37+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "florianv/petrinet",
+            "version": "dev-fix-empty-input-arcs",
+            "alias": "2.1.1",
+            "alias_normalized": "2.1.1.0"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "florianv/petrinet": 20,
         "tienvx/mbt-bundle": 5,
         "roave/security-advisories": 20
     },

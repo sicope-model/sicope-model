@@ -14,7 +14,6 @@ namespace App\Form\Testing\Model;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,10 +30,6 @@ class PlaceType extends AbstractType
                 'attr' => [
                     'class' => 'place-label',
                 ],
-            ])
-            ->add('start', CheckboxType::class, [
-                'label' => 'place_start',
-                'required' => false,
             ])
             ->add('commands', CollectionType::class, [
                 'label' => 'commands',

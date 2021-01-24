@@ -33,6 +33,9 @@ Encore
     // Authorization Page
     .addStyleEntry('auth/auth', './assets/admin/scss/auth.scss')
 
+    // Bug Page
+    .addStyleEntry('page/bug', './assets/admin/scss/testing/bug.scss')
+
     // Configs
     .enableSassLoader()
     .enablePostCssLoader()

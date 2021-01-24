@@ -71,6 +71,7 @@ class TransitionType extends AbstractType
                 'attr' => [
                     'class' => 'select-from-places',
                 ],
+                'required' => false,
             ])
             ->add('to_places', TextType::class, [
                 'label' => 'to_places',

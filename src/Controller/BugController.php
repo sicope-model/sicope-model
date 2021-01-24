@@ -15,6 +15,7 @@ namespace App\Controller;
 use App\Repository\BugRepository;
 use App\Service\ConfigBag;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,6 +28,9 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Bug;
+use Tienvx\Bundle\MbtBundle\Model\Bug\StepInterface;
+use Tienvx\Bundle\MbtBundle\Model\BugInterface;
+use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
 use Tienvx\Bundle\MbtBundle\Provider\ProviderManagerInterface;
 
 /**
@@ -109,6 +113,7 @@ class BugController extends AbstractController
     {
         return $this->render('Admin/Testing/viewBug.html.twig', [
             'bug' => $bug,
+            'steps' => $this->formatSteps($bug),
         ]);
     }
 
@@ -160,5 +165,46 @@ class BugController extends AbstractController
         });
 
         return $response;
+    }
+
+    /**
+     * Convert step object into array for twig rendering.
+     */
+    protected function formatSteps(BugInterface $bug): ?array
+    {
+        $model = $bug->getTask()->getModel();
+
+        return $bug->getModelVersion() === $model->getVersion()
+            ? array_map(fn (StepInterface $step) => $this->formatStep($step, $model), $bug->getSteps())
+            : null;
+    }
+
+    protected function formatStep(StepInterface $step, ModelInterface $model): array
+    {
+        $transition = \is_int($step->getTransition()) ? $model->getTransition($step->getTransition()) : null;
+        if (\is_int($step->getTransition()) && !$transition) {
+            // phpcs:ignore Generic.Files.LineLength
+            throw new Exception(sprintf('Transition %d does not exist in the model %d version %d', $step->getTransition(), $model->getId(), $model->getVersion()));
+        }
+
+        return [
+            'transition' => $transition ? $transition->getLabel() : '',
+            'places' => array_map(
+                fn (int $place) => $this->formatPlace($place, $model),
+                array_keys($step->getPlaces())
+            ),
+            'color' => $step->getColor()->getValues(),
+        ];
+    }
+
+    protected function formatPlace(int $place, ModelInterface $model): ?string
+    {
+        $place = $model->getPlace($place);
+        if (!$place) {
+            // phpcs:ignore Generic.Files.LineLength
+            throw new Exception(sprintf('Place %d does not exist in the model %d version %d', $place, $model->getId(), $model->getVersion()));
+        }
+
+        return $place->getLabel();
     }
 }

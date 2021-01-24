@@ -19,24 +19,24 @@ class PlacesTransformer implements DataTransformerInterface
     /**
      * Transforms places from an array to a string.
      *
-     * @param array $fromPlacesAsArray
+     * @param array $placesAsArray
      *
      * @return string
      */
-    public function transform($fromPlacesAsArray)
+    public function transform($placesAsArray)
     {
-        return implode(',', $fromPlacesAsArray ?? []);
+        return implode(',', $placesAsArray ?? []);
     }
 
     /**
      * Transforms places from a string to an array.
      *
-     * @param string $fromPlacesAsString
+     * @param string $placesAsString
      *
      * @return array
      */
-    public function reverseTransform($fromPlacesAsString)
+    public function reverseTransform($placesAsString)
     {
-        return explode(',', $fromPlacesAsString);
+        return \is_string($placesAsString) && '' !== $placesAsString ? explode(',', $placesAsString) : [];
     }
 }
