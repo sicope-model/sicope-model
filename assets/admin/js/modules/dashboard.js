@@ -1,7 +1,7 @@
 /**
  * Widget Sortable
  */
-let Sortable = require('sortablejs');
+let Sortable = require('sortablejs').Sortable;
 $(document).ready(function () {
   let el = document.querySelector('.dashboard');
   if (el) {
