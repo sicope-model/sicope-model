@@ -27,7 +27,7 @@
     "appaydin/pd-user": "2.*",
     "appaydin/pd-widget": "2.*",
     "beberlei/doctrineextensions": "1.*",
-    "florianv/petrinet": "dev-fix-empty-input-arcs as 2.1.1",
+    "florianv/petrinet": "dev-master as 2.1.1",
     "intervention/image": "2.*",
     "knplabs/knp-paginator-bundle": "5.*",
     "sensio/framework-extra-bundle": "5.*",
