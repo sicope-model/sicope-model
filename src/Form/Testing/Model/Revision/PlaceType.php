@@ -10,39 +10,26 @@
  * @link        https://github.com/sicope-model/sicope-model
  */
 
-namespace App\Form\Testing\Model;
+namespace App\Form\Testing\Model\Revision;
 
-use App\Form\DataTransformer\PlacesTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Tienvx\Bundle\MbtBundle\ValueObject\Model\Transition;
+use Tienvx\Bundle\MbtBundle\ValueObject\Model\Place;
 
-class TransitionType extends AbstractType
+class PlaceType extends AbstractType
 {
-    protected DataTransformerInterface $transformer;
-
-    public function __construct(PlacesTransformer $transformer)
-    {
-        $this->transformer = $transformer;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('label', TextType::class, [
-                'label' => 'transition_label',
+                'label' => 'place_label',
                 'attr' => [
-                    'class' => 'transition-label',
+                    'class' => 'place-label',
                 ],
-            ])
-            ->add('guard', TextType::class, [
-                'label' => 'transition_guard',
-                'required' => false,
             ])
             ->add('commands', CollectionType::class, [
                 'label' => 'commands',
@@ -66,22 +53,9 @@ class TransitionType extends AbstractType
                     'class' => 'add-command btn-secondary',
                 ],
             ])
-            ->add('from_places', TextType::class, [
-                'label' => 'from_places',
+            ->add('remove_place', ButtonType::class, [
                 'attr' => [
-                    'class' => 'select-from-places',
-                ],
-                'required' => false,
-            ])
-            ->add('to_places', TextType::class, [
-                'label' => 'to_places',
-                'attr' => [
-                    'class' => 'select-to-places',
-                ],
-            ])
-            ->add('remove_transition', ButtonType::class, [
-                'attr' => [
-                    'class' => 'close remove-transition',
+                    'class' => 'close remove-place',
                     'aria-label' => 'Close',
                 ],
                 'label' => '<span aria-hidden="true">&times;</span>',
@@ -89,17 +63,12 @@ class TransitionType extends AbstractType
                 'translation_domain' => false,
             ])
         ;
-
-        $builder->get('from_places')
-            ->addModelTransformer($this->transformer);
-        $builder->get('to_places')
-            ->addModelTransformer($this->transformer);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Transition::class,
+            'data_class' => Place::class,
         ]);
     }
 }
