@@ -33,6 +33,7 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Entity\Task;
+use Tienvx\Bundle\MbtBundle\Factory\Model\RevisionFactory;
 use Tienvx\Bundle\MbtBundle\Model\Model\RevisionInterface;
 use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
 use Tienvx\Bundle\MbtBundle\Service\Model\ModelDumper;
@@ -119,6 +120,10 @@ class ModelController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $oldRevision = $model->getActiveRevision();
+            $oldRevision->setModel(null);
+            $revision = RevisionFactory::createFromArray($oldRevision->toArray());
+            $model->setActiveRevision($revision);
             $em->persist($model);
             $em->flush();
 
