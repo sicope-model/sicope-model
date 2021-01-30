@@ -110,3 +110,10 @@
 {% block form_group_class -%}
     col-md-8 col-sm-8 col-xs-12
 {%- endblock form_group_class %}
+
+{% block revision_row -%}
+    {{ form_row(form.places) }}
+    {{ form_row(form.add_place) }}
+    {{ form_row(form.transitions) }}
+    {{ form_row(form.add_transition) }}
+{% endblock revision_row %}
