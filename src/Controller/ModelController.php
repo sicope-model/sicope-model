@@ -15,6 +15,7 @@ namespace App\Controller;
 use App\Form\Testing\ModelImportType;
 use App\Form\Testing\ModelType;
 use App\Repository\ModelRepository;
+use App\Repository\TaskRepository;
 use App\Service\CommandHelper;
 use App\Service\ConfigBag;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,6 +32,8 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
+use Tienvx\Bundle\MbtBundle\Entity\Task;
+use Tienvx\Bundle\MbtBundle\Model\Model\RevisionInterface;
 use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
 use Tienvx\Bundle\MbtBundle\Service\Model\ModelDumper;
 
@@ -153,6 +156,20 @@ class ModelController extends AbstractController
     {
         // Remove
         $em->remove($model);
+
+        // Remove orphan revisions
+        $revisionIds = $model->getRevisions()->map(fn (RevisionInterface $revision) => $revision->getId())->getValues();
+        /** @var TaskRepository $taskRepository */
+        $taskRepository = $em->getRepository(Task::class);
+        $tasksCount = $taskRepository->countTasksByRevisions($revisionIds);
+        foreach ($model->getRevisions() as $revision) {
+            if (($tasksCount[$revision->getId()] ?? 0) === 0) {
+                $em->remove($revision);
+            } else {
+                $revision->setModel(null);
+            }
+        }
+
         $em->flush();
 
         // Add Flash

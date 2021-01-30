@@ -22,4 +22,18 @@ class TaskRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Task::class);
     }
+
+    public function countTasksByRevisions(array $revisionIds): array
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $result = $this->createQueryBuilder('t')
+            ->where($qb->expr()->in('t.modelRevision', ':revisions'))
+            ->setParameter('revisions', $revisionIds)
+            ->select('COUNT(t.id) as tasks, t.modelRevision as revision')
+            ->groupBy('t.modelRevision')
+            ->getQuery()
+            ->getArrayResult();
+
+        return array_column($result, 'tasks', 'revision');
+    }
 }
