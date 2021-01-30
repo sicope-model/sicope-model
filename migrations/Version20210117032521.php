@@ -45,11 +45,10 @@ final class Version20210117032521 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN mail_log.body IS \'(DC2Type:array)\'');
         $this->addSql('CREATE TABLE mail_template (id INT NOT NULL, template_id VARCHAR(50) NOT NULL, template TEXT DEFAULT NULL, template_data TEXT DEFAULT NULL, subject VARCHAR(255) DEFAULT NULL, language VARCHAR(3) NOT NULL, status BOOLEAN NOT NULL, PRIMARY KEY(id))');
         $this->addSql('COMMENT ON COLUMN mail_template.template_data IS \'(DC2Type:array)\'');
-        $this->addSql('CREATE TABLE model (id INT NOT NULL, active_revision_id INT DEFAULT NULL, revisions_id INT DEFAULT NULL, author INT DEFAULT NULL, label VARCHAR(255) NOT NULL, tags VARCHAR(255) DEFAULT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE model (id INT NOT NULL, active_revision_id INT DEFAULT NULL, author INT DEFAULT NULL, label VARCHAR(255) NOT NULL, tags VARCHAR(255) DEFAULT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_D79572D9490589C4 ON model (active_revision_id)');
-        $this->addSql('CREATE INDEX IDX_D79572D99A6BD9E8 ON model (revisions_id)');
         $this->addSql('CREATE TABLE revision (id INT NOT NULL, model_id INT DEFAULT NULL, places TEXT NOT NULL, transitions TEXT NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_6D6315CC7975B7E7 ON revision (model_id)');
+        $this->addSql('CREATE INDEX IDX_6D6315CC7975B7E7 ON revision (model_id)');
         $this->addSql('COMMENT ON COLUMN revision.places IS \'(DC2Type:array)\'');
         $this->addSql('COMMENT ON COLUMN revision.transitions IS \'(DC2Type:array)\'');
         $this->addSql('CREATE TABLE task (id INT NOT NULL, model_revision_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, author INT DEFAULT NULL, running BOOLEAN NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, selenium_config_provider VARCHAR(255) NOT NULL, selenium_config_platform VARCHAR(255) NOT NULL, selenium_config_browser VARCHAR(255) NOT NULL, selenium_config_browser_version VARCHAR(255) NOT NULL, selenium_config_resolution VARCHAR(255) NOT NULL, task_config_generator VARCHAR(255) NOT NULL, task_config_generator_config TEXT NOT NULL, task_config_reducer VARCHAR(255) NOT NULL, task_config_notify_author BOOLEAN NOT NULL, task_config_notify_channels TEXT NOT NULL, progress_total INT DEFAULT 0 NOT NULL, progress_processed INT DEFAULT 0 NOT NULL, PRIMARY KEY(id))');
@@ -88,7 +87,6 @@ final class Version20210117032521 extends AbstractMigration
         $this->addSql('COMMIT;');
         $this->addSql('ALTER TABLE bug ADD CONSTRAINT FK_358CBF148DB60186 FOREIGN KEY (task_id) REFERENCES task (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE model ADD CONSTRAINT FK_D79572D9490589C4 FOREIGN KEY (active_revision_id) REFERENCES revision (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE model ADD CONSTRAINT FK_D79572D99A6BD9E8 FOREIGN KEY (revisions_id) REFERENCES revision (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE revision ADD CONSTRAINT FK_6D6315CC7975B7E7 FOREIGN KEY (model_id) REFERENCES model (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE task ADD CONSTRAINT FK_527EDB2573F84563 FOREIGN KEY (model_revision_id) REFERENCES revision (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE users ADD CONSTRAINT FK_1483A5E9CCFA12B8 FOREIGN KEY (profile_id) REFERENCES user_profile (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
@@ -105,7 +103,6 @@ final class Version20210117032521 extends AbstractMigration
         $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER TABLE revision DROP CONSTRAINT FK_6D6315CC7975B7E7');
         $this->addSql('ALTER TABLE model DROP CONSTRAINT FK_D79572D9490589C4');
-        $this->addSql('ALTER TABLE model DROP CONSTRAINT FK_D79572D99A6BD9E8');
         $this->addSql('ALTER TABLE task DROP CONSTRAINT FK_527EDB2573F84563');
         $this->addSql('ALTER TABLE bug DROP CONSTRAINT FK_358CBF148DB60186');
         $this->addSql('ALTER TABLE user_group_tax DROP CONSTRAINT FK_DF3DFEBFE54D947');
