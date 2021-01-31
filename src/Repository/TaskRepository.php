@@ -27,10 +27,10 @@ class TaskRepository extends ServiceEntityRepository
     {
         $qb = $this->_em->createQueryBuilder();
         $result = $this->createQueryBuilder('t')
-            ->where($qb->expr()->in('t.modelRevision', ':revisions'))
+            ->select('COUNT(t.id) as tasks, IDENTITY(t.modelRevision) as revision')
+            ->where($qb->expr()->in('IDENTITY(t.modelRevision)', ':revisions'))
             ->setParameter('revisions', $revisionIds)
-            ->select('COUNT(t.id) as tasks, t.modelRevision as revision')
-            ->groupBy('t.modelRevision')
+            ->groupBy('revision')
             ->getQuery()
             ->getArrayResult();
 
