@@ -12,11 +12,8 @@
 
 namespace App\Form\Testing;
 
-use App\Form\Testing\Model\PlaceType;
-use App\Form\Testing\Model\TransitionType;
+use App\Form\Testing\Model\RevisionType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -38,47 +35,7 @@ class ModelType extends AbstractType
                 ],
                 'required' => false,
             ])
-            ->add('places', CollectionType::class, [
-                'label' => 'model_places',
-                'entry_type' => PlaceType::class,
-                'entry_options' => [
-                    'label' => false,
-                    'attr' => [
-                        'class' => 'col list-group-item place',
-                    ],
-                ],
-                'allow_add' => true,
-                'allow_delete' => true,
-                'attr' => [
-                    'class' => 'list-group places col pl-3',
-                ],
-            ])
-            ->add('add_place', ButtonType::class, [
-                'label' => 'add_place',
-                'attr' => [
-                    'class' => 'add-place btn-secondary',
-                ],
-            ])
-            ->add('transitions', CollectionType::class, [
-                'label' => 'model_transitions',
-                'entry_type' => TransitionType::class,
-                'entry_options' => [
-                    'label' => false,
-                    'attr' => [
-                        'class' => 'col list-group-item transition',
-                    ],
-                ],
-                'allow_add' => true,
-                'allow_delete' => true,
-                'attr' => [
-                    'class' => 'list-group transitions col pl-3',
-                ],
-            ])
-            ->add('add_transition', ButtonType::class, [
-                'label' => 'add_transition',
-                'attr' => [
-                    'class' => 'add-transition btn-secondary',
-                ],
+            ->add('activeRevision', RevisionType::class, [
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',

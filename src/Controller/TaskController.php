@@ -154,6 +154,13 @@ class TaskController extends AbstractController
     {
         // Remove
         $em->remove($task);
+
+        // Remove orphan model revision.
+        $revision = $task->getModelRevision();
+        if (!$revision->getModel()) {
+            $em->remove($revision);
+        }
+
         $em->flush();
 
         // Add Flash

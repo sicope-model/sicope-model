@@ -22,9 +22,6 @@
         <dt class="col-sm-3">{{ 'model_image'|trans }}</dt>
         <dd class="col-sm-9"><img src="{{ path('admin_model_image', { 'model': model.id }) }}" alt="{{ 'model_image'|trans }}"></dd>
 
-        <dt class="col-sm-3">{{ 'version'|trans }}</dt>
-        <dd class="col-sm-9">{{ model.version }}</dd>
-
         <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
         <dd class="col-sm-9">{{ model.createdAt|date("Y-m-d") }}</dd>
 

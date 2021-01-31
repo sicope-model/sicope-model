@@ -40,7 +40,6 @@
                     <tr>
                         <td class="wid-30"><a href="{{ path('admin_model_view', { 'model': model.id }) }}">{{ model.label }}</a></td>
                         <td class="wid-20">{{ model.tags|join(', ') }}</td>
-                        <td class="wid-10">{{ model.version }}</td>
                         <td class="wid-15">{{ model.createdAt|date("Y-m-d H:i:s") }}</td>
                         <td class="wid-15">{{ model.updatedAt|date("Y-m-d H:i:s") }}</td>
                         <td class="process">
