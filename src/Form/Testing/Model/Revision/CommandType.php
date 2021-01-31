@@ -50,7 +50,7 @@ class CommandType extends AbstractType
                 'label' => 'command_value',
                 'required' => false,
             ])
-            ->add('remove_command', ButtonType::class, [
+            ->add('removeCommand', ButtonType::class, [
                 'attr' => [
                     'class' => 'close remove-command',
                     'aria-label' => 'Close',
