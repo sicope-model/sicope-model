@@ -12,46 +12,73 @@
 
 namespace App\Form\Testing;
 
+use App\Form\DataTransformer\ActiveRevisionTransformer;
 use App\Form\Testing\Task\SeleniumConfigType;
 use App\Form\Testing\Task\TaskConfigType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Entity\Task;
 
 class TaskType extends AbstractType
 {
+    protected DataTransformerInterface $transformer;
+
+    public function __construct(ActiveRevisionTransformer $transformer)
+    {
+        $this->transformer = $transformer;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title', TextType::class, [
                 'label' => 'task_title',
             ])
-            ->add('model', EntityType::class, [
-                'class' => Model::class,
-                'label' => 'task_model',
-                'choice_label' => 'label',
-            ])
-            ->add('seleniumConfig', SeleniumConfigType::class, [
-                'label' => 'task_selenium_config',
-                'attr' => [
-                    'class' => 'col list-group-item',
-                ],
-            ])
-            ->add('taskConfig', TaskConfigType::class, [
-                'label' => 'task_task_config',
-                'attr' => [
-                    'class' => 'col list-group-item',
-                ],
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'save',
-            ])
         ;
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($builder) {
+            $task = $event->getData();
+            $form = $event->getForm();
+
+            if (!$task || null === $task->getId()) {
+                $form->add(
+                    $builder
+                        ->create('modelRevision', EntityType::class, [
+                            'class' => Model::class,
+                            'label' => 'task_model',
+                            'choice_label' => 'label',
+                            'auto_initialize' => false,
+                        ])
+                        ->addModelTransformer($this->transformer)
+                        ->getForm()
+                );
+            }
+
+            $form
+                ->add('seleniumConfig', SeleniumConfigType::class, [
+                    'label' => 'task_selenium_config',
+                    'attr' => [
+                        'class' => 'col list-group-item',
+                    ],
+                ])
+                ->add('taskConfig', TaskConfigType::class, [
+                    'label' => 'task_task_config',
+                    'attr' => [
+                        'class' => 'col list-group-item',
+                    ],
+                ])
+                ->add('save', SubmitType::class, [
+                    'label' => 'save',
+                ]);
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver)

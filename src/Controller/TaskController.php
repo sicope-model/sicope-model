@@ -20,8 +20,6 @@ use Knp\Component\Pager\PaginatorInterface;
 use Pd\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -104,14 +102,7 @@ class TaskController extends AbstractController
      */
     public function edit(Request $request, Task $task, EntityManagerInterface $em): Response
     {
-        $form = $this->createFormBuilder($task)
-            ->add('title', TextType::class, [
-                'label' => 'task_title',
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'save',
-            ])
-            ->getForm();
+        $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -120,6 +111,7 @@ class TaskController extends AbstractController
 
             // Add Flash
             $this->addFlash('success', 'changes_saved');
+            $this->addFlash('notice', 'running_tasks_notice');
 
             return $this->redirectToRoute('admin_task_list');
         }

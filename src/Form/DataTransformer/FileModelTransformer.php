@@ -16,20 +16,19 @@ use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
+use Tienvx\Bundle\MbtBundle\Factory\ModelFactory;
 use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
 
 class FileModelTransformer implements DataTransformerInterface
 {
     /**
-     * Do nothing.
-     *
-     * @param null $modelAsObject
+     * Not supported.
      *
      * @throws TransformationFailedException
      */
     public function transform($modelAsObject)
     {
-        return null;
+        throw new TransformationFailedException('Not supported');
     }
 
     /**
@@ -48,9 +47,6 @@ class FileModelTransformer implements DataTransformerInterface
             throw new TransformationFailedException('Uploaded file does not contains valid JSON');
         }
 
-        $model = new Model();
-        $model->denormalize($data);
-
-        return $model;
+        return ModelFactory::createFromArray($data);
     }
 }

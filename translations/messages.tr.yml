@@ -133,6 +133,7 @@ date: Tarih
 success: Başarılı
 process_completed: İşlem Tamamlandı.
 changes_saved: Değişiklikler kaydedildi.
+running_tasks_notice: Çalışan görevler etkilenmez.
 remove_complete: Silme işlemi tamamlandı.
 sorry_not_existing: Üzgünüz kayıt mevcut değil.
 test_email_success: Test e-postası gönderildi.
