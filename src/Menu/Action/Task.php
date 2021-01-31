@@ -53,6 +53,23 @@ class Task extends Menu
             ])
             ->setLabelAttr(['class' => 'hidden']);
 
+        if (!$options['task']->isRunning()) {
+            $menu
+                ->addChild('admin_testing_task_run', 1)
+                ->setLabel('run')
+                ->setRoute(
+                    'admin_task_run',
+                    ['task' => $options['task']->getId()]
+                )
+                ->setRoles(['ROLE_TASK_RUN'])
+                ->setExtra('label_icon', 'play_arrow')
+                ->setLinkAttr([
+                    'data-tooltip' => '',
+                    'title' => 'run',
+                ])
+                ->setLabelAttr(['class' => 'hidden']);
+        }
+
         return $menu;
     }
 }
