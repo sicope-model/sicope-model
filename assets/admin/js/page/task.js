@@ -2,12 +2,12 @@ function onChange(changed, findAndReplace) {
     $(document).on('change', 'select.' + changed, function () {
         const $form = $(this).closest('form');
         const names = [
-              ...[
-                  'provider',
-                  'platform',
-                  'browser',
-                  'browserVersion',
-                  'resolution',
+            ...[
+                'provider',
+                'platform',
+                'browser',
+                'browserVersion',
+                'resolution',
             ].map(name => 'task[seleniumConfig][' + name + ']'),
             ...[
                 'generator',
