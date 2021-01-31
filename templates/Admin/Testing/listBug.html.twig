@@ -32,7 +32,14 @@
                 {% for bug in bugs %}
                     <tr>
                         <td class="wid-20"><a href="{{ path('admin_bug_view', { 'bug': bug.id }) }}">{{ bug.title }}</a></td>
-                        <td class="wid-10"><a href="{{ path('admin_model_view', { 'model': bug.task.model.id }) }}">{{ bug.task.model.label }}</a></td>
+                        <td class="wid-10">
+                            <a href="{{ path('admin_model_view', { 'model': bug.task.modelRevision.model.id }) }}">
+                                {{ bug.task.modelRevision.model.label }}
+                                {% if bug.task.modelRevision.id is not same as(bug.task.modelRevision.model.activeRevision.id) %}
+                                    <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
+                                {% endif %}
+                            </a>
+                        </td>
                         <td class="wid-20">{{ bug.message }}</td>
                         <td class="wid-10">{{ ((bug.progress.total > 0) ? bug.progress.processed / bug.progress.total : 0) |format_number(style='percent') }}</td>
                         <td class="wid-10">{{ bug.closed }}</td>
