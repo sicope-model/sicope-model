@@ -408,9 +408,11 @@ task_place_coverage: Place Coverage
 task_transition_coverage: Transition Coverage
 task_reducer: Reducer
 task_notify_channels: Notify Channels
-task_status: Status
+status: Status
 task_running: Running
 task_stopped: Stopped
+bug_open: Open
+bug_closed: Closed
 selenoid: Selenoid
 LINUX: Linux
 ANDROID: Android

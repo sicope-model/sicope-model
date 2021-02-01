@@ -35,11 +35,8 @@
         <dt class="col-sm-3">{{ 'progress'|trans }}</dt>
         <dd class="col-sm-9">{{ ((bug.progress.total > 0) ? bug.progress.processed / bug.progress.total : 0) |format_number(style='percent') }}</dd>
 
-        <dt class="col-sm-3">{{ 'closed'|trans }}</dt>
-        <dd class="col-sm-9">{{ bug.closed }}</dd>
-
-        <dt class="col-sm-3">{{ 'model_version'|trans }}</dt>
-        <dd class="col-sm-9">{{ bug.modelVersion }}</dd>
+        <dt class="col-sm-3">{{ 'status'|trans }}</dt>
+        <dd class="col-sm-9">{{ (bug.closed ? 'bug_closed' : 'bug_open')|trans }}</dd>
 
         <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
         <dd class="col-sm-9">{{ bug.createdAt|date("Y-m-d") }}</dd>

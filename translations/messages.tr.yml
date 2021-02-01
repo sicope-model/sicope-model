@@ -408,10 +408,12 @@ task_place_coverage: Yer Kapsamı
 task_transition_coverage: Geçiş Kapsamı
 task_reducer: Redüktör
 task_notify_channels: Kanalları Bildirin
-task_status: Durum
+status: Durum
 task_running: Koşu
 task_stopped: Durduruldu
-selenoid: Selenoid
+bug_open: Açık
+bug_closed: Closed
+selenoid: Kapalı
 LINUX: Linux
 ANDROID: Android
 safari: Safari

@@ -12,10 +12,10 @@
 
 namespace App\Controller;
 
+use App\Exception\RuntimeException;
 use App\Repository\BugRepository;
 use App\Service\ConfigBag;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,7 +30,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Bug;
 use Tienvx\Bundle\MbtBundle\Model\Bug\StepInterface;
 use Tienvx\Bundle\MbtBundle\Model\BugInterface;
-use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
+use Tienvx\Bundle\MbtBundle\Model\Model\RevisionInterface;
 use Tienvx\Bundle\MbtBundle\Provider\ProviderManagerInterface;
 
 /**
@@ -172,37 +172,36 @@ class BugController extends AbstractController
      */
     protected function formatSteps(BugInterface $bug): ?array
     {
-        $model = $bug->getTask()->getModel();
-
-        return $bug->getModelVersion() === $model->getVersion()
-            ? array_map(fn (StepInterface $step) => $this->formatStep($step, $model), $bug->getSteps())
-            : null;
+        return array_map(
+            fn (StepInterface $step) => $this->formatStep($step, $bug->getTask()->getModelRevision()),
+            $bug->getSteps()
+        );
     }
 
-    protected function formatStep(StepInterface $step, ModelInterface $model): array
+    protected function formatStep(StepInterface $step, RevisionInterface $revision): array
     {
-        $transition = \is_int($step->getTransition()) ? $model->getTransition($step->getTransition()) : null;
+        $transition = \is_int($step->getTransition()) ? $revision->getTransition($step->getTransition()) : null;
         if (\is_int($step->getTransition()) && !$transition) {
             // phpcs:ignore Generic.Files.LineLength
-            throw new Exception(sprintf('Transition %d does not exist in the model %d version %d', $step->getTransition(), $model->getId(), $model->getVersion()));
+            throw new RuntimeException(sprintf('Transition %d does not exist in the model %d version %d', $step->getTransition(), $revision->getId(), $revision->getVersion()));
         }
 
         return [
             'transition' => $transition ? $transition->getLabel() : '',
             'places' => array_map(
-                fn (int $place) => $this->formatPlace($place, $model),
+                fn (int $place) => $this->formatPlace($place, $revision),
                 array_keys($step->getPlaces())
             ),
             'color' => $step->getColor()->getValues(),
         ];
     }
 
-    protected function formatPlace(int $place, ModelInterface $model): ?string
+    protected function formatPlace(int $place, RevisionInterface $revision): ?string
     {
-        $place = $model->getPlace($place);
+        $place = $revision->getPlace($place);
         if (!$place) {
             // phpcs:ignore Generic.Files.LineLength
-            throw new Exception(sprintf('Place %d does not exist in the model %d version %d', $place, $model->getId(), $model->getVersion()));
+            throw new RuntimeException(sprintf('Place %d does not exist in the model %d version %d', $place, $revision->getId(), $revision->getVersion()));
         }
 
         return $place->getLabel();
