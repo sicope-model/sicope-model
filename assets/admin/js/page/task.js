@@ -1,29 +1,10 @@
 function onChange(changed, findAndReplace) {
     $(document).on('change', 'select.' + changed, function () {
         const $form = $(this).closest('form');
-        const names = [
-              ...[
-                  'provider',
-                  'platform',
-                  'browser',
-                  'browserVersion',
-                  'resolution',
-            ].map(name => 'task[seleniumConfig][' + name + ']'),
-            ...[
-                'generator',
-                'reducer',
-            ].map(name => 'task[taskConfig][' + name + ']'),
-        ];
-        const data = $form.serializeArray().reduce(function(obj, item) {
-            if (names.includes(item.name)) {
-                obj[item.name] = item.value;
-            }
-            return obj;
-        }, {});
         $.ajax({
             url: $form.attr('action'),
             type: $form.attr('method'),
-            data: data,
+            data: $form.serializeArray(),
             success: function (html) {
                 findAndReplace.map(className => 'select.' + className).forEach(select => {
                     const selects = $(select);

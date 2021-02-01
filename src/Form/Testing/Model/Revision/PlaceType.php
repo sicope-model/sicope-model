@@ -47,13 +47,13 @@ class PlaceType extends AbstractType
                 ],
                 'prototype_name' => '__command__',
             ])
-            ->add('add_command', ButtonType::class, [
+            ->add('addCommand', ButtonType::class, [
                 'label' => 'add_command',
                 'attr' => [
                     'class' => 'add-command btn-secondary',
                 ],
             ])
-            ->add('remove_place', ButtonType::class, [
+            ->add('removePlace', ButtonType::class, [
                 'attr' => [
                     'class' => 'close remove-place',
                     'aria-label' => 'Close',

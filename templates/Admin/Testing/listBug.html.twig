@@ -20,10 +20,10 @@
                     <tr>
                         <th class="wid-20">{{ knp_pagination_sortable(bugs, 'bug_title'|trans, 'b.title') }}</th>
                         <th class="wid-10">{{ 'bug_model'|trans }}</th>
+                        <th class="wid-10">{{ 'bug_task'|trans }}</th>
                         <th class="wid-20">{{ 'message'|trans }}</th>
                         <th class="wid-10">{{ 'progress'|trans }}</th>
-                        <th class="wid-10">{{ 'closed'|trans }}</th>
-                        <th class="wid-10">{{ 'model_version'|trans }}</th>
+                        <th class="wid-10">{{ 'status'|trans }}</th>
                         <th class="process"></th>
                     </tr>
                 </thead>
@@ -32,11 +32,18 @@
                 {% for bug in bugs %}
                     <tr>
                         <td class="wid-20"><a href="{{ path('admin_bug_view', { 'bug': bug.id }) }}">{{ bug.title }}</a></td>
-                        <td class="wid-10"><a href="{{ path('admin_model_view', { 'model': bug.task.model.id }) }}">{{ bug.task.model.label }}</a></td>
+                        <td class="wid-10">
+                            <a href="{{ path('admin_model_view', { 'model': bug.task.modelRevision.model.id }) }}">
+                                {{ bug.task.modelRevision.model.label }}
+                                {% if bug.task.modelRevision.id is not same as(bug.task.modelRevision.model.activeRevision.id) %}
+                                    <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td class="wid-10"><a href="{{ path('admin_task_view', { 'task': bug.task.id }) }}">{{ bug.task.title }}</a></td>
                         <td class="wid-20">{{ bug.message }}</td>
                         <td class="wid-10">{{ ((bug.progress.total > 0) ? bug.progress.processed / bug.progress.total : 0) |format_number(style='percent') }}</td>
-                        <td class="wid-10">{{ bug.closed }}</td>
-                        <td class="wid-10">{{ bug.modelVersion }}</td>
+                        <td class="wid-10">{{ (bug.closed ? 'bug_closed' : 'bug_open')|trans }}</td>
                         <td class="process">
                             <div class="floating-menu">
                                 <a><i class="material-icons">more_horiz</i></a>

@@ -17,7 +17,14 @@
         <dd class="col-sm-9">{{ task.title }}</dd>
 
         <dt class="col-sm-3">{{ 'task_model'|trans }}</dt>
-        <dd class="col-sm-9"><a href="{{ path('admin_model_view', { 'model': task.model.id }) }}">{{ task.model.label }}</a></dd>
+        <dd class="col-sm-9">
+            <a href="{{ path('admin_model_view', { 'model': task.modelRevision.model.id }) }}">
+                {{ task.modelRevision.model.label }}
+                {% if task.modelRevision.id is not same as(task.modelRevision.model.activeRevision.id) %}
+                    <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
+                {% endif %}
+            </a>
+        </dd>
 
         <dt class="col-sm-3">{{ 'task_selenium_config'|trans }}</dt>
         <dd class="col-sm-9">
@@ -73,6 +80,9 @@
 
         <dt class="col-sm-3">{{ 'progress'|trans }}</dt>
         <dd class="col-sm-9">{{ ((task.progress.total > 0) ? task.progress.processed / task.progress.total : 0) |format_number(style='percent') }}</dd>
+
+        <dt class="col-sm-3">{{ 'bugs'|trans }}</dt>
+        <dd class="col-sm-9">{{ task.bugs|length }}</dd>
 
         <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
         <dd class="col-sm-9">{{ task.createdAt|date("Y-m-d") }}</dd>

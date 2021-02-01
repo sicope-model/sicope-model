@@ -20,13 +20,13 @@ use Knp\Component\Pager\PaginatorInterface;
 use Pd\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Task;
+use Tienvx\Bundle\MbtBundle\Message\RunTaskMessage;
 
 /**
  * Controller managing the tasks.
@@ -104,14 +104,7 @@ class TaskController extends AbstractController
      */
     public function edit(Request $request, Task $task, EntityManagerInterface $em): Response
     {
-        $form = $this->createFormBuilder($task)
-            ->add('title', TextType::class, [
-                'label' => 'task_title',
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'save',
-            ])
-            ->getForm();
+        $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -120,6 +113,7 @@ class TaskController extends AbstractController
 
             // Add Flash
             $this->addFlash('success', 'changes_saved');
+            $this->addFlash('notice', 'running_tasks_notice');
 
             return $this->redirectToRoute('admin_task_list');
         }
@@ -165,6 +159,25 @@ class TaskController extends AbstractController
 
         // Add Flash
         $this->addFlash('success', 'remove_complete');
+
+        // Redirect back
+        return $this->redirect($request->headers->get('referer', $this->generateUrl('admin_task_list')));
+    }
+
+    /**
+     * Run Task.
+     *
+     * @IsGranted("ROLE_TASK_RUN")
+     * @Route(name="admin_task_run", path="/task/{task}/run")
+     */
+    public function run(Request $request, Task $task, MessageBusInterface $messageBus): RedirectResponse
+    {
+        if ($task->isRunning()) {
+            $this->addFlash('error', 'task_already_running');
+        } else {
+            $messageBus->dispatch(new RunTaskMessage($task->getId()));
+            $this->addFlash('success', 'task_scheduled');
+        }
 
         // Redirect back
         return $this->redirect($request->headers->get('referer', $this->generateUrl('admin_task_list')));

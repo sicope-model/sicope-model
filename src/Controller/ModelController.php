@@ -32,7 +32,6 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
-use Tienvx\Bundle\MbtBundle\Entity\Task;
 use Tienvx\Bundle\MbtBundle\Factory\Model\RevisionFactory;
 use Tienvx\Bundle\MbtBundle\Model\Model\RevisionInterface;
 use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
@@ -120,9 +119,7 @@ class ModelController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $oldRevision = $model->getActiveRevision();
-            $oldRevision->setModel(null);
-            $revision = RevisionFactory::createFromArray($oldRevision->toArray());
+            $revision = RevisionFactory::createFromArray($model->getActiveRevision()->toArray());
             $model->setActiveRevision($revision);
             $em->persist($model);
             $em->flush();
@@ -157,23 +154,26 @@ class ModelController extends AbstractController
      * @IsGranted("ROLE_MODEL_DELETE")
      * @Route(name="admin_model_delete", path="/model/{model}/delete")
      */
-    public function delete(Request $request, Model $model, EntityManagerInterface $em): RedirectResponse
-    {
-        // Remove
-        $em->remove($model);
-
+    public function delete(
+        Request $request,
+        Model $model,
+        EntityManagerInterface $em,
+        TaskRepository $taskRepository
+    ): RedirectResponse {
         // Remove orphan revisions
         $revisionIds = $model->getRevisions()->map(fn (RevisionInterface $revision) => $revision->getId())->getValues();
-        /** @var TaskRepository $taskRepository */
-        $taskRepository = $em->getRepository(Task::class);
         $tasksCount = $taskRepository->countTasksByRevisions($revisionIds);
         foreach ($model->getRevisions() as $revision) {
             if (($tasksCount[$revision->getId()] ?? 0) === 0) {
+                $model->removeRevision($revision);
                 $em->remove($revision);
             } else {
                 $revision->setModel(null);
             }
         }
+
+        // Remove
+        $em->remove($model);
 
         $em->flush();
 
@@ -195,7 +195,7 @@ class ModelController extends AbstractController
         $response = new Response();
         if ($commandHelper->verifyCommand('dot')) {
             $process = Process::fromShellCommandline('echo "$DUMP" | dot -Tsvg');
-            $process->run(null, ['DUMP' => $modelDumper->dump($model)]);
+            $process->run(null, ['DUMP' => $modelDumper->dump($model->getActiveRevision())]);
 
             $disposition = $response->headers->makeDisposition(
                 ResponseHeaderBag::DISPOSITION_INLINE,

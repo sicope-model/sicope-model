@@ -41,7 +41,7 @@ class RevisionType extends AbstractType
                     'class' => 'list-group places col pl-3',
                 ],
             ])
-            ->add('add_place', ButtonType::class, [
+            ->add('addPlace', ButtonType::class, [
                 'label' => 'add_place',
                 'attr' => [
                     'class' => 'add-place btn-secondary',
@@ -62,7 +62,7 @@ class RevisionType extends AbstractType
                     'class' => 'list-group transitions col pl-3',
                 ],
             ])
-            ->add('add_transition', ButtonType::class, [
+            ->add('addTransition', ButtonType::class, [
                 'label' => 'add_transition',
                 'attr' => [
                     'class' => 'add-transition btn-secondary',

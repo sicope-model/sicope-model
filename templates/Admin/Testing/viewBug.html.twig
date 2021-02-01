@@ -20,7 +20,14 @@
         <dd class="col-sm-9"><a href="{{ path('admin_task_view', { 'task': bug.task.id }) }}">{{ bug.task.title }}</a></dd>
 
         <dt class="col-sm-3">{{ 'bug_model'|trans }}</dt>
-        <dd class="col-sm-9"><a href="{{ path('admin_model_view', { 'model': bug.task.model.id }) }}">{{ bug.task.model.label }}</a></dd>
+        <dd class="col-sm-9">
+            <a href="{{ path('admin_model_view', { 'model': bug.task.modelRevision.model.id }) }}">
+                {{ bug.task.modelRevision.model.label }}
+                {% if bug.task.modelRevision.id is not same as(bug.task.modelRevision.model.activeRevision.id) %}
+                    <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
+                {% endif %}
+            </a>
+        </dd>
 
         <dt class="col-sm-3 text-truncate">{{ 'message'|trans }}</dt>
         <dd class="col-sm-9">{{ bug.message }}</dd>
@@ -28,11 +35,8 @@
         <dt class="col-sm-3">{{ 'progress'|trans }}</dt>
         <dd class="col-sm-9">{{ ((bug.progress.total > 0) ? bug.progress.processed / bug.progress.total : 0) |format_number(style='percent') }}</dd>
 
-        <dt class="col-sm-3">{{ 'closed'|trans }}</dt>
-        <dd class="col-sm-9">{{ bug.closed }}</dd>
-
-        <dt class="col-sm-3">{{ 'model_version'|trans }}</dt>
-        <dd class="col-sm-9">{{ bug.modelVersion }}</dd>
+        <dt class="col-sm-3">{{ 'status'|trans }}</dt>
+        <dd class="col-sm-9">{{ (bug.closed ? 'bug_closed' : 'bug_open')|trans }}</dd>
 
         <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
         <dd class="col-sm-9">{{ bug.createdAt|date("Y-m-d") }}</dd>

@@ -133,6 +133,7 @@ date: Tarih
 success: Başarılı
 process_completed: İşlem Tamamlandı.
 changes_saved: Değişiklikler kaydedildi.
+running_tasks_notice: Çalışan görevler etkilenmez.
 remove_complete: Silme işlemi tamamlandı.
 sorry_not_existing: Üzgünüz kayıt mevcut değil.
 test_email_success: Test e-postası gönderildi.
@@ -379,6 +380,8 @@ testing_model_edit_title: Modeli Düzenle
 testing_model_edit_desc: Bir modelin durumlarını ve geçişlerini düzenleme
 testing_model_import_title: Modeli İçe Aktar
 testing_model_import_desc: Yüklenen dosyadan yeni model oluştur
+testing_model_view_title: Modeli Görüntüle
+testing_model_view_desc: Modeli durumlar ve geçişlerle görüntüleyin
 testing_task_list_title: Görevler
 testing_task_list_desc: Görevleri yönetme
 testing_task_create_title: Görev Oluştur
@@ -407,7 +410,12 @@ task_place_coverage: Yer Kapsamı
 task_transition_coverage: Geçiş Kapsamı
 task_reducer: Redüktör
 task_notify_channels: Kanalları Bildirin
-selenoid: Selenoid
+status: Durum
+task_running: Koşu
+task_stopped: Durduruldu
+bug_open: Açık
+bug_closed: Closed
+selenoid: Kapalı
 LINUX: Linux
 ANDROID: Android
 safari: Safari
@@ -424,6 +432,11 @@ transition: Geçiş
 places: Yerler
 variables: Değişkenler
 steps_invalid: Geçersiz Adımlar
+outdated: Modası geçmiş
+task_scheduled: Görev planlandı
+task_already_running: Görev zaten çalışıyor
+run: Koşmak
+bugs: Hatalar
 ROLE_MODEL:
     title: Test - Model
     LIST: Liste Modeli
@@ -440,7 +453,8 @@ ROLE_TASK:
     CREATE: Görev Oluştur
     EDIT: Görevi Düzenle
     VIEW: Görevi Görüntüle
-    DELETE: Modeli Sil
+    DELETE: Görevi Sil
+    RUN: Görevi Çalıştır
 ROLE_BUG:
     title: Test - Hata
     LIST: Liste Hatası

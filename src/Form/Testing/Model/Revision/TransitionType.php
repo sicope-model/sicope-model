@@ -60,26 +60,26 @@ class TransitionType extends AbstractType
                 ],
                 'prototype_name' => '__command__',
             ])
-            ->add('add_command', ButtonType::class, [
+            ->add('addCommand', ButtonType::class, [
                 'label' => 'add_command',
                 'attr' => [
                     'class' => 'add-command btn-secondary',
                 ],
             ])
-            ->add('from_places', TextType::class, [
+            ->add('fromPlaces', TextType::class, [
                 'label' => 'from_places',
                 'attr' => [
                     'class' => 'select-from-places',
                 ],
                 'required' => false,
             ])
-            ->add('to_places', TextType::class, [
+            ->add('toPlaces', TextType::class, [
                 'label' => 'to_places',
                 'attr' => [
                     'class' => 'select-to-places',
                 ],
             ])
-            ->add('remove_transition', ButtonType::class, [
+            ->add('removeTransition', ButtonType::class, [
                 'attr' => [
                     'class' => 'close remove-transition',
                     'aria-label' => 'Close',
@@ -90,9 +90,9 @@ class TransitionType extends AbstractType
             ])
         ;
 
-        $builder->get('from_places')
+        $builder->get('fromPlaces')
             ->addModelTransformer($this->transformer);
-        $builder->get('to_places')
+        $builder->get('toPlaces')
             ->addModelTransformer($this->transformer);
     }
 
