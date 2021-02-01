@@ -15,20 +15,19 @@ namespace App\Form\DataTransformer;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Factory\ModelFactory;
 use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
 
 class FileModelTransformer implements DataTransformerInterface
 {
     /**
-     * Not supported.
+     * Do nothing.
      *
-     * @throws TransformationFailedException
+     * @param null $modelAsObject
      */
     public function transform($modelAsObject)
     {
-        throw new TransformationFailedException('Not supported');
+        return null;
     }
 
     /**
