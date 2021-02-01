@@ -195,7 +195,7 @@ class ModelController extends AbstractController
         $response = new Response();
         if ($commandHelper->verifyCommand('dot')) {
             $process = Process::fromShellCommandline('echo "$DUMP" | dot -Tsvg');
-            $process->run(null, ['DUMP' => $modelDumper->dump($model)]);
+            $process->run(null, ['DUMP' => $modelDumper->dump($model->getActiveRevision())]);
 
             $disposition = $response->headers->makeDisposition(
                 ResponseHeaderBag::DISPOSITION_INLINE,
