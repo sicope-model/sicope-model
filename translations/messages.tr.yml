@@ -380,6 +380,8 @@ testing_model_edit_title: Modeli Düzenle
 testing_model_edit_desc: Bir modelin durumlarını ve geçişlerini düzenleme
 testing_model_import_title: Modeli İçe Aktar
 testing_model_import_desc: Yüklenen dosyadan yeni model oluştur
+testing_model_view_title: Modeli Görüntüle
+testing_model_view_desc: Modeli durumlar ve geçişlerle görüntüleyin
 testing_task_list_title: Görevler
 testing_task_list_desc: Görevleri yönetme
 testing_task_create_title: Görev Oluştur
