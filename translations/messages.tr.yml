@@ -430,6 +430,7 @@ variables: Değişkenler
 steps_invalid: Geçersiz Adımlar
 outdated: Modası geçmiş
 task_scheduled: Görev planlandı
+task_already_running: Görev zaten çalışıyor
 run: Koşmak
 ROLE_MODEL:
     title: Test - Model

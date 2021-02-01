@@ -171,23 +171,14 @@ class TaskController extends AbstractController
      * @IsGranted("ROLE_TASK_RUN")
      * @Route(name="admin_task_run", path="/task/{task}/run")
      */
-    public function run(
-        Request $request,
-        Task $task,
-        EntityManagerInterface $em,
-        MessageBusInterface $messageBus
-    ): RedirectResponse {
+    public function run(Request $request, Task $task, MessageBusInterface $messageBus): RedirectResponse
+    {
         if ($task->isRunning()) {
-            throw new BadRequestHttpException('Task is already running');
+            $this->addFlash('error', 'task_already_running');
+        } else {
+            $messageBus->dispatch(new RunTaskMessage($task->getId()));
+            $this->addFlash('success', 'task_scheduled');
         }
-
-        $task->setRunning(true);
-        $em->flush();
-
-        $messageBus->dispatch(new RunTaskMessage($task->getId()));
-
-        // Add Flash
-        $this->addFlash('success', 'remove_complete');
 
         // Redirect back
         return $this->redirect($request->headers->get('referer', $this->generateUrl('admin_task_list')));
