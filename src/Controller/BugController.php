@@ -137,6 +137,32 @@ class BugController extends AbstractController
     }
 
     /**
+     * Open Bug.
+     *
+     * @IsGranted("ROLE_BUG_OPEN")
+     * @Route(name="admin_bug_open", path="/task/{bug}/open")
+     */
+    public function open(Request $request, Bug $bug): RedirectResponse
+    {
+        $bug->setClosed(false);
+
+        return $this->changeStatus($request);
+    }
+
+    /**
+     * Close Bug.
+     *
+     * @IsGranted("ROLE_BUG_CLOSE")
+     * @Route(name="admin_bug_close", path="/task/{bug}/close")
+     */
+    public function close(Request $request, Bug $bug): RedirectResponse
+    {
+        $bug->setClosed(true);
+
+        return $this->changeStatus($request);
+    }
+
+    /**
      * View Model Video.
      *
      * @IsGranted("ROLE_BUG_VIDEO")
@@ -205,5 +231,16 @@ class BugController extends AbstractController
         }
 
         return $place->getLabel();
+    }
+
+    protected function changeStatus(Request $request): RedirectResponse
+    {
+        $this->getDoctrine()->getManager()->flush();
+
+        // Add Flash
+        $this->addFlash('success', 'changes_saved');
+
+        // Redirect back
+        return $this->redirect($request->headers->get('referer', $this->generateUrl('admin_bug_list')));
     }
 }
