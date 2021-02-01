@@ -92,6 +92,7 @@ switch_user: Account Login
 activate_deactivate: Enable / Disable
 freeze_unfreeze: Account Suspend / Unsuspend
 add_new: Add New
+open: Open
 close: Close
 yes: Yes
 add: Add
@@ -462,6 +463,8 @@ ROLE_BUG:
     VIEW: View Bug
     DELETE: Delete Bug
     VIDEO: View Bug Video
+    OPEN: Open Bug
+    CLOSE: Close Bug
 
 ###
 # Testing Widget

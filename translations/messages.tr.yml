@@ -92,6 +92,7 @@ switch_user: Hesaba Giriş Yap
 activate_deactivate: Etkinleştir / Devre Dışı
 freeze_unfreeze: Askıya Al / Kapat
 add_new: Yeni Ekle
+open: Açık
 close: Kapat
 yes: Evet
 add: Ekle
@@ -462,6 +463,8 @@ ROLE_BUG:
     VIEW: Hatayı Görüntüle
     DELETE: Hatayı Sil
     VIDEO: Hata Videosunu Görüntüle
+    OPEN: Açık Hata
+    CLOSE: Hatayı Kapat
 
 ###
 # Testing Widget

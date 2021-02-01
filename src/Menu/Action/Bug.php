@@ -51,6 +51,20 @@ class Bug extends Menu
                 'data-tooltip' => '',
                 'title' => 'edit',
             ])
+            ->setLabelAttr(['class' => 'hidden'])
+
+            ->addChildParent('admin_testing_bug_update_status', 1)
+            ->setLabel($options['bug']->isClosed() ? 'open' : 'close')
+            ->setRoute(
+                $options['bug']->isClosed() ? 'admin_bug_open' : 'admin_bug_close',
+                ['bug' => $options['bug']->getId()]
+            )
+            ->setRoles($options['bug']->isClosed() ? ['ROLE_BUG_OPEN'] : ['ROLE_BUG_CLOSE'])
+            ->setExtra('label_icon', $options['bug']->isClosed() ? 'drafts' : 'mail')
+            ->setLinkAttr([
+                'data-tooltip' => '',
+                'title' => $options['bug']->isClosed() ? 'open' : 'close',
+            ])
             ->setLabelAttr(['class' => 'hidden']);
 
         return $menu;
