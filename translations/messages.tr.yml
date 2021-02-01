@@ -432,6 +432,7 @@ outdated: Modası geçmiş
 task_scheduled: Görev planlandı
 task_already_running: Görev zaten çalışıyor
 run: Koşmak
+bugs: Hatalar
 ROLE_MODEL:
     title: Test - Model
     LIST: Liste Modeli

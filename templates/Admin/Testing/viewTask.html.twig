@@ -81,6 +81,9 @@
         <dt class="col-sm-3">{{ 'progress'|trans }}</dt>
         <dd class="col-sm-9">{{ ((task.progress.total > 0) ? task.progress.processed / task.progress.total : 0) |format_number(style='percent') }}</dd>
 
+        <dt class="col-sm-3">{{ 'bugs'|trans }}</dt>
+        <dd class="col-sm-9">{{ task.bugs|length }}</dd>
+
         <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
         <dd class="col-sm-9">{{ task.createdAt|date("Y-m-d") }}</dd>
 
