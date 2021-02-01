@@ -133,8 +133,8 @@ date: Date
 success: Successful
 process_completed: Operation completed.
 changes_saved: Changes have been saved.
+running_tasks_notice: Running tasks are not affected.
 remove_complete: Deletion completed.
-task_config_changed_running_tasks_notice: Running tasks are not affected.
 sorry_not_existing: Sorry no registration is available.
 test_email_success: Test email sent.
 user_registration_disable: User registration is currently closed, please try again later.
