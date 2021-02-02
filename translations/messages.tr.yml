@@ -434,6 +434,7 @@ places: Yerler
 variables: Değişkenler
 steps_invalid: Geçersiz Adımlar
 outdated: Modası geçmiş
+deleted: Silindi
 task_scheduled: Görev planlandı
 task_already_running: Görev zaten çalışıyor
 run: Koşmak

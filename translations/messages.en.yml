@@ -434,6 +434,7 @@ places: Places
 variables: Variables
 steps_invalid: Steps Invalid
 outdated: Outdated
+deleted: Deleted
 task_scheduled: Task is scheduled
 task_already_running: Task is already running
 run: Run

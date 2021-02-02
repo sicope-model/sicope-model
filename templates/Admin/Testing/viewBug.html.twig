@@ -21,12 +21,16 @@
 
         <dt class="col-sm-3">{{ 'bug_model'|trans }}</dt>
         <dd class="col-sm-9">
-            <a href="{{ path('admin_model_view', { 'model': bug.task.modelRevision.model.id }) }}">
-                {{ bug.task.modelRevision.model.label }}
-                {% if bug.task.modelRevision.id is not same as(bug.task.modelRevision.model.activeRevision.id) %}
-                    <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
-                {% endif %}
-            </a>
+            {% if bug.task.modelRevision.model is not null %}
+                <a href="{{ path('admin_model_view', { 'model': bug.task.modelRevision.model.id }) }}">
+                    {{ bug.task.modelRevision.model.label }}
+                    {% if bug.task.modelRevision.id is not same as(bug.task.modelRevision.model.activeRevision.id) %}
+                        <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
+                    {% endif %}
+                </a>
+            {% else %}
+                <span class="badge badge-danger">{{ 'deleted'|trans }}</span>
+            {% endif %}
         </dd>
 
         <dt class="col-sm-3 text-truncate">{{ 'message'|trans }}</dt>
