@@ -33,12 +33,16 @@
                     <tr>
                         <td class="wid-20"><a href="{{ path('admin_bug_view', { 'bug': bug.id }) }}">{{ bug.title }}</a></td>
                         <td class="wid-10">
-                            <a href="{{ path('admin_model_view', { 'model': bug.task.modelRevision.model.id }) }}">
-                                {{ bug.task.modelRevision.model.label }}
-                                {% if bug.task.modelRevision.id is not same as(bug.task.modelRevision.model.activeRevision.id) %}
-                                    <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
-                                {% endif %}
-                            </a>
+                            {% if bug.task.modelRevision.model is not null %}
+                                <a href="{{ path('admin_model_view', { 'model': bug.task.modelRevision.model.id }) }}">
+                                    {{ bug.task.modelRevision.model.label }}
+                                    {% if bug.task.modelRevision.id is not same as(bug.task.modelRevision.model.activeRevision.id) %}
+                                        <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
+                                    {% endif %}
+                                </a>
+                            {% else %}
+                                <span class="badge badge-danger">{{ 'deleted'|trans }}</span>
+                            {% endif %}
                         </td>
                         <td class="wid-10"><a href="{{ path('admin_task_view', { 'task': bug.task.id }) }}">{{ bug.task.title }}</a></td>
                         <td class="wid-20">{{ bug.message }}</td>

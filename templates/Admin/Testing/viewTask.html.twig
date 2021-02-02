@@ -18,12 +18,16 @@
 
         <dt class="col-sm-3">{{ 'task_model'|trans }}</dt>
         <dd class="col-sm-9">
-            <a href="{{ path('admin_model_view', { 'model': task.modelRevision.model.id }) }}">
-                {{ task.modelRevision.model.label }}
-                {% if task.modelRevision.id is not same as(task.modelRevision.model.activeRevision.id) %}
-                    <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
-                {% endif %}
-            </a>
+            {% if task.modelRevision.model is not null %}
+                <a href="{{ path('admin_model_view', { 'model': task.modelRevision.model.id }) }}">
+                    {{ task.modelRevision.model.label }}
+                    {% if task.modelRevision.id is not same as(task.modelRevision.model.activeRevision.id) %}
+                        <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
+                    {% endif %}
+                </a>
+            {% else %}
+                <span class="badge badge-danger">{{ 'deleted'|trans }}</span>
+            {% endif %}
         </dd>
 
         <dt class="col-sm-3">{{ 'task_selenium_config'|trans }}</dt>
