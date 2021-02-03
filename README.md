@@ -35,6 +35,8 @@ symfony console messenger:consume async
 symfony console user:create
 ```
 
+Navigate to http://localhost:8000 to create first model.
+
 Tools:
 * [Adminer](http://localhost:8888)
 * [Mailhog](http://localhost:8025)
