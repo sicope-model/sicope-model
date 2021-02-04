@@ -1,4 +1,4 @@
-# https://github.com/dunglas/symfony-docker/blob/master/Dockerfile
+# https://github.com/dunglas/symfony-docker/blob/main/Dockerfile
 ARG PHP_VERSION=7.4
 ARG CADDY_VERSION=2
 ARG NODE_VERSION=15
