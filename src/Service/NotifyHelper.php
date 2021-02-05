@@ -12,57 +12,46 @@
 
 namespace App\Service;
 
+use App\Exception\RuntimeException;
+use App\Notification\BugNotification;
 use App\Repository\UserRepository;
-use Pd\UserBundle\Model\ProfileInterface;
 use Pd\UserBundle\Model\UserInterface;
-use Symfony\Component\Mime\Address;
+use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Notifier\Recipient\NoRecipient;
 use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Notifier\Recipient\RecipientInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Tienvx\Bundle\MbtBundle\Model\BugInterface;
 use Tienvx\Bundle\MbtBundle\Service\NotifyHelperInterface;
 
 class NotifyHelper implements NotifyHelperInterface
 {
     protected UserRepository $userRepository;
-    protected UrlGeneratorInterface $router;
-    protected string $mailSenderAddress;
-    protected string $mailSenderName;
+    protected NotifierInterface $notifier;
 
-    public function __construct(
-        UserRepository $userRepository,
-        UrlGeneratorInterface $router,
-        string $mailSenderAddress,
-        string $mailSenderName
-    ) {
+    public function __construct(UserRepository $userRepository, NotifierInterface $notifier)
+    {
         $this->userRepository = $userRepository;
-        $this->router = $router;
-        $this->mailSenderAddress = $mailSenderAddress;
-        $this->mailSenderName = $mailSenderName;
+        $this->notifier = $notifier;
     }
 
-    public function getRecipient(int $userId): RecipientInterface
+    public function notify(BugInterface $bug): void
+    {
+        $this->notifier->send(
+            new BugNotification($bug),
+            $bug->getTask()->getTaskConfig()->getNotifyAuthor() && $bug->getTask()->getAuthor()
+                ? $this->getRecipient($bug->getTask()->getAuthor())
+                : new NoRecipient()
+        );
+    }
+
+    protected function getRecipient(int $userId): RecipientInterface
     {
         $user = $this->userRepository->find($userId);
-        $email = $user instanceof UserInterface ? $user->getEmail() : null;
-        $profile = $user instanceof UserInterface ? $user->getProfile() : null;
-        $phone = $profile instanceof ProfileInterface ? $profile->getPhone() : null;
-
-        if ($email || $phone) {
-            return new Recipient((string) $email, (string) $phone);
+        if (!$user instanceof UserInterface) {
+            throw new RuntimeException('Task author not found');
         }
+        $profile = $user->getProfile() ?? null;
 
-        return new NoRecipient();
-    }
-
-    public function getBugUrl(BugInterface $bug): string
-    {
-        return $this->router->generate('admin_bug_view', ['bug' => $bug->getId()], UrlGeneratorInterface::ABSOLUTE_URL);
-    }
-
-    public function getFromAddress(): Address
-    {
-        return new Address($this->mailSenderAddress, $this->mailSenderName);
+        return new Recipient((string) $user->getEmail(), (string) ($profile ? $profile->getPhone() : null));
     }
 }

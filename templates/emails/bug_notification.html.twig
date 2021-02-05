@@ -1,0 +1,17 @@
+{% extends '@email/default/notification/body.html.twig' %}
+
+{% block content %}
+    Bug id: {{ bug.id }}<br />
+    Task id: {{ bug.task.id }}<br />
+
+    <p>
+        {{ bug.message }}
+    </p>
+
+    Follow the action to view more information about the bug.
+{% endblock %}
+
+{% block action %}
+    <spacer size="16"></spacer>
+    <button href="{{ url('admin_bug_view', { id: bug.id }) }}">View Bug</button>
+{% endblock %}

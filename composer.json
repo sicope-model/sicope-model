@@ -40,6 +40,7 @@
     "symfony/framework-bundle": "5.*",
     "symfony/mailer": "5.*",
     "symfony/monolog-bundle": "3.*",
+    "symfony/notifier": "5.2.*",
     "symfony/orm-pack": "1.*",
     "symfony/process": "5.*",
     "symfony/security-bundle": "5.*",

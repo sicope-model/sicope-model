@@ -38,6 +38,7 @@ return PhpCsFixer\Config::create()
         'combine_nested_dirname' => true,
         'header_comment' => ['header' => $fileHeaderComment, 'separate' => 'both', 'commentType' => 'PHPDoc'],
         'concat_space' => ['spacing' => 'one'],
+        'class_definition' => ['single_line' => false],
     ])
     ->setFinder($finder)
     ->setCacheFile(__DIR__.'/var/cache/.php_cs.cache')
