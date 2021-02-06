@@ -429,6 +429,7 @@ opera: Opera
 random: Random
 split: Split
 email: Email
+chat/slack: Slack
 bug_model: Model
 bug_video: Video
 transition: Transition
