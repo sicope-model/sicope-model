@@ -12,6 +12,7 @@
 
 namespace App\Notification;
 
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Notifier\Bridge\Slack\Block\SlackDividerBlock;
 use Symfony\Component\Notifier\Bridge\Slack\Block\SlackSectionBlock;
 use Symfony\Component\Notifier\Bridge\Slack\SlackOptions;
@@ -33,10 +34,14 @@ class BugNotification extends Notification implements
     SmsNotificationInterface
 {
     protected BugInterface $bug;
+    protected string $mailSenderAddress;
+    protected string $mailSenderName;
 
-    public function __construct(BugInterface $bug)
+    public function __construct(BugInterface $bug, string $mailSenderAddress, string $mailSenderName)
     {
         $this->bug = $bug;
+        $this->mailSenderAddress = $mailSenderAddress;
+        $this->mailSenderName = $mailSenderName;
 
         parent::__construct('New bug found');
     }
@@ -52,12 +57,13 @@ class BugNotification extends Notification implements
         $message->options(
             (new SlackOptions())
             ->iconEmoji('bug')
-            ->iconUrl('https://guestbook.example.com')
-            ->username('SICOPE Model')
+            ->username($this->mailSenderName)
             ->block((new SlackSectionBlock())->text($this->getSubject()))
             ->block(new SlackDividerBlock())
             ->block((new SlackSectionBlock())->text(sprintf('Bug id: %d', $this->bug->getId())))
             ->block((new SlackSectionBlock())->text(sprintf('Task id: %d', $this->bug->getTask()->getId())))
+            ->block((new SlackSectionBlock())->text(sprintf('Message: %d', $this->bug->getMessage())))
+            ->block((new SlackSectionBlock())->text(sprintf('Steps: %d', \count($this->bug->getSteps()))))
         );
 
         return $message;
@@ -67,6 +73,7 @@ class BugNotification extends Notification implements
     {
         $message = EmailMessage::fromNotification($this, $recipient);
         $message->getMessage()
+            ->from(new Address($this->mailSenderAddress, $this->mailSenderName))
             ->htmlTemplate('emails/bug_notification.html.twig')
             ->context(['bug' => $this->bug])
         ;
