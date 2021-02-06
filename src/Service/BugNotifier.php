@@ -21,23 +21,31 @@ use Symfony\Component\Notifier\Recipient\NoRecipient;
 use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Notifier\Recipient\RecipientInterface;
 use Tienvx\Bundle\MbtBundle\Model\BugInterface;
-use Tienvx\Bundle\MbtBundle\Service\NotifyHelperInterface;
+use Tienvx\Bundle\MbtBundle\Service\Bug\BugNotifierInterface;
 
-class NotifyHelper implements NotifyHelperInterface
+class BugNotifier implements BugNotifierInterface
 {
     protected UserRepository $userRepository;
     protected NotifierInterface $notifier;
+    protected string $mailSenderAddress;
+    protected string $mailSenderName;
 
-    public function __construct(UserRepository $userRepository, NotifierInterface $notifier)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        NotifierInterface $notifier,
+        string $mailSenderAddress,
+        string $mailSenderName
+    ) {
         $this->userRepository = $userRepository;
         $this->notifier = $notifier;
+        $this->mailSenderAddress = $mailSenderAddress;
+        $this->mailSenderName = $mailSenderName;
     }
 
     public function notify(BugInterface $bug): void
     {
         $this->notifier->send(
-            new BugNotification($bug),
+            new BugNotification($bug, $this->mailSenderAddress, $this->mailSenderName),
             $bug->getTask()->getTaskConfig()->getNotifyAuthor() && $bug->getTask()->getAuthor()
                 ? $this->getRecipient($bug->getTask()->getAuthor())
                 : new NoRecipient()
