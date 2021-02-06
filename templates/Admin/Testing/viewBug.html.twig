@@ -14,7 +14,7 @@
 {% block content_body %}
     <dl class="row">
         <dt class="col-sm-3">{{ 'bug_title'|trans }}</dt>
-        <dd class="col-sm-9">{{ bug.title }}</dd>
+        <dd class="col-sm-9">{{ bug.title ?: 'NO TITLE' }}</dd>
 
         <dt class="col-sm-3">{{ 'bug_task'|trans }}</dt>
         <dd class="col-sm-9"><a href="{{ path('admin_task_view', { 'task': bug.task.id }) }}">{{ bug.task.title }}</a></dd>

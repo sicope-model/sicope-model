@@ -31,7 +31,7 @@
                 <tbody>
                 {% for bug in bugs %}
                     <tr>
-                        <td class="wid-20"><a href="{{ path('admin_bug_view', { 'bug': bug.id }) }}">{{ bug.title }}</a></td>
+                        <td class="wid-20"><a href="{{ path('admin_bug_view', { 'bug': bug.id }) }}">{{ bug.title ?: 'NO TITLE' }}</a></td>
                         <td class="wid-10">
                             {% if bug.task.modelRevision.model is not null %}
                                 <a href="{{ path('admin_model_view', { 'model': bug.task.modelRevision.model.id }) }}">
