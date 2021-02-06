@@ -284,6 +284,9 @@
             "ref": "2a24962874f40ebf35a13e88708b51b6dc0016b1"
         }
     },
+    "symfony/http-client": {
+        "version": "v5.2.3"
+    },
     "symfony/http-client-contracts": {
         "version": "v2.3.1"
     },
@@ -448,6 +451,15 @@
     },
     "symfony/service-contracts": {
         "version": "v1.1.5"
+    },
+    "symfony/slack-notifier": {
+        "version": "5.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.2",
+            "ref": "192bc241a3095c6861353e5a7a652ad35659ca92"
+        }
     },
     "symfony/stopwatch": {
         "version": "v4.1.7"

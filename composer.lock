@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa4223739887705d1cfbebedb794e472",
+    "content-hash": "ec6a2d50a0702fe2598afece4b9f1a18",
     "packages": [
         {
             "name": "appaydin/pd-mailer",
@@ -4697,6 +4697,92 @@
             "time": "2021-01-27T11:19:04+00:00"
         },
         {
+            "name": "symfony/http-client",
+            "version": "v5.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-client.git",
+                "reference": "22cb1a7844fff206cc5186409776e78865405ea5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/22cb1a7844fff206cc5186409776e78865405ea5",
+                "reference": "22cb1a7844fff206cc5186409776e78865405ea5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "psr/log": "^1.0",
+                "symfony/http-client-contracts": "^2.2",
+                "symfony/polyfill-php73": "^1.11",
+                "symfony/polyfill-php80": "^1.15",
+                "symfony/service-contracts": "^1.0|^2"
+            },
+            "provide": {
+                "php-http/async-client-implementation": "*",
+                "php-http/client-implementation": "*",
+                "psr/http-client-implementation": "1.0",
+                "symfony/http-client-implementation": "1.1"
+            },
+            "require-dev": {
+                "amphp/amp": "^2.5",
+                "amphp/http-client": "^4.2.1",
+                "amphp/http-tunnel": "^1.0",
+                "amphp/socket": "^1.1",
+                "guzzlehttp/promises": "^1.4",
+                "nyholm/psr7": "^1.0",
+                "php-http/httplug": "^1.0|^2.0",
+                "psr/http-client": "^1.0",
+                "symfony/dependency-injection": "^4.4|^5.0",
+                "symfony/http-kernel": "^4.4.13|^5.1.5",
+                "symfony/process": "^4.4|^5.0",
+                "symfony/stopwatch": "^4.4|^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\HttpClient\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides powerful methods to fetch HTTP resources synchronously or asynchronously",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/http-client/tree/v5.2.3"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-01-27T10:15:41+00:00"
+        },
+        {
             "name": "symfony/http-client-contracts",
             "version": "v2.3.1",
             "source": {
@@ -7042,6 +7128,77 @@
             "time": "2020-09-07T11:33:47+00:00"
         },
         {
+            "name": "symfony/slack-notifier",
+            "version": "v5.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/slack-notifier.git",
+                "reference": "d68736f5bfc7011c61ad9e8aa5eea13a823ab780"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/slack-notifier/zipball/d68736f5bfc7011c61ad9e8aa5eea13a823ab780",
+                "reference": "d68736f5bfc7011c61ad9e8aa5eea13a823ab780",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/deprecation-contracts": "^2.1",
+                "symfony/http-client": "^4.3|^5.0",
+                "symfony/notifier": "~5.2.2"
+            },
+            "require-dev": {
+                "symfony/event-dispatcher": "^4.3|^5.0"
+            },
+            "type": "symfony-bridge",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Notifier\\Bridge\\Slack\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Slack Notifier Bridge",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "notifier",
+                "slack"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/slack-notifier/tree/v5.2.3"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-01-07T14:39:16+00:00"
+        },
+        {
             "name": "symfony/stopwatch",
             "version": "v5.2.3",
             "source": {
@@ -7912,21 +8069,20 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v2.0.2",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "a0f08e69071ed8664c7484147f478f76722276e5"
+                "reference": "d202809c21d4ac98cde1f920d8547afef1237156"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/a0f08e69071ed8664c7484147f478f76722276e5",
-                "reference": "a0f08e69071ed8664c7484147f478f76722276e5",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/d202809c21d4ac98cde1f920d8547afef1237156",
+                "reference": "d202809c21d4ac98cde1f920d8547afef1237156",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": "^2.8",
-                "egulias/email-validator": "^2.1",
                 "ext-json": "*",
                 "florianv/petrinet": "dev-master as 2.1.1",
                 "jmgq/a-star": "^1.1",
@@ -7937,10 +8093,6 @@
                 "symfony/expression-language": "^5.2",
                 "symfony/http-kernel": "^5.2",
                 "symfony/messenger": "^5.2",
-                "symfony/mime": "^5.2",
-                "symfony/notifier": "^5.2",
-                "symfony/security-core": "^5.2",
-                "symfony/translation": "^5.2",
                 "symfony/validator": "^5.2",
                 "tienvx/single-color-petrinet": "^1.3"
             },
@@ -7949,17 +8101,6 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5"
-            },
-            "suggest": {
-                "ext-amqp": "Needed to support amqp transport for messenger component",
-                "symfony/mailer": "Support notifying bug using email",
-                "symfony/nexmo-notifier": "Notify bug using Nexmo API",
-                "symfony/slack-notifier": "Notify bug to Slack",
-                "symfony/telegram-notifier": "Notify bug to Telegram",
-                "symfony/twig-pack": "Support notifying bug using email",
-                "symfony/twilio-notifier": "Notify bug using Twilio API",
-                "twig/cssinliner-extra": "Support notifying bug using email",
-                "twig/inky-extra": "Support notifying bug using email"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -7994,7 +8135,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.2"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.5"
             },
             "funding": [
                 {
@@ -8002,7 +8143,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-02-03T05:58:40+00:00"
+            "time": "2021-02-06T02:28:32+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",

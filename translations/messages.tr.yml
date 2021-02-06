@@ -395,6 +395,8 @@ testing_bug_list_title: Hatalar
 testing_bug_list_desc: Hataları yönetme
 testing_bug_view_title: Hata
 testing_bug_view_desc: Önceden oluşturulmuş adımlar ve kaydedilmiş video ile ilgili hata
+testing_bug_edit_title: Hatayı Düzenle
+testing_bug_edit_desc: Hata başlığını düzenleyin
 export: İhracat
 import: İthalat
 model_file: Model (JSON dosyası)

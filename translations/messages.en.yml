@@ -395,6 +395,8 @@ testing_bug_list_title: Bugs
 testing_bug_list_desc: Managing bugs
 testing_bug_view_title: Bug
 testing_bug_view_desc: Bug with preproduce steps and recorded video
+testing_bug_edit_title: Edit Bug
+testing_bug_edit_desc: Edit bug title
 export: Export
 import: Import
 model_file: Model (JSON file)
