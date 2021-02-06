@@ -98,7 +98,14 @@ class SeleniumConfigType extends AbstractType
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) use ($formModifier) {
-                $formModifier($event->getForm());
+                $data = $event->getData();
+
+                $formModifier(
+                    $event->getForm(),
+                    $data->getProvider(),
+                    $data->getPlatform(),
+                    $data->getBrowser()
+                );
             }
         );
 
