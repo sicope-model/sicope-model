@@ -13,6 +13,7 @@
 namespace App\Form\Testing;
 
 use App\Form\DataTransformer\ActiveRevisionTransformer;
+use App\Form\DataTransformer\TitleTransformer;
 use App\Form\Testing\Task\SeleniumConfigType;
 use App\Form\Testing\Task\TaskConfigType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -29,11 +30,13 @@ use Tienvx\Bundle\MbtBundle\Entity\Task;
 
 class TaskType extends AbstractType
 {
-    protected DataTransformerInterface $transformer;
+    protected DataTransformerInterface $revisionTransformer;
+    protected DataTransformerInterface $titleTransformer;
 
-    public function __construct(ActiveRevisionTransformer $transformer)
+    public function __construct(ActiveRevisionTransformer $revisionTransformer, TitleTransformer $titleTransformer)
     {
-        $this->transformer = $transformer;
+        $this->revisionTransformer = $revisionTransformer;
+        $this->titleTransformer = $titleTransformer;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -57,7 +60,7 @@ class TaskType extends AbstractType
                             'choice_label' => 'label',
                             'auto_initialize' => false,
                         ])
-                        ->addModelTransformer($this->transformer)
+                        ->addModelTransformer($this->revisionTransformer)
                         ->getForm()
                 );
             }
@@ -79,6 +82,9 @@ class TaskType extends AbstractType
                     'label' => 'save',
                 ]);
         });
+
+        $builder->get('title')
+            ->addModelTransformer($this->titleTransformer);
     }
 
     public function configureOptions(OptionsResolver $resolver)
