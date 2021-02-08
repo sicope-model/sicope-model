@@ -20,7 +20,7 @@ jobs:
     - name: Publish images
       run: |
         echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
-        docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml push
+        docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env push
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
