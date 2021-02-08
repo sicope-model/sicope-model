@@ -13,7 +13,9 @@ jobs:
       uses: actions/checkout@master
 
     - name: Build images
-      run: docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml build
+      run: |
+        echo "TAG=${{ github.event.release.tag_name }}" > .env
+        docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env build
 
     - name: Publish images
       run: |
