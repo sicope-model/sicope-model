@@ -6,7 +6,7 @@ services:
             - postgres_data:/var/lib/postgresql/data
 
     admin:
-        image: tienvx/sicope-model-admin
+        image: tienvx/sicope-model-admin:${TAG:-lastest}
         build:
             context: .
             target: build_admin
@@ -22,7 +22,7 @@ services:
             DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@database:5432/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-13}&charset=UTF-8
 
     worker:
-        image: tienvx/sicope-model-worker
+        image: tienvx/sicope-model-worker:${TAG:-lastest}
         build:
             context: .
             target: build_worker
@@ -35,7 +35,7 @@ services:
             MAILER_DSN: ${MAILER_DSN}
 
     caddy:
-        image: tienvx/sicope-model-caddy
+        image: tienvx/sicope-model-caddy:${TAG:-lastest}
         build:
             context: .
             target: build_caddy
