@@ -8069,16 +8069,16 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v2.0.7",
+            "version": "v2.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "ba447bec37f14e522b8351f8be093fceb7eae2d7"
+                "reference": "ff3e0cd1d7291e20e3343c816e5f03173eb812d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/ba447bec37f14e522b8351f8be093fceb7eae2d7",
-                "reference": "ba447bec37f14e522b8351f8be093fceb7eae2d7",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/ff3e0cd1d7291e20e3343c816e5f03173eb812d7",
+                "reference": "ff3e0cd1d7291e20e3343c816e5f03173eb812d7",
                 "shasum": ""
             },
             "require": {
@@ -8135,7 +8135,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.7"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v2.0.8"
             },
             "funding": [
                 {
@@ -8143,7 +8143,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-02-09T11:46:48+00:00"
+            "time": "2021-02-09T14:19:07+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",

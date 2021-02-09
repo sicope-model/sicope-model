@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210117032521 extends AbstractMigration
+final class Version20210209143133 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -51,7 +51,7 @@ final class Version20210117032521 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_6D6315CC7975B7E7 ON revision (model_id)');
         $this->addSql('COMMENT ON COLUMN revision.places IS \'(DC2Type:array)\'');
         $this->addSql('COMMENT ON COLUMN revision.transitions IS \'(DC2Type:array)\'');
-        $this->addSql('CREATE TABLE task (id INT NOT NULL, model_revision_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, author INT DEFAULT NULL, running BOOLEAN NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, selenium_config_provider VARCHAR(255) NOT NULL, selenium_config_platform VARCHAR(255) NOT NULL, selenium_config_browser VARCHAR(255) NOT NULL, selenium_config_browser_version VARCHAR(255) NOT NULL, selenium_config_resolution VARCHAR(255) NOT NULL, task_config_generator VARCHAR(255) NOT NULL, task_config_generator_config TEXT NOT NULL, task_config_reducer VARCHAR(255) NOT NULL, task_config_notify_author BOOLEAN NOT NULL, task_config_notify_channels TEXT NOT NULL, progress_total INT DEFAULT 0 NOT NULL, progress_processed INT DEFAULT 0 NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE task (id INT NOT NULL, model_revision_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, author INT DEFAULT NULL, running BOOLEAN NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, selenium_config_provider VARCHAR(255) NOT NULL, selenium_config_platform VARCHAR(255) NOT NULL, selenium_config_browser VARCHAR(255) NOT NULL, selenium_config_browser_version VARCHAR(255) NOT NULL, selenium_config_resolution VARCHAR(255) NOT NULL, task_config_generator VARCHAR(255) NOT NULL, task_config_generator_config TEXT NOT NULL, task_config_reducer VARCHAR(255) NOT NULL, task_config_notify_author BOOLEAN NOT NULL, task_config_notify_channels TEXT NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_527EDB2573F84563 ON task (model_revision_id)');
         $this->addSql('COMMENT ON COLUMN task.task_config_generator_config IS \'(DC2Type:array)\'');
         $this->addSql('COMMENT ON COLUMN task.task_config_notify_channels IS \'(DC2Type:array)\'');
