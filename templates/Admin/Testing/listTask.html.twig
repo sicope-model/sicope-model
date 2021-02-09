@@ -28,7 +28,6 @@
                         <th class="wid-20">{{ knp_pagination_sortable(tasks, 'task_title'|trans, 't.title') }}</th>
                         <th class="wid-20">{{ 'task_model'|trans }}</th>
                         <th class="wid-10">{{ 'status'|trans }}</th>
-                        <th class="wid-10">{{ 'progress'|trans }}</th>
                         <th class="wid-10">{{ 'bugs'|trans }}</th>
                         <th class="wid-10">{{ 'created_at'|trans }}</th>
                         <th class="wid-10">{{ 'updated_at'|trans }}</th>
@@ -53,7 +52,6 @@
                             {% endif %}
                         </td>
                         <td class="wid-10">{{ (task.running ? 'task_running' : 'task_stopped')|trans }}</td>
-                        <td class="wid-10">{{ ((task.progress.total > 0) ? task.progress.processed / task.progress.total : 0) |format_number(style='percent') }}</td>
                         <td class="wid-10">{{ task.bugs|length }}</td>
                         <td class="wid-10">{{ task.createdAt|date("Y-m-d") }}</td>
                         <td class="wid-10">{{ task.updatedAt|date("Y-m-d") }}</td>
