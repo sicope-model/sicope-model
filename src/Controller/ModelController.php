@@ -217,7 +217,7 @@ class ModelController extends AbstractController
      */
     public function export(Model $model): JsonResponse
     {
-        return $this->json($model->normalize(), 200, [
+        return $this->json($model->toArray(), 200, [
             'Content-Disposition' => HeaderUtils::makeDisposition(
                 ResponseHeaderBag::DISPOSITION_ATTACHMENT,
                 $model->getLabel() . '.json'
