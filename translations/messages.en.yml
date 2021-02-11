@@ -439,9 +439,12 @@ steps_invalid: Steps Invalid
 outdated: Outdated
 deleted: Deleted
 task_scheduled: Task is scheduled
+bug_scheduled: Bug is scheduled
 task_already_running: Task is already running
+bug_already_reducing: Bug is already reducing
 run: Run
 bugs: Bugs
+reduce: Reduce
 ROLE_MODEL:
     title: Testing - Model
     LIST: List Model
@@ -469,6 +472,7 @@ ROLE_BUG:
     VIDEO: View Bug Video
     OPEN: Open Bug
     CLOSE: Close Bug
+    REDUCE: Reduce Bug
 
 ###
 # Testing Widget

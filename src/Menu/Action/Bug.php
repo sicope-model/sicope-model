@@ -67,6 +67,23 @@ class Bug extends Menu
             ])
             ->setLabelAttr(['class' => 'hidden']);
 
+        if (!$options['bug']->isReducing()) {
+            $menu
+                ->addChild('admin_testing_bug_reduce', 1)
+                ->setLabel('reduce')
+                ->setRoute(
+                    'admin_bug_reduce',
+                    ['bug' => $options['bug']->getId()]
+                )
+                ->setRoles(['ROLE_BUG_REDUCE'])
+                ->setExtra('label_icon', 'compress')
+                ->setLinkAttr([
+                    'data-tooltip' => '',
+                    'title' => 'reduce',
+                ])
+                ->setLabelAttr(['class' => 'hidden']);
+        }
+
         return $menu;
     }
 }

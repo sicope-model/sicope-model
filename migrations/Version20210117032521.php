@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210209143133 extends AbstractMigration
+final class Version20210117032521 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -36,7 +36,7 @@ final class Version20210209143133 extends AbstractMigration
         $this->addSql('CREATE TABLE app_config (id INT NOT NULL, name VARCHAR(190) NOT NULL, value TEXT DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_318942FC5E237E06 ON app_config (name)');
         $this->addSql('COMMENT ON COLUMN app_config.value IS \'(DC2Type:simple_array)\'');
-        $this->addSql('CREATE TABLE bug (id INT NOT NULL, task_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, steps TEXT NOT NULL, message TEXT NOT NULL, closed BOOLEAN NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, progress_total INT DEFAULT 0 NOT NULL, progress_processed INT DEFAULT 0 NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE bug (id INT NOT NULL, task_id INT DEFAULT NULL, title VARCHAR(255) NOT NULL, steps TEXT NOT NULL, message TEXT NOT NULL, closed BOOLEAN NOT NULL, reducing BOOLEAN NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, progress_total INT DEFAULT 0 NOT NULL, progress_processed INT DEFAULT 0 NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_358CBF148DB60186 ON bug (task_id)');
         $this->addSql('COMMENT ON COLUMN bug.steps IS \'(DC2Type:array)\'');
         $this->addSql('CREATE TABLE mail_log (id INT NOT NULL, mTo TEXT NOT NULL, mFrom TEXT NOT NULL, subject VARCHAR(255) DEFAULT NULL, body TEXT DEFAULT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, template_id VARCHAR(75) DEFAULT NULL, language VARCHAR(3) NOT NULL, PRIMARY KEY(id))');

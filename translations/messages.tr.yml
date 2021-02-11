@@ -439,9 +439,12 @@ steps_invalid: Geçersiz Adımlar
 outdated: Modası geçmiş
 deleted: Silindi
 task_scheduled: Görev planlandı
+bug_scheduled: Hata planlandı
 task_already_running: Görev zaten çalışıyor
+bug_already_reducing: Bug zaten azalıyor
 run: Koşmak
 bugs: Hatalar
+reduce: Azalt
 ROLE_MODEL:
     title: Test - Model
     LIST: Liste Modeli
@@ -469,6 +472,7 @@ ROLE_BUG:
     VIDEO: Hata Videosunu Görüntüle
     OPEN: Açık Hata
     CLOSE: Hatayı Kapat
+    REDUCE: Hataları Azaltın
 
 ###
 # Testing Widget

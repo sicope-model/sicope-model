@@ -26,8 +26,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Bug;
+use Tienvx\Bundle\MbtBundle\Entity\Task;
+use Tienvx\Bundle\MbtBundle\Message\ReduceBugMessage;
 use Tienvx\Bundle\MbtBundle\Model\Bug\StepInterface;
 use Tienvx\Bundle\MbtBundle\Model\BugInterface;
 use Tienvx\Bundle\MbtBundle\Model\Model\RevisionInterface;
@@ -191,6 +194,25 @@ class BugController extends AbstractController
         });
 
         return $response;
+    }
+
+    /**
+     * Reduce Bug.
+     *
+     * @IsGranted("ROLE_BUG_REDUCE")
+     * @Route(name="admin_bug_reduce", path="/bug/{bug}/reduce")
+     */
+    public function reduce(Request $request, Bug $bug, MessageBusInterface $messageBus): RedirectResponse
+    {
+        if ($bug->isReducing()) {
+            $this->addFlash('error', 'bug_already_reducing');
+        } else {
+            $messageBus->dispatch(new ReduceBugMessage($bug->getId()));
+            $this->addFlash('success', 'bug_scheduled');
+        }
+
+        // Redirect back
+        return $this->redirect($request->headers->get('referer', $this->generateUrl('admin_bug_list')));
     }
 
     /**
