@@ -416,6 +416,8 @@ task_notify_channels: Kanalları Bildirin
 status: Durum
 task_running: Koşu
 task_stopped: Durduruldu
+bug_reducing: İndirgeme
+bug_stopped: Durduruldu
 bug_open: Açık
 bug_closed: Closed
 selenoid: Kapalı

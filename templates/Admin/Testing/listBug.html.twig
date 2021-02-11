@@ -47,7 +47,7 @@
                         <td class="wid-10"><a href="{{ path('admin_task_view', { 'task': bug.task.id }) }}">{{ bug.task.title }}</a></td>
                         <td class="wid-20">{{ bug.message }}</td>
                         <td class="wid-10">{{ ((bug.progress.total > 0) ? bug.progress.processed / bug.progress.total : 0) |format_number(style='percent') }}</td>
-                        <td class="wid-10">{{ (bug.closed ? 'bug_closed' : 'bug_open')|trans }}</td>
+                        <td class="wid-10">{{ (bug.closed ? 'bug_closed' : 'bug_open')|trans }} | {{ (bug.reducing ? 'bug_reducing' : 'bug_stopped')|trans }}</td>
                         <td class="process">
                             <div class="floating-menu">
                                 <a><i class="material-icons">more_horiz</i></a>
