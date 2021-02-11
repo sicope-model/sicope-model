@@ -40,7 +40,7 @@
         <dd class="col-sm-9">{{ ((bug.progress.total > 0) ? bug.progress.processed / bug.progress.total : 0) |format_number(style='percent') }}</dd>
 
         <dt class="col-sm-3">{{ 'status'|trans }}</dt>
-        <dd class="col-sm-9">{{ (bug.closed ? 'bug_closed' : 'bug_open')|trans }}</dd>
+        <dd class="col-sm-9">{{ (bug.closed ? 'bug_closed' : 'bug_open')|trans }} | {{ (bug.reducing ? 'bug_reducing' : 'bug_stopped')|trans }}</dd>
 
         <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
         <dd class="col-sm-9">{{ bug.createdAt|date("Y-m-d") }}</dd>

@@ -418,6 +418,8 @@ task_running: Running
 task_stopped: Stopped
 bug_open: Open
 bug_closed: Closed
+bug_reducing: Reducing
+bug_stopped: Stopped
 selenoid: Selenoid
 LINUX: Linux
 ANDROID: Android
