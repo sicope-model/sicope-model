@@ -62,12 +62,6 @@
     "symfony/profiler-pack": "^1.0",
     "symfony/test-pack": "^1.0"
   },
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/tienvx/petrinet.git"
-    }
-  ],
   "config": {
     "preferred-install": {
       "*": "dist"
