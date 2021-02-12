@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec6a2d50a0702fe2598afece4b9f1a18",
+    "content-hash": "876dc0b43230720809e2070fa95673f5",
     "packages": [
         {
             "name": "appaydin/pd-mailer",
@@ -1720,8 +1720,14 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/tienvx/petrinet.git",
-                "reference": "0d3d087bf71c52daa44d76c3d43a58d0d663ff2d"
+                "url": "https://github.com/florianv/petrinet.git",
+                "reference": "57d718b609a848357d426036a27852a80e128530"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/florianv/petrinet/zipball/57d718b609a848357d426036a27852a80e128530",
+                "reference": "57d718b609a848357d426036a27852a80e128530",
+                "shasum": ""
             },
             "require": {
                 "doctrine/collections": "^1.6",
@@ -1742,6 +1748,7 @@
                     "Petrinet\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1758,7 +1765,11 @@
                 "petrinet",
                 "workflow"
             ],
-            "time": "2020-12-15T13:37:27+00:00"
+            "support": {
+                "issues": "https://github.com/florianv/petrinet/issues",
+                "source": "https://github.com/florianv/petrinet/tree/master"
+            },
+            "time": "2021-01-25T12:37:29+00:00"
         },
         {
             "name": "friendsofphp/proxy-manager-lts",
