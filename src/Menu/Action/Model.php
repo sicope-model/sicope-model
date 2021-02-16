@@ -57,7 +57,7 @@ class Model extends Menu
             ->setLabel('export')
             ->setRoute('admin_model_export', ['model' => $options['model']->getId()])
             ->setRoles(['ROLE_MODEL_EXPORT'])
-            ->setExtra('label_icon', 'get_app')
+            ->setExtra('label_icon', 'download')
             ->setLinkAttr([
                 'data-tooltip' => '',
                 'title' => 'export',

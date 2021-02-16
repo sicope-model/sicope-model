@@ -474,6 +474,7 @@ ROLE_BUG:
     VIDEO: Hata Videosunu Görüntüle
     OPEN: Açık Hata
     CLOSE: Hatayı Kapat
+    EXPORT: İhracat Hatası
     REDUCE: Hataları Azaltın
 
 ###

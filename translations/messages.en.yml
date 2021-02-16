@@ -474,6 +474,7 @@ ROLE_BUG:
     VIDEO: View Bug Video
     OPEN: Open Bug
     CLOSE: Close Bug
+    EXPORT: Export Bug
     REDUCE: Reduce Bug
 
 ###
