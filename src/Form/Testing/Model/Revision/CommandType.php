@@ -13,7 +13,6 @@
 namespace App\Form\Testing\Model\Revision;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -50,14 +49,11 @@ class CommandType extends AbstractType
                 'label' => 'command_value',
                 'required' => false,
             ])
-            ->add('removeCommand', ButtonType::class, [
+            ->add('buttons', ButtonsType::class, [
+                'mapped' => false,
                 'attr' => [
-                    'class' => 'close remove-command',
-                    'aria-label' => 'Close',
+                    'type' => 'command',
                 ],
-                'label' => '<span aria-hidden="true">&times;</span>',
-                'label_html' => true,
-                'translation_domain' => false,
             ])
         ;
     }

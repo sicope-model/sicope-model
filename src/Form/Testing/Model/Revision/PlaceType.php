@@ -53,14 +53,11 @@ class PlaceType extends AbstractType
                     'class' => 'add-command btn-secondary',
                 ],
             ])
-            ->add('removePlace', ButtonType::class, [
+            ->add('buttons', ButtonsType::class, [
+                'mapped' => false,
                 'attr' => [
-                    'class' => 'close remove-place',
-                    'aria-label' => 'Close',
+                    'type' => 'place',
                 ],
-                'label' => '<span aria-hidden="true">&times;</span>',
-                'label_html' => true,
-                'translation_domain' => false,
             ])
         ;
     }

@@ -10,6 +10,8 @@ function initPlaces(elements) {
         'call_post_add_on_init': true,
         'other_btn_add': '.add-place',
         'btn_delete_selector': '.remove-place',
+        'btn_up_selector': '.move-up-place',
+        'btn_down_selector': '.move-down-place',
         'post_add': function($new_elem) {
             $new_elem.attr('index', $new_elem.index());
             initCommands($new_elem.find('.commands'));
@@ -29,6 +31,8 @@ function initTransitions(elements) {
         'call_post_add_on_init': true,
         'other_btn_add': '.add-transition',
         'btn_delete_selector': '.remove-transition',
+        'btn_up_selector': '.move-up-transition',
+        'btn_down_selector': '.move-down-transition',
         'post_add': function($new_elem) {
             initCommands($new_elem.find('.commands'));
             initToPlaces($new_elem.find('.select-to-places'));
@@ -43,6 +47,8 @@ function initCommands(elements) {
         elements.formCollection({
             'other_btn_add': parent.find('.add-command'),
             'btn_delete_selector': '.command .remove-command',
+            'btn_up_selector': '.command .move-up-command',
+            'btn_down_selector': '.command .move-down-command',
             'prototype_name': '__command__',
             'post_add': function($new_elem) {
                 initCommand($new_elem.find('.select-command'));
