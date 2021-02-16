@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "876dc0b43230720809e2070fa95673f5",
+    "content-hash": "cdc537e057cc5b5ea60ae55ece31aea6",
     "packages": [
         {
             "name": "appaydin/pd-mailer",

@@ -44,7 +44,7 @@
     "symfony/orm-pack": "1.*",
     "symfony/process": "5.*",
     "symfony/security-bundle": "5.*",
-    "symfony/slack-notifier": "5.2.*",
+    "symfony/slack-notifier": "5.*",
     "symfony/translation": "5.*",
     "symfony/twig-bundle": "5.*",
     "symfony/validator": "5.*",
