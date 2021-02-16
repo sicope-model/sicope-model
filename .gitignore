@@ -28,6 +28,7 @@ src/*/Entity/*/*~
 node_modules
 .idea
 /nbproject/
+/.vscode/
 /build/
 .DS_Store
 docker/.env
