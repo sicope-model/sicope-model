@@ -65,6 +65,17 @@ class Bug extends Menu
                 'data-tooltip' => '',
                 'title' => $options['bug']->isClosed() ? 'open' : 'close',
             ])
+            ->setLabelAttr(['class' => 'hidden'])
+
+            ->addChildParent('admin_testing_bug_export', 1)
+            ->setLabel('export')
+            ->setRoute('admin_bug_export', ['bug' => $options['bug']->getId()])
+            ->setRoles(['ROLE_BUG_EXPORT'])
+            ->setExtra('label_icon', 'download')
+            ->setLinkAttr([
+                'data-tooltip' => '',
+                'title' => 'export',
+            ])
             ->setLabelAttr(['class' => 'hidden']);
 
         if (!$options['bug']->isReducing()) {
