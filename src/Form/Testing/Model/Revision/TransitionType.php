@@ -79,14 +79,11 @@ class TransitionType extends AbstractType
                     'class' => 'select-to-places',
                 ],
             ])
-            ->add('removeTransition', ButtonType::class, [
+            ->add('buttons', ButtonsType::class, [
+                'mapped' => false,
                 'attr' => [
-                    'class' => 'close remove-transition',
-                    'aria-label' => 'Close',
+                    'type' => 'transition',
                 ],
-                'label' => '<span aria-hidden="true">&times;</span>',
-                'label_html' => true,
-                'translation_domain' => false,
             ])
         ;
 

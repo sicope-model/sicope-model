@@ -35,8 +35,7 @@ class ModelType extends AbstractType
                 ],
                 'required' => false,
             ])
-            ->add('activeRevision', RevisionType::class, [
-            ])
+            ->add('activeRevision', RevisionType::class, [])
             ->add('save', SubmitType::class, [
                 'label' => 'save',
             ])
