@@ -36,7 +36,7 @@ abstract class ConfigAbstractType implements FormTypeInterface
             if ('entity' === $formInterface->getConfig()->getType()->getBlockPrefix()) {
                 if (!\is_object($formInterface->getNormData())) {
                     $obj = $formInterface->getConfig()->getOption('choice_value')->getOption();
-                    $entityColumn = is_string($obj) ? $obj : $obj[0]->getIdField();
+                    $entityColumn = \is_string($obj) ? $obj : $obj[0]->getIdField();
 
                     $em = $formInterface->getConfig()->getOption('em');
                     if ($em instanceof EntityManagerInterface) {
