@@ -6,6 +6,7 @@
  * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
@@ -13,6 +14,7 @@
 namespace App\Twig;
 
 use App\Service\ConfigBag;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -23,62 +25,69 @@ use Twig\TwigFunction;
  */
 class FunctionExtension extends AbstractExtension
 {
-    /**
-     * @var ConfigBag
-     */
-    private $bag;
-
-    public function __construct(ConfigBag $bag)
+    public function __construct(
+        private ConfigBag $bag,
+        private TranslatorInterface $translator)
     {
-        $this->bag = $bag;
     }
 
     /**
      * Create Twig Function.
-     *
-     * @return array
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('title', [$this, 'title']),
             new TwigFunction('inArray', [$this, 'inArray']),
             new TwigFunction('pathInfo', [$this, 'pathInfo']),
+            new TwigFunction('basename', [$this, 'basename']),
+            new TwigFunction('flashJsonMessage', [$this, 'flashJsonMessage']),
         ];
     }
 
     /**
      * Return Panel Title.
-     *
-     * @param $title
-     * @param bool $parent
-     *
-     * @return mixed
      */
-    public function title($title, $parent = true)
+    public function title($title, $parent = true): string
     {
-        return !$parent ?
-            $title :
-            str_replace(['&T', '&P'], [$title, $this->bag->get('head_title')], $this->bag->get('head_title_pattern'));
+        return !$parent ? $title : str_replace(['&T', '&P'], [$title, $this->bag->get('head_title')], $this->bag->get('head_title_pattern'));
     }
 
     /**
      * Checks if a value exists in an array.
-     *
-     * @param $needle
      */
     public function inArray($needle, array $haystack): bool
     {
-        return \in_array(mb_strtolower($needle), $haystack, false);
+        return \in_array($needle, $haystack, false);
     }
 
     /**
      * Information about a file path.
-     *
-     * @param string $options
      */
     public function pathInfo(string $path, $options = 'extension'): string
     {
         return pathinfo($path)[mb_strtolower($options)];
+    }
+
+    /**
+     * Basename Formatter.
+     */
+    public function basename($path): string
+    {
+        return basename($path);
+    }
+
+    /**
+     * Flash Message to JSON Format and Translated.
+     */
+    public function flashJsonMessage(array $messages): string
+    {
+        $translated = [];
+
+        foreach ($messages as $type => $items) {
+            $translated[$type] = array_map(fn ($message) => $this->translator->trans($message), $items);
+        }
+
+        return json_encode($translated);
     }
 }

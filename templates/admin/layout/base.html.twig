@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {# Meta #}
+    <title>{% block head_title %}{{ bag.get('head_title') }}{% endblock %}</title>
+    <meta name="description" content="{{ bag.get('head_description') }}"/>
+    <meta name="keywords" content="{{ bag.get('head_keywords') }}"/>
+    <meta name="author" content="{{ bag.get('head_author') }}"/>
+    <link rel="icon" href="{{ asset(bag.get('site_favicon'), 'upload') }}">
+
+    {# Assets #}
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('build/admin/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/admin/app.css') }}">
+
+    {# Head Block #}
+    {% block head %}{% endblock %}
+    <script>window.vueApp = [];</script>
+</head>
+<body>
+<section id="app">
+    {# Main Navigation #}
+    <sidebar>
+        <div class="logo">
+            <a href="{{ path('admin.dashboard') }}"><img src="{{ asset(bag.get('site_logo')|default(''), 'upload') }}"></a>
+        </div>
+        {{ pd_menu_render('App\\Menu\\Sidebar') }}
+        <footer>{{ bag.get('footer_copyright')|raw }}</footer>
+    </sidebar>
+
+    {# Main Content #}
+    <section class="app-content">
+        <header class="content-header">
+            <h3 class="content-title">{% block content_title %}{% endblock %}</h3>
+            {{ pd_menu_render('App\\Menu\\Toolbar', {
+                'user': app.getUser,
+                'locale': app.request.locale,
+                'active_language': bag.get('active_language')
+            }) }}
+        </header>
+        <section class="content-body">
+            {% block content_body %}{% endblock %}
+        </section>
+    </section>
+
+    <!--Init Vue Core Component-->
+    <app-core></app-core>
+</section>
+
+<!--Vue App Init-->
+{% block initVue %}{% endblock %}
+<script>window.flashBag = {{ flashJsonMessage(app.session.flashBag.all)|raw }}</script>
+<script src="{{ asset('build/admin/app.js') }}"></script>
+
+</body>
+</html>

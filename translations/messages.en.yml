@@ -1,497 +1,296 @@
-###
-# Security Permission
-###
-access_denied: Access denied!
-access_denied_not_authorized: Access denied! You are not authorized to do this.
-not_login_own_account: Access denied! You can not log in on your own account.
-not_login_super_admin: Access denied! You can not log in to the Super Admin account.
-not_login_already_switched: Access denied! You have already migrated to an existing user.
-not_login_switch_authorized: Access denied! Your competence is not enough for this process.
-ACL:
-    title: Access Control
-ACLProcess:
-    title: Custom Actions
-ROLE_USER:
-    title: User
-ROLE_ADMIN:
-    title: Admin
-ROLE_SUPER_ADMIN:
-    title: Super Admin
-ROLE_ALLOWED_TO_SWITCH:
-    title: Account Switch
-ROLE_DASHBOARD:
-    title: Admin Panel (Dashboard)
-    PANEL: Panel Listing
-ROLE_ACCOUNT:
-    title: Admin Account Management
-    LIST: Listing
-    EDIT: Editing
-    PASSWORD: Change Password
-    ROLES: Authorization
-    ACTIVATE: Activation
-    GROUP: Add/Remove Group
-    DELETE: Delete
-    FREEZE: Account Freeze
-    ALLREAD: All Read
-    ALLWRITE: All Write
-ROLE_GROUP:
-    title: Admin Group Management
-    LIST: Listing
-    EDIT: Editing
-    CREATE: New Group
-    DELETE: Delete
-    ROLES: Authorization
-ROLE_SETTINGS:
-    title: Admin Settings Management
-    GENERAL: General
-    USER: Account
-    MEDIA: Media
-    CONTACT: Contact
-ROLE_MAIL:
-    title: Admin Mail Manager
-    TEMPLATE: Template Listing
-    TEMPLATEADD: New Template
-    TEMPLATEEDIT: Edit Template
-    TEMPLATEACTIVE: Enable Template
-    TEMPLATEDELETE: Delete Template
-    LOGGER: Log Listing
-    VIEWLOG: Log View
-    LOGDELETE: Log Delete
-ROLE_WIDGET:
-    title: Admin Widget
-    USERINFO: User Information
-    QUICKACTION: Quick Action
-    USERSTATISTICS: User Statistics
-    # Testing
-    MODELINFO: Model Info
-    TASKINFO: Task Info
-    BUGINFO: Bug Info
-    TESTINGSTATISTICS: Testing Statistics
-
-###
-# Time Ago
-###
-diff:
-    year:   year
-    month:  month
-    day:    day
-    hour:   hour
-    minute: minute
-    second: second
-    ago:    ago
-
-###
-# General
-###
-edit: Edit
-edit_roles: Authorization
-delete: Delete
-change_password: Change Password
-edit_group: Edit Group
-switch_user: Account Login
-activate_deactivate: Enable / Disable
-freeze_unfreeze: Account Suspend / Unsuspend
-add_new: Add New
-open: Open
-close: Close
-yes: Yes
-add: Add
-refresh: Refresh
-add_widget: Add Widget
-search: Search..
-search_filter: Filter
-search_placeholder: Search...
-active: Enabled
-deactive: Disabled
-select_all: Select All
-select_item: Selection Item
-selected: '{%s} Selected'
-selected_all: '{%s} Selected'
-no_matches: 'No matches found for "{%s}"'
-delete_message: Are you sure you want to delete ?
-save: Save
-homepage: Homepage
-upload_image_btn: Upload Image
-Default: Default
-default: Default
-test: Test
-left: Left
-right: Right
-top: Top
-bottom: Alt
-middle: Center
-center: Center
-top_left: Top Left
-top_right: Top Right
-bottom_left: Bottom Left
-bottom_right: Bottom Right
-enable: Enable
-disable: Off
-enabled: Enabled
-disabled: Disabled
-account_frozen: Account Frozen
+# Message & Button & Text
+message:
+    saved: Changes are saved.
+    deleted: The deletion is complete.
+button:
+    save: Save
+    add: Add
+    delete: Delete
+    move: Move
+    yes: Yes
+    no: No
+    cancel: Cancel
+    edit: Edit
+confirm:
+    delete: Are you sure you want to delete it?
+    approve: Are you sure you want to perform this action?
 date: Date
-success: Successful
-process_completed: Operation completed.
-changes_saved: Changes have been saved.
-running_tasks_notice: Running tasks are not affected.
-remove_complete: Deletion completed.
-sorry_not_existing: Sorry no registration is available.
-test_email_success: Test email sent.
-user_registration_disable: User registration is currently closed, please try again later.
-404_not_found: Page Not Found!
-404_not_found_description: Sorry, the page you were looking for could not be found or may be removed.
-403_access_denied: Access Denied!
-403_access_denied_description: You don't have permission to access to this resource.
+save: Save
 
-###
+# Toolbar
+toolbar:
+    language: Language
+    profile:
+        edit: My Profile
+        password: Change my password
+        return_admin: Back to Admin
+        logout: Sign Out
+
 # Pages
-###
-nav_dashboard: Panel
-admin_dashboard: Admin Panel
-admin_dashboard_desc: Admin Area
-admin_widget_modal_title: Widgets
-nav_profile_edit: My Account
-nav_profile_password: Change Password
-nav_profile_return_admin: Return Admin
-nav_profile_logout: Log Out
+404:
+    title: Page Not Found!
+    description: Sorry, the page you are looking for was not found or may have been deprecated.
 
-search_keyword: Keyword
-search_keyword_account_placeholder: Name / Email / Phone
-nav_account: Accounts
-nav_account_edit: Profile
-nav_account_change_password: Change Password
-nav_account_roles: Authorization
-nav_account_group: Group
-account_firstname: Name
-account_email: Email
-account_phone: Phone
-account_lastlogin: Last Login
-account_status: Account Status
-search_filter_title: Filter Results
-admin_account_list: Accounts
-admin_account_desc: All registered users
-account_edit_title: Edit Account
-firstname: Name
-lastname: Surname
-phone: Phone
-website: Website
-company: Company
-language: Language
-account_change_password_title: Change Password
-account_add_group_title: Group
-account_groups: Groups
-account_roles_title: Private Authorization
+dashboard:
+    title: Admin Panel
 
-nav_group: Groups
-account_group_list_title: User Groups
-account_group_list_desc: Members groups
-group_name: Group Name
-group_roles: Authorities
-account_group_edit_title: Edit Group
-account_group_edit_desc: User group edit
-nav_group_edit: Details
-nav_group_roles: Authorization
-account_group_new_title: New Group
-account_group_new_desc: Create new user group
-account_group_role_title: Group Authorization
-account_group_role_desc: User group authorization
+config:
+    title: Settings
+    system: System Settings
+    general:
+        title: General
+        head_title: Site Title
+        head_title_help: The name of the site, shown as a suffix.
+        head_title_pattern: Title Pattern
+        head_title_pattern_help: '&T: Active page title, <br>&P: Panel suffix'
+        head_description: Site Description
+        head_description_help: The meta 'description' tag field for the panel.
+        head_author: Site Author
+        head_author_help: Determines the site builder.
+        head_keywords: Keywords
+        footer_copyright: Footer Copyright
+        default_locale: Default Language
+        site_logo: Site Logo
+        site_favicon: Site Favicon
+        list_count: Number of Listings
+        list_count_help: Default listing number for admin panel
+    media:
+        title: Media
+        optimize: Image Optimize
+        optimize_help: Enables optimization for images uploaded with the pdAdmin upload system.
+        max_height: Image Maximum Height
+        max_height_help: It is the maximum height value for images.
+        max_width: Image Maximum Width
+        max_width_help: Maximum width for images.
+        quality: Picture Quality
+        quality_help: Enter value from 0-100, default is 80.
+    user:
+        title: User
+        registration: Member Registration
+        registration_help: Activates member registration.
+        default_group: Default Group
+        default_group_help: The group that new members join automatically.
+        login_redirect: Login Redirect
+        login_redirect_help: The page that the user will be redirected to after logging in.
+        logout_redirect: Exit Redirect
+        logout_redirect_help: The page that the user will be redirected to after logging out.
+        email_confirmation: Email Verification
+        email_confirmation_help: Enables email verification for new members.
+        welcome_email: Welcome Email
+        welcome_email_help: Sends a welcome email for new members.
 
-nav_system: Admin Panel
-nav_system_header: System Settings
-nav_tools_header: System Tools
-nav_config: Settings
-settings_general: General Settings
-settings_general_desc: System settings
-admin_refresh_cache: Refresh Cache
-admin_refresh_cache_desc: After making changes to the system settings, you need to refresh the cache. Do you want to refresh the cache now?
-nav_config_general: General
-head_title: Site Title
-head_title_info: The name of your site, shown as a suffix.
-head_title_pattern: Title Design
-head_title_pattern_info: '&T: Active page header, <br>&P: Panel header'
-head_description: Site Description
-head_description_info: The metadata for the panel is the 'description' tag field.
-head_author: Site Author
-head_author_info: Specifies the site maker.
-head_keywords: Keyword
-footer_copyright: Footer Copyright
-default_locale: Default Language
-site_logo: Site Logo
-site_favicon: Site Favicon
-list_count: Listing count
-list_count_info: Admin panel is the default listing number.
+account:
+    title: Edit Account
+    edit:
+        title: My Profile
+        firstname: Your name
+        lastname: Last name
+        phone: Phone
+        language: Language
+        groups: Member Groups
+    password:
+        title: Password
+    roles:
+        title: Roles
+    groups:
+        title: Groups
 
-settings_contact: Contact
-settings_contact_desc: System and site communication settings
-nav_config_contact: Contact
-contact_email: Contact Email
-contact_email_info: System mail and contact form are sent to this address.
-contact_phone: Phone
-contact_fax_number: Fax
-contact_address: Local Address
-contact_facebook: Facebook
-contact_twitter: Twitter
-contact_youtube: Youtube
-contact_linkedin: LinkedIn
-contact_whatsapp: WhatsApp
-nav_mailer_header: Mail Management
-nav_mailer_template: Mail Template
-nav_mailer_logs: Mail Logs
+accounts:
+    title: Account Management
+    account:
+        title: Accounts
+        approve: Approve Account
+        unapprove: Unapprove
+        freeze: Freeze Account
+        unfreeze: Activate Account
+        switch: Login to Account
+    group:
+        title: Groups
+        add: New Group
+        add_title: Create New Group
+        roles: Authorization
+        edit_title: Edit Group
 
-settings_user: Account Settings
-settings_user_desc: User account settings
-nav_config_user: Account
-user_registration: User Registration
-user_registration_info: Activate user registration.
-user_default_group: Default Group
-user_default_group_info: The group to which the new user automatically join.
-user_login_redirect: Login Redirect
-user_login_redirect_info: This is the page that the user will be redirected to after login.
-user_logout_redirect: Logout Redirect
-user_logout_redirect_info: This is the page the user will be redirected to after logout.
-user_email_confirmation: Verify Email
-user_email_confirmation_info: Enable e-mail authentication for new members.
-user_welcome_email: Welcome Email
-user_welcome_email_info: Sends a welcome e-mail for new members.
+activity:
+    log:
+        title: Activity Log
+    mail:
+        title: Mail Log
 
-settings_media: Media Settings
-settings_media_desc: System media settings
-nav_config_media: Media
-media_library: Image Library
-media_library_info: Image editing is the php library to be used for improvement.
-media_optimize: Image Optimize
-media_optimize_info: Enable optimization for images uploaded with the pdAdmin upload system.
-media_max_height: Image Max Height
-media_max_height_info: The maximum height value for images.
-media_max_width: Image Max Width
-media_max_width_info: The maximum width value for images.
-media_quality: Image Quality
-media_quality_info: Enter a value from 0 to 100, the default is 80.
-media_watermark: Watermark
-media_watermark_info: Apply a watermark on the image.
-watermark_text: Text
-watermark_image: Image
-media_wm_image: Watermark Image
-media_wm_image_info: It is recommended to use a transparent image in the '.png' format for the watermark.
-media_wm_image_position: Watermark Position
-media_wm_image_position_info: Specifies the starting point of the location to add the flag to.
-media_wm_image_x: Watermark X
-media_wm_image_x_info: Optional starting pixel on the X coordinate of the flag.
-media_wm_image_y: Watermark Y
-media_wm_image_y_info: Optional pixel on the Y coordinate of the flag.
-media_wm_font: Watermark Font
-media_wm_font_info: Select the font file for the watermark. The default font will be used when no file is selected.
-upload_font_btn: Upload Font
-media_wm_font_text: Watermark Text
-media_wm_font_size: Font Size
-media_wm_font_size_info: The default font size is set to 24 pixels.
-media_wm_font_color: Font Color
-media_wm_font_color_info: You can enter the color code for the font in Hex color as RGBA.
-media_wm_font_align: Font Horizontal Alignment
-media_wm_font_align_info: Horizontal font alignment.
-media_wm_font_valign: Font Vertical Alignment
-media_wm_font_valign_info: Vertical font alignment.
-media_wm_font_x: X Position
-media_wm_font_x_info: Defines the horizontal base point of the first character.
-media_wm_font_y: Y Position
-media_wm_font_y_info: Defines the vertical base point of the first character.
-media_wm_font_angle: Font Return Angle
-media_wm_font_angle_info: Return value for font, works only when font is loaded.
+# Widgets
+widget:
+    modal_title: Add New Widget
+    user_info:
+        name: User Information
+        description: Shows the number of registered members.
+        count: Registered Member
+    user_statistic:
+        name: User Statistics
+        description: Shows detailed user statistics.
+        last_week: Last 1 Week
+        last_month: Last 1 Month
+        last_three_month: Last 3 Months
+    quick_action:
+        name: Quick Buttons
+        description: Creates easy access buttons to menus.
+        add_button: Add Button
+        account: Accounts
+        account_desc: Displays the user account list
+        group: Groups
+        group_desc: Displays user group settings
+        general: General Settings
+        general_desc: Displays general system settings
 
-###
-# Widget
-###
-widget_user_info:
-    name: User Info
-    description: Shows number of registered members
-    count: Registered Member
-widget_user_statistics:
-    name: User Statistics
-    description: Displays detailed user statistics.
-widget_quick_action:
-    name: Quick Buttons
-    description: Creates easy access buttons to menus.
-    add_button: Add Button
+testing:
+    ###
+    # Chart
+    ###
+    1week: Last 1 Week
+    1month: Last 1 Month
+    3month: Last 3 Months
+    testing_statistics:
+        task: Task
+        bug: Bug
 
-###
-# Chart
-###
-1week: Last 1 Week
-1month: Last 1 Month
-3month: Last 3 Months
-testing_statistics:
+    ###
+    # Testing
+    ###
+    testing: Testing
+    model: Model
     task: Task
     bug: Bug
+    task_title: Title
+    task_model: Model
+    bug_task: Task
+    task_notify_author: Notify Me
+    task_notify_author_info: Send me email or sms message when a bug was found
+    progress: Progress
+    settings_testing: Testing Settings
+    settings_testing_desc: Task, model & bug settings
+    model_label: Label
+    model_tags: Tags
+    model_image: Image
+    build: Build
+    created_at: Created At
+    updated_at: Updated At
+    model_places: Places
+    model_transitions: Transitions
+    place_label: Label
+    place_start: Start
+    transition_label: Label
+    transition_guard: Guard
+    commands: Commands
+    start_commands: Start Commands
+    command_command: Command
+    command_target: Target
+    command_value: Value
+    add_place: Add Place
+    add_transition: Add Transition
+    add_command: Add Command
+    add_tag: Add Tag
+    remove_place: Remove Place
+    remove_transition: Remove Transition
+    from_places: From Places
+    to_places: To Places
+    remove_command: Remove Command
+    expression: Expression
+    bug_title: Title
+    bug_model_label: Model Label
+    steps: Steps
+    message: Message
+    closed: Closed
+    model_version: Model Version
+    version: Version
+    testing_model_list_title: Models
+    testing_model_list_desc: Managing Models
+    testing_model_build_title: Build Model
+    testing_model_build_desc: Create new model with states and transitions
+    testing_model_edit_title: Edit Model
+    testing_model_edit_desc: Edit states and transitions of a model
+    testing_model_import_title: Import Model
+    testing_model_import_desc: Create new model from uploaded file
+    testing_model_view_title: View Model
+    testing_model_view_desc: View model with states and transitions
+    testing_task_list_title: Tasks
+    testing_task_list_desc: Managing tasks
+    testing_task_create_title: Create Task
+    testing_task_create_desc: Create new task
+    testing_task_edit_title: Edit Task
+    testing_task_edit_desc: Edit task
+    testing_task_view_title: View Task
+    testing_task_view_desc: View task
+    testing_bug_list_title: Bugs
+    testing_bug_list_desc: Managing bugs
+    testing_bug_view_title: Bug
+    testing_bug_view_desc: Bug with preproduce steps and recorded video
+    testing_bug_edit_title: Edit Bug
+    testing_bug_edit_desc: Edit bug title
+    export: Export
+    import: Import
+    model_file: Model (JSON file)
+    task_selenium_config: Selenium Config
+    task_provider: Provider
+    task_platform: Platform
+    task_browser: Browser
+    task_browser_version: Browser Version
+    task_resolution: Resolution
+    task_task_config: Task Config
+    task_generator: Generator
+    task_generator_config: Generator Config
+    task_place_coverage: Place Coverage
+    task_transition_coverage: Transition Coverage
+    task_reducer: Reducer
+    task_notify_channels: Notify Channels
+    status: Status
+    task_running: Running
+    task_stopped: Stopped
+    bug_open: Open
+    bug_closed: Closed
+    bug_reducing: Reducing
+    bug_stopped: Stopped
+    selenoid: Selenoid
+    LINUX: Linux
+    ANDROID: Android
+    safari: Safari
+    chrome: Chrome
+    firefox: Firefox
+    MicrosoftEdge: Edge (Chromium)
+    opera: Opera
+    random: Random
+    split: Split
+    email: Email
+    chat/slack: Slack
+    bug_model: Model
+    bug_video: Video
+    transition: Transition
+    places: Places
+    variables: Variables
+    steps_invalid: Steps Invalid
+    outdated: Outdated
+    deleted: Deleted
+    task_scheduled: Task is scheduled
+    bug_scheduled: Bug is scheduled
+    task_already_running: Task is already running
+    bug_already_reducing: Bug is already reducing
+    run: Run
+    bugs: Bugs
+    reduce: Reduce
 
-###
-# Testing
-###
-nav_testing: Testing
-nav_model: Model
-nav_task: Task
-nav_bug: Bug
-task_title: Title
-task_model: Model
-bug_task: Task
-task_notify_author: Notify Me
-task_notify_author_info: Send me email or sms message when a bug was found
-progress: Progress
-settings_testing: Testing Settings
-settings_testing_desc: Task, model & bug settings
-model_label: Label
-model_tags: Tags
-model_image: Image
-build: Build
-created_at: Created At
-updated_at: Updated At
-model_places: Places
-model_transitions: Transitions
-place_label: Label
-place_start: Start
-transition_label: Label
-transition_guard: Guard
-commands: Commands
-start_commands: Start Commands
-command_command: Command
-command_target: Target
-command_value: Value
-add_place: Add Place
-add_transition: Add Transition
-add_command: Add Command
-add_tag: Add Tag
-remove_place: Remove Place
-remove_transition: Remove Transition
-from_places: From Places
-to_places: To Places
-remove_command: Remove Command
-expression: Expression
-bug_title: Title
-bug_model_label: Model Label
-steps: Steps
-message: Message
-closed: Closed
-model_version: Model Version
-version: Version
-testing_model_list_title: Models
-testing_model_list_desc: Managing Models
-testing_model_build_title: Build Model
-testing_model_build_desc: Create new model with states and transitions
-testing_model_edit_title: Edit Model
-testing_model_edit_desc: Edit states and transitions of a model
-testing_model_import_title: Import Model
-testing_model_import_desc: Create new model from uploaded file
-testing_model_view_title: View Model
-testing_model_view_desc: View model with states and transitions
-testing_task_list_title: Tasks
-testing_task_list_desc: Managing tasks
-testing_task_create_title: Create Task
-testing_task_create_desc: Create new task
-testing_task_edit_title: Edit Task
-testing_task_edit_desc: Edit task
-testing_task_view_title: View Task
-testing_task_view_desc: View task
-testing_bug_list_title: Bugs
-testing_bug_list_desc: Managing bugs
-testing_bug_view_title: Bug
-testing_bug_view_desc: Bug with preproduce steps and recorded video
-testing_bug_edit_title: Edit Bug
-testing_bug_edit_desc: Edit bug title
-export: Export
-import: Import
-model_file: Model (JSON file)
-task_selenium_config: Selenium Config
-task_provider: Provider
-task_platform: Platform
-task_browser: Browser
-task_browser_version: Browser Version
-task_resolution: Resolution
-task_task_config: Task Config
-task_generator: Generator
-task_generator_config: Generator Config
-task_place_coverage: Place Coverage
-task_transition_coverage: Transition Coverage
-task_reducer: Reducer
-task_notify_channels: Notify Channels
-status: Status
-task_running: Running
-task_stopped: Stopped
-bug_open: Open
-bug_closed: Closed
-bug_reducing: Reducing
-bug_stopped: Stopped
-selenoid: Selenoid
-LINUX: Linux
-ANDROID: Android
-safari: Safari
-chrome: Chrome
-firefox: Firefox
-MicrosoftEdge: Edge (Chromium)
-opera: Opera
-random: Random
-split: Split
-email: Email
-chat/slack: Slack
-bug_model: Model
-bug_video: Video
-transition: Transition
-places: Places
-variables: Variables
-steps_invalid: Steps Invalid
-outdated: Outdated
-deleted: Deleted
-task_scheduled: Task is scheduled
-bug_scheduled: Bug is scheduled
-task_already_running: Task is already running
-bug_already_reducing: Bug is already reducing
-run: Run
-bugs: Bugs
-reduce: Reduce
-ROLE_MODEL:
-    title: Testing - Model
-    LIST: List Model
-    BUILD: New Model
-    EDIT: Edit Model
-    VIEW: View Model
-    IMAGE: View Model Image
-    DELETE: Delete Model
-    EXPORT: Export Model
-    IMPORT: Import Model
-ROLE_TASK:
-    title: Testing - Task
-    LIST: List Task
-    CREATE: Create Task
-    EDIT: Edit Task
-    VIEW: View Task
-    DELETE: Delete Task
-    RUN: Run Task
-ROLE_BUG:
-    title: Testing - Bug
-    LIST: List Bug
-    EDIT: Edit Bug
-    VIEW: View Bug
-    DELETE: Delete Bug
-    VIDEO: View Bug Video
-    OPEN: Open Bug
-    CLOSE: Close Bug
-    EXPORT: Export Bug
-    REDUCE: Reduce Bug
-
-###
-# Testing Widget
-###
-widget_model_info:
-    name: Model Info
-    description: Shows number of models
-    count: Models
-widget_task_info:
-    name: Task Info
-    description: Shows number of tasks
-    count: Tasks
-widget_bug_info:
-    name: Bug Info
-    description: Shows number of bugs
-    count: Bugs
-widget_testing_statistics:
-    name: Testing Statistics
-    description: Displays detailed testing statistics.
+    ###
+    # Testing Widget
+    ###
+    widget_model_info:
+        name: Model Info
+        description: Shows number of models
+        count: Models
+    widget_task_info:
+        name: Task Info
+        description: Shows number of tasks
+        count: Tasks
+    widget_bug_info:
+        name: Bug Info
+        description: Shows number of bugs
+        count: Bugs
+    widget_testing_statistics:
+        name: Testing Statistics
+        description: Displays detailed testing statistics.

@@ -6,6 +6,7 @@
  * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
@@ -34,60 +35,25 @@ class QuickAction
         // Action Button
         $items = [
             'action_account' => [
-                'name' => 'nav_account',
-                'description' => 'admin_account_desc',
-                'route' => 'admin_account_list',
-                'icons' => 'person',
-                'linkClass' => 'btn btn-primary',
+                'name' => 'widget.quick_action.account',
+                'description' => 'widget.quick_action.account_desc',
+                'route' => 'admin.account_list',
+                'icons' => 'user-shield',
+                'linkClass' => 'btn btn-lg btn-primary',
             ],
             'action_group' => [
-                'name' => 'nav_group',
-                'description' => 'account_group_list_title',
-                'route' => 'admin_group_list',
-                'icons' => 'group',
-                'linkClass' => 'btn btn-primary',
+                'name' => 'widget.quick_action.group',
+                'description' => 'widget.quick_action.group_desc',
+                'route' => 'admin.group_list',
+                'icons' => 'users-cog',
+                'linkClass' => 'btn btn-lg btn-primary',
             ],
             'action_settings' => [
-                'name' => 'settings_general',
-                'description' => 'settings_general_desc',
-                'route' => 'admin_settings_general',
-                'icons' => 'settings',
-                'linkClass' => 'btn btn-secondary',
-            ],
-            'mail_manager' => [
-                'name' => 'mail_manager_list',
-                'description' => 'mail_manager_list_desc',
-                'route' => 'mail_template',
-                'icons' => 'email',
-                'linkClass' => 'btn btn-secondary',
-            ],
-            'mail_manager_logs' => [
-                'name' => 'mail_manager_logger',
-                'description' => 'mail_manager_logger_desc',
-                'route' => 'mail_log',
-                'icons' => 'send',
-                'linkClass' => 'btn btn-secondary',
-            ],
-            'testing_model' => [
-                'name' => 'nav_model',
-                'description' => 'testing_model_list_desc',
-                'route' => 'admin_model_list',
-                'icons' => 'device_hub',
-                'linkClass' => 'btn btn-secondary',
-            ],
-            'testing_task' => [
-                'name' => 'nav_task',
-                'description' => 'testing_task_list_desc',
-                'route' => 'admin_task_list',
-                'icons' => 'assignment',
-                'linkClass' => 'btn btn-secondary',
-            ],
-            'testing_bug' => [
-                'name' => 'nav_bug',
-                'description' => 'testing_bug_list_desc',
-                'route' => 'admin_bug_list',
-                'icons' => 'bug_report',
-                'linkClass' => 'btn btn-secondary',
+                'name' => 'widget.quick_action.general',
+                'description' => 'widget.quick_action.general_desc',
+                'route' => 'admin.config_general',
+                'icons' => 'cogs',
+                'linkClass' => 'btn btn-lg btn-secondary',
             ],
         ];
 
@@ -96,9 +62,9 @@ class QuickAction
             ->addWidget(
                 (new Item('quick_action'))
                     ->setGroup('admin')
-                    ->setName('widget_quick_action.name')
-                    ->setDescription('widget_quick_action.description')
-                    ->setTemplate('Admin/Widget/quickAction.html.twig')
+                    ->setName('widget.quick_action.name')
+                    ->setDescription('widget.quick_action.description')
+                    ->setTemplate('admin/widgets/quickAction.html.twig')
                     ->setRole(['ROLE_WIDGET_QUICKACTION'])
                     ->setConfigProcess(static function (Request $request) use ($items) {
                         if (($id = $request->get('id')) && isset($items[$id])) {

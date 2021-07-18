@@ -6,12 +6,14 @@
  * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
 
 namespace App\Form\Config;
 
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
@@ -30,94 +32,66 @@ use Symfony\Component\Validator\Constraints\Length;
  *
  * @author Ramazan APAYDIN <apaydin541@gmail.com>
  */
-class GeneralForm extends ConfigAbstractType
+class GeneralForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // Get Language List
-        $languageList = array_flip(array_intersect_key(Languages::getNames(), array_flip($options['active_language'])));
-
         $builder
             ->add('head_title', TextType::class, [
-                'label' => 'head_title',
-                'help' => 'head_title_info',
-                'constraints' => [
-                    new Length([
-                        'max' => 150,
-                    ]),
-                ],
+                'label' => 'config.general.head_title',
+                'help' => 'config.general.head_title_help',
+                'constraints' => [new Length(['max' => 150])],
                 'empty_data' => 'pdAdmin',
                 'attr' => ['placeholder-nt' => 'pdAdmin'],
                 'required' => false,
             ])
             ->add('head_title_pattern', TextType::class, [
-                'label' => 'head_title_pattern',
-                'help' => 'head_title_pattern_info',
-                'constraints' => [
-                    new Length([
-                        'max' => 150,
-                    ]),
-                ],
+                'label' => 'config.general.head_title_pattern',
+                'help' => 'config.general.head_title_pattern_help',
+                'constraints' => [new Length(['max' => 150])],
                 'empty_data' => '&T - &P',
                 'attr' => ['placeholder-nt' => '&T - &P'],
                 'required' => false,
             ])
             ->add('head_description', TextareaType::class, [
-                'label' => 'head_description',
-                'help' => 'head_description_info',
-                'constraints' => [
-                    new Length([
-                        'max' => 200,
-                    ]),
-                ],
+                'label' => 'config.general.head_description',
+                'help' => 'config.general.head_description_help',
+                'constraints' => [new Length(['max' => 200])],
                 'empty_data' => 'pdAdmin Head Description',
                 'attr' => ['placeholder-nt' => 'pdAdmin Head Description'],
                 'required' => false,
             ])
             ->add('head_author', TextType::class, [
-                'label' => 'head_author',
-                'help' => 'head_author_info',
-                'constraints' => [
-                    new Length([
-                        'max' => 150,
-                    ]),
-                ],
+                'label' => 'config.general.head_author',
+                'help' => 'config.general.head_author_help',
+                'constraints' => [new Length(['max' => 150])],
                 'empty_data' => 'Ramazan APAYDIN',
                 'attr' => ['placeholder-nt' => 'Ramazan APAYDIN'],
                 'required' => false,
             ])
             ->add('head_keywords', TextareaType::class, [
-                'label' => 'head_keywords',
-                'constraints' => [
-                    new Length([
-                        'max' => 200,
-                    ]),
-                ],
+                'label' => 'config.general.head_keywords',
+                'constraints' => [new Length(['max' => 200])],
                 'attr' => ['placeholder-nt' => 'pdAdmin, Symfony, Dashboard'],
                 'required' => false,
             ])
             ->add('footer_copyright', TextareaType::class, [
-                'label' => 'footer_copyright',
-                'constraints' => [
-                    new Length([
-                        'max' => 200,
-                    ]),
-                ],
+                'label' => 'config.general.footer_copyright',
+                'constraints' => [new Length(['max' => 200])],
                 'empty_data' => 'pdAdmin Developed by Symfony 5',
                 'attr' => ['placeholder-nt' => 'pdAdmin Developed by Symfony 5'],
                 'required' => false,
             ])
             ->add('default_locale', ChoiceType::class, [
-                'label' => 'default_locale',
-                'choices' => $languageList,
+                'label' => 'config.general.default_locale',
+                'choices' => array_flip(array_intersect_key(Languages::getNames(), array_flip($options['active_language']))),
                 'choice_translation_domain' => false,
                 'empty_data' => 'tr',
-                'placeholder' => false,
                 'required' => false,
             ])
             ->add('list_count', RangeType::class, [
-                'label' => 'list_count',
-                'help' => 'list_count_info',
+                'label' => 'config.general.list_count',
+                'help' => 'config.general.list_count_help',
                 'attr' => [
                     'min' => 1,
                     'max' => 100,
@@ -127,11 +101,7 @@ class GeneralForm extends ConfigAbstractType
                 'required' => false,
             ])
             ->add('site_logo', FileType::class, [
-                'label' => 'site_logo',
-                'attr' => [
-                    'label' => 'upload_image_btn',
-                    'label_class' => 'btn btn-success',
-                ],
+                'label' => 'config.general.site_logo',
                 'required' => false,
                 'data_class' => null,
                 'constraints' => [
@@ -146,11 +116,7 @@ class GeneralForm extends ConfigAbstractType
                 ],
             ])
             ->add('site_favicon', FileType::class, [
-                'label' => 'site_favicon',
-                'attr' => [
-                    'label' => 'upload_image_btn',
-                    'label_class' => 'btn btn-success',
-                ],
+                'label' => 'config.general.site_favicon',
                 'required' => false,
                 'data_class' => null,
                 'constraints' => [
@@ -165,12 +131,18 @@ class GeneralForm extends ConfigAbstractType
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'save',
+                'label' => 'button.save',
+                'validate' => false,
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired('active_language');
+    }
+
+    public function getBlockPrefix(): string
+    {
+        return '';
     }
 }

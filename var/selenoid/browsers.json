@@ -1,53 +1,56 @@
 {
     "safari": {
-        "default": "13.0",
+        "default": "14.0",
         "versions": {
-            "13.0": {
-                "image": "browsers/safari:13.0",
+            "14.0": {
+                "image": "browsers/safari:14.0",
                 "port": "4444",
                 "path": "/"
             }
         }
     },
     "chrome": {
-        "default": "87.0",
+        "default": "91.0",
         "versions": {
-            "87.0": {
-                "image": "selenoid/vnc:chrome_87.0",
+            "91.0": {
+                "image": "selenoid/vnc:chrome_91.0",
                 "port": "4444",
                 "path": "/"
             }
         }
     },
     "firefox": {
+        "default": "90.0",
         "versions": {
-            "84.0": {
-                "image": "selenoid/vnc:firefox_84.0",
+            "90.0": {
+                "image": "selenoid/vnc:firefox_90.0",
                 "port": "4444",
                 "path": "/wd/hub"
             }
         }
     },
     "edge": {
-        "default": "89.0",
+        "default": "93.0",
         "versions": {
-            "89.0": {
-                "image": "browsers/edge:89.0",
+            "93.0": {
+                "image": "browsers/edge:93.0",
                 "port": "4444",
                 "path": "/"
             }
         }
     },
     "opera": {
+        "default": "77.0",
         "versions": {
-            "72.0": {
-                "image": "selenoid/vnc:opera_72.0",
+            "77.0": {
+                "image": "selenoid/vnc:opera_77.0",
                 "port": "4444",
                 "path": "/"
             }
         }
     },
     "android": {
+        "default": "10.0",
         "versions": {
             "10.0": {
                 "image": "selenoid/android:10.0",
@@ -57,6 +60,7 @@
         }
     },
     "chrome-mobile": {
+        "default": "86.0",
         "versions": {
             "86.0": {
                 "image": "selenoid/chrome-mobile:86.0",

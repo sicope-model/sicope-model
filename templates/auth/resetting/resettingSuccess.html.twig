@@ -1,0 +1,22 @@
+{% extends "auth/base.html.twig" %}
+
+{% block head_title %}{{ title('security.reset_title'|trans) }}{% endblock %}
+
+{% block body %}
+    <form action="{{ path('security_login') }}">
+        <h3 class="title">{{ 'security.reset_title'|trans }}</h3>
+
+        <div class="mb-4">
+            {% if sendEmail %}
+                {{ 'security.reset_emailsend'|trans }}
+            {% else %}
+                {{ 'security.reset_completed'|trans }}
+            {% endif %}
+        </div>
+
+        <!--Submit-->
+        <div class="form-group">
+            <button type="submit" class="btn w-100 btn-primary">{{ 'security.login_title'|trans }}</button>
+        </div>
+    </form>
+{% endblock %}

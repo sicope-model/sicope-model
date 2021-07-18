@@ -6,6 +6,7 @@
  * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
@@ -28,10 +29,7 @@ use Symfony\Component\Notifier\Recipient\RecipientInterface;
 use Symfony\Component\Notifier\Recipient\SmsRecipientInterface;
 use Tienvx\Bundle\MbtBundle\Model\BugInterface;
 
-class BugNotification extends Notification implements
-    ChatNotificationInterface,
-    EmailNotificationInterface,
-    SmsNotificationInterface
+class BugNotification extends Notification implements ChatNotificationInterface, EmailNotificationInterface, SmsNotificationInterface
 {
     protected BugInterface $bug;
     protected string $mailSenderAddress;

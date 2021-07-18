@@ -6,17 +6,18 @@
  * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
 
 namespace App\Service;
 
-use App\Library\Tools;
-use Intervention\Image\Image;
-use Intervention\Image\ImageManager;
+use Gregwar\Image\Image;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\ByteString;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * Upload File Service.
@@ -25,35 +26,18 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class FileUpload
 {
-    /**
-     * Current Upload Directory.
-     *
-     * @var string
-     */
-    private $currentDir;
-    /**
-     * Upload Relative Path.
-     *
-     * @var string
-     */
-    private $currentPath;
-    /**
-     * @var ConfigBag
-     */
-    private $bag;
+    private string $currentDir;
+    private string $currentPath;
 
-    public function __construct(ConfigBag $bag)
+    public function __construct(
+        private ConfigBag $bag)
     {
-        $this->bag = $bag;
     }
 
     /**
      * Upload Files & Encode ImageManager.
-     *
-     * @param $files array|UploadedFile
-     * @param bool $rawUpload
      */
-    public function upload($files, $rawUpload = false): array
+    public function upload(array | UploadedFile $files, bool $rawUpload = false): array
     {
         $this->createDirectory();
 
@@ -78,35 +62,30 @@ class FileUpload
 
     /**
      * Remove Files.
-     *
-     * @param string|array $files
      */
-    public static function removeFiles($files): void
+    public static function removeFiles(array | string $files): void
     {
-        if ($files) {
-            // Convert Array
-            if (!\is_array($files)) {
-                $files = [$files];
-            }
+        if (!\is_array($files)) {
+            $files = [$files];
+        }
 
-            foreach ($files as $file) {
-                $file = Tools::uploadDir($file);
-                if (file_exists($file)) {
-                    unlink($file);
-                }
+        foreach ($files as $file) {
+            $file = Tools::uploadDir($file);
+            if (file_exists($file)) {
+                unlink($file);
             }
         }
     }
 
     /**
      * Start Upload.
-     *
-     * @param $rawUpload boolean
      */
     private function uploadProcess(UploadedFile $file, bool $rawUpload): string
     {
         // Create Filename
-        $fileName = Tools::webalize(Tools::randomStr(6) . $file->getClientOriginalName(), '.');
+        $fileName = (new AsciiSlugger())->slug(
+                ByteString::fromRandom(3) . '-' . pathinfo($file->getClientOriginalName(), \PATHINFO_FILENAME)
+            ) . '.' . $file->guessClientExtension();
 
         // Upload File and Optimize Images
         if (!$rawUpload) {
@@ -128,81 +107,19 @@ class FileUpload
 
     /**
      * Image Process Manager.
-     *
-     * @param $filePath string
      */
-    private function imageManager(UploadedFile $file, $filePath): void
+    private function imageManager(UploadedFile $file, string $filePath): void
     {
         // Create Image Manager
-        $img = new ImageManager(['driver' => $this->bag->get('media_library')]);
-        $img = $img->make($file->getRealPath());
+        $img = Image::open($file->getRealPath());
 
         // Image Optimize
         if ($this->bag->get('media_optimize')) {
-            $img->resize(
-                $this->bag->get('media_max_height'),
-                $this->bag->get('media_max_width'),
-                static function ($constraint) {
-                    $constraint->upsize();
-                    $constraint->aspectRatio();
-                }
-            );
-        }
-
-        // Image Add Watermark
-        switch ($this->bag->get('media_watermark')) {
-            case 'text':
-                $this->addTextWatermark($img);
-                break;
-            case 'image':
-                $this->addImageWatermark($img);
-                break;
+            $img->scaleResize($this->bag->get('media_max_width'), $this->bag->get('media_max_height'), 'transparent', true);
         }
 
         // Save Image
-        $img->save($filePath, $this->bag->get('media_optimize') ? $this->bag->get('media_quality') : null)->destroy();
-    }
-
-    /**
-     * Image Add Text Watermark.
-     */
-    private function addTextWatermark(Image $img): void
-    {
-        // Set X-Y Image Ordinate
-        $xOrdinate = $img->getWidth() * $this->bag->get('media_wm_font_x');
-        $yOrdinate = $img->getHeight() * $this->bag->get('media_wm_font_y');
-
-        // Add Text Watermark
-        $img->text($this->bag->get('media_wm_font_text'), $xOrdinate, $yOrdinate, function ($font) {
-            // Exist Font File
-            if (
-                !empty($this->bag->get('media_wm_font'))
-                && file_exists($fontPath = Tools::uploadDir($this->bag->get('media_wm_font')))
-            ) {
-                $font->file($fontPath);
-            }
-
-            $font->size($this->bag->get('media_wm_font_size'));
-            $font->color($this->bag->get('media_wm_font_color'));
-            $font->align($this->bag->get('media_wm_font_align'));
-            $font->valign($this->bag->get('media_wm_font_valign'));
-            $font->angle($this->bag->get('media_wm_font_angle'));
-        });
-    }
-
-    /**
-     * Image Add Watermark.
-     */
-    private function addImageWatermark(Image $img): void
-    {
-        if (file_exists($imagePath = Tools::uploadDir($this->bag->get('media_wm_image')))) {
-            $img->insert(
-                $imagePath,
-                $this->bag->get('media_wm_image_position'),
-                $this->bag->get('media_wm_image_x'),
-                $this->bag->get('media_wm_image_y')
-            );
-        }
+        $img->save($filePath, 'guess', $this->bag->get('media_optimize') ? (int) $this->bag->get('media_quality') : 80);
     }
 
     /**

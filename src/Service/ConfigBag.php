@@ -6,19 +6,20 @@
  * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
 
 namespace App\Service;
 
-use App\Entity\Config;
-use App\Repository\ConfigRepository;
+use App\Entity\System\Config;
+use App\Repository\System\ConfigRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
 /**
  * Get Config for DB.
@@ -27,38 +28,30 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class ConfigBag
 {
-    /**
-     * @var ConfigRepository
-     */
-    private $configRepo;
-    /**
-     * @var ParameterBagInterface
-     */
-    private $bag;
-    /**
-     * @var array
-     */
-    private $configs = [];
+    private array $configs = [];
 
-    public function __construct(ConfigRepository $configRepo, ParameterBagInterface $bag)
-    {
-        $this->configRepo = $configRepo;
-        $this->bag = $bag;
+    public function __construct(
+        private ConfigRepository $configRepo,
+        private ParameterBagInterface $bag,
+        private EntityManagerInterface $entityManager,
+    ) {
     }
 
     /**
      * Get Config to Store.
-     *
-     * @return mixed|null
      */
-    public function get(string $name)
+    public function get(string $name): mixed
     {
-        // Load
         $this->loadConfigRepository();
 
         // Load DB
-        if (isset($this->configs[$name]) && '' !== $this->configs[$name]) {
+        if (\array_key_exists($name, $this->configs)) {
             return $this->configs[$name];
+        }
+
+        // Load Default App Parameters
+        if ($this->bag->has('app.' . $name)) {
+            return $this->bag->get('app.' . $name);
         }
 
         // Load Symfony Parameters
@@ -74,7 +67,6 @@ class ConfigBag
      */
     public function getAll(): array
     {
-        // Load
         $this->loadConfigRepository();
 
         return $this->configs;
@@ -82,14 +74,9 @@ class ConfigBag
 
     /**
      * Set Config to Store.
-     *
-     * @param null $value
-     *
-     * @return ConfigBag
      */
     public function set(string $name, $value = null): self
     {
-        // Load
         $this->loadConfigRepository();
 
         $this->configs[$name] = $value;
@@ -121,122 +108,114 @@ class ConfigBag
             return;
         }
 
-        // Load Cache|Repository
-        $store = $this->configRepo->findAll();
-        foreach ($store as $config) {
-            if (1 === \count($config->getValue())) {
-                $val = $config->getValue()[0];
-
-                if ('true' === $val) {
-                    $val = true;
-                } elseif ('false' === $val) {
-                    $val = false;
-                }
-            } else {
-                $val = $config->getValue();
+        foreach ($this->bag->all() as $key => $item) {
+            if (str_contains($key, 'app.')) {
+                $this->configs[str_replace('app.', '', $key)] = $item;
             }
+        }
 
-            $this->configs[$config->getName()] = $val;
+        // Load Cache|Repository
+        foreach ($this->configRepo->findAll() as $config) {
+            $this->configs[$config->getName()] = $config->getConvertedValue($this->entityManager);
         }
     }
 
     /**
      * Save Config to DB.
-     *
-     * @param array|FormInterface $configs
      */
-    public function saveToDB(ObjectManager $em, $configs): void
+    public function saveForm(FormInterface $form): void
     {
-        // Normalize Form
-        if ($configs instanceof FormInterface) {
-            $configs = $this->formNormalize($configs);
-        }
-
-        $data = $this->configRepo->createQueryBuilder('c')
-            ->where('c.name IN (:names)')
-            ->setParameter('names', array_keys($configs))
-            ->getQuery()
-            ->getResult();
-
-        // Update
-        foreach ($data as $item) {
-            if (\array_key_exists($item->getName(), $configs)) {
-                if (\is_bool($configs[$item->getName()])) {
-                    $item->setValue($configs[$item->getName()] ? 'true' : 'false');
-                } else {
-                    $item->setValue($configs[$item->getName()]);
-                }
-                $em->persist($item);
-
-                unset($configs[$item->getName()]);
+        foreach ($this->formNormalize($form) as $config) {
+            if ($persist = $this->configRepo->findOneBy(['name' => $config->getName()])) {
+                $this->entityManager->persist($persist
+                    ->setValue($config->getValue())
+                    ->setType($config->getType())
+                );
+                continue;
             }
-        }
 
-        // Create New
-        foreach ($configs as $name => $value) {
-            $config = (new Config())->setName($name)->setValue($value);
-            $em->persist($config);
+            $this->entityManager->persist($config);
         }
 
         // Save
-        $em->flush();
+        $this->entityManager->flush();
     }
 
     /**
      * Form Data Normalize.
+     *
+     * @return Config[]
      */
     private function formNormalize(FormInterface $form): ?array
     {
         // Get Form Data
-        $formData = $form->getData();
+        $configItems = [];
 
         // Normalize Form Data
-        foreach ($formData as $itemName => $itemData) {
-            if ($form->has($itemName)) {
-                switch ($form->get($itemName)->getConfig()->getType()->getBlockPrefix()) {
-                    case 'password':
-                        if (null === $itemData || empty($itemData)) {
-                            $formData[$itemName] = $this->configs[$itemName] ?? null;
-                        }
-                        break;
-                    case 'entity':
-                        if (\is_object($itemData)) {
-                            // Get Entity Function
-                            $choiceValue = $form->get($itemName)->getConfig()->getOption('choice_value');
-                            $entityGetter = \is_string($choiceValue) ? 'get' . ucfirst($choiceValue) : 'getId';
+        foreach ($form->all() as $itemName => $item) {
+            switch ($item->getConfig()->getType()->getBlockPrefix()) {
+                case 'checkbox':
+                    $configItems[] = (new Config())
+                        ->setType('boolean')
+                        ->setName($itemName)
+                        ->setValue($item->getData());
+                    break;
+                case 'range':
+                    $configItems[] = (new Config())
+                        ->setType('number')
+                        ->setName($itemName)
+                        ->setValue($item->getData());
+                    break;
+                case 'entity':
+                    $data = [];
+                    $class = $form->get($itemName)->getConfig()->getOption('class');
 
-                            if (\is_array($itemData) || $itemData instanceof ArrayCollection) {
-                                $data = [];
-                                foreach ($itemData as $item) {
-                                    $data[] = $item->{$entityGetter}();
-                                }
-                                $formData[$itemName] = $data;
-                            } else {
-                                $formData[$itemName] = $itemData->{$entityGetter}();
+                    if (\is_object($item->getData())) {
+                        $choiceValue = $form->get($itemName)->getConfig()->getOption('choice_value');
+                        $entityGetter = \is_string($choiceValue) ? 'get' . ucfirst($choiceValue) : 'getId';
+                        if (\is_array($item->getData()) || $item->getData() instanceof ArrayCollection) {
+                            foreach ($item->getData() as $itemData) {
+                                $data[] = $itemData->{$entityGetter}();
                             }
                         } else {
-                            $formData[$itemName] = '';
+                            $data = $item->getData()->{$entityGetter}();
                         }
-                        break;
-                    case 'file':
-                        if ($itemData instanceof UploadedFile || \is_array($itemData)) {
-                            // Delete Old File
-                            FileUpload::removeFiles($this->configs[$itemName]);
+                    } else {
+                        $data = '';
+                    }
 
-                            // Upload New File
-                            $uploadManager = new FileUpload($this);
-                            $formData[$itemName] = $uploadManager->upload($itemData, true);
-                        } else {
-                            $formData[$itemName] = $this->configs[$itemName] ?? null;
-                        }
-                        break;
-                    case 'checkbox':
-                        $formData[$itemName] = $itemData ? 'true' : 'false';
-                        break;
-                }
+                    $configItems[] = (new Config())
+                        ->setType($class)
+                        ->setName($itemName)
+                        ->setValue($data);
+                    break;
+                case 'file':
+                    if ($item->getData()) {
+                        FileUpload::removeFiles($this->configs[$itemName]);
+
+                        $file = (new FileUpload($this))->upload($item->getData(), false);
+                        $configItems[] = (new Config())
+                            ->setName($itemName)
+                            ->setType(\is_array($item->getData()) ? 'array' : 'string')
+                            ->setValue(\is_array($item->getData()) ? $file : $file[0]);
+                    }
+                    break;
+                case 'date':
+                case 'datetime':
+                    $configItems[] = (new Config())
+                        ->setType('datetime')
+                        ->setName($itemName)
+                        ->setValue($item->getData() ? (new DateTimeNormalizer())->normalize($item->getData()) : null);
+                    break;
+                default:
+                    $configItems[] = (new Config())
+                        ->setType('string')
+                        ->setName($itemName)
+                        ->setValue($item->getData());
+                    break;
             }
         }
 
-        return $formData;
+        return $configItems;
     }
 }

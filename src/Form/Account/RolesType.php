@@ -6,6 +6,7 @@
  * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
@@ -37,8 +38,9 @@ class RolesType extends AbstractType
                 },
                 'mapped' => false,
                 'data' => key(array_intersect($options['acl'], $options['userRoles'])),
+                'translation_domain' => 'acl',
             ])
-            ->add('aclprocess', ChoiceType::class, [
+            ->add('aclProcess', ChoiceType::class, [
                 'label' => false,
                 'multiple' => true,
                 'expanded' => true,
@@ -48,6 +50,7 @@ class RolesType extends AbstractType
                 'mapped' => false,
                 'data' => $options['userRoles'],
                 'required' => false,
+                'translation_domain' => 'acl',
             ])
             ->add('roles', ChoiceType::class, [
                 'label' => false,
@@ -63,19 +66,20 @@ class RolesType extends AbstractType
                     return $val;
                 },
                 'data' => $options['userRoles'],
+                'translation_domain' => 'acl',
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'save',
+                'label' => 'button.save',
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver
-            ->setRequired([
-                'roles',
-                'acl',
-                'userRoles',
-            ]);
+        $resolver->setRequired(['roles', 'acl', 'userRoles']);
+    }
+
+    public function getBlockPrefix(): string
+    {
+        return '';
     }
 }

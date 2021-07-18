@@ -10,39 +10,27 @@ let Encore = require('@symfony/webpack-encore');
  */
 Encore
     // Set Output Path
-    .setOutputPath('public/build/admin/')
-    .setPublicPath('/build/admin')
+    .setOutputPath('public/build/')
+    .setPublicPath('/build')
 
-    // Copy Static Files
-    .copyFiles({
-        from: './assets/admin/static'
-    })
+    // Entry
+    .addEntry('admin/app', './assets/admin/app.js')
+    .addStyleEntry('admin/main', './assets/admin/app.scss')
+    .addStyleEntry('auth', './assets/auth/auth.scss')
 
-    // Add JS Entry
-    .addEntry('app', './assets/admin/js/app.js')
-    .addEntry('vendor', './assets/admin/js/vendor.js')
-
-    // JS Plugins
-    .addEntry('plugin/ace', './assets/admin/js/plugin/ace.js')
-    .addEntry('plugin/chart', 'chart.js/dist/Chart.min.js')
-
-    // Add JS For Pages
-    .addEntry('page/model', './assets/admin/js/page/model.js')
-    .addEntry('page/task', './assets/admin/js/page/task.js')
-
-    // Authorization Page
-    .addStyleEntry('auth/auth', './assets/admin/scss/auth.scss')
-
-    // Bug Page
-    .addStyleEntry('page/bug', './assets/admin/scss/testing/bug.scss')
+    // Testing
+    //.addEntry('testing/task', './assets/testing/task.js')
+    //.addEntry('testing/model', './assets/testing/model.js')
+    //.addStyleEntry('testing', './assets/testing/dashboard.scss')
 
     // Configs
+    .enableVueLoader(() => {}, { runtimeCompilerBuild: false })
     .enableSassLoader()
     .enablePostCssLoader()
-    .enableSourceMaps(!Encore.isProduction())
     .cleanupOutputBeforeBuild()
+    .disableSingleRuntimeChunk()
+    .enableSourceMaps(!Encore.isProduction())
+    .enableVersioning(Encore.isProduction())
     .enableBuildNotifications()
-    .enableVersioning(false)
-    .disableSingleRuntimeChunk();
 
 module.exports = Encore.getWebpackConfig();

@@ -6,6 +6,7 @@
  * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
@@ -14,7 +15,7 @@ namespace App\Service;
 
 use App\Exception\RuntimeException;
 use App\Notification\BugNotification;
-use App\Repository\UserRepository;
+use App\Repository\Account\UserRepository;
 use Pd\UserBundle\Model\UserInterface;
 use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Notifier\Recipient\NoRecipient;

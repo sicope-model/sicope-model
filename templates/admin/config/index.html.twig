@@ -1,0 +1,15 @@
+{# Template Parts #}
+{% extends "admin/layout/base.html.twig" %}
+{% block head_title %}{{ title('config.system'|trans) }}{% endblock %}
+{% block content_title %}<i class="fas fa-cogs"></i>{{ 'config.system'|trans }}{% endblock %}
+
+{# Content Body #}
+{% block content_body %}
+    <content-menu>{{ pd_menu_render('App\\Menu\\NavSettings') }}</content-menu>
+
+    <div class="forms">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

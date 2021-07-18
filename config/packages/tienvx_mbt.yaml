@@ -7,15 +7,15 @@ tienvx_mbt:
                 LINUX:
                     browsers:
                         safari:
-                            versions: ['13.0']
+                            versions: ['14.0']
                         chrome:
-                            versions: ['87.0']
+                            versions: ['91.0']
                         firefox:
-                            versions: ['84.0']
+                            versions: ['90.0']
                         MicrosoftEdge:
-                            versions: ['89.0']
+                            versions: ['93.0']
                         opera:
-                            versions: ['72.0']
+                            versions: ['77.0']
                     resolutions:
                         - '1024x768'
                         - '1280x800'

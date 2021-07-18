@@ -1,0 +1,97 @@
+/*======================================================
+ Override Bootstrap Variables
+=======================================================*/
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+$body-color: #4a5073;
+$headings-color: #262b40;
+$link-decoration: none;
+$link-color: #262b40;
+$border-radius: .3rem;
+$input-btn-focus-width: .2rem;
+$form-check-input-width: 1.2em;
+$form-check-input-border-radius: .2rem;
+$form-label-font-weight: 500;
+$line-height-base: 1.7;
+$alert-padding-y: .5rem;
+$alert-padding-x: 1rem;
+$primary: #5d52fd;
+
+
+/*======================================================
+ Bootstrap
+=======================================================*/
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/utilities/api";
+
+/*======================================================
+ Typography
+=======================================================*/
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #e5ebf1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*======================================================
+ Login|Register|Resetting Page
+=======================================================*/
+#auth-wrap {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: url("./auth-bg.svg") no-repeat center center;
+
+  form {
+    border: .0625rem solid #eaedf2;
+    background: #FFF;
+    border-radius: .5rem;
+    padding: 2.5rem;
+    position: relative;
+    box-shadow: 0 2px 18px rgba(0, 0, 0, .02);
+    max-width: 450px;
+    width: 100%;
+  }
+
+  .title {
+    text-align: center;
+    margin-bottom: 1.6rem;
+  }
+
+  .input-group-text {
+    background: transparent;
+  }
+
+  .input-group {
+    .input-group-text {
+      border: none;
+      position: absolute;
+      z-index: 6;
+      height: 100%;
+    }
+
+    .form-control {
+      padding-left: 36px;
+      border-radius: .4rem !important;
+    }
+  }
+
+  button[type=submit]{
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+}
