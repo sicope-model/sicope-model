@@ -6,6 +6,7 @@
  * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
@@ -20,7 +21,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * User Groups.
  *
  * @ORM\Table(name="user_group")
- * @ORM\Entity(repositoryClass="App\Repository\GroupRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Account\GroupRepository")
  * @UniqueEntity(fields="name", message="group_already_taken")
  *
  * @author Ramazan APAYDIN <apaydin541@gmail.com>

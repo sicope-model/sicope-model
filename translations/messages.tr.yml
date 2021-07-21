@@ -1,494 +1,292 @@
-###
-# Security Permission
-###
-access_denied: Erişim engellendi!
-access_denied_not_authorized: Erişim engellendi! Bu işlem için yetkili değilsiniz.
-not_login_own_account: Erişim engellendi! Kendi hesabınıza giriş yapamazsınız.
-not_login_super_admin: Erişim engellendi! Süper Admin hesabına giriş yapamazsınız.
-not_login_already_switched: Erişim engellendi! Zaten mevcut bir kullanıcıya geçiş yaptınız.
-not_login_switch_authorized: Erişim engellendi! Yetkiniz bu işlem için yeterli değil.
-ACL:
-    title: Erişim Kontrol
-ACLProcess:
-    title: Özel İşlemler
-ROLE_USER:
-    title: Kullanıcı
-ROLE_ADMIN:
-    title: Admin
-ROLE_SUPER_ADMIN:
-    title: Süper Admin
-ROLE_ALLOWED_TO_SWITCH:
-    title: Hesap Değiştirme
-ROLE_DASHBOARD:
-    title: Admin Paneli (Dashboard)
-    PANEL: Panel Listeleme
-ROLE_ACCOUNT:
-    title: Admin Hesap Yönetimi
-    LIST: Listeleme
-    EDIT: Düzenleme
-    PASSWORD: Şifre Değiştirme
-    ROLES: Yetkilendirme
-    ACTIVATE: Etkinleştirme
-    GROUP: Grup Ekle/Çıkar
-    DELETE: Sil
-    FREEZE: Hesap Dondurma
-    ALLREAD: Tüm Hesapları Okuma
-    ALLWRITE: Tüm Hesapları Yazma
-ROLE_GROUP:
-    title: Admin Grup İzinleri
-    LIST: Listeleme
-    EDIT: Düzenleme
-    CREATE: Yeni Grup
-    DELETE: Sil
-    ROLES: Yetkilendirme
-ROLE_SETTINGS:
-    title: Admin Ayarlar İzinleri
-    GENERAL: Genel
-    USER: Hesap
-    MEDIA: Medya
-    CONTACT: İletişim
-ROLE_MAIL:
-    title: Admin Posta Yöneticisi
-    TEMPLATE: Şablon Listeleme
-    TEMPLATEADD: Yeni Şablon
-    TEMPLATEEDIT: Şablon Düzenle
-    TEMPLATEACTIVE: Şablon Etkinleştir
-    TEMPLATEDELETE: Şablon Sil
-    LOGGER: Log Listeleme
-    VIEWLOG: Log Görüntüleme
-    LOGDELETE: Log Sil
-ROLE_WIDGET:
-    title: Admin Widget
-    USERINFO: Kullanıcı Bilgisi
-    QUICKACTION: Hızlı Menü
-    USERSTATISTICS: Kullanıcı İstatistikleri
-    # Testing
-    MODELINFO: Model Bilgisi
-    TASKINFO: Görev Bilgisi
-    BUGINFO: Hata Bilgisi
-    TESTINGSTATISTICS: Test İstatistikleri
-
-###
-# Time Ago
-###
-diff:
-    year:   yıl
-    month:  ay
-    day:    gün
-    hour:   saat
-    minute: dakika
-    second: saniye
-    ago:    önce
-
-###
-# General
-###
-edit: Düzenle
-edit_roles: Yetkilendirme
-delete: Sil
-change_password: Şifre Değiştir
-edit_group: Grup Düzenle
-switch_user: Hesaba Giriş Yap
-activate_deactivate: Etkinleştir / Devre Dışı
-freeze_unfreeze: Askıya Al / Kapat
-add_new: Yeni Ekle
-open: Açık
-close: Kapat
-yes: Evet
-add: Ekle
-refresh: Yenile
-add_widget: Widget Ekle
-search: Ara..
-search_filter: Filtrele
-search_placeholder: Arama...
-active: Etkin
-deactive: Devredışı
-select_all: Tümünü Seç
-select_item: Seçim Yapın
-selected: '{%s} Seçili'
-selected_all: '{%s} Tane Seçildi'
-no_matches: '"{%s}" için eşleşme bulunamadı!'
-delete_message: Silmek istediğinizden emin misiniz?
-save: Kaydet
-homepage: Anasayfa
-upload_image_btn: Resim Yükle
-Default: Varsayılan
-default: Varsayılan
-test: Test
-left: Sol
-right: Sağ
-top: Üst
-bottom: Alt
-middle: Merkez
-center: Merkez
-top_left: Üst Sol
-top_right: Üst Sağ
-bottom_left: Alt Sol
-bottom_right: Alt Sağ
-enable: Etkinleştir
-disable: Kapalı
-enabled: Etkin
-disabled: Devre Dışı
-account_frozen: Hesap Dondurulmuş
+# Message & Button & Text
+message:
+    saved: Değişiklikler kaydedildi.
+    deleted: Silme işlemi tamamlandı.
+button:
+    save: Kaydet
+    add: Ekle
+    delete: Sil
+    move: Taşı
+    yes: Evet
+    no: Hayır
+    cancel: İptal
+    edit: Düzenle
+confirm:
+    delete: Silmek istediğinizden emin misiniz?
+    approve: Bu işlemi gerçekleştirmek istediğinizden emin misiniz?
 date: Tarih
-success: Başarılı
-process_completed: İşlem Tamamlandı.
-changes_saved: Değişiklikler kaydedildi.
-running_tasks_notice: Çalışan görevler etkilenmez.
-remove_complete: Silme işlemi tamamlandı.
-sorry_not_existing: Üzgünüz kayıt mevcut değil.
-test_email_success: Test e-postası gönderildi.
-user_registration_disable: Kullanıcı kaydı şu anda kapalı, lütfen daha sonra tekrar deneyin.
-404_not_found: Sayfa Bulunamadı!
-404_not_found_description: Üzgünüz aradığınız sayfa bulunamadı veya kullanımdan kaldırılmış olabilir.
-403_access_denied: Erişim reddedildi!
-403_access_denied_description: Bu kaynağa erişim izniniz yok.
+save: Kaydet
 
-###
+# Toolbar
+toolbar:
+    language: Dil
+    profile:
+        edit: Profilim
+        password: Şifremi Değiştir
+        return_admin: Admine Dön
+        logout: Çıkış Yap
 # Pages
-###
-nav_dashboard: Panel
-admin_dashboard: Admin Panel
-admin_dashboard_desc: Yönetici Alanı
-admin_widget_modal_title: Widgetler
-nav_profile_edit: Hesabım
-nav_profile_password: Şifre Değiştir
-nav_profile_return_admin: Admin'e Dön
-nav_profile_logout: Çıkış Yap
+404:
+    title: Sayfa Bulunamadı!
+    description: Üzgünüz aradığınız sayfa bulunamadı veya kullanımdan kaldırılmış olabilir.
 
-search_keyword: Anahtar Kelime
-search_keyword_account_placeholder: İsim / E-posta / Telefon
-nav_account: Hesaplar
-nav_account_edit: Profil
-nav_account_change_password: Şifre Değiştir
-nav_account_roles: Yetkilendirme
-nav_account_group: Grup
-account_firstname: İsim
-account_email: E-posta
-account_phone: Telefon
-account_lastlogin: Son Giriş
-account_status: Hesap Durumu
-search_filter_title: Sonuçları Filtrele
-admin_account_list: Hesaplar
-admin_account_desc: Kayıtlı tüm kullanıcılar
-account_edit_title: Hesap Düzenle
-firstname: İsim
-lastname: Soyisim
-phone: Telefon
-website: Website
-company: Şirket
-language: Dil
-account_change_password_title: Şifre Değiştir
-account_add_group_title: Grup
-account_groups: Gruplar
-account_roles_title: Özel Yetkilendirme
+dashboard:
+    title: Admin Panel
 
-nav_group: Gruplar
-account_group_list_title: Kullanıcı Grupları
-account_group_list_desc: Üyelerin katıldığı gruplar
-group_name: Grup Adı
-group_roles: Yetkiler
-account_group_edit_title: Grup Düzenle
-account_group_edit_desc: Kullanıcı grup düzenleme
-nav_group_edit: Detaylar
-nav_group_roles: Yetkilendirme
-account_group_new_title: Yeni Grup
-account_group_new_desc: Yeni kullanıcı grubu oluştur
-account_group_role_title: Grup Yetkilendirme
-account_group_role_desc: Kullanıcı grup yetkilendirme
+config:
+    title: Ayarlar
+    system: Sistem Ayarları
+    general:
+        title: Genel
+        head_title: Site Başlığı
+        head_title_help: Sitenin adıdır, son ek olarak gösterilir.
+        head_title_pattern: Başlık Deseni
+        head_title_pattern_help: '&T: Aktif sayfa başlığı, <br>&P: Panel son ek'
+        head_description: Site Açıklama
+        head_description_help: Panel için meta 'description' etiket alanıdır.
+        head_author: Site Yazar
+        head_author_help: Site yapımcısını belirler.
+        head_keywords: Anahtar Kelimeler
+        footer_copyright: Footer Copyright
+        default_locale: Varsayılan Dil
+        site_logo: Site Logo
+        site_favicon: Site Favicon
+        list_count: Listeleme Sayısı
+        list_count_help: Admin panel için varsayılan listeleme sayıdır.
+    media:
+        title: Media
+        optimize: Resim Optimize
+        optimize_help: pdAdmin upload sistemi ile yüklenen resimler için optizasyonu etkinleştirir.
+        max_height: Resim Maximum Yükseklik
+        max_height_help: Resimler için maximum yükseklik değeridir.
+        max_width: Resim Maximum Genişlik
+        max_width_help: Resimler için maximum genişlik değeridir.
+        quality: Resim Kalitesi
+        quality_help: 0-100 arasında değer girin, varsayılan 80'dir.
+    user:
+        title: Kullanıcı
+        registration: Üye Kaydı
+        registration_help: Üye kaydını etkinleştirir.
+        default_group: Varsayılan Grup
+        default_group_help: Yeni üyelerin otomatik olarak katıldıkları gruptur.
+        login_redirect: Giriş Yönlendirmesi
+        login_redirect_help: Kullanıcının giriş yaptıktan sonra yönlendirileceği sayfadır.
+        logout_redirect: Çıkış Yönlendirmesi
+        logout_redirect_help: Kullanıcının çıkış yaptıktan sonra yönlendirileceği sayfadır.
+        email_confirmation: E-posta Doğrulama
+        email_confirmation_help: Yeni üyeler için e-posta doğrulamayı etkinleştirir.
+        welcome_email: Hoşgeldiniz E-postası
+        welcome_email_help: Yeni üyeler için hoşgeldiniz e-postası gönderir.
 
-nav_system: Admin Panel
-nav_system_header: Sistem Ayarları
-nav_tools_header: Sistem Araçları
-nav_config: Ayarlar
-settings_general: Genel Ayarlar
-settings_general_desc: Sistem ayarları
-admin_refresh_cache: Önbelleği Yenile
-admin_refresh_cache_desc: Sistem ayarlarında değişiklik yapıldıktan sonra önbelleği yenilemeniz gerekir. Şimdi önbelleği yenilemek ister misiniz?
-nav_config_general: Genel
-head_title: Site Başlığı
-head_title_info: Sitenin adıdır, son ek olarak gösterilir.
-head_title_pattern: Başlık Deseni
-head_title_pattern_info: '&T: Aktif sayfa başlığı, <br>&P: Panel son ek'
-head_description: Site Açıklama
-head_description_info: Panel için meta 'description' etiket alanıdır.
-head_author: Site Yazar
-head_author_info: Site yapımcısını belirler.
-head_keywords: Anahtar Kelimeler
-footer_copyright: Footer Copyright
-default_locale: Varsayılan Dil
-site_logo: Site Logo
-site_favicon: Site Favicon
-list_count: Listeleme Sayısı
-list_count_info: Admin panel için varsayılan listeleme sayıdır.
+account:
+    title: Hesap Düzenle
+    edit:
+        title: Profilim
+        firstname: Adınız
+        lastname: Soyadınız
+        phone: Telefon
+        language: Dil
+        groups: Üye Gruplar
+    password:
+        title: Şifre
+    roles:
+        title: Yetkiler
+    groups:
+        title: Gruplar
 
-settings_contact: İletişim Ayarlar
-settings_contact_desc: Sistem ve site iletişim ayarları
-nav_config_contact: İletişim
-contact_email: İletişim E-posta
-contact_email_info: Sistem postaları ve iletişim formu bu adrese gönderilir.
-contact_phone: Telefon
-contact_fax_number: Fax
-contact_address: Yerel Adres
-contact_facebook: Facebook
-contact_twitter: Twitter
-contact_youtube: Youtube
-contact_linkedin: LinkedIn
-contact_whatsapp: WhatsApp
-nav_mailer_header: Posta Yönetici
-nav_mailer_template: Posta Şablonları
-nav_mailer_logs: Posta Logları
+accounts:
+    title: Hesap Yönetimi
+    account:
+        title: Hesaplar
+        approve: Hesabı Onayla
+        unapprove: Onayı Kaldır
+        freeze: Hesabı Dondur
+        unfreeze: Hesabı Etkinleştir
+        switch: Hesaba Giriş Yap
+    group:
+        title: Gruplar
+        add: Yeni Grup
+        add_title: Yeni Grup Oluştur
+        roles: Yetkilendirme
+        edit_title: Grubu Düzenle
 
-settings_user: Hesap Ayarlar
-settings_user_desc: Kullanıcı hesap ayarları
-nav_config_user: Hesap
-user_registration: Üye Kaydı
-user_registration_info: Üye kaydını etkinleştirir.
-user_default_group: Varsayılan Grup
-user_default_group_info: Yeni üyelerin otomatik olarak katıldıkları gruptur.
-user_login_redirect: Giriş Yönlendirmesi
-user_login_redirect_info: Kullanıcının giriş yaptıktan sonra yönlendirileceği sayfadır.
-user_logout_redirect: Çıkış Yönlendirmesi
-user_logout_redirect_info: Kullanıcının çıkış yaptıktan sonra yönlendirileceği sayfadır.
-user_email_confirmation: E-posta Doğrulama
-user_email_confirmation_info: Yeni üyeler için e-posta doğrulamayı etkinleştirir.
-user_welcome_email: Hoşgeldiniz E-postası
-user_welcome_email_info: Yeni üyeler için hoşgeldiniz e-postası gönderir.
+activity:
+    log:
+        title: Etkinlik Günlüğü
+    mail:
+        title: Posta Günlüğü
 
-settings_media: Medya Ayarlar
-settings_media_desc: Sistem medya ayarları
-nav_config_media: Medya
-media_library: Resim Kütüphanesi
-media_library_info: Resim düzenleme, iyileştirme için kullanılacak php kütüphanesidir.
-media_optimize: Resim Optimize
-media_optimize_info: pdAdmin upload sistemi ile yüklenen resimler için optizasyonu etkinleştirir.
-media_max_height: Resim Maximum Yükseklik
-media_max_height_info: Resimler için maximum yükseklik değeridir.
-media_max_width: Resim Maximum Genişlik
-media_max_width_info: Resimler için maximum genişlik değeridir.
-media_quality: Resim Kalitesi
-media_quality_info: 0-100 arasında değer girin, varsayılan 80'dir.
-media_watermark: Fligran (Kaplama)
-media_watermark_info: Resim üzerine fligran(kaplama) uygulanır.
-watermark_text: Yazı
-watermark_image: Resim
-media_wm_image: Fligran Resim
-media_wm_image_info: Fligran için '.png' formatında transparent resim kullanmanız önerilir.
-media_wm_image_position: Fligran Konumu
-media_wm_image_position_info: Fligranın ekleneceği konumun başlangıç noktasını belirler.
-media_wm_image_x: Fligran X
-media_wm_image_x_info: Fligranın X kordinatı üzerinde isteğe bağlı başlangıç pikselidir.
-media_wm_image_y: Fligran Y
-media_wm_image_y_info: Fligranın Y kordinatı üzerinde isteğe bağlı başlangıç pikselidir.
-media_wm_font: Fligran Font
-media_wm_font_info: Fligran için font dosyası seçin. Herhangi bir dosya seçilmediğinde varsayılan font kullanılacaktır.
-upload_font_btn: Font Yükle
-media_wm_font_text: Fligran Yazısı
-media_wm_font_size: Font Boyutu
-media_wm_font_size_info: Font büyüklüğü varsayılan 24 piksel olarak ayarlanmıştır.
-media_wm_font_color: Font Renk
-media_wm_font_color_info: Font için Hex yada RGBA olarak renk kodu girebilirsiniz.
-media_wm_font_align: Font Yatay Hizalama
-media_wm_font_align_info: Yatay font hizalamasıdır.
-media_wm_font_valign: Font Dikey Hizalama
-media_wm_font_valign_info: Dikey font hizalamasıdır.
-media_wm_font_x: X Pozisyon
-media_wm_font_x_info: İlk karakterin yatay taban noktasını tanımlar.
-media_wm_font_y: Y Pozisyon
-media_wm_font_y_info: İlk karakterin dikey taban noktasını tanımlar.
-media_wm_font_angle: Font Dönüş Açısı
-media_wm_font_angle_info: Font için dönüş açısıdır, sadece font yüklemesi yapıldığında çalışır.
+# Widgets
+widget:
+    modal_title: Yeni Widget Ekle
+    user_info:
+        name: Kullanıcı Bilgisi
+        description: Kayıtlı üye sayısını gösterir.
+        count: Kayıtlı Üye
+    user_statistic:
+        name: Kullanıcı İstatistikleri
+        description: Detaylı kullanıcı istatistiklerini gösterir.
+        last_week: Son 1 Hafta
+        last_month: Son 1 Ay
+        last_three_month: Son 3 Ay
+    quick_action:
+        name: Hızlı Butonlar
+        description: Menülere kolay erişim butonları oluşturur.
+        add_button: Buton Ekle
+        account: Hesaplar
+        account_desc: Kullanıcı hesap listesini görüntüler
+        group: Gruplar
+        group_desc: Kullanıcı grup ayarlarını görüntüler
+        general: Genel Ayarlar
+        general_desc: Genel sistem ayarlarını görüntüler
 
-###
-# Widget
-###
-widget_user_info:
-    name: Kullanıcı Bilgisi
-    description: Kayıtlı üye sayısını gösterir.
-    count: Kayıtlı Üye
-widget_user_statistics:
-    name: Kullanıcı İstatistikleri
-    description: Detaylı kullanıcı istatistiklerini gösterir.
-widget_quick_action:
-    name: Hızlı Butonlar
-    description: Menülere kolay erişim butonları oluşturur.
-    add_button: Buton Ekle
+testing:
+    ###
+    # Chart
+    ###
+    1week: Son 1 Hafta
+    1month: Son 1 Ay
+    3month: Son 3 Ay
+    testing_statistics:
+        task: Görev
+        bug: Hata
 
-###
-# Chart
-###
-1week: Son 1 Hafta
-1month: Son 1 Ay
-3month: Son 3 Ay
-testing_statistics:
+    ###
+    # Testing
+    ###
+    testing: Test yapmak
+    model: Modeli
     task: Görev
     bug: Hata
+    task_title: Başlık
+    task_model: Modeli
+    bug_task: Görev
+    task_notify_author: Bana bildir
+    task_notify_author_info: Bir hata bulunduğunda bana e-posta veya sms mesajı gönder
+    progress: İlerleme
+    settings_testing: Test Ayarları
+    settings_testing_desc: Görev, model ve hata ayarları
+    model_label: Etiket
+    model_tags: Etiketleri
+    model_image: Resim
+    build: İnşa etmek
+    created_at: Oluşturulma Tarihi
+    updated_at: Güncelleme Tarihi
+    model_places: Yerler
+    model_transitions: Geçişler
+    place_label: Etiket
+    place_start: Başlat
+    transition_label: Etiket
+    transition_guard: Muhafız
+    commands: Komutlar
+    start_commands: Komutları Başlat
+    command_command: Komut
+    command_target: Hedef
+    command_value: Değer
+    add_place: Yer Ekle
+    add_transition: Geçiş Ekle
+    add_command: Komut Ekle
+    add_tag: Etiket Ekle
+    remove_place: Yeri Kaldır
+    remove_transition: Geçişi Kaldır
+    from_places: Yerlerden
+    to_places: Yerlere
+    remove_command: Komutu Kaldır
+    expression: İfade
+    bug_title: Başlık
+    bug_model_label: Model Etiketi
+    steps: Adımlar
+    message: İleti
+    closed: Kapalı
+    model_version: Model Sürümü
+    version: Sürüm
+    testing_model_list_title: Modeller
+    testing_model_list_desc: Modelleri yönetme
+    testing_model_build_title: Model Oluştur
+    testing_model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
+    testing_model_edit_title: Modeli Düzenle
+    testing_model_edit_desc: Bir modelin durumlarını ve geçişlerini düzenleme
+    testing_model_import_title: Modeli İçe Aktar
+    testing_model_import_desc: Yüklenen dosyadan yeni model oluştur
+    testing_model_view_title: Modeli Görüntüle
+    testing_model_view_desc: Modeli durumlar ve geçişlerle görüntüleyin
+    testing_task_list_title: Görevler
+    testing_task_list_desc: Görevleri yönetme
+    testing_task_create_title: Görev Oluştur
+    testing_task_create_desc: Yeni görev oluştur
+    testing_task_edit_title: Görevi Düzenle
+    testing_task_edit_desc: Görevi düzenleyin
+    testing_task_view_title: Görevi Görüntüle
+    testing_task_view_desc: Görevi görüntüle
+    testing_bug_list_title: Hatalar
+    testing_bug_list_desc: Hataları yönetme
+    testing_bug_view_title: Hata
+    testing_bug_view_desc: Önceden oluşturulmuş adımlar ve kaydedilmiş video ile ilgili hata
+    testing_bug_edit_title: Hatayı Düzenle
+    testing_bug_edit_desc: Hata başlığını düzenleyin
+    export: İhracat
+    import: İthalat
+    model_file: Model (JSON dosyası)
+    task_selenium_config: Selenium Yapılandırma
+    task_provider: Sağlayıcı
+    task_platform: Platform
+    task_browser: Tarayıcı
+    task_browser_version: Tarayıcı Sürümü
+    task_resolution: çözüm
+    task_task_config: Görev Yapılandırması
+    task_generator: Jeneratör
+    task_generator_config: Jeneratör Yapılandırması
+    task_place_coverage: Yer Kapsamı
+    task_transition_coverage: Geçiş Kapsamı
+    task_reducer: Redüktör
+    task_notify_channels: Kanalları Bildirin
+    status: Durum
+    task_running: Koşu
+    task_stopped: Durduruldu
+    bug_reducing: İndirgeme
+    bug_stopped: Durduruldu
+    bug_open: Açık
+    bug_closed: Closed
+    selenoid: Kapalı
+    LINUX: Linux
+    ANDROID: Android
+    safari: Safari
+    chrome: Chrome
+    firefox: Firefox
+    MicrosoftEdge: Edge (Chromium)
+    opera: Opera
+    random: Rastgele
+    split: Bölünmüş
+    email: Eposta
+    chat/slack: Slack
+    bug_model: Modeli
+    bug_video: Video
+    transition: Geçiş
+    places: Yerler
+    variables: Değişkenler
+    steps_invalid: Geçersiz Adımlar
+    outdated: Modası geçmiş
+    deleted: Silindi
+    task_scheduled: Görev planlandı
+    bug_scheduled: Hata planlandı
+    task_already_running: Görev zaten çalışıyor
+    bug_already_reducing: Bug zaten azalıyor
+    run: Koşmak
+    bugs: Hatalar
+    reduce: Azalt
 
-###
-# Testing
-###
-nav_testing: Test yapmak
-nav_model: Modeli
-nav_task: Görev
-nav_bug: Hata
-task_title: Başlık
-task_model: Modeli
-bug_task: Görev
-task_notify_author: Bana bildir
-task_notify_author_info: Bir hata bulunduğunda bana e-posta veya sms mesajı gönder
-progress: İlerleme
-settings_testing: Test Ayarları
-settings_testing_desc: Görev, model ve hata ayarları
-model_label: Etiket
-model_tags: Etiketleri
-model_image: Resim
-build: İnşa etmek
-created_at: Oluşturulma Tarihi
-updated_at: Güncelleme Tarihi
-model_places: Yerler
-model_transitions: Geçişler
-place_label: Etiket
-place_start: Başlat
-transition_label: Etiket
-transition_guard: Muhafız
-commands: Komutlar
-start_commands: Komutları Başlat
-command_command: Komut
-command_target: Hedef
-command_value: Değer
-add_place: Yer Ekle
-add_transition: Geçiş Ekle
-add_command: Komut Ekle
-add_tag: Etiket Ekle
-remove_place: Yeri Kaldır
-remove_transition: Geçişi Kaldır
-from_places: Yerlerden
-to_places: Yerlere
-remove_command: Komutu Kaldır
-expression: İfade
-bug_title: Başlık
-bug_model_label: Model Etiketi
-steps: Adımlar
-message: İleti
-closed: Kapalı
-model_version: Model Sürümü
-version: Sürüm
-testing_model_list_title: Modeller
-testing_model_list_desc: Modelleri yönetme
-testing_model_build_title: Model Oluştur
-testing_model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
-testing_model_edit_title: Modeli Düzenle
-testing_model_edit_desc: Bir modelin durumlarını ve geçişlerini düzenleme
-testing_model_import_title: Modeli İçe Aktar
-testing_model_import_desc: Yüklenen dosyadan yeni model oluştur
-testing_model_view_title: Modeli Görüntüle
-testing_model_view_desc: Modeli durumlar ve geçişlerle görüntüleyin
-testing_task_list_title: Görevler
-testing_task_list_desc: Görevleri yönetme
-testing_task_create_title: Görev Oluştur
-testing_task_create_desc: Yeni görev oluştur
-testing_task_edit_title: Görevi Düzenle
-testing_task_edit_desc: Görevi düzenleyin
-testing_task_view_title: Görevi Görüntüle
-testing_task_view_desc: Görevi görüntüle
-testing_bug_list_title: Hatalar
-testing_bug_list_desc: Hataları yönetme
-testing_bug_view_title: Hata
-testing_bug_view_desc: Önceden oluşturulmuş adımlar ve kaydedilmiş video ile ilgili hata
-testing_bug_edit_title: Hatayı Düzenle
-testing_bug_edit_desc: Hata başlığını düzenleyin
-export: İhracat
-import: İthalat
-model_file: Model (JSON dosyası)
-task_selenium_config: Selenium Yapılandırma
-task_provider: Sağlayıcı
-task_platform: Platform
-task_browser: Tarayıcı
-task_browser_version: Tarayıcı Sürümü
-task_resolution: çözüm
-task_task_config: Görev Yapılandırması
-task_generator: Jeneratör
-task_generator_config: Jeneratör Yapılandırması
-task_place_coverage: Yer Kapsamı
-task_transition_coverage: Geçiş Kapsamı
-task_reducer: Redüktör
-task_notify_channels: Kanalları Bildirin
-status: Durum
-task_running: Koşu
-task_stopped: Durduruldu
-bug_reducing: İndirgeme
-bug_stopped: Durduruldu
-bug_open: Açık
-bug_closed: Closed
-selenoid: Kapalı
-LINUX: Linux
-ANDROID: Android
-safari: Safari
-chrome: Chrome
-firefox: Firefox
-MicrosoftEdge: Edge (Chromium)
-opera: Opera
-random: Rastgele
-split: Bölünmüş
-email: Eposta
-chat/slack: Slack
-bug_model: Modeli
-bug_video: Video
-transition: Geçiş
-places: Yerler
-variables: Değişkenler
-steps_invalid: Geçersiz Adımlar
-outdated: Modası geçmiş
-deleted: Silindi
-task_scheduled: Görev planlandı
-bug_scheduled: Hata planlandı
-task_already_running: Görev zaten çalışıyor
-bug_already_reducing: Bug zaten azalıyor
-run: Koşmak
-bugs: Hatalar
-reduce: Azalt
-ROLE_MODEL:
-    title: Test - Model
-    LIST: Liste Modeli
-    BUILD: Yeni model
-    EDIT: Modeli Düzenle
-    VIEW: Modeli Görüntüle
-    IMAGE: Model Resmini Görüntüle
-    DELETE: Modeli Sil
-    EXPORT: Modeli Dışa Aktar
-    IMPORT: Modeli İçe Aktar
-ROLE_TASK:
-    title: Test - Görev
-    LIST: Görevi Listele
-    CREATE: Görev Oluştur
-    EDIT: Görevi Düzenle
-    VIEW: Görevi Görüntüle
-    DELETE: Görevi Sil
-    RUN: Görevi Çalıştır
-ROLE_BUG:
-    title: Test - Hata
-    LIST: Liste Hatası
-    EDIT: Hatayı Düzenle
-    VIEW: Hatayı Görüntüle
-    DELETE: Hatayı Sil
-    VIDEO: Hata Videosunu Görüntüle
-    OPEN: Açık Hata
-    CLOSE: Hatayı Kapat
-    EXPORT: İhracat Hatası
-    REDUCE: Hataları Azaltın
-
-###
-# Testing Widget
-###
-widget_model_info:
-    name: Model Bilgisi
-    description: Model sayısını gösterir
-    count: Modeller
-widget_task_info:
-    name: Görev Bilgisi
-    description: Görev sayısını gösterir
-    count: Görevler
-widget_bug_info:
-    name: Hata Bilgisi
-    description: Hata sayısını gösterir
-    count: Hatalar
+    ###
+    # Testing Widget
+    ###
+    widget_model_info:
+        name: Model Bilgisi
+        description: Model sayısını gösterir
+        count: Modeller
+    widget_task_info:
+        name: Görev Bilgisi
+        description: Görev sayısını gösterir
+        count: Görevler
+    widget_bug_info:
+        name: Hata Bilgisi
+        description: Hata sayısını gösterir
+        count: Hatalar

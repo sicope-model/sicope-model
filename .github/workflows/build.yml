@@ -1,26 +1,26 @@
 name: build
 
 on:
-  release:
-    types: [published]
+    release:
+        types: [ published ]
 
 jobs:
-  build:
-    name: Build docker images
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@master
+    build:
+        name: Build docker images
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@master
 
-    - name: Build images
-      run: |
-        echo "TAG=${{ github.event.release.tag_name }}" > docker/.env
-        docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env build
+            -   name: Build images
+                run: |
+                    echo "TAG=${{ github.event.release.tag_name }}" > docker/.env
+                    docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env build
 
-    - name: Publish images
-      run: |
-        echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
-        docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env push
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+            -   name: Publish images
+                run: |
+                    echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
+                    docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env push
+                env:
+                    DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+                    DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

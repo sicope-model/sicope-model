@@ -10,17 +10,25 @@ services:
             POSTGRES_DB: ${POSTGRES_DB:-db}
         ports:
             - 5432:5432
-
-    selenoid:
-        image: aerokube/selenoid:latest-release
         volumes:
-            - "/var/run/docker.sock:/var/run/docker.sock"
-            - "$PWD/var/selenoid:/etc/selenoid"
-            - "$PWD/var/selenoid/video:/opt/selenoid/video"
-            - "$PWD/var/selenoid/logs:/opt/selenoid/logs"
-        environment:
-            - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD/var/selenoid/video
+            - postgres_data:/var/lib/postgresql/data
+
+    adminer:
+        image: adminer
         restart: unless-stopped
-        command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-container-network", "${CONTAINER_NETWORK:-sicope-model_default}"]
+        environment:
+            ADMINER_DEFAULT_SERVER: database
         ports:
-            - "4444:4444"
+            - 8888:8080
+
+    mailer:
+        image: mailhog/mailhog:latest
+        restart: unless-stopped
+        ports:
+            - 1025:1025
+            - 8025:8025
+        logging:
+            driver: 'none'  # disable saving logs
+
+volumes:
+    postgres_data:

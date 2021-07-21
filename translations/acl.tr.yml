@@ -1,0 +1,83 @@
+access_denied: Erişim engellendi!
+access_denied_not_authorized: Erişim engellendi! Bu işlem için yetkili değilsiniz.
+not_login_own_account: Erişim engellendi! Kendi hesabınıza giriş yapamazsınız.
+not_login_super_admin: Erişim engellendi! Süper Admin hesabına giriş yapamazsınız.
+not_login_already_switched: Erişim engellendi! Zaten mevcut bir kullanıcıya geçiş yaptınız.
+not_login_switch_authorized: Erişim engellendi! Yetkiniz bu işlem için yeterli değil.
+
+ACL:
+    title: Erişim Kontrol
+ACLProcess:
+    title: Özel İşlemler
+ROLE_USER:
+    title: Kullanıcı
+ROLE_SUPER_ADMIN:
+    title: Süper Admin
+ROLE_ALLOWED_TO_SWITCH:
+    title: Hesap Değiştirme
+ROLE_DASHBOARD:
+    title: Admin - Dashboard
+    PANEL: Panel Görüntüleme
+ROLE_ACCOUNT:
+    title: Admin - Kullanıcı Yönetimi
+    LIST: Listeleme
+    EDIT: Düzenleme
+    PASSWORD: Şifre Değiştirme
+    ROLES: Yetkilendirme
+    ACTIVATE: Etkinleştirme
+    GROUP: Grup Ekle/Çıkar
+    DELETE: Sil
+    FREEZE: Hesap Dondurma
+    ALLREAD: Tüm Hesapları Okuma
+    ALLWRITE: Tüm Hesapları Yazma
+ROLE_GROUP:
+    title: Admin - Kullanıcı Grup Yönetimi
+    LIST: Listeleme
+    EDIT: Düzenleme
+    CREATE: Yeni Grup
+    DELETE: Sil
+    ROLES: Yetkilendirme
+ROLE_CONFIG:
+    title: Admin - Sistem Ayarları
+    GENERAL: Genel
+    USER: Hesap
+    MEDIA: Medya
+ROLE_WIDGET:
+    title: Admin - Dashboard Widget
+    USERINFO: Kullanıcı Bilgisi
+    QUICKACTION: Hızlı Menü
+    USERSTATISTICS: Kullanıcı İstatistikleri
+ROLE_ACTIVITY:
+    title: Admin - Günlük Yönetimi
+    HTTP: Etkinlik Günlüğü
+    MAIL: Posta Günlüğü
+
+ROLE_MODEL:
+    title: Test - Model
+    LIST: Liste Modeli
+    BUILD: Yeni model
+    EDIT: Modeli Düzenle
+    VIEW: Modeli Görüntüle
+    IMAGE: Model Resmini Görüntüle
+    DELETE: Modeli Sil
+    EXPORT: Modeli Dışa Aktar
+    IMPORT: Modeli İçe Aktar
+ROLE_TASK:
+    title: Test - Görev
+    LIST: Görevi Listele
+    CREATE: Görev Oluştur
+    EDIT: Görevi Düzenle
+    VIEW: Görevi Görüntüle
+    DELETE: Görevi Sil
+    RUN: Görevi Çalıştır
+ROLE_BUG:
+    title: Test - Hata
+    LIST: Liste Hatası
+    EDIT: Hatayı Düzenle
+    VIEW: Hatayı Görüntüle
+    DELETE: Hatayı Sil
+    VIDEO: Hata Videosunu Görüntüle
+    OPEN: Açık Hata
+    CLOSE: Hatayı Kapat
+    EXPORT: İhracat Hatası
+    REDUCE: Hataları Azaltın

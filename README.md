@@ -15,18 +15,22 @@ Model Based Testing tool using Single Color Petrinet Model.
 
 ```shell
 git clone https://github.com/sicope-model/sicope-model.git
-cd sicope-model
-
-composer install
-bin/console app:dump-browsers
-# Pull docker images (some are BIG)
-cat var/selenoid/browsers.json | jq ".[].versions[].image" | xargs -L1 docker pull
-docker pull selenoid/video-recorder:latest-release
 ```
 
-## Development
+### Selenoid
 
 ```shell
+cd sicope-model/var/selenoid/
+bash install.sh
+docker-compose up
+```
+
+### Sicope Model
+
+```shell
+cd sicope-model
+composer install
+yarn install
 yarn build
 docker-compose up
 symfony serve
@@ -46,8 +50,8 @@ Tools:
 
 ```shell
 cp docker/.env.dist docker/.env
-docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env up
-docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env run admin bin/console user:create
+docker-compose -f docker-compose.prod.yaml --env-file ./docker/.env up
+docker-compose -f docker-compose.prod.yaml --env-file ./docker/.env run admin bin/console user:create
 ```
 
 For more information, see this [doc](https://github.com/dunglas/symfony-docker/blob/master/docs/production.md)

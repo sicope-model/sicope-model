@@ -1,10 +1,6 @@
 version: '3.4'
 
 services:
-    database:
-        volumes:
-            - postgres_data:/var/lib/postgresql/data
-
     admin:
         image: tienvx/sicope-model-admin:${TAG:-lastest}
         build:
@@ -31,7 +27,7 @@ services:
         restart: unless-stopped
         environment:
             DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@database:5432/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-13}&charset=UTF-8
-            SELENIUM_SERVER: ${SELENIUM_SERVER:-http://selenoid:4444}
+            SELENIUM_SERVER: ${SELENIUM_SERVER:-http://localhost:4444}
             MAILER_DSN: ${MAILER_DSN}
 
     caddy:
@@ -52,6 +48,5 @@ services:
             - caddy_config:/config
 
 volumes:
-    postgres_data:
     caddy_data:
     caddy_config:

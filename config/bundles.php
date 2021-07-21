@@ -15,7 +15,12 @@ return [
     Pd\WidgetBundle\PdWidgetBundle::class => ['all' => true],
     Pd\MenuBundle\PdMenuBundle::class => ['all' => true],
     Pd\UserBundle\PdUserBundle::class => ['all' => true],
-    Pd\MailerBundle\PdMailerBundle::class => ['all' => true],
     Tienvx\Bundle\MbtBundle\TienvxMbtBundle::class => ['all' => true],
     Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
+    Pd\ActivityBundle\PdActivityBundle::class => ['all' => true],
+    Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle::class => ['all' => true],
+    Pd\ApiBundle\PdApiBundle::class => ['all' => true],
+    Sonata\Exporter\Bridge\Symfony\SonataExporterBundle::class => ['all' => true],
+    Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
+    Zenstruck\ScheduleBundle\ZenstruckScheduleBundle::class => ['all' => true],
 ];

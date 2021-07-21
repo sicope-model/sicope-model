@@ -1,12 +1,17 @@
 security:
-    encoders:
+    enable_authenticator_manager: true
+    password_hashers:
         App\Entity\Account\User:
             algorithm: auto
     role_hierarchy:
-        ROLE_USER: [ROLE_DASHBOARD_PANEL]
-        ROLE_ADMIN: [ROLE_USER]
+        ROLE_SUPER_ADMIN: [ ROLE_USER ]
     providers:
         pdadmin_auth:
+            entity:
+                class: App\Entity\Account\User
+                property: email
+
+        pdadmin_api:
             entity:
                 class: App\Entity\Account\User
                 property: email
@@ -15,21 +20,39 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            pattern: ^/(admin|login|logout|register|resetting)
             provider: pdadmin_auth
+            lazy: true
             user_checker: Pd\UserBundle\Security\UserChecker
-            anonymous: true
+            access_denied_handler: App\Security\AccessDeniedHandler
             switch_user: { role: CAN_SWITCH_USER }
             http_basic: ~
             form_login:
                 use_referer: true
                 login_path: security_login
                 check_path: security_login
-                default_target_path: "%user_login_redirect%"
-                csrf_token_generator: security.csrf.token_manager
+                default_target_path: "%app.login_redirect%"
+            entry_point: form_login
             logout:
                 path: security_logout
-                target: '%user_logout_redirect%'
+                target: '%app.logout_redirect%'
             remember_me:
-                secret:   '%env(APP_SECRET)%'
+                secret: '%env(APP_SECRET)%'
                 lifetime: 604800 # 1 Week - 1 Month -> 2592000
-                path:     /
+                path: /
+        api:
+            pattern: "%api.route%"
+            stateless: true
+            provider: pdadmin_api
+            json_login:
+                check_path: /api/auth/login
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+            entry_point: lexik_jwt_authentication.jwt_token_authenticator
+    access_control:
+        # Admin Panel
+        - { path: '^/admin', role: ROLE_USER }
+
+        # API
+        #- { path: "%api.route%/doc", roles: PUBLIC_ACCESS }
+        - { path: "%api.route%/auth", roles: PUBLIC_ACCESS }
+        - { path: "%api.route%", roles: IS_AUTHENTICATED_FULLY }

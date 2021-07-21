@@ -6,6 +6,7 @@
  * @package     sicope-model
  * @license     LICENSE
  * @author      Ramazan APAYDIN <apaydin541@gmail.com>
+ * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
@@ -52,7 +53,7 @@ class Testing
                     ->setGroup('admin')
                     ->setName('widget_model_info.name')
                     ->setDescription('widget_model_info.description')
-                    ->setTemplate('Admin/Testing/Widget/modelInfo.html.twig')
+                    ->setTemplate('testing/widget/modelInfo.html.twig')
                     ->setRole(['ROLE_WIDGET_MODELINFO'])
                     ->setData(function ($config) {
                         $modelCount = $this->entityManager->getRepository(Model::class)
@@ -70,7 +71,7 @@ class Testing
                     ->setGroup('admin')
                     ->setName('widget_task_info.name')
                     ->setDescription('widget_task_info.description')
-                    ->setTemplate('Admin/Testing/Widget/taskInfo.html.twig')
+                    ->setTemplate('testing/widget/taskInfo.html.twig')
                     ->setRole(['ROLE_WIDGET_TASKINFO'])
                     ->setData(function ($config) {
                         $taskCount = $this->entityManager->getRepository(Task::class)
@@ -88,7 +89,7 @@ class Testing
                     ->setGroup('admin')
                     ->setName('widget_bug_info.name')
                     ->setDescription('widget_bug_info.description')
-                    ->setTemplate('Admin/Testing/Widget/bugInfo.html.twig')
+                    ->setTemplate('testing/widget/bugInfo.html.twig')
                     ->setRole(['ROLE_WIDGET_BUGINFO'])
                     ->setData(function ($config) {
                         $bugCount = $this->entityManager->getRepository(Bug::class)
@@ -106,7 +107,7 @@ class Testing
                     ->setGroup('admin')
                     ->setName('widget_testing_statistics.name')
                     ->setDescription('widget_testing_statistics.description')
-                    ->setTemplate('Admin/Testing/Widget/testingStatistics.html.twig')
+                    ->setTemplate('testing/widget/testingStatistics.html.twig')
                     ->setRole(['ROLE_WIDGET_TESTINGSTATISTICS'])
                     ->setConfigProcess(static function (Request $request) {
                         if ($type = $request->get('type')) {
