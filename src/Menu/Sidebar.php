@@ -41,25 +41,25 @@ class Sidebar extends Menu
             ->setLabel('testing.testing')
             ->setRoute('testing.task_list')
             ->setRoles(['ROLE_TASK_LIST'])
-            ->setExtra('label_icon', 'important_devices')
+            ->setExtra('label_icon', 's fa-laptop-code')
                 // Task List
                 ->addChild('testing.task', 10)
                 ->setLabel('testing.task')
                 ->setRoute('testing.task_list')
                 ->setRoles(['ROLE_TASK_LIST'])
-                ->setExtra('label_icon', 'assignment')
+                ->setExtra('label_icon', 's fa-tasks')
                 // Model List
                 ->addChildParent('testing.model', 20)
                 ->setLabel('testing.model')
                 ->setRoute('testing.model_list')
                 ->setRoles(['ROLE_MODEL_LIST'])
-                ->setExtra('label_icon', 'device_hub')
+                ->setExtra('label_icon', 's fa-project-diagram')
                 // Bug List
                 ->addChildParent('testing.bug', 30)
                 ->setLabel('testing.bug')
                 ->setRoute('testing.bug_list')
                 ->setRoles(['ROLE_BUG_LIST'])
-                ->setExtra('label_icon', 'bug_report');
+                ->setExtra('label_icon', 's fa-bug');
 
         /*
          * Account Menus
@@ -75,11 +75,13 @@ class Sidebar extends Menu
                 ->setLabel('accounts.account.title')
                 ->setRoute('admin.account_list')
                 ->setRoles(['ROLE_ACCOUNT_LIST'])
+                ->setExtra('label_icon', 's fa-user')
                 // Group List
                 ->addChildParent('groups', 20)
                 ->setLabel('accounts.group.title')
                 ->setRoute('admin.group_list')
-                ->setRoles(['ROLE_GROUP_LIST']);
+                ->setRoles(['ROLE_GROUP_LIST'])
+                ->setExtra('label_icon', 's fa-users');
 
         /*
          * Settings Menus
@@ -95,16 +97,19 @@ class Sidebar extends Menu
                 ->setLabel('config.system')
                 ->setRoute('admin.config_general')
                 ->setRoles(['ROLE_CONFIG_GENERAL'])
+                ->setExtra('label_icon', 's fa-tools')
                 // Activity Log HTTP
                 ->addChildParent('activity.http', 20)
                 ->setLabel('activity.log.title')
                 ->setRoute('admin.activity_log.http')
                 ->setRoles(['ROLE_ACTIVITY_HTTP'])
+                ->setExtra('label_icon', 's fa-history')
                 // Activity Log Mail
                 ->addChildParent('activity.mail', 30)
                 ->setLabel('activity.mail.title')
                 ->setRoute('admin.activity_log.mail')
-                ->setRoles(['ROLE_ACTIVITY_MAIL']);
+                ->setRoles(['ROLE_ACTIVITY_MAIL'])
+                ->setExtra('label_icon', 's fa-envelope');
 
         return $menu;
     }
