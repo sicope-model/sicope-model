@@ -32,9 +32,8 @@ class ConfigController extends AbstractController
 {
     /**
      * General Configuration.
-     *
-     * @IsGranted("ROLE_CONFIG_GENERAL")
      */
+    #[IsGranted('ROLE_CONFIG_GENERAL')]
     #[Route('/config', name: 'admin.config_general')]
     public function general(Request $request, ConfigBag $bag): Response
     {
@@ -60,9 +59,8 @@ class ConfigController extends AbstractController
 
     /**
      * Media Settings.
-     *
-     * @IsGranted("ROLE_CONFIG_MEDIA")
      */
+    #[IsGranted('ROLE_CONFIG_MEDIA')]
     #[Route('/config/media', name: 'admin.config_media')]
     public function media(Request $request, ConfigBag $bag): Response
     {
@@ -86,9 +84,8 @@ class ConfigController extends AbstractController
 
     /**
      * Account Settings.
-     *
-     * @IsGranted("ROLE_CONFIG_USER")
      */
+    #[IsGranted('ROLE_CONFIG_USER')]
     #[Route('/config/user', name: 'admin.config_user')]
     public function user(Request $request, ConfigBag $bag): Response
     {

@@ -47,10 +47,9 @@ class ModelController extends AbstractController
 {
     /**
      * List Model.
-     *
-     * @IsGranted("ROLE_MODEL_LIST")
-     * @Route(name="testing.model_list", path="/models")
      */
+    #[IsGranted('ROLE_MODEL_LIST')]
+    #[Route('/models', name: 'testing.model_list', methods: ['GET'])]
     public function list(
         Request $request,
         ModelRepository $modelRepository,
@@ -75,12 +74,9 @@ class ModelController extends AbstractController
 
     /**
      * Build New Model.
-     *
-     * @IsGranted("ROLE_MODEL_BUILD")
-     * @Route(name="testing.model_build", path="/models/build")
-     *
-     * @return RedirectResponse|Response
      */
+    #[IsGranted('ROLE_MODEL_BUILD')]
+    #[Route('/models/build', name: 'testing.model_build')]
     public function build(Request $request, EntityManagerInterface $em): Response
     {
         $model = new Model();
@@ -110,10 +106,9 @@ class ModelController extends AbstractController
 
     /**
      * Edit Model.
-     *
-     * @IsGranted("ROLE_MODEL_EDIT")
-     * @Route(name="testing.model_edit", path="/model/{model}/edit")
      */
+    #[IsGranted('ROLE_MODEL_EDIT')]
+    #[Route('/model/{model}/edit', name: 'testing.model_edit')]
     public function edit(Request $request, Model $model, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(ModelType::class, $model);
@@ -138,10 +133,9 @@ class ModelController extends AbstractController
 
     /**
      * View Model.
-     *
-     * @IsGranted("ROLE_MODEL_VIEW")
-     * @Route(name="testing.model_view", path="/model/{model}")
      */
+    #[IsGranted('ROLE_MODEL_VIEW')]
+    #[Route('/model/{model}', name: 'testing.model_view', methods: ['GET'])]
     public function view(Model $model): Response
     {
         return $this->render('testing/viewModel.html.twig', [
@@ -151,10 +145,9 @@ class ModelController extends AbstractController
 
     /**
      * Delete Model.
-     *
-     * @IsGranted("ROLE_MODEL_DELETE")
-     * @Route(name="testing.model_delete", path="/model/{model}/delete")
      */
+    #[IsGranted('ROLE_MODEL_DELETE')]
+    #[Route('/model/{model}/delete', name: 'testing.model_delete', methods: ['DELETE'])]
     public function delete(
         Request $request,
         Model $model,
@@ -187,10 +180,9 @@ class ModelController extends AbstractController
 
     /**
      * View Model Image.
-     *
-     * @IsGranted("ROLE_MODEL_IMAGE")
-     * @Route(name="testing.model_image", path="/model/{model}/image")
      */
+    #[IsGranted('ROLE_MODEL_IMAGE')]
+    #[Route('/model/{model}/image', name: 'testing.model_image', methods: ['GET'])]
     public function image(Model $model, CommandHelper $commandHelper, ModelDumper $modelDumper): Response
     {
         $response = new Response();
@@ -212,10 +204,9 @@ class ModelController extends AbstractController
 
     /**
      * Export Model.
-     *
-     * @IsGranted("ROLE_MODEL_EXPORT")
-     * @Route(name="testing.model_export", path="/model/{model}/export")
      */
+    #[IsGranted('ROLE_MODEL_EXPORT')]
+    #[Route('/model/{model}/export', name: 'testing.model_export', methods: ['GET'])]
     public function export(Model $model): JsonResponse
     {
         return $this->json($model->toArray(), 200, [
@@ -228,12 +219,9 @@ class ModelController extends AbstractController
 
     /**
      * Import Model.
-     *
-     * @IsGranted("ROLE_MODEL_IMPORT")
-     * @Route(name="testing.model_import", path="/models/import")
-     *
-     * @return RedirectResponse|Response
      */
+    #[IsGranted('ROLE_MODEL_IMPORT')]
+    #[Route('/models/import', name: 'testing.model_import')]
     public function import(Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(ModelImportType::class);

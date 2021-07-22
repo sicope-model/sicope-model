@@ -33,8 +33,6 @@ use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Command\CommandPreprocessorInterface;
 use Tienvx\Bundle\MbtBundle\Entity\Bug;
-use Tienvx\Bundle\MbtBundle\Entity\Model;
-use Tienvx\Bundle\MbtBundle\Entity\Task;
 use Tienvx\Bundle\MbtBundle\Message\ReduceBugMessage;
 use Tienvx\Bundle\MbtBundle\Model\Bug\StepInterface;
 use Tienvx\Bundle\MbtBundle\Model\BugInterface;
@@ -60,10 +58,9 @@ class BugController extends AbstractController
 
     /**
      * List Bug.
-     *
-     * @IsGranted("ROLE_BUG_LIST")
-     * @Route(name="testing.bug_list", path="/bugs")
      */
+    #[IsGranted('ROLE_BUG_LIST')]
+    #[Route('/bugs', name: 'testing.bug_list', methods: ['GET'])]
     public function list(
         Request $request,
         BugRepository $bugRepository,
@@ -88,10 +85,9 @@ class BugController extends AbstractController
 
     /**
      * Edit Bug.
-     *
-     * @IsGranted("ROLE_BUG_EDIT")
-     * @Route(name="testing.bug_edit", path="/bug/{bug}/edit")
      */
+    #[IsGranted('ROLE_BUG_EDIT')]
+    #[Route('/bug/{bug}/edit', name: 'testing.bug_edit')]
     public function edit(Request $request, Bug $bug, EntityManagerInterface $em): Response
     {
         $form = $this->createFormBuilder($bug)
@@ -123,10 +119,9 @@ class BugController extends AbstractController
 
     /**
      * View Bug.
-     *
-     * @IsGranted("ROLE_BUG_VIEW")
-     * @Route(name="testing.bug_view", path="/bug/{bug}")
      */
+    #[IsGranted('ROLE_BUG_VIEW')]
+    #[Route('/bug/{bug}', name: 'testing.bug_view', methods: ['GET'])]
     public function view(Bug $bug): Response
     {
         return $this->render('testing/viewBug.html.twig', [
@@ -137,10 +132,9 @@ class BugController extends AbstractController
 
     /**
      * Delete Bug.
-     *
-     * @IsGranted("ROLE_BUG_DELETE")
-     * @Route(name="testing.bug_delete", path="/bug/{bug}/delete")
      */
+    #[IsGranted('ROLE_BUG_DELETE')]
+    #[Route('/bug/{bug}/delete', name: 'testing.bug_delete', methods: ['DELETE'])]
     public function delete(Request $request, Bug $bug, EntityManagerInterface $em): RedirectResponse
     {
         // Remove
@@ -156,10 +150,9 @@ class BugController extends AbstractController
 
     /**
      * Open Bug.
-     *
-     * @IsGranted("ROLE_BUG_OPEN")
-     * @Route(name="testing.bug_open", path="/task/{bug}/open")
      */
+    #[IsGranted('ROLE_BUG_OPEN')]
+    #[Route('/task/{bug}/open', name: 'testing.bug_open')]
     public function open(Request $request, Bug $bug): RedirectResponse
     {
         $bug->setClosed(false);
@@ -169,10 +162,9 @@ class BugController extends AbstractController
 
     /**
      * Close Bug.
-     *
-     * @IsGranted("ROLE_BUG_CLOSE")
-     * @Route(name="testing.bug_close", path="/task/{bug}/close")
      */
+    #[IsGranted('ROLE_BUG_CLOSE')]
+    #[Route('/task/{bug}/close', name: 'testing.bug_close')]
     public function close(Request $request, Bug $bug): RedirectResponse
     {
         $bug->setClosed(true);
@@ -181,11 +173,10 @@ class BugController extends AbstractController
     }
 
     /**
-     * View Model Video.
-     *
-     * @IsGranted("ROLE_BUG_VIDEO")
-     * @Route(name="testing.bug_video", path="/bug/{bug}/video")
+     * View Bug Video.
      */
+    #[IsGranted('ROLE_BUG_VIDEO')]
+    #[Route('/bug/{bug}/video', name: 'testing.bug_video', methods: ['GET'])]
     public function video(Bug $bug, ProviderManagerInterface $providerManager): StreamedResponse
     {
         $providerName = $bug->getTask()->getSeleniumConfig()->getProvider();
@@ -213,10 +204,9 @@ class BugController extends AbstractController
 
     /**
      * Export Bug.
-     *
-     * @IsGranted("ROLE_BUG_EXPORT")
-     * @Route(name="testing.bug_export", path="/bug/{bug}/export")
      */
+    #[IsGranted('ROLE_BUG_EXPORT')]
+    #[Route('/bug/{bug}/export', name: 'testing.bug_export', methods: ['GET'])]
     public function export(Bug $bug): JsonResponse
     {
         return $this->json($this->formatBug($bug), 200, [
@@ -229,10 +219,9 @@ class BugController extends AbstractController
 
     /**
      * Reduce Bug.
-     *
-     * @IsGranted("ROLE_BUG_REDUCE")
-     * @Route(name="testing.bug_reduce", path="/bug/{bug}/reduce")
      */
+    #[IsGranted('ROLE_BUG_REDUCE')]
+    #[Route('/bug/{bug}/reduce', name: 'testing.bug_reduce')]
     public function reduce(Request $request, Bug $bug, MessageBusInterface $messageBus): RedirectResponse
     {
         if ($bug->isReducing()) {

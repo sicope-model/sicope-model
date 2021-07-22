@@ -34,7 +34,7 @@
         "florianv/petrinet": "dev-master as 2.1.1",
         "gregwar/image": "^2.1",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "sensio/framework-extra-bundle": "5.*",
+        "sensio/framework-extra-bundle": "6.*",
         "sonata-project/exporter": "^2.6",
         "symfony/asset": "5.*",
         "symfony/console": "5.*",
