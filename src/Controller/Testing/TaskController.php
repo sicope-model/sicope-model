@@ -89,8 +89,8 @@ class TaskController extends AbstractController
         }
 
         return $this->render('testing/editTask.html.twig', [
-            'page_title' => 'testing_task_create_title',
-            'page_description' => 'testing_task_create_desc',
+            'page_title' => 'testing.task_create_title',
+            'page_description' => 'testing.task_create_desc',
             'form' => $form->createView(),
         ]);
     }
@@ -117,8 +117,8 @@ class TaskController extends AbstractController
         }
 
         return $this->render('testing/editTask.html.twig', [
-            'page_title' => 'testing_task_edit_title',
-            'page_description' => 'testing_task_edit_desc',
+            'page_title' => 'testing.task_edit_title',
+            'page_description' => 'testing.task_edit_desc',
             'form' => $form->createView(),
         ]);
     }

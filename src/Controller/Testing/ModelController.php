@@ -98,8 +98,8 @@ class ModelController extends AbstractController
         }
 
         return $this->render('testing/editModel.html.twig', [
-            'page_title' => 'testing_model_build_title',
-            'page_description' => 'testing_model_build_desc',
+            'page_title' => 'testing.model_build_title',
+            'page_description' => 'testing.model_build_desc',
             'form' => $form->createView(),
         ]);
     }
@@ -125,8 +125,8 @@ class ModelController extends AbstractController
         }
 
         return $this->render('testing/editModel.html.twig', [
-            'page_title' => 'testing_model_edit_title',
-            'page_description' => 'testing_model_edit_desc',
+            'page_title' => 'testing.model_edit_title',
+            'page_description' => 'testing.model_edit_desc',
             'form' => $form->createView(),
         ]);
     }
@@ -240,8 +240,8 @@ class ModelController extends AbstractController
         }
 
         return $this->render('testing/editModel.html.twig', [
-            'page_title' => 'testing_model_import_title',
-            'page_description' => 'testing_model_import_desc',
+            'page_title' => 'testing.model_import_title',
+            'page_description' => 'testing.model_import_desc',
             'form' => $form->createView(),
         ]);
     }

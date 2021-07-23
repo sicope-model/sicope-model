@@ -111,8 +111,8 @@ class BugController extends AbstractController
         }
 
         return $this->render('testing/editBug.html.twig', [
-            'page_title' => 'testing_bug_edit_title',
-            'page_description' => 'testing_bug_edit_desc',
+            'page_title' => 'testing.bug_edit_title',
+            'page_description' => 'testing.bug_edit_desc',
             'form' => $form->createView(),
         ]);
     }

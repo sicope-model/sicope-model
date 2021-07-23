@@ -1,13 +1,13 @@
 {# Template Parts #}
-{% extends "Admin/base.html.twig" %}
+{% extends "admin/layout/base.html.twig" %}
 
 {# Document #}
-{% block head_title %}{{ title('testing_task_view_title'|trans) }}{% endblock %}
+{% block head_title %}{{ title('testing.task_view_title'|trans) }}{% endblock %}
 
 {# Content Title #}
 {% block content_head %}
-    <span class="text">{{ 'testing_task_view_title'|trans }}</span>
-    <span class="desc">{{ 'testing_task_view_desc'|trans }}</span>
+    <span class="text">{{ 'testing.task_view_title'|trans }}</span>
+    <span class="desc">{{ 'testing.task_view_desc'|trans }}</span>
 {% endblock %}
 
 {# Content Body #}
@@ -19,7 +19,7 @@
         <dt class="col-sm-3">{{ 'task_model'|trans }}</dt>
         <dd class="col-sm-9">
             {% if task.modelRevision.model is not null %}
-                <a href="{{ path('admin_model_view', { 'model': task.modelRevision.model.id }) }}">
+                <a href="{{ path('testing.model_view', { 'model': task.modelRevision.model.id }) }}">
                     {{ task.modelRevision.model.label }}
                     {% if task.modelRevision.id is not same as(task.modelRevision.model.activeRevision.id) %}
                         <span class="badge badge-warning">{{ 'outdated'|trans }}</span>

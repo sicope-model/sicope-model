@@ -1,13 +1,13 @@
 {# Template Parts #}
-{% extends "Admin/base.html.twig" %}
+{% extends "admin/layout/base.html.twig" %}
 
 {# Document #}
-{% block head_title %}{{ title('testing_model_view_title'|trans) }}{% endblock %}
+{% block head_title %}{{ title('testing.model_view_title'|trans) }}{% endblock %}
 
 {# Content Title #}
 {% block content_head %}
-    <span class="text">{{ 'testing_model_view_title'|trans }}</span>
-    <span class="desc">{{ 'testing_model_view_desc'|trans }}</span>
+    <span class="text">{{ 'testing.model_view_title'|trans }}</span>
+    <span class="desc">{{ 'testing.model_view_desc'|trans }}</span>
 {% endblock %}
 
 {# Content Body #}
@@ -20,7 +20,7 @@
         <dd class="col-sm-9">{{ model.tags|join(', ') }}</dd>
 
         <dt class="col-sm-3">{{ 'model_image'|trans }}</dt>
-        <dd class="col-sm-9"><img class="img-fluid" src="{{ path('admin_model_image', { 'model': model.id }) }}" alt="{{ 'model_image'|trans }}"></dd>
+        <dd class="col-sm-9"><img class="img-fluid" src="{{ path('testing.model_image', { 'model': model.id }) }}" alt="{{ 'model_image'|trans }}"></dd>
 
         <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
         <dd class="col-sm-9">{{ model.createdAt|date("Y-m-d") }}</dd>

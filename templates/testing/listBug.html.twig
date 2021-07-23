@@ -1,13 +1,13 @@
 {# Template Parts #}
-{% extends "base.html.twig" %}
+{% extends "admin/layout/base.html.twig" %}
 
 {# Document #}
-{% block head_title %}{{ title('testing_bug_list_title'|trans) }}{% endblock %}
+{% block head_title %}{{ title('testing.bug_list_title'|trans) }}{% endblock %}
 
 {# Content Title #}
 {% block content_head %}
-    <span class="text">{{ 'testing_bug_list_title'|trans }}</span>
-    <span class="desc">{{ 'testing_bug_list_desc'|trans }}</span>
+    <span class="text">{{ 'testing.bug_list_title'|trans }}</span>
+    <span class="desc">{{ 'testing.bug_list_desc'|trans }}</span>
 {% endblock %}
 
 {# Content Body #}
@@ -31,10 +31,10 @@
                 <tbody>
                 {% for bug in bugs %}
                     <tr>
-                        <td class="wid-20"><a href="{{ path('admin_bug_view', { 'bug': bug.id }) }}">{{ bug.title ?: 'NO TITLE' }}</a></td>
+                        <td class="wid-20"><a href="{{ path('testing.bug_view', { 'bug': bug.id }) }}">{{ bug.title ?: 'NO TITLE' }}</a></td>
                         <td class="wid-10">
                             {% if bug.task.modelRevision.model is not null %}
-                                <a href="{{ path('admin_model_view', { 'model': bug.task.modelRevision.model.id }) }}">
+                                <a href="{{ path('testing.model_view', { 'model': bug.task.modelRevision.model.id }) }}">
                                     {{ bug.task.modelRevision.model.label }}
                                     {% if bug.task.modelRevision.id is not same as(bug.task.modelRevision.model.activeRevision.id) %}
                                         <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
@@ -44,7 +44,7 @@
                                 <span class="badge badge-danger">{{ 'deleted'|trans }}</span>
                             {% endif %}
                         </td>
-                        <td class="wid-10"><a href="{{ path('admin_task_view', { 'task': bug.task.id }) }}">{{ bug.task.title }}</a></td>
+                        <td class="wid-10"><a href="{{ path('testing.task_view', { 'task': bug.task.id }) }}">{{ bug.task.title }}</a></td>
                         <td class="wid-20">{{ bug.message }}</td>
                         <td class="wid-10">{{ ((bug.progress.total > 0) ? bug.progress.processed / bug.progress.total : 0) |format_number(style='percent') }}</td>
                         <td class="wid-10">{{ (bug.closed ? 'bug_closed' : 'bug_open')|trans }} | {{ (bug.reducing ? 'bug_reducing' : 'bug_stopped')|trans }}</td>
