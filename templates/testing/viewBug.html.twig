@@ -2,12 +2,12 @@
 {% extends "Admin/base.html.twig" %}
 
 {# Document #}
-{% block head_title %}{{ title('testing_bug_view_title'|trans) }}{% endblock %}
+{% block head_title %}{{ title('testing.bug_view_title'|trans) }}{% endblock %}
 
 {# Content Title #}
 {% block content_head %}
-    <span class="text">{{ 'testing_bug_view_title'|trans }}</span>
-    <span class="desc">{{ 'testing_bug_view_desc'|trans }}</span>
+    <span class="text">{{ 'testing.bug_view_title'|trans }}</span>
+    <span class="desc">{{ 'testing.bug_view_desc'|trans }}</span>
 {% endblock %}
 
 {# Content Body #}
@@ -17,12 +17,12 @@
         <dd class="col-sm-9">{{ bug.title ?: 'NO TITLE' }}</dd>
 
         <dt class="col-sm-3">{{ 'bug_task'|trans }}</dt>
-        <dd class="col-sm-9"><a href="{{ path('admin_task_view', { 'task': bug.task.id }) }}">{{ bug.task.title }}</a></dd>
+        <dd class="col-sm-9"><a href="{{ path('testing.task_view', { 'task': bug.task.id }) }}">{{ bug.task.title }}</a></dd>
 
         <dt class="col-sm-3">{{ 'bug_model'|trans }}</dt>
         <dd class="col-sm-9">
             {% if bug.task.modelRevision.model is not null %}
-                <a href="{{ path('admin_model_view', { 'model': bug.task.modelRevision.model.id }) }}">
+                <a href="{{ path('testing.model_view', { 'model': bug.task.modelRevision.model.id }) }}">
                     {{ bug.task.modelRevision.model.label }}
                     {% if bug.task.modelRevision.id is not same as(bug.task.modelRevision.model.activeRevision.id) %}
                         <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
@@ -95,7 +95,7 @@
         <dt class="col-sm-3">{{ 'bug_video'|trans }}</dt>
         <dd class="col-sm-9">
             <video width="100%" controls>
-                <source src="{{ path('admin_bug_video', { 'bug': bug.id }) }}">
+                <source src="{{ path('testing.bug_video', { 'bug': bug.id }) }}">
                 Your browser does not support the video tag.
             </video>
         </dd>

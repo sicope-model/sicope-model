@@ -2,12 +2,12 @@
 {% extends "base.html.twig" %}
 
 {# Document #}
-{% block head_title %}{{ title('testing_model_list_title'|trans) }}{% endblock %}
+{% block head_title %}{{ title('testing.model_list_title'|trans) }}{% endblock %}
 
 {# Content Title #}
 {% block content_head %}
-    <span class="text">{{ 'testing_model_list_title'|trans }}</span>
-    <span class="desc">{{ 'testing_model_list_desc'|trans }}</span>
+    <span class="text">{{ 'testing.model_list_title'|trans }}</span>
+    <span class="desc">{{ 'testing.model_list_desc'|trans }}</span>
 {% endblock %}
 
 {# Content Body #}
@@ -15,8 +15,8 @@
     <!-- Action Button -->
     <div id="actions">
         <div class="btn-group">
-            <a class="btn btn-primary" href="{{ path('admin_model_build') }}" data-tooltip title="{{ 'build'|trans }}"><i class="material-icons">build</i></a>
-            <a class="btn btn-secondary" href="{{ path('admin_model_import') }}" data-tooltip title="{{ 'import'|trans }}"><i class="material-icons">publish</i></a>
+            <a class="btn btn-primary" href="{{ path('testing.model_build') }}" data-tooltip title="{{ 'build'|trans }}"><i class="material-icons">build</i></a>
+            <a class="btn btn-secondary" href="{{ path('testing.model_import') }}" data-tooltip title="{{ 'import'|trans }}"><i class="material-icons">publish</i></a>
         </div>
     </div>
 
@@ -38,7 +38,7 @@
                 <tbody>
                 {% for model in models %}
                     <tr>
-                        <td class="wid-30"><a href="{{ path('admin_model_view', { 'model': model.id }) }}">{{ model.label }}</a></td>
+                        <td class="wid-30"><a href="{{ path('testing.model_view', { 'model': model.id }) }}">{{ model.label }}</a></td>
                         <td class="wid-20">{{ model.tags|join(', ') }}</td>
                         <td class="wid-15">{{ model.createdAt|date("Y-m-d H:i:s") }}</td>
                         <td class="wid-15">{{ model.updatedAt|date("Y-m-d H:i:s") }}</td>
