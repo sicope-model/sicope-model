@@ -38,9 +38,8 @@ class TaskController extends AbstractController
 {
     /**
      * List Task.
-     *
-     * @IsGranted("ROLE_TASK_LIST")
      */
+    #[IsGranted('ROLE_TASK_LIST')]
     #[Route('/tasks', name: 'testing.task_list', methods: ['GET'])]
     public function list(
         Request $request,
@@ -66,10 +65,9 @@ class TaskController extends AbstractController
 
     /**
      * Create New Task.
-     *
-     * @IsGranted("ROLE_TASK_CREATE")
-     * @Route(name="testing.task_create", path="/tasks/create")
      */
+    #[IsGranted('ROLE_TASK_CREATE')]
+    #[Route('/tasks/create', name: 'testing.task_create')]
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         $task = new Task();
@@ -99,10 +97,9 @@ class TaskController extends AbstractController
 
     /**
      * Edit Task.
-     *
-     * @IsGranted("ROLE_TASK_EDIT")
-     * @Route(name="testing.task_edit", path="/task/{task}/edit")
      */
+    #[IsGranted('ROLE_TASK_EDIT')]
+    #[Route('/task/{task}/edit', name: 'testing.task_edit')]
     public function edit(Request $request, Task $task, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(TaskType::class, $task);
@@ -128,10 +125,9 @@ class TaskController extends AbstractController
 
     /**
      * View Task.
-     *
-     * @IsGranted("ROLE_TASK_VIEW")
-     * @Route(name="testing.task_view", path="/task/{task}")
      */
+    #[IsGranted('ROLE_TASK_VIEW')]
+    #[Route('/task/{task}', name: 'testing.task_view', methods: ['GET'])]
     public function view(Task $task): Response
     {
         return $this->render('testing/viewTask.html.twig', [
@@ -141,10 +137,9 @@ class TaskController extends AbstractController
 
     /**
      * Delete Task.
-     *
-     * @IsGranted("ROLE_TASK_DELETE")
-     * @Route(name="testing.task_delete", path="/task/{task}/delete")
      */
+    #[IsGranted('ROLE_TASK_DELETE')]
+    #[Route('/task/{task}/delete', name: 'testing.task_delete', methods: ['DELETE'])]
     public function delete(Request $request, Task $task, EntityManagerInterface $em): RedirectResponse
     {
         // Remove
@@ -167,10 +162,9 @@ class TaskController extends AbstractController
 
     /**
      * Run Task.
-     *
-     * @IsGranted("ROLE_TASK_RUN")
-     * @Route(name="testing.task_run", path="/task/{task}/run")
      */
+    #[IsGranted('ROLE_TASK_RUN')]
+    #[Route('/task/{task}/run', name: 'testing.task_run')]
     public function run(Request $request, Task $task, MessageBusInterface $messageBus): RedirectResponse
     {
         if ($task->isRunning()) {

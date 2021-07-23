@@ -42,9 +42,8 @@ class GroupController extends AbstractController
 
     /**
      * List Groups.
-     *
-     * @IsGranted("ROLE_GROUP_LIST")
      */
+    #[IsGranted('ROLE_GROUP_LIST')]
     #[Route('/group', name: 'admin.group_list')]
     public function list(Request $request, GroupRepository $groupRepo, GroupListTable $table, ConfigBag $bag, PaginatorInterface $paginator): Response
     {
@@ -66,9 +65,8 @@ class GroupController extends AbstractController
 
     /**
      * Create New Group.
-     *
-     * @IsGranted("ROLE_GROUP_CREATE")
      */
+    #[IsGranted('ROLE_GROUP_CREATE')]
     #[Route('/group/create', name: 'admin.group_create')]
     public function create(Request $request, Group $group = null): Response
     {
@@ -93,9 +91,8 @@ class GroupController extends AbstractController
 
     /**
      * Edit Group.
-     *
-     * @IsGranted("ROLE_GROUP_EDIT")
      */
+    #[IsGranted('ROLE_GROUP_EDIT')]
     #[Route('/group/{group}/edit', name: 'admin.group_edit')]
     public function edit(Request $request, Group $group): Response
     {
@@ -104,9 +101,8 @@ class GroupController extends AbstractController
 
     /**
      * Edit Group Roles.
-     *
-     * @IsGranted("ROLE_GROUP_ROLES")
      */
+    #[IsGranted('ROLE_GROUP_ROLES')]
     #[Route('/group/{group}/roles', name: 'admin.group_roles')]
     public function roles(Group $group, Request $request, SecurityService $security): Response
     {
@@ -145,9 +141,8 @@ class GroupController extends AbstractController
 
     /**
      * Delete Group.
-     *
-     * @IsGranted("ROLE_GROUP_DELETE")
      */
+    #[IsGranted('ROLE_GROUP_DELETE')]
     #[Route('/group/{group}/delete', name: 'admin.group_delete', methods: ['DELETE'])]
     public function delete(Group $group): JsonResponse
     {

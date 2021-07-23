@@ -58,9 +58,8 @@ class AccountController extends AbstractController
 
     /**
      * Show all Account.
-     *
-     * @IsGranted("ROLE_ACCOUNT_LIST")
      */
+    #[IsGranted('ROLE_ACCOUNT_LIST')]
     #[Route('/account', name: 'admin.account_list')]
     public function list(Request $request, AccountListTable $table, UserRepository $userRepo, PaginatorInterface $paginator): Response
     {
@@ -90,9 +89,8 @@ class AccountController extends AbstractController
 
     /**
      * Edit the User.
-     *
-     * @IsGranted("ROLE_ACCOUNT_EDIT")
      */
+    #[IsGranted('ROLE_ACCOUNT_EDIT')]
     #[Route('/account/{user}', name: 'admin.account_edit')]
     public function edit(Request $request, User $user): Response
     {
@@ -133,9 +131,8 @@ class AccountController extends AbstractController
 
     /**
      * Change User Password.
-     *
-     * @IsGranted("ROLE_ACCOUNT_PASSWORD")
      */
+    #[IsGranted('ROLE_ACCOUNT_PASSWORD')]
     #[Route('/account/{user}/password', name: 'admin.account_password')]
     public function changePassword(Request $request, User $user, UserPasswordHasherInterface $hasher): Response
     {
@@ -178,9 +175,8 @@ class AccountController extends AbstractController
 
     /**
      * Change User Private Roles.
-     *
-     * @IsGranted("ROLE_ACCOUNT_ROLES")
      */
+    #[IsGranted('ROLE_ACCOUNT_ROLES')]
     #[Route('/account/{user}/roles', name: 'admin.account_roles')]
     public function roles(Request $request, User $user, SecurityService $security): Response
     {
@@ -227,9 +223,8 @@ class AccountController extends AbstractController
 
     /**
      * Account Append Group.
-     *
-     * @IsGranted("ROLE_ACCOUNT_GROUP")
      */
+    #[IsGranted('ROLE_ACCOUNT_GROUP')]
     #[Route('/account/{user}/group', name: 'admin.account_group')]
     public function addGroup(Request $request, User $user): Response
     {
@@ -285,9 +280,8 @@ class AccountController extends AbstractController
 
     /**
      * Delete Account.
-     *
-     * @IsGranted("ROLE_ACCOUNT_DELETE")
      */
+    #[IsGranted('ROLE_ACCOUNT_DELETE')]
     #[Route('/accounts/{user}/delete', name: 'admin.account_delete', methods: ['DELETE'])]
     public function delete(User $user): JsonResponse
     {
@@ -303,9 +297,8 @@ class AccountController extends AbstractController
 
     /**
      * Activate/Deactivate Account.
-     *
-     * @IsGranted("ROLE_ACCOUNT_ACTIVATE")
      */
+    #[IsGranted('ROLE_ACCOUNT_ACTIVATE')]
     #[Route('/account/{user}/activate', name: 'admin.account_activate', methods: ['POST'])]
     public function activate(User $user): JsonResponse
     {
@@ -324,9 +317,8 @@ class AccountController extends AbstractController
 
     /**
      * Freeze Account.
-     *
-     * @IsGranted("ROLE_ACCOUNT_FREEZE")
      */
+    #[IsGranted('ROLE_ACCOUNT_FREEZE')]
     #[Route('/account/{user}/freeze', name: 'admin.account_freeze', methods: ['POST'])]
     public function freeze(User $user): JsonResponse
     {

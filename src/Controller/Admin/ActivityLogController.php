@@ -38,9 +38,8 @@ class ActivityLogController extends AbstractController
 
     /**
      * View HTTP Logs.
-     *
-     * @IsGranted("ROLE_ACTIVITY_HTTP")
      */
+    #[IsGranted('ROLE_ACTIVITY_HTTP')]
     #[Route('/activity-log/http', name: 'admin.activity_log.http', methods: ['GET'])]
     public function httpLog(Request $request, ActivityLogRepository $repo, ActivityLogHttpTable $table): Response
     {
@@ -61,9 +60,8 @@ class ActivityLogController extends AbstractController
 
     /**
      * View Mail Logs.
-     *
-     * @IsGranted("ROLE_ACTIVITY_MAIL")
      */
+    #[IsGranted('ROLE_ACTIVITY_MAIL')]
     #[Route('/activity-log/mail', name: 'admin.activity_log.mail', methods: ['GET'])]
     public function mailLog(Request $request, MailLogRepository $repo, ActivityLogMailTable $table): Response
     {
