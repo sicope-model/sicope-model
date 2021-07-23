@@ -92,7 +92,7 @@ class BugController extends AbstractController
     {
         $form = $this->createFormBuilder($bug)
             ->add('title', TextType::class, [
-                'label' => 'task_title',
+                'label' => 'testing.task_title',
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'save',

@@ -13,53 +13,53 @@
 {# Content Body #}
 {% block content_body %}
     <dl class="row">
-        <dt class="col-sm-3">{{ 'bug_title'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.bug_title'|trans }}</dt>
         <dd class="col-sm-9">{{ bug.title ?: 'NO TITLE' }}</dd>
 
-        <dt class="col-sm-3">{{ 'bug_task'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.bug_task'|trans }}</dt>
         <dd class="col-sm-9"><a href="{{ path('testing.task_view', { 'task': bug.task.id }) }}">{{ bug.task.title }}</a></dd>
 
-        <dt class="col-sm-3">{{ 'bug_model'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.bug_model'|trans }}</dt>
         <dd class="col-sm-9">
             {% if bug.task.modelRevision.model is not null %}
                 <a href="{{ path('testing.model_view', { 'model': bug.task.modelRevision.model.id }) }}">
                     {{ bug.task.modelRevision.model.label }}
                     {% if bug.task.modelRevision.id is not same as(bug.task.modelRevision.model.activeRevision.id) %}
-                        <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
+                        <span class="badge badge-warning">{{ 'testing.outdated'|trans }}</span>
                     {% endif %}
                 </a>
             {% else %}
-                <span class="badge badge-danger">{{ 'deleted'|trans }}</span>
+                <span class="badge badge-danger">{{ 'testing.deleted'|trans }}</span>
             {% endif %}
         </dd>
 
-        <dt class="col-sm-3 text-truncate">{{ 'message'|trans }}</dt>
+        <dt class="col-sm-3 text-truncate">{{ 'testing.message'|trans }}</dt>
         <dd class="col-sm-9">{{ bug.message }}</dd>
 
-        <dt class="col-sm-3">{{ 'progress'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.progress'|trans }}</dt>
         <dd class="col-sm-9">{{ ((bug.progress.total > 0) ? bug.progress.processed / bug.progress.total : 0) |format_number(style='percent') }}</dd>
 
-        <dt class="col-sm-3">{{ 'status'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.status'|trans }}</dt>
         <dd class="col-sm-9">{{ (bug.closed ? 'bug_closed' : 'bug_open')|trans }} | {{ (bug.reducing ? 'bug_reducing' : 'bug_stopped')|trans }}</dd>
 
-        <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.created_at'|trans }}</dt>
         <dd class="col-sm-9">{{ bug.createdAt|date("Y-m-d") }}</dd>
 
-        <dt class="col-sm-3">{{ 'updated_at'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.updated_at'|trans }}</dt>
         <dd class="col-sm-9">{{ bug.updatedAt|date("Y-m-d") }}</dd>
 
-        <dt class="col-sm-3">{{ 'steps'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.steps'|trans }}</dt>
         <dd class="col-sm-9">
             {% if steps is not defined %}
-                {{ 'steps_invalid'|trans }}
+                {{ 'testing.steps_invalid'|trans }}
             {% else %}
                 <table class="table steps-table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">{{ 'transition'|trans }}</th>
-                            <th scope="col">{{ 'places'|trans }}</th>
-                            <th scope="col">{{ 'variables'|trans }}</th>
+                            <th scope="col">{{ 'testing.transition'|trans }}</th>
+                            <th scope="col">{{ 'testing.places'|trans }}</th>
+                            <th scope="col">{{ 'testing.variables'|trans }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,7 +92,7 @@
             {% endif %}
         </dd>
 
-        <dt class="col-sm-3">{{ 'bug_video'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.bug_video'|trans }}</dt>
         <dd class="col-sm-9">
             <video width="100%" controls>
                 <source src="{{ path('testing.bug_video', { 'bug': bug.id }) }}">

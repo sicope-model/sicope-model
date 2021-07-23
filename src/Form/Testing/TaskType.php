@@ -44,7 +44,7 @@ class TaskType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'task_title',
+                'label' => 'testing.task_title',
             ])
         ;
 
@@ -57,7 +57,7 @@ class TaskType extends AbstractType
                     $builder
                         ->create('modelRevision', EntityType::class, [
                             'class' => Model::class,
-                            'label' => 'task_model',
+                            'label' => 'testing.task_model',
                             'choice_label' => 'label',
                             'auto_initialize' => false,
                         ])
@@ -68,13 +68,13 @@ class TaskType extends AbstractType
 
             $form
                 ->add('seleniumConfig', SeleniumConfigType::class, [
-                    'label' => 'task_selenium_config',
+                    'label' => 'testing.task_selenium_config',
                     'attr' => [
                         'class' => 'col list-group-item',
                     ],
                 ])
                 ->add('taskConfig', TaskConfigType::class, [
-                    'label' => 'task_task_config',
+                    'label' => 'testing.task_task_config',
                     'attr' => [
                         'class' => 'col list-group-item',
                     ],

@@ -4,9 +4,9 @@
             {# Action Button #}
             {% embed '@PdWidget/widgetAction.html.twig' %}
                 {% block add_config %}
-                    <a class="dropdown-item {{ widget.config.type is defined and widget.config.type in '1week' ? 'active' }}" href="{{ path('widget_config', { 'widgetId': widget.id, 'type': '1week' }) }}">{{ '1week'|trans }}</a>
-                    <a class="dropdown-item {{ widget.config.type is defined and widget.config.type in '1month' ? 'active' }}" href="{{ path('widget_config', { 'widgetId': widget.id, 'type': '1month' }) }}">{{ '1month'|trans }}</a>
-                    <a class="dropdown-item {{ widget.config.type is defined and widget.config.type in '3month' ? 'active' }}" href="{{ path('widget_config', { 'widgetId': widget.id, 'type': '3month'}) }}">{{ '3month'|trans }}</a>
+                    <a class="dropdown-item {{ widget.config.type is defined and widget.config.type in '1week' ? 'active' }}" href="{{ path('widget_config', { 'widgetId': widget.id, 'type': '1week' }) }}">{{ 'testing.1week'|trans }}</a>
+                    <a class="dropdown-item {{ widget.config.type is defined and widget.config.type in '1month' ? 'active' }}" href="{{ path('widget_config', { 'widgetId': widget.id, 'type': '1month' }) }}">{{ 'testing.1month'|trans }}</a>
+                    <a class="dropdown-item {{ widget.config.type is defined and widget.config.type in '3month' ? 'active' }}" href="{{ path('widget_config', { 'widgetId': widget.id, 'type': '3month'}) }}">{{ 'testing.3month'|trans }}</a>
                 {% endblock %}
             {% endembed %}
 

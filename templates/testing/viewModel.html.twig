@@ -13,19 +13,19 @@
 {# Content Body #}
 {% block content_body %}
     <dl class="row">
-        <dt class="col-sm-3">{{ 'model_label'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.model_label'|trans }}</dt>
         <dd class="col-sm-9">{{ model.label }}</dd>
 
-        <dt class="col-sm-3">{{ 'model_tags'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.model_tags'|trans }}</dt>
         <dd class="col-sm-9">{{ model.tags|join(', ') }}</dd>
 
-        <dt class="col-sm-3">{{ 'model_image'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.model_image'|trans }}</dt>
         <dd class="col-sm-9"><img class="img-fluid" src="{{ path('testing.model_image', { 'model': model.id }) }}" alt="{{ 'model_image'|trans }}"></dd>
 
-        <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.created_at'|trans }}</dt>
         <dd class="col-sm-9">{{ model.createdAt|date("Y-m-d") }}</dd>
 
-        <dt class="col-sm-3">{{ 'updated_at'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.updated_at'|trans }}</dt>
         <dd class="col-sm-9">{{ model.updatedAt|date("Y-m-d") }}</dd>
     </dl>
 {% endblock %}
