@@ -16,6 +16,7 @@ namespace App\Controller\Testing;
 use App\Form\Testing\TaskType;
 use App\Repository\Testing\TaskRepository;
 use App\Service\ConfigBag;
+use App\Tables\TaskListTable;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Pd\UserBundle\Model\UserInterface;
@@ -36,6 +37,10 @@ use Tienvx\Bundle\MbtBundle\Message\RunTaskMessage;
  */
 class TaskController extends AbstractController
 {
+    public function __construct(private ConfigBag $bag)
+    {
+    }
+
     /**
      * List Task.
      */
@@ -43,24 +48,27 @@ class TaskController extends AbstractController
     #[Route('/tasks', name: 'testing.task_list', methods: ['GET'])]
     public function list(
         Request $request,
-        TaskRepository $taskRepository,
-        ConfigBag $bag,
+        TaskListTable $table,
+        TaskRepository $taskRepo,
         PaginatorInterface $paginator
     ): Response {
-        // Get Tasks
-        $query = $taskRepository->createQueryBuilder('t');
+        $table
+            ->handleQueryBuilder($query = $taskRepo->createQueryBuilder('t'))
+            ->handleRequest($request);
 
-        // Get Result
-        $pagination = $paginator->paginate(
-            $query,
+        // Paginate
+        $pagination = $paginator->paginate($query->getQuery(),
             $request->query->getInt('page', 1),
-            $bag->get('list_count')
+            $this->bag->get('list_count')
         );
 
-        // Render Page
-        return $this->render('testing/listTask.html.twig', [
-            'tasks' => $pagination,
-        ]);
+        if ($request->get('export')) {
+            return $table->export();
+        }
+
+        return $request->isXmlHttpRequest() ?
+            $this->json($pagination, context: ['groups' => 'default']) :
+            $this->render('testing/listTask.html.twig', ['table' => $table]);
     }
 
     /**

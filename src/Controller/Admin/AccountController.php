@@ -42,14 +42,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class AccountController extends AbstractController
 {
-    /**
-     * Security Manager Add Custom Roles.
-     */
-    public const CUSTOM_ROLES = [
-        'ROLE_ACCOUNT_ALLREAD' => 'ROLE_ACCOUNT_ALLREAD',
-        'ROLE_ACCOUNT_ALLWRITE' => 'ROLE_ACCOUNT_ALLWRITE',
-    ];
-
     public function __construct(
         private EntityManagerInterface $entityManager,
         private ConfigBag $bag
@@ -66,11 +58,6 @@ class AccountController extends AbstractController
         $table
             ->handleQueryBuilder($query = $userRepo->createQueryBuilder('u'))
             ->handleRequest($request);
-
-        // Check Owner or All Access
-        if (!$this->isGranted('ROLE_ACCOUNT_ALLREAD')) {
-            $query->andWhere('u.id = :id')->setParameter('id', $this->getUser()->getId());
-        }
 
         // Paginate
         $pagination = $paginator->paginate($query->getQuery(),
