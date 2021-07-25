@@ -11,6 +11,7 @@
 
 {# Content Body #}
 {% block content_body %}
+    <ajax-form ref="former" message="{{ 'message.saved'|trans }}"></ajax-form>
     <datatable
         data-api="{{ url('testing.task_list') }}"
         data-column="{{ table.columnsJson|url_encode }}"
