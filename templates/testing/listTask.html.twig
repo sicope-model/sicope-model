@@ -4,7 +4,7 @@
 {% block content_title %}
     <i class="fas fa-tasks"></i>{{ 'testing.task_list_title'|trans }}
 
-    {% if is_granted('ROLE_TASK_LIST') %}
+    {% if is_granted('ROLE_TASK_CREATE') %}
         <a @click.prevent="$refs.former.get('{{ path('testing.task_create') }}', '{{ 'testing.task_create_title'|trans }}', 'append')" class="ms-3 clear-line-height btn btn-sm btn-primary"><i class="fas fa-plus"></i>{{ 'testing.task_create_desc'|trans }}</a>
     {% endif %}
 {% endblock %}
