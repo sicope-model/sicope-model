@@ -200,30 +200,30 @@ testing:
     closed: Kapalı
     model_version: Model Sürümü
     version: Sürüm
-    testing_model_list_title: Modeller
-    testing_model_list_desc: Modelleri yönetme
-    testing_model_build_title: Model Oluştur
-    testing_model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
-    testing_model_edit_title: Modeli Düzenle
-    testing_model_edit_desc: Bir modelin durumlarını ve geçişlerini düzenleme
-    testing_model_import_title: Modeli İçe Aktar
-    testing_model_import_desc: Yüklenen dosyadan yeni model oluştur
-    testing_model_view_title: Modeli Görüntüle
-    testing_model_view_desc: Modeli durumlar ve geçişlerle görüntüleyin
-    testing_task_list_title: Görevler
-    testing_task_list_desc: Görevleri yönetme
-    testing_task_create_title: Görev Oluştur
-    testing_task_create_desc: Yeni görev oluştur
-    testing_task_edit_title: Görevi Düzenle
-    testing_task_edit_desc: Görevi düzenleyin
-    testing_task_view_title: Görevi Görüntüle
-    testing_task_view_desc: Görevi görüntüle
-    testing_bug_list_title: Hatalar
-    testing_bug_list_desc: Hataları yönetme
-    testing_bug_view_title: Hata
-    testing_bug_view_desc: Önceden oluşturulmuş adımlar ve kaydedilmiş video ile ilgili hata
-    testing_bug_edit_title: Hatayı Düzenle
-    testing_bug_edit_desc: Hata başlığını düzenleyin
+    model_list_title: Modeller
+    model_list_desc: Modelleri yönetme
+    model_build_title: Model Oluştur
+    model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
+    model_edit_title: Modeli Düzenle
+    model_edit_desc: Bir modelin durumlarını ve geçişlerini düzenleme
+    model_import_title: Modeli İçe Aktar
+    model_import_desc: Yüklenen dosyadan yeni model oluştur
+    model_view_title: Modeli Görüntüle
+    model_view_desc: Modeli durumlar ve geçişlerle görüntüleyin
+    task_list_title: Görevler
+    task_list_desc: Görevleri yönetme
+    task_create_title: Görev Oluştur
+    task_create_desc: Yeni görev oluştur
+    task_edit_title: Görevi Düzenle
+    task_edit_desc: Görevi düzenleyin
+    task_view_title: Görevi Görüntüle
+    task_view_desc: Görevi görüntüle
+    bug_list_title: Hatalar
+    bug_list_desc: Hataları yönetme
+    bug_view_title: Hata
+    bug_view_desc: Önceden oluşturulmuş adımlar ve kaydedilmiş video ile ilgili hata
+    bug_edit_title: Hatayı Düzenle
+    bug_edit_desc: Hata başlığını düzenleyin
     export: İhracat
     import: İthalat
     model_file: Model (JSON dosyası)
