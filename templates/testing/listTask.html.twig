@@ -16,7 +16,7 @@
         data-column="{{ table.columnsJson|url_encode }}"
         data-sort-api="{{ url('admin.data_table') }}"
         data-sort-table="{{ table.name }}"
-        sort-field="u.id"
+        sort-field="t.id"
         :exporter="true"
     >
         <template v-slot:actions="{item, index, remove}">
