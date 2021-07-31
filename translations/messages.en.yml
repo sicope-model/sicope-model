@@ -162,8 +162,6 @@ testing:
     task_title: Title
     task_model: Model
     bug_task: Task
-    task_notify_author: Notify Me
-    task_notify_author_info: Send me email or sms message when a bug was found
     progress: Progress
     settings_testing: Testing Settings
     settings_testing_desc: Task, model & bug settings
@@ -228,19 +226,16 @@ testing:
     export: Export
     import: Import
     model_file: Model (JSON file)
-    task_selenium_config: Selenium Config
-    task_provider: Provider
-    task_platform: Platform
     task_browser: Browser
     task_browser_version: Browser Version
-    task_resolution: Resolution
-    task_task_config: Task Config
-    task_generator: Generator
-    task_generator_config: Generator Config
-    task_place_coverage: Place Coverage
-    task_transition_coverage: Transition Coverage
-    task_reducer: Reducer
-    task_notify_channels: Notify Channels
+    config: Config
+    generator: Generator
+    reducer: Reducer
+    report_bug: Report Bug
+    report_bug_help: Should new bug be reported automatically?
+    notify_author: Notify Author
+    notify_author_help: Send author email or sms message when a bug was found
+    notify_channels: Notify Channels
     status: Status
     task_running: Running
     task_stopped: Stopped

@@ -59,7 +59,13 @@ class Sidebar extends Menu
                 ->setLabel('testing.bug')
                 ->setRoute('testing.bug_list')
                 ->setRoles(['ROLE_BUG_LIST'])
-                ->setExtra('label_icon', 's fa-bug');
+                ->setExtra('label_icon', 's fa-bug')
+                // Config
+                ->addChildParent('testing.config', 30)
+                ->setLabel('testing.config')
+                ->setRoute('testing.config')
+                ->setRoles(['ROLE_TESTING_CONFIG'])
+                ->setExtra('label_icon', 's fa-cogs');
 
         /*
          * Account Menus

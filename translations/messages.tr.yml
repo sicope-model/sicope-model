@@ -161,8 +161,6 @@ testing:
     task_title: Başlık
     task_model: Modeli
     bug_task: Görev
-    task_notify_author: Bana bildir
-    task_notify_author_info: Bir hata bulunduğunda bana e-posta veya sms mesajı gönder
     progress: İlerleme
     settings_testing: Test Ayarları
     settings_testing_desc: Görev, model ve hata ayarları
@@ -227,19 +225,16 @@ testing:
     export: İhracat
     import: İthalat
     model_file: Model (JSON dosyası)
-    task_selenium_config: Selenium Yapılandırma
-    task_provider: Sağlayıcı
-    task_platform: Platform
     task_browser: Tarayıcı
     task_browser_version: Tarayıcı Sürümü
-    task_resolution: çözüm
-    task_task_config: Görev Yapılandırması
-    task_generator: Jeneratör
-    task_generator_config: Jeneratör Yapılandırması
-    task_place_coverage: Yer Kapsamı
-    task_transition_coverage: Geçiş Kapsamı
-    task_reducer: Redüktör
-    task_notify_channels: Kanalları Bildirin
+    config: Yapılandırma
+    generator: Jeneratör
+    reducer: Redüktör
+    report_bug: Hata Bildir
+    report_bug_help: Yeni hata otomatik olarak bildirilmeli mi?
+    notify_author: Yazara Bildir
+    notify_author_help: Bir hata bulunduğunda yazar e-postası veya sms mesajı gönderin
+    notify_channels: Kanalları Bildirin
     status: Durum
     task_running: Koşu
     task_stopped: Durduruldu

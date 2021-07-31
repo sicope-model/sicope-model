@@ -42,3 +42,6 @@ services:
         bind:
             $mailSenderAddress: '%mail_sender_address%'
             $mailSenderName: '%mail_sender_name%'
+
+    Tienvx\Bundle\MbtBundle\Service\ConfigInterface:
+        class: App\Service\TestingConfig
