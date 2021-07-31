@@ -142,16 +142,6 @@ widget:
 
 testing:
     ###
-    # Chart
-    ###
-    1week: Son 1 Hafta
-    1month: Son 1 Ay
-    3month: Son 3 Ay
-    testing_statistics:
-        task: Görev
-        bug: Hata
-
-    ###
     # Testing
     ###
     testing: Test yapmak
@@ -273,15 +263,22 @@ testing:
     ###
     # Testing Widget
     ###
-    widget_model_info:
-        name: Model Bilgisi
-        description: Model sayısını gösterir
-        count: Modeller
-    widget_task_info:
-        name: Görev Bilgisi
-        description: Görev sayısını gösterir
-        count: Görevler
-    widget_bug_info:
-        name: Hata Bilgisi
-        description: Hata sayısını gösterir
-        count: Hatalar
+    widget:
+        model_info:
+            name: Model Bilgisi
+            description: Model sayısını gösterir
+            count: Modeller
+        task_info:
+            name: Görev Bilgisi
+            description: Görev sayısını gösterir
+            count: Görevler
+        bug_info:
+            name: Hata Bilgisi
+            description: Hata sayısını gösterir
+            count: Hatalar
+        testing_statistics:
+            name: Test İstatistikleri
+            description: Ayrıntılı test istatistiklerini görüntüler
+            1week: Son 1 Hafta
+            1month: Son 1 Ay
+            3month: Son 3 Ay

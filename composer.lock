@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "68309e533e2abc9b49d52fb0885f67d7",
+    "content-hash": "07034a63b4d9fb991e3439c106be8181",
     "packages": [
         {
             "name": "appaydin/pd-activity",

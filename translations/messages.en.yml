@@ -143,16 +143,6 @@ widget:
 
 testing:
     ###
-    # Chart
-    ###
-    1week: Last 1 Week
-    1month: Last 1 Month
-    3month: Last 3 Months
-    testing_statistics:
-        task: Task
-        bug: Bug
-
-    ###
     # Testing
     ###
     testing: Testing
@@ -274,18 +264,22 @@ testing:
     ###
     # Testing Widget
     ###
-    widget_model_info:
-        name: Model Info
-        description: Shows number of models
-        count: Models
-    widget_task_info:
-        name: Task Info
-        description: Shows number of tasks
-        count: Tasks
-    widget_bug_info:
-        name: Bug Info
-        description: Shows number of bugs
-        count: Bugs
-    widget_testing_statistics:
-        name: Testing Statistics
-        description: Displays detailed testing statistics.
+    widget:
+        model_info:
+            name: Model Info
+            description: Shows number of models
+            count: Models
+        task_info:
+            name: Task Info
+            description: Shows number of tasks
+            count: Tasks
+        bug_info:
+            name: Bug Info
+            description: Shows number of bugs
+            count: Bugs
+        testing_statistics:
+            name: Testing Statistics
+            description: Displays detailed testing statistics
+            1week: Last 1 Week
+            1month: Last 1 Month
+            3month: Last 3 Months
