@@ -33,7 +33,7 @@
             {% if is_granted('ROLE_TASK_EDIT') %}
                 <li><a class="dropdown-item"
                        :href="route('{{ route('testing.task_edit') }}', {'{task}': item.id})"><i
-                            class="fas fa-user-edit"></i>{{ 'button.edit'|trans }}</a></li>
+                            class="fas fa-edit"></i>{{ 'button.edit'|trans }}</a></li>
             {% endif %}
 
             {% if is_granted('ROLE_TASK_DELETE') %}

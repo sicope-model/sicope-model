@@ -4,51 +4,8 @@ security:
         App\Entity\Account\User:
             algorithm: auto
     role_hierarchy:
-        ROLE_USER:
-            - ROLE_DASHBOARD_PANEL
-            - ROLE_TASK_LIST
-            - ROLE_TASK_CREATE
-            - ROLE_TASK_EDIT
-            - ROLE_TASK_VIEW
-            - ROLE_TASK_DELETE
-            - ROLE_TASK_RUN
-            - ROLE_MODEL_LIST
-            - ROLE_MODEL_BUILD
-            - ROLE_MODEL_EDIT
-            - ROLE_MODEL_VIEW
-            - ROLE_MODEL_DELETE
-            - ROLE_MODEL_IMAGE
-            - ROLE_MODEL_EXPORT
-            - ROLE_MODEL_IMPORT
-            - ROLE_BUG_LIST
-            - ROLE_BUG_EDIT
-            - ROLE_BUG_VIEW
-            - ROLE_BUG_DELETE
-            - ROLE_BUG_OPEN
-            - ROLE_BUG_CLOSE
-            - ROLE_BUG_VIDEO
-            - ROLE_BUG_EXPORT
-            - ROLE_BUG_REDUCE
-        ROLE_SUPER_ADMIN:
-            - ROLE_USER
-            - ROLE_ACCOUNT_LIST
-            - ROLE_ACCOUNT_EDIT
-            - ROLE_ACCOUNT_PASSWORD
-            - ROLE_ACCOUNT_ROLES
-            - ROLE_ACCOUNT_GROUP
-            - ROLE_ACCOUNT_DELETE
-            - ROLE_ACCOUNT_ACTIVATE
-            - ROLE_ACCOUNT_FREEZE
-            - ROLE_GROUP_LIST
-            - ROLE_GROUP_CREATE
-            - ROLE_GROUP_EDIT
-            - ROLE_GROUP_ROLES
-            - ROLE_GROUP_DELETE
-            - ROLE_ACTIVITY_HTTP
-            - ROLE_ACTIVITY_MAIL
-            - ROLE_CONFIG_GENERAL
-            - ROLE_CONFIG_MEDIA
-            - ROLE_CONFIG_USER
+        ROLE_USER: [ ROLE_DASHBOARD_PANEL ]
+        ROLE_SUPER_ADMIN: [ ROLE_USER ]
     providers:
         pdadmin_auth:
             entity:
