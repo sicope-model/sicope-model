@@ -62,7 +62,6 @@ class TaskType extends AbstractType
             ->add('save', SubmitType::class, [
                 'label' => 'save',
             ]);
-        ;
 
         $builder->get('modelRevision')
             ->addModelTransformer($this->revisionTransformer);

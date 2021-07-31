@@ -34,9 +34,6 @@ services:
     # Load DB Configurator
     Pd\UserBundle\Configuration\ConfigInterface: '@App\Service\ConfigBag'
 
-    Tienvx\Bundle\MbtBundle\Generator\RandomGenerator:
-        class: App\Model\RandomGenerator
-
     Tienvx\Bundle\MbtBundle\Service\Bug\BugNotifierInterface:
         class: App\Service\BugNotifier
         bind:

@@ -40,7 +40,7 @@ use Tienvx\Bundle\MbtBundle\Model\Model\Revision\PlaceInterface;
 use Tienvx\Bundle\MbtBundle\Model\Model\Revision\TransitionInterface;
 use Tienvx\Bundle\MbtBundle\Model\Model\RevisionInterface;
 use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
-use Tienvx\Bundle\MbtBundle\Provider\ProviderManagerInterface;
+use Tienvx\Bundle\MbtBundle\Service\SelenoidHelperInterface;
 
 /**
  * Controller managing the bugs.
@@ -177,19 +177,17 @@ class BugController extends AbstractController
      */
     #[IsGranted('ROLE_BUG_VIDEO')]
     #[Route('/bug/{bug}/video', name: 'testing.bug_video', methods: ['GET'])]
-    public function video(Bug $bug, ProviderManagerInterface $providerManager): StreamedResponse
+    public function video(Bug $bug, SelenoidHelperInterface $selenoidHelper): StreamedResponse
     {
-        $providerName = $bug->getTask()->getSeleniumConfig()->getProvider();
-        $provider = $providerManager->getProvider($providerName);
         $response = new StreamedResponse();
-        $url = $provider->getVideoUrl($providerManager->getSeleniumServer($providerName), $bug->getId());
+        $url = $selenoidHelper->getVideoUrl($bug->getId());
 
         $response->headers->set('Content-Type', 'application/force-download');
         $response->headers->set(
             'Content-Disposition',
             $response->headers->makeDisposition(
                 ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-                $provider->getVideoFilename($bug->getId())
+                $selenoidHelper->getVideoFilename($bug->getId())
             )
         );
 

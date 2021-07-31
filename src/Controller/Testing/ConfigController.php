@@ -13,9 +13,6 @@
 
 namespace App\Controller\Testing;
 
-use App\Form\Config\GeneralForm;
-use App\Form\Config\MediaForm;
-use App\Form\Config\UserForm;
 use App\Form\Testing\ConfigForm;
 use App\Service\ConfigBag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
