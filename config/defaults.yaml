@@ -19,7 +19,7 @@ parameters:
     app.head_author: 'pdAdmin'
     app.head_keywords: 'pdAdmin, opensource'
     app.footer_copyright: 'pdAdmin Developed with Symfony 5'
-    app.default_locale: 'tr'
+    app.default_locale: 'en'
     app.list_count: 30
     app.site_logo: 'default/logo.png'
     app.site_favicon: 'default/favicon.ico'

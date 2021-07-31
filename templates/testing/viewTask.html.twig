@@ -13,50 +13,50 @@
 {# Content Body #}
 {% block content_body %}
     <dl class="row">
-        <dt class="col-sm-3">{{ 'task_title'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.task_title'|trans }}</dt>
         <dd class="col-sm-9">{{ task.title }}</dd>
 
-        <dt class="col-sm-3">{{ 'task_model'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.task_model'|trans }}</dt>
         <dd class="col-sm-9">
             {% if task.modelRevision.model is not null %}
                 <a href="{{ path('testing.model_view', { 'model': task.modelRevision.model.id }) }}">
                     {{ task.modelRevision.model.label }}
                     {% if task.modelRevision.id is not same as(task.modelRevision.model.activeRevision.id) %}
-                        <span class="badge badge-warning">{{ 'outdated'|trans }}</span>
+                        <span class="badge badge-warning">{{ 'testing.outdated'|trans }}</span>
                     {% endif %}
                 </a>
             {% else %}
-                <span class="badge badge-danger">{{ 'deleted'|trans }}</span>
+                <span class="badge badge-danger">{{ 'testing.deleted'|trans }}</span>
             {% endif %}
         </dd>
 
-        <dt class="col-sm-3">{{ 'task_selenium_config'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.task_selenium_config'|trans }}</dt>
         <dd class="col-sm-9">
             <dl class="row">
-                <dt class="col-sm-3">{{ 'task_provider'|trans }}</dt>
+                <dt class="col-sm-3">{{ 'testing.task_provider'|trans }}</dt>
                 <dd class="col-sm-9">{{ task.seleniumConfig.provider }}</dd>
 
-                <dt class="col-sm-3">{{ 'task_platform'|trans }}</dt>
+                <dt class="col-sm-3">{{ 'testing.task_platform'|trans }}</dt>
                 <dd class="col-sm-9">{{ task.seleniumConfig.platform }}</dd>
 
-                <dt class="col-sm-3">{{ 'task_browser'|trans }}</dt>
+                <dt class="col-sm-3">{{ 'testing.task_browser'|trans }}</dt>
                 <dd class="col-sm-9">{{ task.seleniumConfig.browser }}</dd>
 
-                <dt class="col-sm-3">{{ 'task_browser_version'|trans }}</dt>
+                <dt class="col-sm-3">{{ 'testing.task_browser_version'|trans }}</dt>
                 <dd class="col-sm-9">{{ task.seleniumConfig.browserVersion }}</dd>
 
-                <dt class="col-sm-3">{{ 'task_resolution'|trans }}</dt>
+                <dt class="col-sm-3">{{ 'testing.task_resolution'|trans }}</dt>
                 <dd class="col-sm-9">{{ task.seleniumConfig.resolution }}</dd>
             </dl>
         </dd>
 
-        <dt class="col-sm-3">{{ 'task_task_config'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.task_task_config'|trans }}</dt>
         <dd class="col-sm-9">
             <dl class="row">
-                <dt class="col-sm-3">{{ 'task_generator'|trans }}</dt>
+                <dt class="col-sm-3">{{ 'testing.task_generator'|trans }}</dt>
                 <dd class="col-sm-9">{{ task.taskConfig.generator }}</dd>
 
-                <dt class="col-sm-3">{{ 'task_generator_config'|trans }}</dt>
+                <dt class="col-sm-3">{{ 'testing.task_generator_config'|trans }}</dt>
                 <dd class="col-sm-9">
                     <ul>
                         {% for key, value in task.taskConfig.generatorConfig %}
@@ -65,13 +65,13 @@
                     </ul>
                 </dd>
 
-                <dt class="col-sm-3">{{ 'task_reducer'|trans }}</dt>
+                <dt class="col-sm-3">{{ 'testing.task_reducer'|trans }}</dt>
                 <dd class="col-sm-9">{{ task.taskConfig.reducer }}</dd>
 
-                <dt class="col-sm-3">{{ 'task_notify_author'|trans }}</dt>
+                <dt class="col-sm-3">{{ 'testing.task_notify_author'|trans }}</dt>
                 <dd class="col-sm-9">{{ task.taskConfig.notifyAuthor }}</dd>
 
-                <dt class="col-sm-3">{{ 'task_notify_channels'|trans }}</dt>
+                <dt class="col-sm-3">{{ 'testing.task_notify_channels'|trans }}</dt>
                 <dd class="col-sm-9">
                     <ul>
                         {% for channel in task.taskConfig.notifyChannels %}
@@ -82,13 +82,13 @@
             </dl>
         </dd>
 
-        <dt class="col-sm-3">{{ 'bugs'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.bugs'|trans }}</dt>
         <dd class="col-sm-9">{{ task.bugs|length }}</dd>
 
-        <dt class="col-sm-3">{{ 'created_at'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.created_at'|trans }}</dt>
         <dd class="col-sm-9">{{ task.createdAt|date("Y-m-d") }}</dd>
 
-        <dt class="col-sm-3">{{ 'updated_at'|trans }}</dt>
+        <dt class="col-sm-3">{{ 'testing.updated_at'|trans }}</dt>
         <dd class="col-sm-9">{{ task.updatedAt|date("Y-m-d") }}</dd>
     </dl>
 {% endblock %}

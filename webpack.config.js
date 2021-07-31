@@ -19,9 +19,7 @@ Encore
     .addStyleEntry('auth', './assets/auth/auth.scss')
 
     // Testing
-    //.addEntry('testing/task', './assets/testing/task.js')
     //.addEntry('testing/model', './assets/testing/model.js')
-    //.addStyleEntry('testing', './assets/testing/dashboard.scss')
 
     // Configs
     .enableVueLoader(() => {}, { runtimeCompilerBuild: false })

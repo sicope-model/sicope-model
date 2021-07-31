@@ -142,16 +142,6 @@ widget:
 
 testing:
     ###
-    # Chart
-    ###
-    1week: Son 1 Hafta
-    1month: Son 1 Ay
-    3month: Son 3 Ay
-    testing_statistics:
-        task: Görev
-        bug: Hata
-
-    ###
     # Testing
     ###
     testing: Test yapmak
@@ -161,8 +151,6 @@ testing:
     task_title: Başlık
     task_model: Modeli
     bug_task: Görev
-    task_notify_author: Bana bildir
-    task_notify_author_info: Bir hata bulunduğunda bana e-posta veya sms mesajı gönder
     progress: İlerleme
     settings_testing: Test Ayarları
     settings_testing_desc: Görev, model ve hata ayarları
@@ -200,46 +188,43 @@ testing:
     closed: Kapalı
     model_version: Model Sürümü
     version: Sürüm
-    testing_model_list_title: Modeller
-    testing_model_list_desc: Modelleri yönetme
-    testing_model_build_title: Model Oluştur
-    testing_model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
-    testing_model_edit_title: Modeli Düzenle
-    testing_model_edit_desc: Bir modelin durumlarını ve geçişlerini düzenleme
-    testing_model_import_title: Modeli İçe Aktar
-    testing_model_import_desc: Yüklenen dosyadan yeni model oluştur
-    testing_model_view_title: Modeli Görüntüle
-    testing_model_view_desc: Modeli durumlar ve geçişlerle görüntüleyin
-    testing_task_list_title: Görevler
-    testing_task_list_desc: Görevleri yönetme
-    testing_task_create_title: Görev Oluştur
-    testing_task_create_desc: Yeni görev oluştur
-    testing_task_edit_title: Görevi Düzenle
-    testing_task_edit_desc: Görevi düzenleyin
-    testing_task_view_title: Görevi Görüntüle
-    testing_task_view_desc: Görevi görüntüle
-    testing_bug_list_title: Hatalar
-    testing_bug_list_desc: Hataları yönetme
-    testing_bug_view_title: Hata
-    testing_bug_view_desc: Önceden oluşturulmuş adımlar ve kaydedilmiş video ile ilgili hata
-    testing_bug_edit_title: Hatayı Düzenle
-    testing_bug_edit_desc: Hata başlığını düzenleyin
+    model_list_title: Modeller
+    model_list_desc: Modelleri yönetme
+    model_build_title: Model Oluştur
+    model_build_desc: Durumlar ve geçişlerle yeni model oluşturun
+    model_edit_title: Modeli Düzenle
+    model_edit_desc: Bir modelin durumlarını ve geçişlerini düzenleme
+    model_import_title: Modeli İçe Aktar
+    model_import_desc: Yüklenen dosyadan yeni model oluştur
+    model_view_title: Modeli Görüntüle
+    model_view_desc: Modeli durumlar ve geçişlerle görüntüleyin
+    task_list_title: Görevler
+    task_list_desc: Görevleri yönetme
+    task_create_title: Görev Oluştur
+    task_create_desc: Yeni görev oluştur
+    task_edit_title: Görevi Düzenle
+    task_edit_desc: Görevi düzenleyin
+    task_view_title: Görevi Görüntüle
+    task_view_desc: Görevi görüntüle
+    bug_list_title: Hatalar
+    bug_list_desc: Hataları yönetme
+    bug_view_title: Hata
+    bug_view_desc: Önceden oluşturulmuş adımlar ve kaydedilmiş video ile ilgili hata
+    bug_edit_title: Hatayı Düzenle
+    bug_edit_desc: Hata başlığını düzenleyin
     export: İhracat
     import: İthalat
     model_file: Model (JSON dosyası)
-    task_selenium_config: Selenium Yapılandırma
-    task_provider: Sağlayıcı
-    task_platform: Platform
     task_browser: Tarayıcı
     task_browser_version: Tarayıcı Sürümü
-    task_resolution: çözüm
-    task_task_config: Görev Yapılandırması
-    task_generator: Jeneratör
-    task_generator_config: Jeneratör Yapılandırması
-    task_place_coverage: Yer Kapsamı
-    task_transition_coverage: Geçiş Kapsamı
-    task_reducer: Redüktör
-    task_notify_channels: Kanalları Bildirin
+    config: Yapılandırma
+    generator: Jeneratör
+    reducer: Redüktör
+    report_bug: Hata Bildir
+    report_bug_help: Yeni hata otomatik olarak bildirilmeli mi?
+    notify_author: Yazara Bildir
+    notify_author_help: Bir hata bulunduğunda yazar e-postası veya sms mesajı gönderin
+    notify_channels: Kanalları Bildirin
     status: Durum
     task_running: Koşu
     task_stopped: Durduruldu
@@ -278,15 +263,22 @@ testing:
     ###
     # Testing Widget
     ###
-    widget_model_info:
-        name: Model Bilgisi
-        description: Model sayısını gösterir
-        count: Modeller
-    widget_task_info:
-        name: Görev Bilgisi
-        description: Görev sayısını gösterir
-        count: Görevler
-    widget_bug_info:
-        name: Hata Bilgisi
-        description: Hata sayısını gösterir
-        count: Hatalar
+    widget:
+        model_info:
+            name: Model Bilgisi
+            description: Model sayısını gösterir
+            count: Modeller
+        task_info:
+            name: Görev Bilgisi
+            description: Görev sayısını gösterir
+            count: Görevler
+        bug_info:
+            name: Hata Bilgisi
+            description: Hata sayısını gösterir
+            count: Hatalar
+        testing_statistics:
+            name: Test İstatistikleri
+            description: Ayrıntılı test istatistiklerini görüntüler
+            1week: Son 1 Hafta
+            1month: Son 1 Ay
+            3month: Son 3 Ay

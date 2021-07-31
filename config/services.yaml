@@ -34,11 +34,11 @@ services:
     # Load DB Configurator
     Pd\UserBundle\Configuration\ConfigInterface: '@App\Service\ConfigBag'
 
-    Tienvx\Bundle\MbtBundle\Generator\RandomGenerator:
-        class: App\Model\RandomGenerator
-
     Tienvx\Bundle\MbtBundle\Service\Bug\BugNotifierInterface:
         class: App\Service\BugNotifier
         bind:
             $mailSenderAddress: '%mail_sender_address%'
             $mailSenderName: '%mail_sender_name%'
+
+    Tienvx\Bundle\MbtBundle\Service\ConfigInterface:
+        class: App\Service\TestingConfig

@@ -28,14 +28,8 @@ use Tienvx\Bundle\MbtBundle\Entity\Task;
  */
 class Testing
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(private EntityManagerInterface $entityManager)
     {
-        $this->entityManager = $entityManager;
     }
 
     /**
@@ -51,8 +45,8 @@ class Testing
             ->addWidget(
                 (new Item('model_info'))
                     ->setGroup('admin')
-                    ->setName('widget_model_info.name')
-                    ->setDescription('widget_model_info.description')
+                    ->setName('testing.widget.model_info.name')
+                    ->setDescription('testing.widget.model_info.description')
                     ->setTemplate('testing/widget/modelInfo.html.twig')
                     ->setRole(['ROLE_WIDGET_MODELINFO'])
                     ->setData(function ($config) {
@@ -69,8 +63,8 @@ class Testing
             ->addWidget(
                 (new Item('task_info'))
                     ->setGroup('admin')
-                    ->setName('widget_task_info.name')
-                    ->setDescription('widget_task_info.description')
+                    ->setName('testing.widget.task_info.name')
+                    ->setDescription('testing.widget.task_info.description')
                     ->setTemplate('testing/widget/taskInfo.html.twig')
                     ->setRole(['ROLE_WIDGET_TASKINFO'])
                     ->setData(function ($config) {
@@ -87,8 +81,8 @@ class Testing
             ->addWidget(
                 (new Item('bug_info'))
                     ->setGroup('admin')
-                    ->setName('widget_bug_info.name')
-                    ->setDescription('widget_bug_info.description')
+                    ->setName('testing.widget.bug_info.name')
+                    ->setDescription('testing.widget.bug_info.description')
                     ->setTemplate('testing/widget/bugInfo.html.twig')
                     ->setRole(['ROLE_WIDGET_BUGINFO'])
                     ->setData(function ($config) {
@@ -105,8 +99,8 @@ class Testing
             ->addWidget(
                 (new Item('testing_statistics'))
                     ->setGroup('admin')
-                    ->setName('widget_testing_statistics.name')
-                    ->setDescription('widget_testing_statistics.description')
+                    ->setName('testing.widget.testing_statistics.name')
+                    ->setDescription('testing.widget.testing_statistics.description')
                     ->setTemplate('testing/widget/testingStatistics.html.twig')
                     ->setRole(['ROLE_WIDGET_TESTINGSTATISTICS'])
                     ->setConfigProcess(static function (Request $request) {

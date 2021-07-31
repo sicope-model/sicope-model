@@ -143,16 +143,6 @@ widget:
 
 testing:
     ###
-    # Chart
-    ###
-    1week: Last 1 Week
-    1month: Last 1 Month
-    3month: Last 3 Months
-    testing_statistics:
-        task: Task
-        bug: Bug
-
-    ###
     # Testing
     ###
     testing: Testing
@@ -162,8 +152,6 @@ testing:
     task_title: Title
     task_model: Model
     bug_task: Task
-    task_notify_author: Notify Me
-    task_notify_author_info: Send me email or sms message when a bug was found
     progress: Progress
     settings_testing: Testing Settings
     settings_testing_desc: Task, model & bug settings
@@ -228,19 +216,16 @@ testing:
     export: Export
     import: Import
     model_file: Model (JSON file)
-    task_selenium_config: Selenium Config
-    task_provider: Provider
-    task_platform: Platform
     task_browser: Browser
     task_browser_version: Browser Version
-    task_resolution: Resolution
-    task_task_config: Task Config
-    task_generator: Generator
-    task_generator_config: Generator Config
-    task_place_coverage: Place Coverage
-    task_transition_coverage: Transition Coverage
-    task_reducer: Reducer
-    task_notify_channels: Notify Channels
+    config: Config
+    generator: Generator
+    reducer: Reducer
+    report_bug: Report Bug
+    report_bug_help: Should new bug be reported automatically?
+    notify_author: Notify Author
+    notify_author_help: Send author email or sms message when a bug was found
+    notify_channels: Notify Channels
     status: Status
     task_running: Running
     task_stopped: Stopped
@@ -279,18 +264,22 @@ testing:
     ###
     # Testing Widget
     ###
-    widget_model_info:
-        name: Model Info
-        description: Shows number of models
-        count: Models
-    widget_task_info:
-        name: Task Info
-        description: Shows number of tasks
-        count: Tasks
-    widget_bug_info:
-        name: Bug Info
-        description: Shows number of bugs
-        count: Bugs
-    widget_testing_statistics:
-        name: Testing Statistics
-        description: Displays detailed testing statistics.
+    widget:
+        model_info:
+            name: Model Info
+            description: Shows number of models
+            count: Models
+        task_info:
+            name: Task Info
+            description: Shows number of tasks
+            count: Tasks
+        bug_info:
+            name: Bug Info
+            description: Shows number of bugs
+            count: Bugs
+        testing_statistics:
+            name: Testing Statistics
+            description: Displays detailed testing statistics
+            1week: Last 1 Week
+            1month: Last 1 Month
+            3month: Last 3 Months
