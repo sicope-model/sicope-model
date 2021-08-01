@@ -104,9 +104,7 @@ class ModelController extends AbstractController
             return $this->redirectToRoute('admin_model_list');
         }
 
-        return $this->render('testing/model/edit.html.twig', [
-            'page_title' => 'testing.model_build_title',
-            'page_description' => 'testing.model_build_desc',
+        return $this->render('testing/model/build.html.twig', [
             'form' => $form->createView(),
         ]);
     }

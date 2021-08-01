@@ -211,7 +211,7 @@
         {%- endif -%}
     {%- endif -%}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
-        {% if type == 'submit' %}
+        {% if type is defined and type == 'submit' %}
             <i class="fas fa-save fs-3 me-2"></i>
         {% endif %}
         {%- if translation_domain is same as(false) -%}

@@ -17,11 +17,9 @@ Encore
     .addEntry('admin/app', './assets/admin/app.js')
     .addStyleEntry('admin/main', './assets/admin/app.scss')
     .addStyleEntry('auth', './assets/auth/auth.scss')
+    .addEntry('app', './assets/app.js')
 
-    // Testing
-    //.addEntry('testing/model', './assets/testing/model.js')
-
-    // Configs
+    .enableStimulusBridge('./assets/controllers.json')
     .enableVueLoader(() => {}, { runtimeCompilerBuild: false })
     .enableSassLoader()
     .enablePostCssLoader()

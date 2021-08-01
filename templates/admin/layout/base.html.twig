@@ -55,6 +55,7 @@
 {% block initVue %}{% endblock %}
 <script>window.flashBag = {{ flashJsonMessage(app.session.flashBag.all)|raw }}</script>
 <script src="{{ asset('build/admin/app.js') }}"></script>
+{{ encore_entry_script_tags('app') }}
 
 </body>
 </html>

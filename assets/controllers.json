@@ -1,4 +1,11 @@
 {
-    "controllers": [],
+    "controllers": {
+        "@stakovicz/ux-collection": {
+            "collection": {
+                "enabled": true,
+                "fetch": "eager"
+            }
+        }
+    },
     "entrypoints": []
 }
