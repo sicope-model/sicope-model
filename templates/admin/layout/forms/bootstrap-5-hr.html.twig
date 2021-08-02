@@ -130,3 +130,22 @@
     {{ form_row(form.places) }}
     {{ form_row(form.transitions) }}
 {% endblock revision_row %}
+
+{% macro remove_header_and_add_border(form) %}
+    <div class="border rounded m-2 p-2">
+        {{- form_widget(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{% endmacro %}
+
+{%- block place_row -%}
+    {{ _self.remove_header_and_add_border(form) }}
+{%- endblock place_row -%}
+
+{%- block transition_row -%}
+    {{ _self.remove_header_and_add_border(form) }}
+{%- endblock transition_row -%}
+
+{%- block command_row -%}
+    {{ _self.remove_header_and_add_border(form) }}
+{%- endblock command_row -%}
