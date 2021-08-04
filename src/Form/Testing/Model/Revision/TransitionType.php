@@ -14,10 +14,9 @@
 namespace App\Form\Testing\Model\Revision;
 
 use App\Form\DataTransformer\PlacesTransformer;
+use Stakovicz\UXCollection\Form\UXCollectionType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -36,54 +35,41 @@ class TransitionType extends AbstractType
     {
         $builder
             ->add('label', TextType::class, [
-                'label' => 'transition_label',
-                'attr' => [
-                    'class' => 'transition-label',
-                ],
+                'label' => 'testing.transition_label',
             ])
             ->add('guard', TextType::class, [
-                'label' => 'transition_guard',
+                'label' => 'testing.transition_guard',
                 'required' => false,
             ])
-            ->add('commands', CollectionType::class, [
-                'label' => 'commands',
+            ->add('commands', UXCollectionType::class, [
+                'label' => 'testing.commands',
                 'entry_type' => CommandType::class,
                 'entry_options' => [
                     'label' => false,
-                    'attr' => [
-                        'class' => 'col list-group-item command',
-                    ],
                 ],
                 'allow_add' => true,
                 'allow_delete' => true,
-                'attr' => [
-                    'class' => 'list-group commands col pl-3',
+                //'prototype_name' => '__command__',
+                'button_add' => [
+                    'text' => 'testing.add_command',
+                    'attr' => ['class' => 'btn btn-secondary'],
                 ],
-                'prototype_name' => '__command__',
-            ])
-            ->add('addCommand', ButtonType::class, [
-                'label' => 'add_command',
-                'attr' => [
-                    'class' => 'add-command btn-secondary',
+                'button_delete' => [
+                    'text' => false,
+                    'attr' => ['class' => 'btn-close'],
                 ],
             ])
             ->add('fromPlaces', TextType::class, [
-                'label' => 'from_places',
+                'label' => 'testing.from_places',
                 'attr' => [
                     'class' => 'select-from-places',
                 ],
                 'required' => false,
             ])
             ->add('toPlaces', TextType::class, [
-                'label' => 'to_places',
+                'label' => 'testing.to_places',
                 'attr' => [
                     'class' => 'select-to-places',
-                ],
-            ])
-            ->add('buttons', ButtonsType::class, [
-                'mapped' => false,
-                'attr' => [
-                    'type' => 'transition',
                 ],
             ])
         ;

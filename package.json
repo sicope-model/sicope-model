@@ -1,14 +1,17 @@
 {
     "devDependencies": {
-        "@symfony/webpack-encore": "^0.32.0",
+        "@symfony/stimulus-bridge": "^2.1.0",
+        "@stakovicz/ux-collection": "file:vendor/stakovicz/ux-collection/Resources/assets",
+        "@symfony/webpack-encore": "^1.0.0",
         "@vue/compiler-sfc": "^3.0.4",
         "autoprefixer": "8.0.0",
-        "postcss-loader": "^3.0.0",
+        "postcss-loader": "^5.0.0",
         "sass": "^1.30.0",
         "sass-loader": "^9.0.1",
         "vue-loader": "^16",
         "vue-template-compiler": "^2.6.12",
-        "webpack-notifier": "^1.6.0"
+        "webpack-notifier": "^1.6.0",
+        "stimulus": "^2.0.0"
     },
     "dependencies": {
         "@vueform/multiselect": "^1.4.0",
@@ -17,8 +20,7 @@
         "dragula": "^3.7.3",
         "vue": "^3.0.5",
         "vue-slicksort": "^2.0.0-alpha.5",
-        "vue3-datepicker": "^0.2.4",
-        "symfony-collection-js": "^4.2.0"
+        "vue3-datepicker": "^0.2.4"
     },
     "license": "MIT",
     "private": true,

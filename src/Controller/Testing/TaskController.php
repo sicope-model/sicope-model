@@ -68,7 +68,7 @@ class TaskController extends AbstractController
 
         return $request->isXmlHttpRequest() ?
             $this->json($pagination, context: ['groups' => 'default']) :
-            $this->render('testing/listTask.html.twig', ['table' => $table]);
+            $this->render('testing/task/list.html.twig', ['table' => $table]);
     }
 
     /**
@@ -96,9 +96,7 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('admin_task_list');
         }
 
-        return $this->render('testing/editTask.html.twig', [
-            'page_title' => 'testing.task_create_title',
-            'page_description' => 'testing.task_create_desc',
+        return $this->render('testing/task/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -124,9 +122,7 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('admin_task_list');
         }
 
-        return $this->render('testing/editTask.html.twig', [
-            'page_title' => 'testing.task_edit_title',
-            'page_description' => 'testing.task_edit_desc',
+        return $this->render('testing/task/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }

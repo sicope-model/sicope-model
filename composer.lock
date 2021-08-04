@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07034a63b4d9fb991e3439c106be8181",
+    "content-hash": "845828f25bd36d0a0f158722fbb23ad4",
     "packages": [
         {
             "name": "appaydin/pd-activity",
@@ -3289,6 +3289,67 @@
                 }
             ],
             "time": "2021-06-27T13:47:08+00:00"
+        },
+        {
+            "name": "stakovicz/ux-collection",
+            "version": "0.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stakovicz/ux-collection.git",
+                "reference": "ec10a942ef10b93397d4151f3ffbbd21436d7884"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stakovicz/ux-collection/zipball/ec10a942ef10b93397d4151f3ffbbd21436d7884",
+                "reference": "ec10a942ef10b93397d4151f3ffbbd21436d7884",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/config": "^4.4.17|^5.0",
+                "symfony/dependency-injection": "^4.4.17|^5.0",
+                "symfony/form": "^4.4.17|^5.0",
+                "symfony/http-kernel": "^4.4.17|^5.0"
+            },
+            "require-dev": {
+                "symfony/framework-bundle": "^4.4.17|^5.0",
+                "symfony/phpunit-bridge": "^5.2",
+                "symfony/twig-bundle": "^4.4.17|^5.0",
+                "symfony/var-dumper": "^4.4.17|^5.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "0.0.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Stakovicz\\UXCollection\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stakovicz",
+                    "email": "albin.kester@gmail.com"
+                }
+            ],
+            "description": "UX Collection for Symfony Forms",
+            "keywords": [
+                "ux-collection"
+            ],
+            "support": {
+                "issues": "https://github.com/stakovicz/ux-collection/issues",
+                "source": "https://github.com/stakovicz/ux-collection/tree/0.0.4"
+            },
+            "time": "2021-04-29T19:52:43+00:00"
         },
         {
             "name": "symfony/amqp-messenger",

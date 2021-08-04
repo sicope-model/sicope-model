@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Tienvx\Bundle\MbtBundle\Channel\ChannelManagerInterface;
 use Tienvx\Bundle\MbtBundle\Generator\GeneratorManagerInterface;
 use Tienvx\Bundle\MbtBundle\Reducer\ReducerManagerInterface;
@@ -32,7 +33,8 @@ class ConfigForm extends AbstractType
     public function __construct(
         private GeneratorManagerInterface $generatorManager,
         private ReducerManagerInterface $reducerManager,
-        private ChannelManagerInterface $channelManager
+        private ChannelManagerInterface $channelManager,
+        private TranslatorInterface $translator
     ) {
     }
 
@@ -43,7 +45,7 @@ class ConfigForm extends AbstractType
                 'label' => 'testing.generator',
                 'help' => 'testing.generator_help',
                 'choices' => $this->generatorManager->all(),
-                'choice_label' => fn ($generator) => sprintf('testing.%s', $generator),
+                'choice_label' => fn ($generator) => $this->translator->trans(sprintf('testing.%s', $generator)),
                 'empty_data' => 'testing.generator_required',
                 'choice_translation_domain' => false,
                 'placeholder' => false,
@@ -53,7 +55,7 @@ class ConfigForm extends AbstractType
                 'label' => 'testing.reducer',
                 'help' => 'testing.reducer_help',
                 'choices' => $this->reducerManager->all(),
-                'choice_label' => fn ($reducer) => sprintf('testing.%s', $reducer),
+                'choice_label' => fn ($reducer) => $this->translator->trans(sprintf('testing.%s', $reducer)),
                 'empty_data' => 'testing.reducer_required',
                 'choice_translation_domain' => false,
                 'placeholder' => false,
@@ -75,7 +77,7 @@ class ConfigForm extends AbstractType
                 'label' => 'testing.notify_channels',
                 'help' => 'testing.notify_channels_help',
                 'choices' => $this->channelManager->all(),
-                'choice_label' => fn ($channel) => sprintf('testing.%s', $channel),
+                'choice_label' => fn ($channel) => $this->translator->trans(sprintf('testing.%s', $channel)),
                 'empty_data' => 'testing.no_channels',
                 'choice_translation_domain' => false,
                 'placeholder' => false,

@@ -15,10 +15,10 @@ namespace App\Controller\Testing;
 
 use App\Form\Testing\ModelImportType;
 use App\Form\Testing\ModelType;
-use App\Repository\Testing\ModelRepository;
 use App\Repository\Testing\TaskRepository;
 use App\Service\CommandHelper;
 use App\Service\ConfigBag;
+use App\Tables\ModelListTable;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Pd\UserBundle\Model\UserInterface;
@@ -45,6 +45,10 @@ use Tienvx\Bundle\MbtBundle\Service\Model\ModelDumper;
  */
 class ModelController extends AbstractController
 {
+    public function __construct(private ConfigBag $bag)
+    {
+    }
+
     /**
      * List Model.
      */
@@ -52,24 +56,27 @@ class ModelController extends AbstractController
     #[Route('/models', name: 'testing.model_list', methods: ['GET'])]
     public function list(
         Request $request,
-        ModelRepository $modelRepository,
-        ConfigBag $bag,
+        ModelListTable $table,
+        TaskRepository $taskRepo,
         PaginatorInterface $paginator
     ): Response {
-        // Get Models
-        $query = $modelRepository->createQueryBuilder('m');
+        $table
+            ->handleQueryBuilder($query = $taskRepo->createQueryBuilder('m'))
+            ->handleRequest($request);
 
-        // Get Result
-        $pagination = $paginator->paginate(
-            $query,
+        // Paginate
+        $pagination = $paginator->paginate($query->getQuery(),
             $request->query->getInt('page', 1),
-            $bag->get('list_count')
+            $this->bag->get('list_count')
         );
 
-        // Render Page
-        return $this->render('testing/listModel.html.twig', [
-            'models' => $pagination,
-        ]);
+        if ($request->get('export')) {
+            return $table->export();
+        }
+
+        return $request->isXmlHttpRequest() ?
+            $this->json($pagination, context: ['groups' => 'default']) :
+            $this->render('testing/model/list.html.twig', ['table' => $table]);
     }
 
     /**
@@ -97,9 +104,7 @@ class ModelController extends AbstractController
             return $this->redirectToRoute('admin_model_list');
         }
 
-        return $this->render('testing/editModel.html.twig', [
-            'page_title' => 'testing.model_build_title',
-            'page_description' => 'testing.model_build_desc',
+        return $this->render('testing/model/build.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -124,7 +129,7 @@ class ModelController extends AbstractController
             $this->addFlash('success', 'changes_saved');
         }
 
-        return $this->render('testing/editModel.html.twig', [
+        return $this->render('testing/model/edit.html.twig', [
             'page_title' => 'testing.model_edit_title',
             'page_description' => 'testing.model_edit_desc',
             'form' => $form->createView(),
@@ -239,7 +244,7 @@ class ModelController extends AbstractController
             return $this->redirectToRoute('admin_model_list');
         }
 
-        return $this->render('testing/editModel.html.twig', [
+        return $this->render('testing/model/edit.html.twig', [
             'page_title' => 'testing.model_import_title',
             'page_description' => 'testing.model_import_desc',
             'form' => $form->createView(),

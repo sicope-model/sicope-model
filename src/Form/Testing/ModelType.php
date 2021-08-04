@@ -27,10 +27,10 @@ class ModelType extends AbstractType
     {
         $builder
             ->add('label', TextType::class, [
-                'label' => 'model_label',
+                'label' => 'testing.model_label',
             ])
             ->add('tags', TextType::class, [
-                'label' => 'model_tags',
+                'label' => 'testing.model_tags',
                 'attr' => [
                     'data-tags' => '',
                 ],

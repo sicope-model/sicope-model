@@ -23,4 +23,5 @@ return [
     Sonata\Exporter\Bridge\Symfony\SonataExporterBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     Zenstruck\ScheduleBundle\ZenstruckScheduleBundle::class => ['all' => true],
+    Stakovicz\UXCollection\UXCollectionBundle::class => ['all' => true],
 ];

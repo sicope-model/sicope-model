@@ -291,6 +291,9 @@
     "sonata-project/exporter": {
         "version": "2.7.0"
     },
+    "stakovicz/ux-collection": {
+        "version": "0.0.4"
+    },
     "symfony/amqp-messenger": {
         "version": "v5.3.2"
     },

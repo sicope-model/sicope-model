@@ -126,13 +126,26 @@
     </div>
 {%- endblock checkbox_row %}
 
-{%- block form_widget_compound -%}
+{% block revision_row -%}
+    {{ form_row(form.places) }}
+    {{ form_row(form.transitions) }}
+{% endblock revision_row %}
 
-    <div {% with {attr: row_attr|merge({class: (row_attr.class|default('form-container'))|trim})} %}{{ block('widget_container_attributes') }}{% endwith %}>
-        {%- if form is rootform -%}
-            {{ form_errors(form) }}
-        {%- endif -%}
-        {{- block('form_rows') -}}
-        {{- form_rest(form) -}}
+{% macro remove_header_and_add_border(form) %}
+    <div class="border rounded m-2 p-2">
+        {{- form_widget(form) -}}
+        {{- form_errors(form) -}}
     </div>
-{%- endblock form_widget_compound -%}
+{% endmacro %}
+
+{%- block place_row -%}
+    {{ _self.remove_header_and_add_border(form) }}
+{%- endblock place_row -%}
+
+{%- block transition_row -%}
+    {{ _self.remove_header_and_add_border(form) }}
+{%- endblock transition_row -%}
+
+{%- block command_row -%}
+    {{ _self.remove_header_and_add_border(form) }}
+{%- endblock command_row -%}

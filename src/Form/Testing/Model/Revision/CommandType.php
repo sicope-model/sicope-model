@@ -35,7 +35,7 @@ class CommandType extends AbstractType
         $commands = $this->commandRunnerManager->getAllCommands();
         $builder
             ->add('command', ChoiceType::class, [
-                'label' => 'command_command',
+                'label' => 'testing.command_command',
                 'choices' => array_combine($commands, $commands),
                 'choice_translation_domain' => 'commands',
                 'attr' => [
@@ -43,18 +43,12 @@ class CommandType extends AbstractType
                 ],
             ])
             ->add('target', TextType::class, [
-                'label' => 'command_target',
+                'label' => 'testing.command_target',
                 'required' => false,
             ])
             ->add('value', TextType::class, [
-                'label' => 'command_value',
+                'label' => 'testing.command_value',
                 'required' => false,
-            ])
-            ->add('buttons', ButtonsType::class, [
-                'mapped' => false,
-                'attr' => [
-                    'type' => 'command',
-                ],
             ])
         ;
     }

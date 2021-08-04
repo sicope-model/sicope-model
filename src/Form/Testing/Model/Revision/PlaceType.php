@@ -13,9 +13,8 @@
 
 namespace App\Form\Testing\Model\Revision;
 
+use Stakovicz\UXCollection\Form\UXCollectionType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,37 +26,24 @@ class PlaceType extends AbstractType
     {
         $builder
             ->add('label', TextType::class, [
-                'label' => 'place_label',
-                'attr' => [
-                    'class' => 'place-label',
-                ],
+                'label' => 'testing.place_label',
             ])
-            ->add('commands', CollectionType::class, [
-                'label' => 'commands',
+            ->add('commands', UXCollectionType::class, [
+                'label' => 'testing.commands',
                 'entry_type' => CommandType::class,
                 'entry_options' => [
                     'label' => false,
-                    'attr' => [
-                        'class' => 'col list-group-item command',
-                    ],
                 ],
                 'allow_add' => true,
                 'allow_delete' => true,
-                'attr' => [
-                    'class' => 'list-group commands col pl-3',
+                //'prototype_name' => '__command__',
+                'button_add' => [
+                    'text' => 'testing.add_command',
+                    'attr' => ['class' => 'btn btn-secondary'],
                 ],
-                'prototype_name' => '__command__',
-            ])
-            ->add('addCommand', ButtonType::class, [
-                'label' => 'add_command',
-                'attr' => [
-                    'class' => 'add-command btn-secondary',
-                ],
-            ])
-            ->add('buttons', ButtonsType::class, [
-                'mapped' => false,
-                'attr' => [
-                    'type' => 'place',
+                'button_delete' => [
+                    'text' => false,
+                    'attr' => ['class' => 'btn-close'],
                 ],
             ])
         ;

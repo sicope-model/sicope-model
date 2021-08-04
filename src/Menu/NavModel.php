@@ -17,53 +17,29 @@ use Pd\MenuBundle\Builder\ItemInterface;
 use Pd\MenuBundle\Builder\Menu;
 
 /**
- * Models Action.
+ * Settings Menus.
  *
- * @author Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @author Ramazan APAYDIN <apaydin541@gmail.com>
  */
 class NavModel extends Menu
 {
     public function createMenu(array $options = []): ItemInterface
     {
-        // Create Root Menu
-        $menu = $this->createRoot('testing_model_action', false);
+        // Create Root Item
+        $menu = $this->createRoot('model_toolbar')->setChildAttr([
+            'sidebar' => 'testing.model',
+        ]);
 
-        // Add Menu Items
-        $menu
-            ->addChild('testing_model_delete', 1)
-            ->setLabel('delete')
-            ->setRoute('testing.model_delete', ['model' => $options['model']->getId()])
-            ->setRoles(['ROLE_MODEL_DELETE'])
-            ->setExtra('label_icon', 'delete')
-            ->setLinkAttr([
-                'class' => 'text-danger',
-                'data-tooltip' => '',
-                'title' => 'delete',
-                'data-modal' => 'confirm',
-            ])
-            ->setLabelAttr(['class' => 'hidden'])
-
-            ->addChildParent('testing_model_edit', 1)
-            ->setLabel('edit')
-            ->setRoute('testing.model_edit', ['model' => $options['model']->getId()])
-            ->setRoles(['ROLE_MODEL_EDIT'])
-            ->setExtra('label_icon', 'mode_edit')
-            ->setLinkAttr([
-                'data-tooltip' => '',
-                'title' => 'edit',
-            ])
-            ->setLabelAttr(['class' => 'hidden'])
-
-            ->addChildParent('testing_model_export', 1)
-            ->setLabel('export')
-            ->setRoute('testing.model_export', ['model' => $options['model']->getId()])
-            ->setRoles(['ROLE_MODEL_EXPORT'])
-            ->setExtra('label_icon', 'download')
-            ->setLinkAttr([
-                'data-tooltip' => '',
-                'title' => 'export',
-            ])
-            ->setLabelAttr(['class' => 'hidden']);
+        // Create Menu Items
+        $menu->addChild('list')
+            ->setLabel('testing.model_list_title')
+            ->setRoute('testing.model_list')
+            ->setRoles(['ROLE_MODEL_LIST'])
+            // Account
+            ->addChildParent('build')
+            ->setLabel('testing.build')
+            ->setRoute('testing.model_build')
+            ->setRoles(['ROLE_MODEL_BUILD']);
 
         return $menu;
     }
