@@ -18,13 +18,4 @@
     <p class="lead">
         {{ 'http_error.description'|trans({ '%status_code%': status_code }) }}
     </p>
-    <p>
-        {{ 'http_error.suggestion'|trans({ '%url%': path('blog_index') })|raw }}
-    </p>
-{% endblock %}
-
-{% block sidebar %}
-    {{ parent() }}
-
-    {{ show_source_code(_self) }}
 {% endblock %}

@@ -23,13 +23,4 @@
     <p class="lead">
         {{ 'http_error_500.description'|trans }}
     </p>
-    <p>
-        {{ 'http_error_500.suggestion'|trans({ '%url%': path('blog_index') })|raw }}
-    </p>
-{% endblock %}
-
-{% block sidebar %}
-    {{ parent() }}
-
-    {{ show_source_code(_self) }}
 {% endblock %}
