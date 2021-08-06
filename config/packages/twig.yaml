@@ -1,7 +1,9 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     form_themes:
-        - 'admin/layout/forms/bootstrap-5-hr.html.twig'
-        - '@UXCollection/form_theme_div.html.twig'
-    globals:
-        bag: '@App\Service\ConfigBag'
+        - 'form/layout.html.twig'
+        - 'form/fields.html.twig'
+
+when@test:
+    twig:
+        strict_variables: true

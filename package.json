@@ -1,26 +1,24 @@
 {
     "devDependencies": {
-        "@symfony/stimulus-bridge": "^2.1.0",
-        "@stakovicz/ux-collection": "file:vendor/stakovicz/ux-collection/Resources/assets",
+        "@fortawesome/fontawesome-free": "^5.8.1",
+        "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/webpack-encore": "^1.0.0",
-        "@vue/compiler-sfc": "^3.0.4",
-        "autoprefixer": "8.0.0",
-        "postcss-loader": "^5.0.0",
-        "sass": "^1.30.0",
+        "bloodhound-js": "^1.2.3",
+        "bootstrap-sass": "^3.3.7",
+        "bootstrap-tagsinput": "^0.7.1",
+        "bootswatch": "^3.3.7",
+        "core-js": "^3.0.0",
+        "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+        "highlight.js": "^10.4.1",
+        "imports-loader": "^0.8.0",
+        "jquery": "^3.5.1",
+        "lato-font": "^3.0.0",
+        "node-sass": "^4.9.3",
         "sass-loader": "^9.0.1",
-        "vue-loader": "^16",
-        "vue-template-compiler": "^2.6.12",
-        "webpack-notifier": "^1.6.0",
-        "stimulus": "^2.0.0"
-    },
-    "dependencies": {
-        "@vueform/multiselect": "^1.4.0",
-        "axios": "^0.21.1",
-        "bootstrap": "^5.0.0",
-        "dragula": "^3.7.3",
-        "vue": "^3.0.5",
-        "vue-slicksort": "^2.0.0-alpha.5",
-        "vue3-datepicker": "^0.2.4"
+        "typeahead.js": "^0.11.1",
+        "regenerator-runtime": "^0.13.2",
+        "stimulus": "^2.0.0",
+        "webpack-notifier": "^1.6.0"
     },
     "license": "MIT",
     "private": true,
@@ -28,6 +26,6 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production"
+        "build": "encore production --progress"
     }
 }

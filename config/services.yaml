@@ -1,16 +1,26 @@
-imports:
-    - { resource: "defaults.yaml" }
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
 
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    container.dumper.inline_factories: true
-    container.dumper.inline_class_loader: true
+    locale: 'en'
+    # This parameter defines the codes of the locales (languages) enabled in the application
+    app_locales: en|vi
+    app.notifications.email_sender: anonymous@example.com
 
 services:
+    # default configuration for services in *this* file
     _defaults:
-        autowire: true
-        autoconfigure: true
-        public: false
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:               # defines the scalar arguments once and apply them to any service defined/created in this file
+            string $locales: '%app_locales%'
+            string $defaultLocale: '%locale%'
+            string $emailSender: '%app.notifications.email_sender%'
 
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/'
         exclude:
@@ -18,27 +28,15 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
-            - '../src/Migrations/'
-            - '../src/Widgets/'
-
-    App\Controller\:
-        resource: '../src/Controller'
-        tags: ['controller.service_arguments']
-
-    # Load Widgets
-    App\Widgets\:
-        resource: '../src/Widgets/*'
-        tags:
-            - { name: kernel.event_listener, event: widget.start, method: builder }
-
-    # Load DB Configurator
-    Pd\UserBundle\Configuration\ConfigInterface: '@App\Service\ConfigBag'
 
     Tienvx\Bundle\MbtBundle\Service\Bug\BugNotifierInterface:
         class: App\Service\BugNotifier
-        bind:
-            $mailSenderAddress: '%mail_sender_address%'
-            $mailSenderName: '%mail_sender_name%'
 
     Tienvx\Bundle\MbtBundle\Service\ConfigInterface:
-        class: App\Service\TestingConfig
+        class: App\Service\Config
+
+when@test:
+    services:
+        test.user_password_hasher:
+            alias: 'security.user_password_hasher'
+            public: true

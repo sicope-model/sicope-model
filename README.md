@@ -36,7 +36,7 @@ docker-compose up
 symfony serve
 symfony console doctrine:migrations:migrate
 symfony console messenger:consume async
-symfony console user:create
+symfony console app:add-user
 ```
 
 Navigate to http://localhost:8000 to create first model.

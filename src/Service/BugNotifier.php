@@ -13,10 +13,10 @@
 
 namespace App\Service;
 
-use App\Exception\RuntimeException;
+use App\Entity\User;
 use App\Notification\BugNotification;
-use App\Repository\Account\UserRepository;
-use Pd\UserBundle\Model\UserInterface;
+use App\Repository\UserRepository;
+use Symfony\Component\Notifier\Exception\RuntimeException;
 use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Notifier\Recipient\NoRecipient;
 use Symfony\Component\Notifier\Recipient\Recipient;
@@ -26,28 +26,19 @@ use Tienvx\Bundle\MbtBundle\Service\Bug\BugNotifierInterface;
 
 class BugNotifier implements BugNotifierInterface
 {
-    protected UserRepository $userRepository;
-    protected NotifierInterface $notifier;
-    protected string $mailSenderAddress;
-    protected string $mailSenderName;
-
     public function __construct(
-        UserRepository $userRepository,
-        NotifierInterface $notifier,
-        string $mailSenderAddress,
-        string $mailSenderName
+        protected UserRepository $userRepository,
+        protected NotifierInterface $notifier,
+        protected Config $config,
+        protected string $emailSender
     ) {
-        $this->userRepository = $userRepository;
-        $this->notifier = $notifier;
-        $this->mailSenderAddress = $mailSenderAddress;
-        $this->mailSenderName = $mailSenderName;
     }
 
     public function notify(BugInterface $bug): void
     {
         $this->notifier->send(
-            new BugNotification($bug, $this->mailSenderAddress, $this->mailSenderName),
-            $bug->getTask()->getTaskConfig()->getNotifyAuthor() && $bug->getTask()->getAuthor()
+            new BugNotification($bug, $this->emailSender),
+            $this->config->shouldNotifyAuthor() && $bug->getTask()->getAuthor()
                 ? $this->getRecipient($bug->getTask()->getAuthor())
                 : new NoRecipient()
         );
@@ -56,11 +47,10 @@ class BugNotifier implements BugNotifierInterface
     protected function getRecipient(int $userId): RecipientInterface
     {
         $user = $this->userRepository->find($userId);
-        if (!$user instanceof UserInterface) {
+        if (!$user instanceof User) {
             throw new RuntimeException('Task author not found');
         }
-        $profile = $user->getProfile() ?? null;
 
-        return new Recipient((string) $user->getEmail(), (string) ($profile ? $profile->getPhone() : null));
+        return new Recipient((string) $user->getEmail());
     }
 }

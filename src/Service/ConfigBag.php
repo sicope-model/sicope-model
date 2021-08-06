@@ -13,8 +13,8 @@
 
 namespace App\Service;
 
-use App\Entity\System\Config;
-use App\Repository\System\ConfigRepository;
+use App\Entity\Config;
+use App\Repository\ConfigRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
