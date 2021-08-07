@@ -94,8 +94,14 @@
     "egulias/email-validator": {
         "version": "3.1.1"
     },
+    "florianv/petrinet": {
+        "version": "2.1.0"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
+    },
+    "jmgq/a-star": {
+        "version": "v2.1.0"
     },
     "laminas/laminas-code": {
         "version": "4.4.2"
@@ -114,6 +120,9 @@
     },
     "phar-io/version": {
         "version": "3.1.0"
+    },
+    "php-webdriver/webdriver": {
+        "version": "1.11.1"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -231,6 +240,9 @@
             "config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "symfony/amqp-messenger": {
+        "version": "v5.3.4"
+    },
     "symfony/asset": {
         "version": "v5.3.4"
     },
@@ -283,6 +295,9 @@
         "version": "v2.4.0"
     },
     "symfony/doctrine-bridge": {
+        "version": "v5.3.4"
+    },
+    "symfony/doctrine-messenger": {
         "version": "v5.3.4"
     },
     "symfony/dom-crawler": {
@@ -378,6 +393,18 @@
             "version": "1.0",
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
+    },
+    "symfony/messenger": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "e9a414b113ceadbf4e52abe37bf8f1b443f06ccb"
+        },
+        "files": [
+            "config/packages/messenger.yaml"
+        ]
     },
     "symfony/mime": {
         "version": "v5.3.4"
@@ -481,6 +508,9 @@
     "symfony/proxy-manager-bridge": {
         "version": "v5.3.4"
     },
+    "symfony/redis-messenger": {
+        "version": "v5.3.4"
+    },
     "symfony/routing": {
         "version": "5.3",
         "recipe": {
@@ -529,6 +559,15 @@
     },
     "symfony/service-contracts": {
         "version": "v2.4.0"
+    },
+    "symfony/slack-notifier": {
+        "version": "5.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.2",
+            "ref": "192bc241a3095c6861353e5a7a652ad35659ca92"
+        }
     },
     "symfony/stopwatch": {
         "version": "v5.3.4"
@@ -618,6 +657,21 @@
     },
     "theseer/tokenizer": {
         "version": "1.2.1"
+    },
+    "tienvx/mbt-bundle": {
+        "version": "1.17",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.17",
+            "ref": "78464b7d1373d35994cfe408fc2b21ce42a808ba"
+        },
+        "files": [
+            "config/packages/tienvx_mbt.yaml"
+        ]
+    },
+    "tienvx/single-color-petrinet": {
+        "version": "v1.3.0"
     },
     "twig/extra-bundle": {
         "version": "v3.3.1"

@@ -2,43 +2,39 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\Table;
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[Entity(repositoryClass: UserRepository::class)]
-#[Table(name: "users")]
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Table(name: "users")]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    #[Id, Column(type: "integer"), GeneratedValue]
+    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue]
     private int $id;
 
-    #[Column(type: "string")]
+    #[ORM\Column(type: "string")]
     #[Assert\NotBlank]
     private string $fullName;
 
-    #[Column(type: "string", unique: true)]
+    #[ORM\Column(type: "string", unique: true)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 2, max: 50)]
     private string $username;
 
-    #[Column(type: "string", unique: true)]
+    #[ORM\Column(type: "string", unique: true)]
     #[Assert\Email]
     private string $email;
 
-    #[Column(type: "json")]
+    #[ORM\Column(type: "json")]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
-    #[Column(type: "string")]
+    #[ORM\Column(type: "string")]
     private string $password;
 
     public function __toString()

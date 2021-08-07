@@ -1,0 +1,10 @@
+generator: Generator
+reducer: Reducer
+report_bug: Report Bug
+notify_author: Notify Author
+notify_channels: Notify Channels
+random: Random
+split: Split
+email: Email
+chat/slack: Slack
+save: Save

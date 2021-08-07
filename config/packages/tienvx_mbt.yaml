@@ -1,0 +1,2 @@
+tienvx_mbt:
+    selenoid_server: '%env(string:SELENOID_SERVER)%'
