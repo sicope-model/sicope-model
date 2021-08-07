@@ -12,58 +12,59 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-/**
- * Controller used to manage the application security.
- * See https://symfony.com/doc/current/security/form_login_setup.html.
- *
- * @author Ryan Weaver <weaverryan@gmail.com>
- * @author Javier Eguiluz <javier.eguiluz@gmail.com>
- */
 class SecurityController extends AbstractController
 {
-    use TargetPathTrait;
-
     /**
-     * @Route("/login", name="security_login")
+     * @Route("/login", name="login")
      */
-    public function login(Request $request, Security $security, AuthenticationUtils $helper): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if user is already logged in, don't display the login page again
-        if ($security->isGranted('ROLE_USER')) {
-            return $this->redirectToRoute('admin_post_index');
-        }
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
 
-        // this statement solves an edge-case: if you change the locale in the login
-        // page, after a successful login you are redirected to a page in the previous
-        // locale. This code regenerates the referrer URL whenever the login page is
-        // browsed, to ensure that its locale is always the current one.
-        $this->saveTargetPath($request->getSession(), 'main', $this->generateUrl('admin_index'));
+        return $this->render('@EasyAdmin/page/login.html.twig', [
+            // parameters usually defined in Symfony login forms
+            'error' => $error,
+            'last_username' => $lastUsername,
 
-        return $this->render('security/login.html.twig', [
-            // last username entered by the user (if any)
-            'last_username' => $helper->getLastUsername(),
-            // last authentication error (if any)
-            'error' => $helper->getLastAuthenticationError(),
+            // OPTIONAL parameters to customize the login form:
+
+            // the translation_domain to use (define this option only if you are
+            // rendering the login template in a regular Symfony controller; when
+            // rendering it from an EasyAdmin Dashboard this is automatically set to
+            // the same domain as the rest of the Dashboard)
+            'translation_domain' => 'admin',
+
+            // the title visible above the login form (define this option only if you are
+            // rendering the login template in a regular Symfony controller; when rendering
+            // it from an EasyAdmin Dashboard this is automatically set as the Dashboard title)
+            'page_title' => 'SICOPE Model',
+
+            // the string used to generate the CSRF token. If you don't define
+            // this parameter, the login form won't include a CSRF token
+            'csrf_token_intention' => 'authenticate',
+
+            // the URL users are redirected to after the login (default: '/admin')
+            'target_path' => $this->generateUrl('easyadmin'),
+
+            // the label displayed for the username form field (the |trans filter is applied to it)
+            'username_label' => 'Your username',
+
+            // the label displayed for the password form field (the |trans filter is applied to it)
+            'password_label' => 'Your password',
+
+            // the label displayed for the Sign In form button (the |trans filter is applied to it)
+            'sign_in_label' => 'Log in',
+
+            // the 'name' HTML attribute of the <input> used for the username field (default: '_username')
+            'username_parameter' => 'my_custom_username_field',
+
+            // the 'name' HTML attribute of the <input> used for the password field (default: '_password')
+            'password_parameter' => 'my_custom_password_field',
         ]);
-    }
-
-    /**
-     * This is the route the user can use to logout.
-     *
-     * But, this will never be executed. Symfony will intercept this first
-     * and handle the logout automatically. See logout in config/packages/security.yaml
-     *
-     * @Route("/logout", name="security_logout")
-     */
-    public function logout(): void
-    {
-        throw new \Exception('This should never be reached!');
     }
 }

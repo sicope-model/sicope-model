@@ -3,6 +3,7 @@
         "@fortawesome/fontawesome-free": "^5.8.1",
         "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/webpack-encore": "^1.0.0",
+        "@stakovicz/ux-collection": "file:vendor/stakovicz/ux-collection/Resources/assets",
         "bloodhound-js": "^1.2.3",
         "bootstrap-sass": "^3.3.7",
         "bootstrap-tagsinput": "^0.7.1",
