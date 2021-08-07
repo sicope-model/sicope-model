@@ -1,60 +1,38 @@
 security:
+    # https://symfony.com/doc/current/security/experimental_authenticators.html
     enable_authenticator_manager: true
     password_hashers:
-        App\Entity\Account\User:
+        App\Entity\User:
             algorithm: auto
-    role_hierarchy:
-        ROLE_USER: [ ROLE_DASHBOARD_PANEL ]
-        ROLE_SUPER_ADMIN: [ ROLE_USER ]
-    providers:
-        pdadmin_auth:
-            entity:
-                class: App\Entity\Account\User
-                property: email
 
-        pdadmin_api:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
             entity:
-                class: App\Entity\Account\User
+                class: App\Entity\User
                 property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            pattern: ^/(admin|testing|login|logout|register|resetting)
-            provider: pdadmin_auth
             lazy: true
-            user_checker: Pd\UserBundle\Security\UserChecker
-            access_denied_handler: App\Security\AccessDeniedHandler
-            switch_user: { role: CAN_SWITCH_USER }
-            http_basic: ~
-            form_login:
-                use_referer: true
-                login_path: security_login
-                check_path: security_login
-                default_target_path: "%app.login_redirect%"
-            entry_point: form_login
+            provider: app_user_provider
+            custom_authenticator: App\Security\LoginFormAuthenticator
             logout:
-                path: security_logout
-                target: '%app.logout_redirect%'
-            remember_me:
-                secret: '%env(APP_SECRET)%'
-                lifetime: 604800 # 1 Week - 1 Month -> 2592000
-                path: /
-        api:
-            pattern: "%api.route%"
-            stateless: true
-            provider: pdadmin_api
-            json_login:
-                check_path: /api/auth/login
-                failure_handler: lexik_jwt_authentication.handler.authentication_failure
-            entry_point: lexik_jwt_authentication.jwt_token_authenticator
-    access_control:
-        # Admin Panel
-        - { path: '^/admin', role: ROLE_USER }
-        - { path: '^/testing', role: ROLE_USER }
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
 
-        # API
-        #- { path: "%api.route%/doc", roles: PUBLIC_ACCESS }
-        - { path: "%api.route%/auth", roles: PUBLIC_ACCESS }
-        - { path: "%api.route%", roles: IS_AUTHENTICATED_FULLY }
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
