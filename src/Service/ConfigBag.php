@@ -17,7 +17,6 @@ use App\Entity\Config;
 use App\Repository\ConfigRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 
@@ -32,7 +31,6 @@ class ConfigBag
 
     public function __construct(
         private ConfigRepository $configRepo,
-        private ParameterBagInterface $bag,
         private EntityManagerInterface $entityManager,
     ) {
     }
@@ -47,16 +45,6 @@ class ConfigBag
         // Load DB
         if (\array_key_exists($name, $this->configs)) {
             return $this->configs[$name];
-        }
-
-        // Load Default App Parameters
-        if ($this->bag->has('app.' . $name)) {
-            return $this->bag->get('app.' . $name);
-        }
-
-        // Load Symfony Parameters
-        if ($this->bag->has($name)) {
-            return $this->bag->get($name);
         }
 
         return null;
@@ -108,12 +96,6 @@ class ConfigBag
             return;
         }
 
-        foreach ($this->bag->all() as $key => $item) {
-            if (str_contains($key, 'app.')) {
-                $this->configs[str_replace('app.', '', $key)] = $item;
-            }
-        }
-
         // Load Cache|Repository
         foreach ($this->configRepo->findAll() as $config) {
             $this->configs[$config->getName()] = $config->getConvertedValue($this->entityManager);
@@ -154,6 +136,12 @@ class ConfigBag
         // Normalize Form Data
         foreach ($form->all() as $itemName => $item) {
             switch ($item->getConfig()->getType()->getBlockPrefix()) {
+                case ($item->getConfig()->getType()->getBlockPrefix() === 'choice' && $item->getConfig()->getOption('multiple')):
+                    $configItems[] = (new Config())
+                        ->setType('array')
+                        ->setName($itemName)
+                        ->setValue($item->getData());
+                    break;
                 case 'checkbox':
                     $configItems[] = (new Config())
                         ->setType('boolean')
@@ -188,17 +176,6 @@ class ConfigBag
                         ->setType($class)
                         ->setName($itemName)
                         ->setValue($data);
-                    break;
-                case 'file':
-                    if ($item->getData()) {
-                        FileUpload::removeFiles($this->configs[$itemName]);
-
-                        $file = (new FileUpload($this))->upload($item->getData(), false);
-                        $configItems[] = (new Config())
-                            ->setName($itemName)
-                            ->setType(\is_array($item->getData()) ? 'array' : 'string')
-                            ->setValue(\is_array($item->getData()) ? $file : $file[0]);
-                    }
                     break;
                 case 'date':
                 case 'datetime':

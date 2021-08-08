@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Config;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -28,6 +30,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Users', 'fa fa-users', User::class)
             ->setPermission('ROLE_ADMIN');
-        yield MenuItem::linkToRoute('Config', 'fas fa-cogs', 'app_config');
+        yield MenuItem::linkToCrud('Config', 'fa fa-cogs', Config::class)
+            ->setPermission('ROLE_ADMIN')
+            ->setAction(Action::EDIT);
     }
 }
