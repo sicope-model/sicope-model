@@ -25,6 +25,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Tienvx\Bundle\MbtBundle\Channel\ChannelManagerInterface;
 use Tienvx\Bundle\MbtBundle\Generator\GeneratorManagerInterface;
 use Tienvx\Bundle\MbtBundle\Reducer\ReducerManagerInterface;
@@ -36,13 +37,12 @@ use Tienvx\Bundle\MbtBundle\Reducer\ReducerManagerInterface;
  */
 class ConfigCrudController extends AbstractCrudController
 {
-    const ACTION = 'save';
-
     public function __construct(
         private GeneratorManagerInterface $generatorManager,
         private ReducerManagerInterface $reducerManager,
         private ChannelManagerInterface $channelManager,
-        private ConfigBag $bag
+        private ConfigBag $bag,
+        private TranslatorInterface $translator
     ) {
     }
 
@@ -56,11 +56,11 @@ class ConfigCrudController extends AbstractCrudController
         $generators = $this->generatorManager->all();
         $reducers = $this->reducerManager->all();
         $channels = $this->channelManager->all();
-        yield ChoiceField::new('generator', 'Generator')->setChoices(array_combine($generators, $generators))->setRequired(true);
-        yield ChoiceField::new('reducer', 'Reducer')->setChoices(array_combine($reducers, $reducers))->setRequired(true);
+        yield ChoiceField::new('generator', 'Generator')->setChoices($this->translate($generators))->setRequired(true);
+        yield ChoiceField::new('reducer', 'Reducer')->setChoices($this->translate($reducers))->setRequired(true);
         yield BooleanField::new('report_bug', 'Report Bug');
         yield BooleanField::new('notify_author', 'Notify Author');
-        yield ChoiceField::new('notify_channels', 'Notify Channels')->setChoices(array_combine($channels, $channels))->allowMultipleChoices();
+        yield ChoiceField::new('notify_channels', 'Notify Channels')->setChoices($this->translate($channels))->allowMultipleChoices();
     }
 
     public function configureActions(Actions $actions): Actions
@@ -81,5 +81,10 @@ class ConfigCrudController extends AbstractCrudController
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
+    }
+
+    protected function translate(array $choices): array
+    {
+        return array_combine(array_map(fn (string $choice) => $this->translator->trans($choice), $choices), $choices);
     }
 }
