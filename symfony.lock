@@ -664,7 +664,7 @@
             "assets/app.js",
             "assets/bootstrap.js",
             "assets/controllers.json",
-            "assets/controllers/hello_controller.js",
+            "assets/controllers/tags_controller.js",
             "assets/styles/app.css",
             "config/packages/assets.yaml",
             "config/packages/prod/webpack_encore.yaml",

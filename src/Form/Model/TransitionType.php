@@ -36,6 +36,11 @@ class TransitionType extends AbstractType
         $builder
             ->add('label', TextType::class, [
                 'label' => 'Label',
+                // Workaround for https://github.com/EasyCorp/EasyAdminBundle/issues/1124
+                'label_attr' => ['class' => 'required'],
+                'attr' => [
+                    'required' => true,
+                ],
             ])
             ->add('guard', TextType::class, [
                 'label' => 'Guard',
