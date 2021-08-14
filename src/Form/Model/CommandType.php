@@ -37,9 +37,10 @@ class CommandType extends AbstractType
             ->add('command', ChoiceType::class, [
                 'label' => 'Command',
                 'choices' => array_combine(array_map(fn (string $command) => $this->translator->trans($command), $commands), $commands),
-                'choice_translation_domain' => 'commands',
+                'label_attr' => ['class' => 'required'],
                 'attr' => [
                     'data-ea-widget' => 'ea-autocomplete',
+                    'required' => 'required',
                 ],
             ])
             ->add('target', TextType::class, [

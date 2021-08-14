@@ -56,7 +56,7 @@ class TransitionType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
             ])
-            ->add('fromPlaces', ChoiceType::class, [
+            ->add('fromPlaces', TextType::class, [
                 'label' => 'From Places',
                 'attr' => [
                     'data-controller' => 'places-select',
@@ -64,7 +64,7 @@ class TransitionType extends AbstractType
                 ],
                 'required' => true,
             ])
-            ->add('toPlaces', ChoiceType::class, [
+            ->add('toPlaces', TextType::class, [
                 'label' => 'To Places',
                 'attr' => [
                     'data-controller' => 'places-select',

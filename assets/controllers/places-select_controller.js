@@ -11,7 +11,9 @@ export default class extends Controller {
             return;
         }
 
-        this.element.control = new TomSelect(this.element);
+        this.element.control = new TomSelect(this.element, {
+            plugins: ['clear_button', 'remove_button'],
+        });
         this.dispatch('added', {
             element: this.element,
         });
