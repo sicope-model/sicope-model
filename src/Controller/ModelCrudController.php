@@ -30,6 +30,10 @@ class ModelCrudController extends AbstractCrudController
             ->setFormType(RevisionType::class)
             ->setFormTypeOptions([
                 'label' => false,
+                'attr' => [
+                    'data-controller' => 'places',
+                    'data-action' => 'place-label:added->places#addOption place-label:removed@window->places#removeOption place-label:updated->places#updateOption places-select:added->places#setOptions',
+                ],
             ])
             ->addCssClass('field-collection')
             ->addJsFiles('bundles/easyadmin/form-type-collection.js')

@@ -31,6 +31,7 @@ class PlaceType extends AbstractType
                 'label_attr' => ['class' => 'required'],
                 'attr' => [
                     'required' => true,
+                    'data-controller' => 'place-label',
                 ],
             ])
             ->add('commands', CollectionType::class, [

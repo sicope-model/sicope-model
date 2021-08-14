@@ -16,6 +16,7 @@ namespace App\Form\Model;
 use App\Form\DataTransformer\PlacesTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -55,18 +56,21 @@ class TransitionType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
             ])
-            ->add('fromPlaces', TextType::class, [
+            ->add('fromPlaces', ChoiceType::class, [
                 'label' => 'From Places',
                 'attr' => [
-                    'class' => 'select-from-places',
+                    'data-controller' => 'places-select',
+                    'data-places-target' => 'placesSelect',
                 ],
-                'required' => false,
+                'required' => true,
             ])
-            ->add('toPlaces', TextType::class, [
+            ->add('toPlaces', ChoiceType::class, [
                 'label' => 'To Places',
                 'attr' => [
-                    'class' => 'select-to-places',
+                    'data-controller' => 'places-select',
+                    'data-places-target' => 'placesSelect',
                 ],
+                'required' => true,
             ])
         ;
 
