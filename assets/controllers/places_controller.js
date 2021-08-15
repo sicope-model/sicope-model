@@ -47,7 +47,7 @@ export default class extends Controller {
     #reloadOptions(select) {
         if (select.control) {
             const values = select.value.split(',');
-            select.control.clear();
+            select.control.clear(); // Must clear items before clearing options to avoid options caching
             select.control.clearOptions();
             this.placesValue.forEach(function (option) {
                 select.control.addOption(option);
