@@ -46,11 +46,17 @@ export default class extends Controller {
 
     #reloadOptions(select) {
         if (select.control) {
+            const values = select.value.split(',');
+            select.control.clear();
             select.control.clearOptions();
             this.placesValue.forEach(function (option) {
                 select.control.addOption(option);
             })
             select.control.refreshOptions(false);
+            values.forEach(function (value) {
+                select.control.addItem(value);
+            });
+            select.control.refreshItems();
         }
     }
 }
