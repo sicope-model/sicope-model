@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Form\Model\RevisionType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\HiddenField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
+use Tienvx\Bundle\MbtBundle\Model\Model\RevisionInterface;
 
 class ModelCrudController extends AbstractCrudController
 {
@@ -26,7 +28,10 @@ class ModelCrudController extends AbstractCrudController
                 ],
             ])
             ->addWebpackEncoreEntries('app');
-        yield IdField::new('activeRevision', 'Revision')
+        yield HiddenField::new('activeRevision', 'Revision')
+            ->formatValue(function (RevisionInterface $value) {
+                return sprintf('id %d, %d place(s), %d transition(s)', $value->getId(), count($value->getPlaces()), count($value->getTransitions()));
+            })
             ->setFormType(RevisionType::class)
             ->setFormTypeOptions([
                 'label' => false,
