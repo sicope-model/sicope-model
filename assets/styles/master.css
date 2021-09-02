@@ -59,13 +59,6 @@ Notes:  decreasing heading by 0.4em with every subsequent heading level
     margin-top: 1.25rem;
 }
 
-.page-pretitle {
-    font-size: .8rem;
-    text-transform: uppercase;
-    line-height: 1.6;
-    color: #656d77;
-}
-
 .page-title {
     margin: 0;
     font-size: 1.5rem;
@@ -125,91 +118,9 @@ Notes:  decreasing heading by 0.4em with every subsequent heading level
 /*------------------------------------------------------------------
 [9. Adjustments to default behaviors]
 */
-a,
-a:hover,
-a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-.btn.focus,
-.btn:focus {
-    box-shadow: none;
-}
-
-.btn.btn-square {
-    border-radius: 0;
-}
-
-.table td,
-.table th {
-    vertical-align: middle;
-}
-
-table.dataTable thead .sorting:before,
-table.dataTable thead .sorting:after,
-table.dataTable thead .sorting_asc:before,
-table.dataTable thead .sorting_asc:after,
-table.dataTable thead .sorting_desc:before,
-table.dataTable thead .sorting_desc:after,
-table.dataTable thead .sorting_asc_disabled:before,
-table.dataTable thead .sorting_asc_disabled:after,
-table.dataTable thead .sorting_desc_disabled:before,
-table.dataTable thead .sorting_desc_disabled:after {
-    font-size: .8rem;
-    bottom: .9rem;
-}
-
-.dataTables_info {
-    visibility: hidden;
-}
-
-table.dataTable>tbody>tr.child ul.dtr-details {
-    display: block;
-}
-
-.nav-tabs {
-    border-bottom: 2px solid #dee2e6;
-}
-
-.nav-tabs .nav-item {
-    margin-bottom: -2px;
-}
-
-.nav-tabs .nav-link {
-    border: none;
-    -webkit-transition: color .1s ease;
-    transition: color .1s ease;
-    color: inherit;
-}
-
-.nav-tabs .nav-item.show .nav-link,
-.nav-tabs .nav-link.active {
-    color: #007bff;
-    background-color: #fff;
-    border-bottom: 2px solid #22a1f9;
-
-}
-
-.tab-content {
-    padding: 15px;
-}
-
-.svg-inline--fa {
-    min-width: 15px;
-}
-
-.display-absolute {
-    position: absolute;
-}
 
 .large-icon {
     font-size: 3em;
-}
-
-.license span {
-    margin-bottom: 1em;
 }
 
 /*------------------------------------------------------------------
