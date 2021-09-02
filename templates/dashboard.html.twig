@@ -2,13 +2,13 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
 {% block head_stylesheets %}
-    {{ parent() }}
     {{ encore_entry_link_tags('app') }}
+    {{ parent() }}
 {% endblock %}
 
 {% block head_javascript %}
-    {{ parent() }}
     {{ encore_entry_script_tags('app') }}
+    {{ parent() }}
 {% endblock %}
 
 {% block main %}
