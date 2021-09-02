@@ -129,11 +129,11 @@
                             <div class="card">
                                 <div class="content">
                                     <div class="head">
-                                        <h5 class="mb-0">Traffic Overview</h5>
-                                        <p class="text-muted">Current year website visitor data</p>
+                                        <h5 class="mb-0">Tasks & Bugs Overview</h5>
+                                        <p class="text-muted">Tasks and bugs created in the last 12 days</p>
                                     </div>
                                     <div class="canvas-wrapper">
-                                        <canvas class="chart" id="trafficflow"></canvas>
+                                        {{ render_chart(taskBugChart) }}
                                     </div>
                                 </div>
                             </div>
@@ -142,11 +142,11 @@
                             <div class="card">
                                 <div class="content">
                                     <div class="head">
-                                        <h5 class="mb-0">Sales Overview</h5>
-                                        <p class="text-muted">Current year sales data</p>
+                                        <h5 class="mb-0">Models Overview</h5>
+                                        <p class="text-muted">Models created in the last 12 days</p>
                                     </div>
                                     <div class="canvas-wrapper">
-                                        {{ render_chart(chart) }}
+                                        {{ render_chart(modelChart) }}
                                     </div>
                                 </div>
                             </div>
