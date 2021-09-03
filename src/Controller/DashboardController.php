@@ -36,6 +36,16 @@ class DashboardController extends AbstractDashboardController
                 'position' => 'left',
             ],
         ],
+        'scales' => [
+            'yAxes' => [
+                [
+                    'ticks' => [
+                        'beginAtZero' => true,
+                        'stepSize' => 1,
+                    ],
+                ],
+            ],
+        ],
     ];
 
     public function __construct(
@@ -98,7 +108,7 @@ class DashboardController extends AbstractDashboardController
 
         // Optimize Data
         $labels = $tasks = $bugs = [];
-        for ($i = 0; $i < static::COLUMNS; ++$i) {
+        for ($i = static::COLUMNS - 1; $i >= 0; --$i) {
             $day = explode('/', date('j/m', strtotime("-{$i} day")));
             $labels[] = $day[0] . '/' . $day[1];
             $tasks[] = $taskData[$day[0]] ?? 0;
@@ -149,7 +159,7 @@ class DashboardController extends AbstractDashboardController
 
         // Optimize Data
         $labels = $models = [];
-        for ($i = 0; $i < static::COLUMNS; ++$i) {
+        for ($i = static::COLUMNS - 1; $i >= 0; --$i) {
             $day = explode('/', date('j/m', strtotime("-{$i} day")));
             $labels[] = $day[0] . '/' . $day[1];
             $models[] = $modelData[$day[0]] ?? 0;
