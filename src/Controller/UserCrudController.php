@@ -1,8 +1,16 @@
 <?php
 
+/**
+ * This file is part of the SICOPE Model package.
+ *
+ * @package     sicope-model
+ * @license     LICENSE
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
+ */
+
 namespace App\Controller;
 
-use ReflectionClass;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -12,6 +20,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use ReflectionClass;
 
 class UserCrudController extends AbstractCrudController
 {

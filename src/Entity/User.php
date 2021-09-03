@@ -1,40 +1,49 @@
 <?php
 
+/**
+ * This file is part of the SICOPE Model package.
+ *
+ * @package     sicope-model
+ * @license     LICENSE
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
+ */
+
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: "users")]
+#[ORM\Table(name: 'users')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue]
+    #[ORM\Id, ORM\Column(type: 'integer'), ORM\GeneratedValue]
     private int $id;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
     private string $fullName;
 
-    #[ORM\Column(type: "string", unique: true)]
+    #[ORM\Column(type: 'string', unique: true)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 2, max: 50)]
     private string $username;
 
-    #[ORM\Column(type: "string", unique: true)]
+    #[ORM\Column(type: 'string', unique: true)]
     #[Assert\Email]
     private string $email;
 
-    #[ORM\Column(type: "json")]
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: 'string')]
     private string $password;
 
     public function __toString()

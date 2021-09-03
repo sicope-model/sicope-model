@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file is part of the SICOPE Model package.
+ *
+ * @package     sicope-model
+ * @license     LICENSE
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
+ */
+
 namespace App\Controller;
 
 use App\Entity\Config;
@@ -11,11 +20,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\UX\Chartjs\Model\Chart;
 use Tienvx\Bundle\MbtBundle\Entity\Bug;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Entity\Task;
-use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
-use Symfony\UX\Chartjs\Model\Chart;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -52,7 +61,6 @@ class DashboardController extends AbstractDashboardController
         private ChartBuilderInterface $chartBuilder,
         private EntityManagerInterface $entityManager
     ) {
-
     }
 
     #[Route('/', name: 'app_dashboard')]

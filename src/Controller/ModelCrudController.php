@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file is part of the SICOPE Model package.
+ *
+ * @package     sicope-model
+ * @license     LICENSE
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
+ */
+
 namespace App\Controller;
 
 use App\Form\Model\RevisionType;
@@ -30,7 +39,7 @@ class ModelCrudController extends AbstractCrudController
             ->addWebpackEncoreEntries('app');
         yield HiddenField::new('activeRevision', 'Revision')
             ->formatValue(function (RevisionInterface $value) {
-                return sprintf('id %d, %d place(s), %d transition(s)', $value->getId(), count($value->getPlaces()), count($value->getTransitions()));
+                return sprintf('id %d, %d place(s), %d transition(s)', $value->getId(), \count($value->getPlaces()), \count($value->getTransitions()));
             })
             ->setFormType(RevisionType::class)
             ->setFormTypeOptions([

@@ -5,8 +5,6 @@
  *
  * @package     sicope-model
  * @license     LICENSE
- * @author      Ramazan APAYDIN <apaydin541@gmail.com>
- * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
@@ -20,24 +18,24 @@ use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ConfigRepository::class)]
-#[ORM\Table(name: "app_config")]
-#[ORM\Cache(usage: "NONSTRICT_READ_WRITE")]
+#[ORM\Table(name: 'app_config')]
+#[ORM\Cache(usage: 'NONSTRICT_READ_WRITE')]
 class Config
 {
     public const TYPES = ['boolean', 'string', 'number', 'json', 'array', 'datetime'];
 
-    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue]
+    #[ORM\Id, ORM\Column(type: 'integer'), ORM\GeneratedValue]
     private int $id;
 
-    #[ORM\Column(type: "string", length: 190, unique: true)]
+    #[ORM\Column(type: 'string', length: 190, unique: true)]
     #[Assert\Length(min: 1, max: 190)]
     private string $name;
 
-    #[ORM\Column(type: "text", nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true)]
     private ?string $value;
 
-    #[ORM\Column(type: "string", length: 150)]
-    #[Assert\Choice(choices: Config::TYPES)]
+    #[ORM\Column(type: 'string', length: 150)]
+    #[Assert\Choice(choices: self::TYPES)]
     private string $type;
 
     public function getId(): int

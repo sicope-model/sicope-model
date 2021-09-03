@@ -1,12 +1,12 @@
 <?php
 
-/*
- * This file is part of the Symfony package.
+/**
+ * This file is part of the SICOPE Model package.
  *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * @package     sicope-model
+ * @license     LICENSE
+ * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
+ * @link        https://github.com/sicope-model/sicope-model
  */
 
 namespace App\Utils;

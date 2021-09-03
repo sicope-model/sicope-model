@@ -5,8 +5,6 @@
  *
  * @package     sicope-model
  * @license     LICENSE
- * @author      Ramazan APAYDIN <apaydin541@gmail.com>
- * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
@@ -136,7 +134,7 @@ class ConfigBag
         // Normalize Form Data
         foreach ($form->all() as $itemName => $item) {
             switch ($item->getConfig()->getType()->getBlockPrefix()) {
-                case ($item->getConfig()->getType()->getBlockPrefix() === 'choice' && $item->getConfig()->getOption('multiple')):
+                case 'choice' === $item->getConfig()->getType()->getBlockPrefix() && $item->getConfig()->getOption('multiple'):
                     $configItems[] = (new Config())
                         ->setType('array')
                         ->setName($itemName)

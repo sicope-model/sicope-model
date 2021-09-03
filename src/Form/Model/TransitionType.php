@@ -5,8 +5,6 @@
  *
  * @package     sicope-model
  * @license     LICENSE
- * @author      Ramazan APAYDIN <apaydin541@gmail.com>
- * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
@@ -16,7 +14,6 @@ namespace App\Form\Model;
 use App\Form\DataTransformer\PlacesTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
