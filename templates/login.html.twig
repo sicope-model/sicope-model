@@ -1,0 +1,13 @@
+{% extends '@EasyAdmin/page/login.html.twig' %}
+
+{% block head_stylesheets %}
+    {{ parent() }}
+    <link rel="shortcut icon" href="{{ asset('build/favicon.ico') }}">
+{% endblock %}
+
+{% block page_title %}
+    <div class="text-center">
+        <img class="mb-4" src="{{ asset('build/logo.svg') }}" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">{{ page_title is defined ? page_title|raw : (ea is defined ? ea.dashboardTitle|raw : '') }}</h1>
+    </div>
+{% endblock %}

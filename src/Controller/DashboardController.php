@@ -61,6 +61,10 @@ class DashboardController extends AbstractDashboardController
         return $this->render('dashboard.html.twig', [
             'taskBugChart' => $this->getTaskBugChart(),
             'modelChart' => $this->getModelChart(),
+            'bugs' => $this->getCount(Bug::class),
+            'tasks' => $this->getCount(Task::class),
+            'models' => $this->getCount(Model::class),
+            'users' => $this->getCount(User::class),
         ]);
     }
 
@@ -68,6 +72,7 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('SICOPE Model')
+            ->setFaviconPath('build/favicon.ico')
             ->renderContentMaximized();
     }
 
@@ -182,5 +187,14 @@ class DashboardController extends AbstractDashboardController
         $chart->setOptions(static::OPTIONS);
 
         return $chart;
+    }
+
+    private function getCount(string $entity): int
+    {
+        return $this->entityManager->getRepository($entity)
+            ->createQueryBuilder('a')
+            ->select('count(a.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 }
