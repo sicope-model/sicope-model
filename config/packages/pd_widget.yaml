@@ -1,3 +1,0 @@
-pd_widget:
-    return_route: 'admin.dashboard'
-    #base_template: '@PdWidget/widgetBase.html.twig'

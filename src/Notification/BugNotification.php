@@ -5,8 +5,6 @@
  *
  * @package     sicope-model
  * @license     LICENSE
- * @author      Ramazan APAYDIN <apaydin541@gmail.com>
- * @link        https://github.com/appaydin/pd-admin
  * @author      Tien Xuan Vo <tien.xuan.vo@gmail.com>
  * @link        https://github.com/sicope-model/sicope-model
  */
@@ -32,14 +30,12 @@ use Tienvx\Bundle\MbtBundle\Model\BugInterface;
 class BugNotification extends Notification implements ChatNotificationInterface, EmailNotificationInterface, SmsNotificationInterface
 {
     protected BugInterface $bug;
-    protected string $mailSenderAddress;
-    protected string $mailSenderName;
+    protected string $emailSender;
 
-    public function __construct(BugInterface $bug, string $mailSenderAddress, string $mailSenderName)
+    public function __construct(BugInterface $bug, string $mailSenderAddress)
     {
         $this->bug = $bug;
-        $this->mailSenderAddress = $mailSenderAddress;
-        $this->mailSenderName = $mailSenderName;
+        $this->emailSender = $mailSenderAddress;
 
         parent::__construct('New bug found');
     }
@@ -55,7 +51,7 @@ class BugNotification extends Notification implements ChatNotificationInterface,
         $message->options(
             (new SlackOptions())
             ->iconEmoji('bug')
-            ->username($this->mailSenderName)
+            ->username($this->emailSender)
             ->block((new SlackSectionBlock())->text($this->getSubject()))
             ->block(new SlackDividerBlock())
             ->block((new SlackSectionBlock())->text(sprintf('Bug id: %d', $this->bug->getId())))
@@ -71,7 +67,7 @@ class BugNotification extends Notification implements ChatNotificationInterface,
     {
         $message = EmailMessage::fromNotification($this, $recipient);
         $message->getMessage()
-            ->from(new Address($this->mailSenderAddress, $this->mailSenderName))
+            ->from(new Address($this->emailSender))
             ->htmlTemplate('emails/bug_notification.html.twig')
             ->context(['bug' => $this->bug])
         ;

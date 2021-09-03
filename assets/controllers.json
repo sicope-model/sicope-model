@@ -1,7 +1,7 @@
 {
     "controllers": {
-        "@stakovicz/ux-collection": {
-            "collection": {
+        "@symfony/ux-chartjs": {
+            "chart": {
                 "enabled": true,
                 "fetch": "eager"
             }

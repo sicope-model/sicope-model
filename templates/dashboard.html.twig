@@ -1,0 +1,286 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block head_stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {{ parent() }}
+{% endblock %}
+
+{% block head_javascript %}
+    {{ encore_entry_script_tags('app') }}
+    {{ parent() }}
+{% endblock %}
+
+{% block main %}
+    <main>
+
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12 page-header">
+                    <h2 class="page-title">Dashboard</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="dfd text-center">
+                                    <i class="blue large-icon mb-2 fas fa-bug"></i>
+                                    <h4 class="mb-0">{{ bugs }}</h4>
+                                    <p class="text-muted">TOTAL BUGS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="dfd text-center">
+                                    <i class="orange large-icon mb-2 fas fa-tasks"></i>
+                                    <h4 class="mb-0">{{ tasks }}</h4>
+                                    <p class="text-muted">TOTAL TASKS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="dfd text-center">
+                                    <i class="grey large-icon mb-2 fas fa-project-diagram"></i>
+                                    <h4 class="mb-0">{{ models }}</h4>
+                                    <p class="text-muted">TOTAL MODELS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="dfd text-center">
+                                    <i class="olive large-icon mb-2 fas fa-users"></i>
+                                    <h4 class="mb-0">{{ users }}</h4>
+                                    <p class="text-muted">TOTAL USERS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="head">
+                                        <h5 class="mb-0">Tasks & Bugs Overview</h5>
+                                        <p class="text-muted">Tasks and bugs created in the last 12 days</p>
+                                    </div>
+                                    <div class="canvas-wrapper">
+                                        {{ render_chart(taskBugChart) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="head">
+                                        <h5 class="mb-0">Models Overview</h5>
+                                        <p class="text-muted">Models created in the last 12 days</p>
+                                    </div>
+                                    <div class="canvas-wrapper">
+                                        {{ render_chart(modelChart) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="content">
+                            <div class="head">
+                                <h5 class="mb-0">Sessions</h5>
+                                <p class="text-muted">Current browser session data</p>
+                            </div>
+                            <div class="canvas-wrapper">
+                                <table class="table table-striped">
+                                    <thead class="success">
+                                    <tr>
+                                        <th>Browser</th>
+                                        <th class="text-end">Total Sessions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><i class="teal fab fa-firefox"></i> Firefox 91.0</td>
+                                        <td class="text-end">1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="olive fab fa-edge"></i> Microsoft Edge 93.0</td>
+                                        <td class="text-end">2</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="violet fab fa-chrome"></i> Chrome 92.0</td>
+                                        <td class="text-end">3</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="orange fab fa-safari"></i> Safari 14.0</td>
+                                        <td class="text-end">4</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="blue fab fa-opera"></i> Opera 77.0</td>
+                                        <td class="text-end">5</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="olive fab fa-android"></i> Android 10.0</td>
+                                        <td class="text-end">6</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="blue fas fa-mobile-alt"></i> Chrome Mobile 86.0</td>
+                                        <td class="text-end">7</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="content">
+                            <div class="head">
+                                <h5 class="mb-0">Most Used Models</h5>
+                                <p class="text-muted">List models by number of tasks</p>
+                            </div>
+                            <div class="canvas-wrapper">
+                                <table class="table table-striped">
+                                    <thead class="success">
+                                    <tr>
+                                        <th>Model</th>
+                                        <th class="text-end">Tasks</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Shopping Cart</td>
+                                        <td class="text-end">9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Homepage</td>
+                                        <td class="text-end">8</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Product</td>
+                                        <td class="text-end">7</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Checkout</td>
+                                        <td class="text-end">6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address</td>
+                                        <td class="text-end">5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shipping</td>
+                                        <td class="text-end">4</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="icon-big text-center">
+                                        <i class="teal fas fa-box-open"></i>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="detail">
+                                        <p class="detail-subtitle">Total</p>
+                                        <span class="number">4</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="icon-big text-center">
+                                        <i class="olive fas fa-hammer"></i>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="detail">
+                                        <p class="detail-subtitle">Used</p>
+                                        <span class="number">3</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="icon-big text-center">
+                                        <i class="violet fas fa-clock"></i>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="detail">
+                                        <p class="detail-subtitle">Queued</p>
+                                        <span class="number">2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                    <div class="card">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="icon-big text-center">
+                                        <i class="orange fas fa-hourglass-half"></i>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="detail">
+                                        <p class="detail-subtitle">Pending</p>
+                                        <span class="number">1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+{% endblock %}
