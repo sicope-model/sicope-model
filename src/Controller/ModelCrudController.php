@@ -12,6 +12,8 @@
 namespace App\Controller;
 
 use App\Form\Model\RevisionType;
+use App\Form\ModelImportType;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -22,9 +24,13 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Model\Model\RevisionInterface;
+use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
 
 class ModelCrudController extends AbstractCrudController
 {
@@ -84,5 +90,28 @@ class ModelCrudController extends AbstractCrudController
                 $model->getLabel() . '.json'
             ),
         ])->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | \JSON_PRETTY_PRINT);
+    }
+
+    #[Route('/models/import', name: 'app_import_model')]
+    public function importModel(Request $request, EntityManagerInterface $em): Response
+    {
+        $form = $this->createForm(ModelImportType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var ModelInterface $model */
+            $model = $form->get('model')->getData();
+            $em->persist($model);
+            $em->flush();
+
+            // Add Flash
+            $this->addFlash('success', 'changes_saved');
+
+            return $this->redirectToRoute('admin_model_list');
+        }
+
+        return $this->render('importModel.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
