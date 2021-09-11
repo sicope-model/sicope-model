@@ -22,6 +22,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\HiddenField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -105,9 +106,9 @@ class ModelCrudController extends AbstractCrudController
             $em->flush();
 
             // Add Flash
-            $this->addFlash('success', 'changes_saved');
+            $this->addFlash('success', 'Imported model');
 
-            return $this->redirectToRoute('admin_model_list');
+            return $this->redirect($this->get(AdminUrlGenerator::class)->setAction(Action::INDEX)->generateUrl());
         }
 
         return $this->render('importModel.html.twig', [

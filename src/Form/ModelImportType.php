@@ -33,19 +33,14 @@ class ModelImportType extends AbstractType
     {
         $builder
             ->add('model', FileType::class, [
-                'label' => 'model_file',
-                'attr' => [
-                    'label' => 'upload_image_btn',
-                    'label_class' => 'btn btn-success',
-                ],
+                'label' => 'Model File',
                 'required' => true,
-                'data_class' => null,
                 'constraints' => [
                     new Valid(),
                 ],
             ])
             ->add('import', SubmitType::class, [
-                'label' => 'import',
+                'label' => 'Import',
             ])
         ;
 
