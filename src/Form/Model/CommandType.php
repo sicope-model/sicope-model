@@ -37,7 +37,6 @@ class CommandType extends AbstractType
                 'choices' => array_combine(array_map(fn (string $command) => $this->translator->trans($command), $commands), $commands),
                 'label_attr' => ['class' => 'required'],
                 'attr' => [
-                    'data-ea-widget' => 'ea-autocomplete',
                     'required' => 'required',
                 ],
             ])

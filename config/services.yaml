@@ -23,6 +23,7 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
+            - '../src/Twig/TwigExtension.php'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
@@ -32,3 +33,7 @@ services:
 
     Tienvx\Bundle\MbtBundle\Service\ConfigInterface:
         class: App\Service\Config
+
+    App\Twig\TwigExtension:
+        decorates: EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension
+        arguments: ['@service_locator_EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator']
