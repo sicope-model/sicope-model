@@ -83,7 +83,7 @@ class ModelCrudController extends AbstractCrudController
 
     public function exportModel(AdminContext $context): JsonResponse
     {
-        $model = $context->getEntity()->getInstance();;
+        $model = $context->getEntity()->getInstance();
 
         return $this->json($model->toArray(), 200, [
             'Content-Disposition' => HeaderUtils::makeDisposition(
