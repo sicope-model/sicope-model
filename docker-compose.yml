@@ -41,7 +41,7 @@ services:
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@database:5432/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-13}&charset=UTF-8
       WEBDRIVER_URI: ${WEBDRIVER_URI:-http://localhost:4444}
-      MAILER_DSN: ${MAILER_DSN}
+      MAILER_DSN: ${MAILER_DSN:-smtp://localhost:1025}
 
   caddy:
     image: tienvx/sicope-model-caddy:${TAG:-lastest}
