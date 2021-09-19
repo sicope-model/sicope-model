@@ -1,0 +1,6 @@
+{% if ea.crud.currentAction == 'detail' %}
+    {% set url = path('app_model_image', {id: entity.instance.id}) %}
+    <a target="_blank" rel="noopener" href="{{ url }}"><img src="{{ url }}"></a>
+{% else %}
+    <a target="_blank" rel="noopener" href="{{ url }}">Open</a>
+{% endif %}
