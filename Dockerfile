@@ -56,10 +56,8 @@ COPY package.json webpack.config.js yarn.lock /srv/app/
 COPY assets /srv/app/assets
 COPY --from=build_worker /srv/app/vendor/symfony/ux-chartjs/Resources/assets /srv/app/vendor/symfony/ux-chartjs/Resources/assets
 
-RUN apk add --no-cache --virtual .build-deps python3 make g++; \
-	yarn install; \
-	yarn run encore production; \
-	apk del .build-deps
+RUN yarn install; \
+	yarn run encore production;
 
 FROM php:${PHP_VERSION}-fpm-alpine AS build_admin
 
