@@ -1,2 +1,2 @@
 tienvx_mbt:
-    selenoid_server: '%env(string:SELENOID_SERVER)%'
+    webdriver_uri: '%env(string:WEBDRIVER_URI)%'

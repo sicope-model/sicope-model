@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+    selenoid:
+        image: aerokube/selenoid:latest-release
+        volumes:
+            - "/var/run/docker.sock:/var/run/docker.sock"
+            - "$PWD:/etc/selenoid"
+            - "$PWD/video:/opt/selenoid/video"
+            - "$PWD/logs:/opt/selenoid/logs"
+        environment:
+            - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD/video
+        restart: unless-stopped
+        command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-container-network", "${CONTAINER_NETWORK:-sicope-model_default}"]
+        ports:
+            - "4444:4444"
+
+    selenoid-ui:
+        image: "aerokube/selenoid-ui"
+        restart: unless-stopped
+        ports:
+            - "8080:8080"
+        command: ["--selenoid-uri", "http://selenoid:4444"]

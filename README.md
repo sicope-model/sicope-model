@@ -4,9 +4,9 @@ Model Based Testing tool using Single Color Petrinet Model.
 
 ## Requirements
 
+* [Git](https://git-scm.com/downloads)
 * [Composer](https://getcomposer.org/)
 * [Symfony CLI](https://symfony.com/download)
-* [Jq](https://stedolan.github.io/jq/download/)
 * [Docker](https://docs.docker.com/get-docker/)
 * [Docker Compose](https://docs.docker.com/compose/install/)
 * [Yarn](https://classic.yarnpkg.com/en/docs/install/#debian-stable)
@@ -15,36 +15,26 @@ Model Based Testing tool using Single Color Petrinet Model.
 
 ```shell
 git clone https://github.com/sicope-model/sicope-model.git
-```
-
-### Selenoid
-
-```shell
-cd sicope-model/var/selenoid/
-bash install.sh
-docker-compose up
-```
-
-### Sicope Model
-
-```shell
 cd sicope-model
-composer install
-yarn install
-yarn build
 docker-compose up
-symfony serve
-symfony console doctrine:migrations:migrate
-symfony console messenger:consume async
-symfony console user:create
+
+
+#composer install
+#yarn install
+#yarn build
+#symfony serve
+#symfony console doctrine:migrations:migrate
+#symfony console messenger:consume async
+#symfony console user:create
 ```
 
-Navigate to http://localhost:8000 to create first model.
+## Usage
+
+Visit [Admin](http://localhost) to create first model.
 
 Tools:
 * [Adminer](http://localhost:8888)
 * [Mailhog](http://localhost:8025)
-* [Selenoid UI](http://localhost:8080)
 
 ## Production
 
