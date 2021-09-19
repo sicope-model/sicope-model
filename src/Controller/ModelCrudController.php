@@ -77,6 +77,11 @@ class ModelCrudController extends AbstractCrudController
             ->createAsGlobalAction();
 
         return $actions
+            ->update(Crud::PAGE_INDEX, Action::NEW, fn (Action $detail) => $detail->setIcon('fas fa-plus'))
+            ->update(Crud::PAGE_INDEX, Action::EDIT, fn (Action $detail) => $detail->setIcon('fas fa-edit'))
+            ->update(Crud::PAGE_INDEX, Action::DELETE, fn (Action $detail) => $detail->setIcon('fas fa-trash'))
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            ->update(Crud::PAGE_INDEX, Action::DETAIL, fn (Action $detail) => $detail->setIcon('fas fa-info'))
             ->add(Crud::PAGE_INDEX, $exportModel)
             ->add(Crud::PAGE_INDEX, $importModel);
     }
