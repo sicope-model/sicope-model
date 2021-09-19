@@ -13,6 +13,7 @@ namespace App\Controller;
 
 use App\Form\Model\RevisionType;
 use App\Form\ModelImportType;
+use App\Service\CommandHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -22,16 +23,19 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\HiddenField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Model\Model\RevisionInterface;
 use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
+use Tienvx\Bundle\MbtBundle\Service\Model\ModelDumperInterface;
 
 class ModelCrudController extends AbstractCrudController
 {
@@ -53,7 +57,7 @@ class ModelCrudController extends AbstractCrudController
             ->addWebpackEncoreEntries('app');
         yield HiddenField::new('activeRevision', 'Revision')
             ->formatValue(function (RevisionInterface $value) {
-                return sprintf('id %d, %d place(s), %d transition(s)', $value->getId(), \count($value->getPlaces()), \count($value->getTransitions()));
+                return sprintf('%d place(s), %d transition(s)', \count($value->getPlaces()), \count($value->getTransitions()));
             })
             ->setFormType(RevisionType::class)
             ->setFormTypeOptions([
@@ -66,6 +70,9 @@ class ModelCrudController extends AbstractCrudController
             ->addCssClass('field-collection')
             ->addJsFiles('bundles/easyadmin/form-type-collection.js')
             ->setDefaultColumns('col-md-8 col-xxl-7');
+        if (Crud::PAGE_DETAIL === $pageName) {
+            yield UrlField::new('image', 'Image')->setTemplatePath('field/modelImage.html.twig');
+        }
     }
 
     public function configureActions(Actions $actions): Actions
@@ -96,6 +103,27 @@ class ModelCrudController extends AbstractCrudController
                 $model->getLabel() . '.json'
             ),
         ])->setEncodingOptions(JsonResponse::DEFAULT_ENCODING_OPTIONS | \JSON_PRETTY_PRINT);
+    }
+
+    #[Route('/models/{id}/image', name: 'app_model_image')]
+    public function modelImage(Model $model, CommandHelper $commandHelper, ModelDumperInterface $modelDumper): Response
+    {
+        $response = new Response();
+
+        if ($commandHelper->verifyCommand('dot')) {
+            $process = Process::fromShellCommandline('echo "$DUMP" | dot -Tsvg');
+            $process->run(null, ['DUMP' => $modelDumper->dump($model->getActiveRevision())]);
+
+            $disposition = $response->headers->makeDisposition(
+                ResponseHeaderBag::DISPOSITION_INLINE,
+                $model->getLabel() . '.svg'
+            );
+            $response->headers->set('Content-Disposition', $disposition);
+            $response->headers->set('Content-Type', 'image/svg+xml');
+            $response->setContent($process->getOutput());
+        }
+
+        return $response;
     }
 
     #[Route('/models/import', name: 'app_import_model')]
