@@ -70,9 +70,7 @@ class ModelCrudController extends AbstractCrudController
             ->addCssClass('field-collection')
             ->addJsFiles('bundles/easyadmin/form-type-collection.js')
             ->setDefaultColumns('col-md-8 col-xxl-7');
-        if (Crud::PAGE_DETAIL === $pageName) {
-            yield UrlField::new('image', 'Image')->setTemplatePath('field/modelImage.html.twig');
-        }
+        yield UrlField::new('image', 'Image')->setTemplatePath('field/modelImage.html.twig')->onlyOnDetail();
     }
 
     public function configureActions(Actions $actions): Actions
