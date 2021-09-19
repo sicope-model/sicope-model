@@ -54,7 +54,7 @@ WORKDIR /srv/app
 
 COPY package.json webpack.config.js yarn.lock /srv/app/
 COPY assets /srv/app/assets
-COPY --from=build_worker vendor/symfony/ux-chartjs/Resources/assets vendor/symfony/ux-chartjs/Resources/assets
+COPY --from=build_worker /srv/app/vendor/symfony/ux-chartjs/Resources/assets /srv/app/vendor/symfony/ux-chartjs/Resources/assets
 
 RUN apk add --no-cache --virtual .build-deps python3 make g++; \
 	yarn install; \
