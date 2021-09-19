@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4444a7e4ffa54d4e8a404ac1f0f25854",
+    "content-hash": "9c079e1d36dd736e64cf90ea6119a1fa",
     "packages": [
         {
             "name": "beberlei/doctrineextensions",
@@ -8568,16 +8568,16 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v3.0.0-alpha.3",
+            "version": "v3.0.0-alpha.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "086ab2d4f9dc4b097ed5f199dddd01176b5dbef4"
+                "reference": "3ff0f4a613fe6894c52807df4e98e55a9f42f779"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/086ab2d4f9dc4b097ed5f199dddd01176b5dbef4",
-                "reference": "086ab2d4f9dc4b097ed5f199dddd01176b5dbef4",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/3ff0f4a613fe6894c52807df4e98e55a9f42f779",
+                "reference": "3ff0f4a613fe6894c52807df4e98e55a9f42f779",
                 "shasum": ""
             },
             "require": {
@@ -8634,7 +8634,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.3"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.4"
             },
             "funding": [
                 {
@@ -8642,7 +8642,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-09-12T16:22:45+00:00"
+            "time": "2021-09-19T05:40:05+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",
