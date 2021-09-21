@@ -7,6 +7,17 @@ email: Email
 chat/slack: Slack
 
 ###
+# Browsers
+###
+android: Android
+chrome: Chrome
+chrome-mobile: Chrome Mobile
+edge: Microsoft Edge (Chromium Based)
+firefox: Firefox
+opera: Opera
+safari: Safari
+
+###
 # Commands
 ###
 acceptAlert: Accept Alert

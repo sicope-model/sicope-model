@@ -20,13 +20,13 @@ class BrowserTransformer implements DataTransformerInterface
     /**
      * Transforms browser from an object to a string.
      *
-     * @param BrowserInterface $browserAsObject
+     * @param BrowserInterface|null $browserAsObject
      *
      * @return string
      */
     public function transform($browserAsObject)
     {
-        return sprintf('%s:%s', $browserAsObject->getName(), $browserAsObject->getVersion());
+        return $browserAsObject ? sprintf('%s:%s', $browserAsObject->getName(), $browserAsObject->getVersion()) : null;
     }
 
     /**

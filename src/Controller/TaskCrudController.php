@@ -19,12 +19,13 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Entity\Task;
 
 class TaskCrudController extends AbstractCrudController
 {
-    public function __construct(private HttpClientInterface $client, private string $statusUri)
+    public function __construct(private HttpClientInterface $client, private string $statusUri, private TranslatorInterface $translator)
     {
     }
 
@@ -48,7 +49,17 @@ class TaskCrudController extends AbstractCrudController
             })
             ->setRequired(true)
         ;
-        yield ChoiceField::new('browser', 'Browser')->setChoices($this->getBrowserChoices())->setFormType(BrowserType::class);
+        yield ChoiceField::new('browser', 'Browser')
+            ->setChoices($this->getBrowserChoices())
+            ->setFormType(BrowserType::class)
+            ->setFormTypeOption('choice_translation_domain', false)
+            ->setFormTypeOption('group_by', function ($choice) {
+                [$browser] = explode(':', $choice);
+
+                return $this->translator->trans($browser);
+            })
+            ->setRequired(true)
+        ;
     }
 
     private function getBrowserChoices(): array
@@ -61,7 +72,7 @@ class TaskCrudController extends AbstractCrudController
 
         foreach ($response->toArray()['browsers'] ?? [] as $name => $browser) {
             foreach ($browser as $version => $session) {
-                $choices[$name][$version] = sprintf('%s:%s', $name, $version);
+                $choices[sprintf('%s %s', $this->translator->trans($name), $version)] = sprintf('%s:%s', $name, $version);
             }
         }
 
