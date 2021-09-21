@@ -1,16 +1,6 @@
 version: '3.4'
 
 services:
-  database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-user}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pass}
-      POSTGRES_DB: ${POSTGRES_DB:-db}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
   admin:
     image: tienvx/sicope-model-admin:${TAG:-lastest}
     build:
@@ -28,7 +18,8 @@ services:
       start_period: 30s
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@database:5432/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-13}&charset=UTF-8
-      STATUS_URI: ${STATUS_URI:-http://localhost:4444}
+      STATUS_URI: ${STATUS_URI:-http://selenoid:4444}
+      MAILER_DSN: ${MAILER_DSN:-smtp://mailer:1025}
 
   worker:
     image: tienvx/sicope-model-worker:${TAG:-lastest}
@@ -40,8 +31,8 @@ services:
     restart: unless-stopped
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@database:5432/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-13}&charset=UTF-8
-      WEBDRIVER_URI: ${WEBDRIVER_URI:-http://localhost:4444}
-      MAILER_DSN: ${MAILER_DSN:-smtp://localhost:1025}
+      WEBDRIVER_URI: ${WEBDRIVER_URI:-http://selenoid:4444}
+      MAILER_DSN: ${MAILER_DSN:-smtp://mailer:1025}
 
   caddy:
     image: tienvx/sicope-model-caddy:${TAG:-lastest}
@@ -72,7 +63,6 @@ services:
         protocol: udp
 
 volumes:
-  postgres_data:
   php_socket:
   caddy_data:
   caddy_config:
