@@ -43,7 +43,6 @@ class ModelImportType extends AbstractType
             ])
         ;
 
-        $builder->get('model')
-            ->addModelTransformer($this->transformer);
+        $builder->get('model')->addModelTransformer($this->transformer);
     }
 }

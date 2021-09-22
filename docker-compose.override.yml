@@ -39,3 +39,37 @@ services:
       - "8025:8025"
     logging:
       driver: 'none'  # disable saving logs
+
+  selenoid:
+    image: aerokube/selenoid:latest-release
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "$PWD/var/selenoid:/etc/selenoid"
+      - "$PWD/var/selenoid/video:/opt/selenoid/video"
+      - "$PWD/var/selenoid/logs:/opt/selenoid/logs"
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD/var/selenoid/video
+    restart: unless-stopped
+    command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-container-network", "${CONTAINER_NETWORK:-sicope-model_default}"]
+    ports:
+      - "4444:4444"
+
+  selenoid-ui:
+    image: "aerokube/selenoid-ui"
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
+
+  database:
+    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pass}
+      POSTGRES_DB: ${POSTGRES_DB:-db}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
