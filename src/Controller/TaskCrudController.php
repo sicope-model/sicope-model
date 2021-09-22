@@ -53,11 +53,6 @@ class TaskCrudController extends AbstractCrudController
             ->setChoices($this->getBrowserChoices())
             ->setFormType(BrowserType::class)
             ->setFormTypeOption('choice_translation_domain', false)
-            ->setFormTypeOption('group_by', function ($choice) {
-                [$browser] = explode(':', $choice);
-
-                return $this->translator->trans($browser);
-            })
             ->setRequired(true)
         ;
     }
@@ -70,9 +65,14 @@ class TaskCrudController extends AbstractCrudController
         );
         $choices = [];
 
-        foreach ($response->toArray()['browsers'] ?? [] as $name => $browser) {
-            foreach ($browser as $version => $session) {
+        foreach ($response->toArray()['browsers'] ?? [] as $name => $versions) {
+            if (1 === \count($versions)) {
+                $version = key($versions);
                 $choices[sprintf('%s %s', $this->translator->trans($name), $version)] = sprintf('%s:%s', $name, $version);
+            } else {
+                foreach ($versions as $version => $session) {
+                    $choices[$this->translator->trans($name)][sprintf('%s %s', $this->translator->trans($name), $version)] = sprintf('%s:%s', $name, $version);
+                }
             }
         }
 
