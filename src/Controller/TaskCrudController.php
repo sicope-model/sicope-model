@@ -12,6 +12,7 @@
 namespace App\Controller;
 
 use App\Form\Task\BrowserType;
+use App\Service\BrowserFormatter;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -19,13 +20,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Entity\Task;
 
 class TaskCrudController extends AbstractCrudController
 {
-    public function __construct(private HttpClientInterface $client, private string $statusUri, private TranslatorInterface $translator)
+    public function __construct(private HttpClientInterface $client, private string $statusUri, private BrowserFormatter $formatter)
     {
     }
 
@@ -52,7 +52,6 @@ class TaskCrudController extends AbstractCrudController
         yield ChoiceField::new('browser', 'Browser')
             ->setChoices($this->getBrowserChoices())
             ->setFormType(BrowserType::class)
-            ->setFormTypeOption('choice_translation_domain', false)
             ->setRequired(true)
         ;
     }
@@ -68,10 +67,10 @@ class TaskCrudController extends AbstractCrudController
         foreach ($response->toArray()['browsers'] ?? [] as $name => $versions) {
             if (1 === \count($versions)) {
                 $version = key($versions);
-                $choices[sprintf('%s %s', $this->translator->trans($name), $version)] = sprintf('%s:%s', $name, $version);
+                $choices[$this->formatter->format($name, $version)] = sprintf('%s:%s', $name, $version);
             } else {
                 foreach ($versions as $version => $session) {
-                    $choices[$this->translator->trans($name)][sprintf('%s %s', $this->translator->trans($name), $version)] = sprintf('%s:%s', $name, $version);
+                    $choices[$name][$this->formatter->format($name, $version)] = sprintf('%s:%s', $name, $version);
                 }
             }
         }
