@@ -10,6 +10,8 @@ x-php: &php
     # - /srv/app/var
   environment:
     APP_ENV: dev
+  depends_on:
+    - database
 
 # Development environment override
 services:

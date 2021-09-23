@@ -6,8 +6,6 @@ services:
     build:
       context: .
       target: build_admin
-    depends_on:
-      - database
     restart: unless-stopped
     volumes:
       - php_socket:/var/run/php
@@ -26,8 +24,6 @@ services:
     build:
       context: .
       target: build_worker
-    depends_on:
-      - database
     restart: unless-stopped
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@${POSTGRES_HOST:-database}:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-13}&charset=UTF-8
