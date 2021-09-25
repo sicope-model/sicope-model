@@ -11,6 +11,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\Model\RevisionType;
 use App\Form\ModelImportType;
 use App\Service\CommandHelper;
@@ -32,6 +33,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Model\Model\RevisionInterface;
 use Tienvx\Bundle\MbtBundle\Model\ModelInterface;
@@ -54,9 +56,15 @@ class ModelCrudController extends AbstractCrudController
                     'data-controller' => 'tags',
                 ],
             ])
+            ->formatValue(fn (?string $value): string => $value ?? '')
             ->addWebpackEncoreEntries('app');
-        yield HiddenField::new('activeRevision', 'Revision')
-            ->formatValue(function (RevisionInterface $value) {
+        yield IdField::new('author')->hideOnForm();
+        yield HiddenField::new('activeRevision', 'Overview')
+            ->formatValue(function (?RevisionInterface $value): string {
+                if (!$value) {
+                    return '';
+                }
+
                 return sprintf('%d place(s), %d transition(s)', \count($value->getPlaces()), \count($value->getTransitions()));
             })
             ->setFormType(RevisionType::class)
@@ -125,7 +133,7 @@ class ModelCrudController extends AbstractCrudController
     }
 
     #[Route('/models/import', name: 'app_import_model')]
-    public function importModel(Request $request, EntityManagerInterface $em): Response
+    public function importModel(Request $request, EntityManagerInterface $em, Security $security): Response
     {
         $form = $this->createForm(ModelImportType::class);
 
@@ -133,6 +141,10 @@ class ModelCrudController extends AbstractCrudController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var ModelInterface $model */
             $model = $form->get('model')->getData();
+            $user = $security->getUser();
+            if ($user instanceof User) {
+                $model->setAuthor($user->getId());
+            }
             $em->persist($model);
             $em->flush();
 
