@@ -35,6 +35,8 @@ class SecurityController extends AbstractController
             'error' => $error,
             'csrf_token_intention' => 'authenticate',
             'page_title' => 'SICOPE Model',
+            'remember_me_enabled' => true,
+            'remember_me_checked' => true,
         ]);
     }
 
