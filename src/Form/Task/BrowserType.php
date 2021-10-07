@@ -13,17 +13,13 @@ namespace App\Form\Task;
 
 use App\Form\DataTransformer\BrowserTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class BrowserType extends AbstractType
 {
-    protected DataTransformerInterface $transformer;
-
-    public function __construct(BrowserTransformer $transformer)
+    public function __construct(private BrowserTransformer $transformer)
     {
-        $this->transformer = $transformer;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)

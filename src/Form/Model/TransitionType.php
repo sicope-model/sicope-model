@@ -13,20 +13,16 @@ namespace App\Form\Model;
 
 use App\Form\DataTransformer\PlacesTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tienvx\Bundle\MbtBundle\ValueObject\Model\Transition;
+use Tienvx\UX\CollectionJs\Form\CollectionJsType;
 
 class TransitionType extends AbstractType
 {
-    protected DataTransformerInterface $transformer;
-
-    public function __construct(PlacesTransformer $transformer)
+    public function __construct(private PlacesTransformer $transformer)
     {
-        $this->transformer = $transformer;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -44,7 +40,7 @@ class TransitionType extends AbstractType
                 'label' => 'Guard',
                 'required' => false,
             ])
-            ->add('commands', CollectionType::class, [
+            ->add('commands', CollectionJsType::class, [
                 'label' => 'Commands',
                 'entry_type' => CommandType::class,
                 'entry_options' => [
@@ -52,6 +48,10 @@ class TransitionType extends AbstractType
                 ],
                 'allow_add' => true,
                 'allow_delete' => true,
+                'allow_move_up' => true,
+                'allow_move_down' => true,
+                'render_expanded' => false,
+                'required' => false,
             ])
             ->add('fromPlaces', TextType::class, [
                 'label' => 'From Places',
@@ -59,7 +59,7 @@ class TransitionType extends AbstractType
                     'data-controller' => 'places-select',
                     'data-places-target' => 'placesSelect',
                 ],
-                'required' => true,
+                'required' => false,
             ])
             ->add('toPlaces', TextType::class, [
                 'label' => 'To Places',

@@ -5,6 +5,15 @@
                 "enabled": true,
                 "fetch": "eager"
             }
+        },
+        "@tienvx/ux-collection-js": {
+            "collection": {
+                "enabled": true,
+                "fetch": "eager",
+                "autoimport": {
+                  "@tienvx/ux-collection-js/src/style.css": true
+                }
+            }
         }
     },
     "entrypoints": []

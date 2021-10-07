@@ -21,6 +21,7 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('docker')
     ->exclude('vendor')
     ->exclude('migrations')
+    ->exclude('node_modules')
 ;
 
 $config = new PhpCsFixer\Config();

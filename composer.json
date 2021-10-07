@@ -47,6 +47,7 @@
         "symfony/webpack-encore-bundle": "^1.12",
         "symfony/yaml": "5.3.*",
         "tienvx/mbt-bundle": "^3.0@alpha",
+        "tienvx/ux-collection-js": "^1.0@alpha",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
     },

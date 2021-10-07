@@ -60,11 +60,7 @@ class ModelCrudController extends AbstractCrudController
             ->addWebpackEncoreEntries('app');
         yield IdField::new('author')->hideOnForm();
         yield HiddenField::new('activeRevision', 'Overview')
-            ->formatValue(function (?RevisionInterface $value): string {
-                if (!$value) {
-                    return '';
-                }
-
+            ->formatValue(function (RevisionInterface $value): string {
                 return sprintf('%d place(s), %d transition(s)', \count($value->getPlaces()), \count($value->getTransitions()));
             })
             ->setFormType(RevisionType::class)
@@ -75,8 +71,7 @@ class ModelCrudController extends AbstractCrudController
                     'data-action' => 'place-label:added->places#addOption place-label:removed@window->places#removeOption place-label:updated->places#updateOption places-select:added->places#setOptions',
                 ],
             ])
-            ->addCssClass('field-collection')
-            ->addJsFiles('bundles/easyadmin/form-type-collection.js')
+            ->setRequired(true)
             ->setDefaultColumns('col-md-8 col-xxl-7');
         yield UrlField::new('image', 'Image')->setTemplatePath('field/modelImage.html.twig')->onlyOnDetail();
     }
@@ -97,6 +92,12 @@ class ModelCrudController extends AbstractCrudController
             ->update(Crud::PAGE_INDEX, Action::DETAIL, fn (Action $detail) => $detail->setIcon('fas fa-info'))
             ->add(Crud::PAGE_INDEX, $exportModel)
             ->add(Crud::PAGE_INDEX, $importModel);
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setFormThemes(['@EasyAdmin/crud/form_theme.html.twig', '@CollectionJs/bootstrap_5_layout.html.twig']);
     }
 
     public function exportModel(AdminContext $context): JsonResponse

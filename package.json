@@ -3,6 +3,7 @@
         "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/ux-chartjs": "file:vendor/symfony/ux-chartjs/Resources/assets",
         "@symfony/webpack-encore": "^1.0.0",
+        "@tienvx/ux-collection-js": "file:vendor/tienvx/ux-collection-js/src/Resources/assets",
         "chart.js": "^2.9.4",
         "core-js": "^3.0.0",
         "file-loader": "^6.0.0",
@@ -11,6 +12,7 @@
         "sass-loader": "^12.0.0",
         "stimulus": "^2.0.0",
         "stimulus-use": "^0.25.4",
+        "symfony-collection-js": "4.2.0-js-only",
         "tom-select": "^2.0.0-rc.2",
         "webpack-notifier": "^1.6.0"
     },
