@@ -12,17 +12,17 @@
 namespace App\Form\Model;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tienvx\Bundle\MbtBundle\Entity\Model\Revision;
+use Tienvx\UX\CollectionJs\Form\CollectionJsType;
 
 class RevisionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('places', CollectionType::class, [
+            ->add('places', CollectionJsType::class, [
                 'label' => 'Places',
                 'entry_type' => PlaceType::class,
                 'entry_options' => [
@@ -30,8 +30,11 @@ class RevisionType extends AbstractType
                 ],
                 'allow_add' => true,
                 'allow_delete' => true,
+                'allow_move_up' => true,
+                'allow_move_down' => true,
+                'render_expanded' => false,
             ])
-            ->add('transitions', CollectionType::class, [
+            ->add('transitions', CollectionJsType::class, [
                 'label' => 'Transitions',
                 'entry_type' => TransitionType::class,
                 'entry_options' => [
@@ -39,6 +42,9 @@ class RevisionType extends AbstractType
                 ],
                 'allow_add' => true,
                 'allow_delete' => true,
+                'allow_move_up' => true,
+                'allow_move_down' => true,
+                'render_expanded' => false,
             ])
         ;
     }

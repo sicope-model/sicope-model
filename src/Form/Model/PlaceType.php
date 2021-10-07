@@ -12,11 +12,11 @@
 namespace App\Form\Model;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Tienvx\Bundle\MbtBundle\ValueObject\Model\Place;
+use Tienvx\UX\CollectionJs\Form\CollectionJsType;
 
 class PlaceType extends AbstractType
 {
@@ -32,7 +32,7 @@ class PlaceType extends AbstractType
                     'data-controller' => 'place-label',
                 ],
             ])
-            ->add('commands', CollectionType::class, [
+            ->add('commands', CollectionJsType::class, [
                 'label' => 'Commands',
                 'entry_type' => CommandType::class,
                 'entry_options' => [
@@ -40,6 +40,10 @@ class PlaceType extends AbstractType
                 ],
                 'allow_add' => true,
                 'allow_delete' => true,
+                'allow_move_up' => true,
+                'allow_move_down' => true,
+                'render_expanded' => false,
+                'required' => false,
             ])
         ;
     }
