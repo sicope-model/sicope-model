@@ -25,8 +25,11 @@ use Tienvx\Bundle\MbtBundle\Entity\Task;
 
 class TaskCrudController extends AbstractCrudController
 {
-    public function __construct(private HttpClientInterface $client, private string $statusUri, private BrowserFormatter $formatter)
-    {
+    public function __construct(
+        private HttpClientInterface $client,
+        private string $statusUri,
+        private BrowserFormatter $formatter
+    ) {
     }
 
     public static function getEntityFqcn(): string
@@ -38,6 +41,7 @@ class TaskCrudController extends AbstractCrudController
     {
         yield IdField::new('id')->onlyOnDetail();
         yield TextField::new('title');
+        yield IdField::new('author')->hideOnForm();
         yield AssociationField::new('modelRevision', 'Model')
             ->setQueryBuilder(function (QueryBuilder $queryBuilder) {
                 $qb = $queryBuilder->getEntityManager()->createQueryBuilder();

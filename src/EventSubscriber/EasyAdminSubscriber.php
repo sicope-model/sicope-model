@@ -15,9 +15,10 @@ use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Core\Security;
+use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Entity\Task;
 
-class TaskEventSubscriber implements EventSubscriberInterface
+class EasyAdminSubscriber implements EventSubscriberInterface
 {
     private Security $security;
 
@@ -29,15 +30,15 @@ class TaskEventSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            BeforeEntityPersistedEvent::class => ['setTaskAuthor'],
+            BeforeEntityPersistedEvent::class => ['setAuthor'],
         ];
     }
 
-    public function setTaskAuthor(BeforeEntityPersistedEvent $event)
+    public function setAuthor(BeforeEntityPersistedEvent $event)
     {
         $entity = $event->getEntityInstance();
 
-        if (!($entity instanceof Task)) {
+        if (!($entity instanceof Task) && !($entity instanceof Model)) {
             return;
         }
 
