@@ -67,8 +67,8 @@ class ModelCrudController extends AbstractCrudController
             ->setFormTypeOptions([
                 'label' => false,
                 'attr' => [
-                    'data-controller' => 'places',
-                    'data-action' => 'place-label:added->places#addOption place-label:removed@window->places#removeOption place-label:updated->places#updateOption places-select:added->places#setOptions',
+                    'data-controller' => $controller = 'places',
+                    'data-action' => $this->getAction($controller),
                 ],
             ])
             ->setRequired(true)
@@ -158,5 +158,19 @@ class ModelCrudController extends AbstractCrudController
         return $this->render('importModel.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    private function getAction(string $controller): string
+    {
+        $events = [
+            'post-add' => 'addItem',
+            'post-delete' => 'deleteItem',
+        ];
+        $actions = [];
+        foreach ($events as $event => $action) {
+            $actions[] = "tienvx--ux-collection-js--collection:{$event}->{$controller}#{$action}";
+        }
+
+        return implode(' ', $actions);
     }
 }

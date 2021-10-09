@@ -33,6 +33,7 @@ class RevisionType extends AbstractType
                 'allow_move_up' => true,
                 'allow_move_down' => true,
                 'render_expanded' => false,
+                'call_post_add_on_init' => true,
             ])
             ->add('transitions', CollectionJsType::class, [
                 'label' => 'Transitions',
@@ -45,6 +46,7 @@ class RevisionType extends AbstractType
                 'allow_move_up' => true,
                 'allow_move_down' => true,
                 'render_expanded' => false,
+                'call_post_add_on_init' => true,
             ])
         ;
     }
