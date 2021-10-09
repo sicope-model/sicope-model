@@ -27,6 +27,7 @@ class TransitionType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $controller = 'places';
         $builder
             ->add('label', TextType::class, [
                 'label' => 'Label',
@@ -57,7 +58,7 @@ class TransitionType extends AbstractType
                 'label' => 'From Places',
                 'attr' => [
                     'class' => 'places-select',
-                    'data-places-target' => 'placesSelect',
+                    "data-{$controller}-target" => 'placesSelect',
                 ],
                 'required' => false,
             ])
@@ -65,7 +66,7 @@ class TransitionType extends AbstractType
                 'label' => 'To Places',
                 'attr' => [
                     'class' => 'places-select',
-                    'data-places-target' => 'placesSelect',
+                    "data-{$controller}-target" => 'placesSelect',
                 ],
                 'required' => true,
             ])
