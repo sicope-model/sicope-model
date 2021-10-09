@@ -38,6 +38,7 @@ class CommandType extends AbstractType
                 'label_attr' => ['class' => 'required'],
                 'attr' => [
                     'required' => 'required',
+                    'data-controller' => 'select',
                 ],
             ])
             ->add('target', TextType::class, [
