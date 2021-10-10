@@ -977,6 +977,8 @@
 
 "@tienvx/ux-collection-js@file:vendor/tienvx/ux-collection-js/src/Resources/assets":
   version "1.0.0"
+  dependencies:
+    symfony-collection-js "4.2.0-js-only"
 
 "@trysound/sax@0.2.0":
   version "0.2.0"

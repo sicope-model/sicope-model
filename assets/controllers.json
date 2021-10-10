@@ -11,7 +11,7 @@
                 "enabled": true,
                 "fetch": "eager",
                 "autoimport": {
-                  "@tienvx/ux-collection-js/src/style.css": true
+                    "@tienvx/ux-collection-js/src/style.css": true
                 }
             }
         }

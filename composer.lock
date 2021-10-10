@@ -8710,16 +8710,16 @@
         },
         {
             "name": "tienvx/ux-collection-js",
-            "version": "v1.0.0-alpha.18",
+            "version": "v1.0.0-alpha.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/ux-collection-js.git",
-                "reference": "37fa98166d6c396c4d7fefe00f164d0ddbfa78e7"
+                "reference": "009127724f302eb94569addcb1d646b3e3a29fed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/ux-collection-js/zipball/37fa98166d6c396c4d7fefe00f164d0ddbfa78e7",
-                "reference": "37fa98166d6c396c4d7fefe00f164d0ddbfa78e7",
+                "url": "https://api.github.com/repos/tienvx/ux-collection-js/zipball/009127724f302eb94569addcb1d646b3e3a29fed",
+                "reference": "009127724f302eb94569addcb1d646b3e3a29fed",
                 "shasum": ""
             },
             "require": {
@@ -8772,9 +8772,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/ux-collection-js/issues",
-                "source": "https://github.com/tienvx/ux-collection-js/tree/v1.0.0-alpha.18"
+                "source": "https://github.com/tienvx/ux-collection-js/tree/v1.0.0-alpha.19"
             },
-            "time": "2021-10-10T04:48:05+00:00"
+            "time": "2021-10-10T06:37:48+00:00"
         },
         {
             "name": "twig/extra-bundle",
