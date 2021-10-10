@@ -52,6 +52,7 @@ class TransitionType extends AbstractType
                 'allow_move_up' => true,
                 'allow_move_down' => true,
                 'required' => false,
+                'prototype_name' => '__command__',
             ])
             ->add('fromPlaces', TextType::class, [
                 'label' => 'From Places',
