@@ -51,7 +51,6 @@ class TransitionType extends AbstractType
                 'allow_delete' => true,
                 'allow_move_up' => true,
                 'allow_move_down' => true,
-                'render_expanded' => false,
                 'required' => false,
             ])
             ->add('fromPlaces', TextType::class, [
