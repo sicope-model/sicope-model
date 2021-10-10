@@ -167,8 +167,9 @@ class ModelCrudController extends AbstractCrudController
             'post-delete' => 'deleteItem',
         ];
         $actions = [];
+        $namespace = 'ux-collection-js';
         foreach ($events as $event => $action) {
-            $actions[] = "tienvx--ux-collection-js--collection:{$event}->{$controller}#{$action}";
+            $actions[] = "{$namespace}:{$event}->{$controller}#{$action}";
         }
 
         return implode(' ', $actions);

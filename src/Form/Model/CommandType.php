@@ -44,6 +44,7 @@ class CommandType extends AbstractType
             ->add('target', TextType::class, [
                 'label' => 'Target',
                 'required' => false,
+                'help' => "e.g. 'id=email', 'name=userName', 'css=input[name=lastName]' or 'xpath=//form[@name=\"Account\"]'",
             ])
             ->add('value', TextType::class, [
                 'label' => 'Value',
