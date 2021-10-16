@@ -55,6 +55,7 @@ WORKDIR /srv/app
 COPY package.json webpack.config.js yarn.lock /srv/app/
 COPY assets /srv/app/assets
 COPY --from=build_worker /srv/app/vendor/symfony/ux-chartjs/Resources/assets /srv/app/vendor/symfony/ux-chartjs/Resources/assets
+COPY --from=build_worker /srv/app/vendor/tienvx/ux-collection-js/src/Resources/assets /srv/app/vendor/tienvx/ux-collection-js/src/Resources/assets
 
 RUN yarn install; \
 	yarn run encore production;
