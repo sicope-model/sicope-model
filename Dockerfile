@@ -140,3 +140,13 @@ WORKDIR /srv/app
 
 COPY --from=build_admin /srv/app/public public/
 COPY docker/caddy/Caddyfile /etc/caddy/Caddyfile
+
+# Dockerfile
+FROM build_admin as build_admin_debug
+
+ARG XDEBUG_VERSION=3.1.1
+RUN set -eux; \
+	apk add --no-cache --virtual .build-deps $PHPIZE_DEPS; \
+	pecl install xdebug-$XDEBUG_VERSION; \
+	docker-php-ext-enable xdebug; \
+	apk del .build-deps
