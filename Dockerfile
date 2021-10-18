@@ -55,6 +55,7 @@ WORKDIR /srv/app
 COPY package.json webpack.config.js yarn.lock /srv/app/
 COPY assets /srv/app/assets
 COPY --from=build_worker /srv/app/vendor/symfony/ux-chartjs/Resources/assets /srv/app/vendor/symfony/ux-chartjs/Resources/assets
+COPY --from=build_worker /srv/app/vendor/tienvx/ux-collection-js/src/Resources/assets /srv/app/vendor/tienvx/ux-collection-js/src/Resources/assets
 
 RUN yarn install; \
 	yarn run encore production;
@@ -139,3 +140,13 @@ WORKDIR /srv/app
 
 COPY --from=build_admin /srv/app/public public/
 COPY docker/caddy/Caddyfile /etc/caddy/Caddyfile
+
+# Dockerfile
+FROM build_admin as build_admin_debug
+
+ARG XDEBUG_VERSION=3.1.1
+RUN set -eux; \
+	apk add --no-cache --virtual .build-deps $PHPIZE_DEPS; \
+	pecl install xdebug-$XDEBUG_VERSION; \
+	docker-php-ext-enable xdebug; \
+	apk del .build-deps

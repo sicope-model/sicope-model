@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "74ab6aee974d9690a0e5b8dfaf4d0daf",
+    "content-hash": "e3bcbf07a28ae963673116a8ae6fbab7",
     "packages": [
         {
             "name": "beberlei/doctrineextensions",
@@ -8710,30 +8710,33 @@
         },
         {
             "name": "tienvx/ux-collection-js",
-            "version": "v1.0.0-alpha.20",
+            "version": "v1.0.0-beta.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/ux-collection-js.git",
-                "reference": "9a87d8b56af78280567e70622c70f0c412e24682"
+                "reference": "295cf68595db8e4651a620e1af236fb2a06930a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/ux-collection-js/zipball/9a87d8b56af78280567e70622c70f0c412e24682",
-                "reference": "9a87d8b56af78280567e70622c70f0c412e24682",
+                "url": "https://api.github.com/repos/tienvx/ux-collection-js/zipball/295cf68595db8e4651a620e1af236fb2a06930a1",
+                "reference": "295cf68595db8e4651a620e1af236fb2a06930a1",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4|^8.0",
+                "symfony/config": "^4.4|^5.0",
                 "symfony/dependency-injection": "^4.4.17|^5.0",
                 "symfony/form": "^4.4.17|^5.0",
-                "symfony/http-kernel": "^4.4.17|^5.0"
+                "symfony/http-kernel": "^4.4.17|^5.0",
+                "twig/twig": "^2.12|^3.0"
             },
             "conflict": {
                 "symfony/flex": "<1.13"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5",
-                "symfony/framework-bundle": "^4.4.17|^5.0"
+                "symfony/framework-bundle": "^4.4.17|^5.0",
+                "symfony/twig-bundle": "^4.4.17|^5.0"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -8772,9 +8775,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/ux-collection-js/issues",
-                "source": "https://github.com/tienvx/ux-collection-js/tree/v1.0.0-alpha.20"
+                "source": "https://github.com/tienvx/ux-collection-js/tree/v1.0.0-beta.1"
             },
-            "time": "2021-10-10T07:28:04+00:00"
+            "time": "2021-10-16T06:49:01+00:00"
         },
         {
             "name": "twig/extra-bundle",
@@ -11208,7 +11211,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "tienvx/mbt-bundle": 15,
-        "tienvx/ux-collection-js": 15
+        "tienvx/ux-collection-js": 10
     },
     "prefer-stable": true,
     "prefer-lowest": false,

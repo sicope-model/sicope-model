@@ -70,6 +70,7 @@ class ModelCrudController extends AbstractCrudController
                     'data-controller' => $controller = 'places',
                     'data-action' => $this->getAction($controller),
                 ],
+                'by_reference' => false,
             ])
             ->setRequired(true)
             ->setDefaultColumns('col-md-8 col-xxl-7');

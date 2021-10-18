@@ -19,6 +19,16 @@ docker-compose exec worker php bin/console app:add-user
 
 Visit [Admin](http://localhost) to create first model.
 
+## Debug
+
+Run:
+
+```shell
+docker-compose --env-file docker/.env -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.debug.yml up -d
+```
+
+For more information, see [Xdebug](https://github.com/dunglas/symfony-docker/blob/main/docs/xdebug.md)
+
 ## Production
 
 Set values for these environment variables:
