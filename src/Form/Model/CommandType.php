@@ -38,7 +38,7 @@ class CommandType extends AbstractType
                 'label_attr' => ['class' => 'required'],
                 'attr' => [
                     'required' => 'required',
-                    'data-controller' => 'select',
+                    'data-controller' => 'select accordion-label',
                 ],
             ])
             ->add('target', TextType::class, [

@@ -35,6 +35,7 @@ class TransitionType extends AbstractType
                 'label_attr' => ['class' => 'required'],
                 'attr' => [
                     'required' => true,
+                    'data-controller' => 'accordion-label',
                 ],
             ])
             ->add('guard', TextType::class, [
