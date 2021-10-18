@@ -30,6 +30,7 @@ class PlaceType extends AbstractType
                 'attr' => [
                     'required' => true,
                     'class' => 'place-label',
+                    'data-controller' => 'accordion-label',
                 ],
             ])
             ->add('commands', CollectionJsType::class, [
