@@ -10,40 +10,40 @@
         }
     },
     "chrome": {
-        "default": "93.0",
+        "default": "94.0",
         "versions": {
-            "91.0": {
-                "image": "selenoid/vnc:chrome_93.0",
+            "94.0": {
+                "image": "selenoid/vnc_chrome:94.0",
                 "port": "4444",
                 "path": "/"
             }
         }
     },
     "firefox": {
-        "default": "92.0",
+        "default": "93.0",
         "versions": {
-            "90.0": {
-                "image": "selenoid/vnc:firefox_92.0",
+            "93.0": {
+                "image": "selenoid/vnc_firefox:93.0",
                 "port": "4444",
                 "path": "/wd/hub"
             }
         }
     },
     "edge": {
-        "default": "94.0",
+        "default": "95.0",
         "versions": {
-            "93.0": {
-                "image": "browsers/edge:94.0",
+            "95.0": {
+                "image": "browsers/edge:95.0",
                 "port": "4444",
                 "path": "/"
             }
         }
     },
     "opera": {
-        "default": "79.0",
+        "default": "80.0",
         "versions": {
-            "77.0": {
-                "image": "selenoid/vnc:opera_79.0",
+            "80.0": {
+                "image": "selenoid/vnc_opera:80.0",
                 "port": "4444",
                 "path": "/"
             }
