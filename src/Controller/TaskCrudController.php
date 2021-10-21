@@ -44,12 +44,18 @@ class TaskCrudController extends AbstractCrudController
         yield IdField::new('author')->hideOnForm();
         yield AssociationField::new('modelRevision', 'Model')
             ->setQueryBuilder(function (QueryBuilder $queryBuilder) {
-                $qb = $queryBuilder->getEntityManager()->createQueryBuilder();
-
-                return $qb
-                    ->select('m.activeRevision')
-                    ->from(Model::class, 'm')
-                    ->orderBy('m.label', 'DESC');
+                return $queryBuilder
+                    ->select('r')
+                    ->from(Revision::class, 'r')
+                    ->where($queryBuilder->expr()->in(
+                        'r.id',
+                        $queryBuilder
+                            ->getEntityManager()
+                            ->createQueryBuilder()
+                            ->select('IDENTITY(m.activeRevision)')
+                            ->from(Model::class, 'm')
+                            ->getDQL()
+                    ));
             })
             ->setRequired(true)
         ;
