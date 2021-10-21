@@ -16,6 +16,7 @@ use App\Service\BrowserFormatter;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -41,6 +42,7 @@ class TaskCrudController extends AbstractCrudController
     {
         yield IdField::new('id')->onlyOnDetail();
         yield TextField::new('title');
+        yield BooleanField::new('running')->setDisabled(true);
         yield IdField::new('author')->hideOnForm();
         yield AssociationField::new('modelRevision', 'Model')
             ->setQueryBuilder(function (QueryBuilder $queryBuilder) {
