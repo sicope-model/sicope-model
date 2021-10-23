@@ -57,7 +57,7 @@ services:
       - "4444:4444"
 
   selenoid-ui:
-    image: "aerokube/selenoid-ui"
+    image: aerokube/selenoid-ui:latest
     restart: unless-stopped
     ports:
       - "8080:8080"
