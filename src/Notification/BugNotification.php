@@ -32,12 +32,12 @@ class BugNotification extends Notification implements ChatNotificationInterface,
     protected BugInterface $bug;
     protected string $emailSender;
 
-    public function __construct(BugInterface $bug, string $mailSenderAddress)
+    public function __construct(BugInterface $bug, string $mailSenderAddress, array $channels)
     {
         $this->bug = $bug;
         $this->emailSender = $mailSenderAddress;
 
-        parent::__construct('New bug found');
+        parent::__construct('New bug found', $channels);
     }
 
     public function asChatMessage(RecipientInterface $recipient, ?string $transport = null): ?ChatMessage

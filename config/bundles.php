@@ -17,4 +17,5 @@ return [
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     Symfony\UX\Chartjs\ChartjsBundle::class => ['all' => true],
     Tienvx\UX\CollectionJs\CollectionJsBundle::class => ['all' => true],
+    Craue\ConfigBundle\CraueConfigBundle::class => ['all' => true],
 ];

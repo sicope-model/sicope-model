@@ -11,8 +11,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Config;
-use App\Service\ConfigBag;
+use App\Service\Config;
+use Craue\ConfigBundle\Entity\Setting;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -22,6 +22,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -36,14 +37,14 @@ class ConfigCrudController extends AbstractCrudController
         private GeneratorManagerInterface $generatorManager,
         private ReducerManagerInterface $reducerManager,
         private ChannelManagerInterface $channelManager,
-        private ConfigBag $bag,
+        private Config $config,
         private TranslatorInterface $translator
     ) {
     }
 
     public static function getEntityFqcn(): string
     {
-        return Config::class;
+        return Setting::class;
     }
 
     public function configureFields(string $pageName): iterable
@@ -51,11 +52,12 @@ class ConfigCrudController extends AbstractCrudController
         $generators = $this->generatorManager->all();
         $reducers = $this->reducerManager->all();
         $channels = $this->channelManager->all();
-        yield ChoiceField::new('generator', 'Generator')->setChoices($this->translate($generators))->setRequired(true);
-        yield ChoiceField::new('reducer', 'Reducer')->setChoices($this->translate($reducers))->setRequired(true);
-        yield BooleanField::new('report_bug', 'Report Bug');
-        yield BooleanField::new('notify_author', 'Notify Author');
-        yield ChoiceField::new('notify_channels', 'Notify Channels')->setChoices($this->translate($channels))->allowMultipleChoices();
+        yield ChoiceField::new(Config::GENERATOR, 'Generator')->setChoices($this->translate($generators))->setRequired(true);
+        yield ChoiceField::new(Config::REDUCER, 'Reducer')->setChoices($this->translate($reducers))->setRequired(true);
+        yield BooleanField::new(Config::REPORT_BUG, 'Report Bug');
+        yield BooleanField::new(Config::NOTIFY_AUTHOR, 'Notify Author');
+        yield ChoiceField::new(Config::NOTIFY_CHANNELS, 'Notify Channels')->setChoices($this->translate($channels))->allowMultipleChoices();
+        yield IntegerField::new(Config::MAX_STEPS, 'Max Steps');
     }
 
     public function configureActions(Actions $actions): Actions
@@ -67,12 +69,12 @@ class ConfigCrudController extends AbstractCrudController
     {
         $formOptions->set('data_class', null);
 
-        return parent::createEditForm($entityDto, $formOptions, $context)->setData($this->bag->getAll());
+        return parent::createEditForm($entityDto, $formOptions, $context)->setData($this->config->getAll());
     }
 
     protected function processUploadedFiles(FormInterface $form): void
     {
-        $this->bag->saveForm($form);
+        $this->config->saveForm($form);
     }
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void

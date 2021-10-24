@@ -11,8 +11,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Config;
 use App\Entity\User;
+use Craue\ConfigBundle\Entity\Setting;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -92,7 +92,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Bugs', 'fa fa-bug', Bug::class);
         yield MenuItem::linkToCrud('Users', 'fa fa-users', User::class)
             ->setPermission('ROLE_ADMIN');
-        yield MenuItem::linkToCrud('Config', 'fa fa-cogs', Config::class)
+        yield MenuItem::linkToCrud('Config', 'fa fa-cogs', Setting::class)
             ->setPermission('ROLE_ADMIN')
             ->setAction(Action::EDIT);
     }

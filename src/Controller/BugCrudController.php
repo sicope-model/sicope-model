@@ -29,6 +29,7 @@ class BugCrudController extends AbstractCrudController
     {
         yield IdField::new('id')->onlyOnDetail();
         yield TextField::new('title');
+        yield TextField::new('message');
     }
 
     public function configureActions(Actions $actions): Actions
