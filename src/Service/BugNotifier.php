@@ -20,6 +20,7 @@ use Symfony\Component\Notifier\Recipient\NoRecipient;
 use Symfony\Component\Notifier\Recipient\Recipient;
 use Symfony\Component\Notifier\Recipient\RecipientInterface;
 use Tienvx\Bundle\MbtBundle\Model\BugInterface;
+use Tienvx\Bundle\MbtBundle\Model\TaskInterface;
 use Tienvx\Bundle\MbtBundle\Service\Bug\BugNotifierInterface;
 
 class BugNotifier implements BugNotifierInterface
@@ -34,17 +35,21 @@ class BugNotifier implements BugNotifierInterface
 
     public function notify(BugInterface $bug): void
     {
-        $this->notifier->send(
-            new BugNotification($bug, $this->emailSender),
-            $this->config->shouldNotifyAuthor() && $bug->getTask()->getAuthor()
-                ? $this->getRecipient($bug->getTask()->getAuthor())
-                : new NoRecipient()
-        );
+        if ($channels = $this->config->getNotifyChannels()) {
+            $this->notifier->send(
+                new BugNotification($bug, $this->emailSender, $channels),
+                $this->getRecipient($bug->getTask(), $channels)
+            );
+        }
     }
 
-    protected function getRecipient(int $userId): RecipientInterface
+    protected function getRecipient(TaskInterface $task, array $channels): RecipientInterface
     {
-        $user = $this->userRepository->find($userId);
+        if (!$this->config->shouldNotifyAuthor() || !$task->getAuthor() || !\in_array('email', $channels)) {
+            return new NoRecipient();
+        }
+
+        $user = $this->userRepository->find($task->getAuthor());
         if (!$user instanceof User) {
             throw new RuntimeException('Task author not found');
         }
