@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     app.notifications.email_sender: anonymous@example.com
+    db_extension: '%env(DB_EXTENSION)%'
 
 services:
     # default configuration for services in *this* file

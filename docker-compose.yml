@@ -18,6 +18,7 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@${POSTGRES_HOST:-database}:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-13}&charset=UTF-8
       STATUS_URI: ${STATUS_URI:-http://selenoid:4444}
       MAILER_DSN: ${MAILER_DSN:-smtp://mailer:1025}
+      DB_EXTENSION: Postgresql
 
   worker:
     image: tienvx/sicope-model-worker:${TAG:-lastest}
@@ -29,6 +30,7 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@${POSTGRES_HOST:-database}:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-13}&charset=UTF-8
       WEBDRIVER_URI: ${WEBDRIVER_URI:-http://selenoid:4444}
       MAILER_DSN: ${MAILER_DSN:-smtp://mailer:1025}
+      DB_EXTENSION: Postgresql
 
   caddy:
     image: tienvx/sicope-model-caddy:${TAG:-lastest}
