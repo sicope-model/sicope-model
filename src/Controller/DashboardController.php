@@ -11,6 +11,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Error;
 use App\Entity\User;
 use Craue\ConfigBundle\Entity\Setting;
 use Doctrine\ORM\EntityManagerInterface;
@@ -91,6 +92,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Models', 'fa fa-project-diagram', Model::class);
         yield MenuItem::linkToCrud('Bugs', 'fa fa-bug', Bug::class);
         yield MenuItem::linkToCrud('Users', 'fa fa-users', User::class)
+            ->setPermission('ROLE_ADMIN');
+        yield MenuItem::linkToCrud('Errors', 'fa fa-exclamation-circle', Error::class)
             ->setPermission('ROLE_ADMIN');
         yield MenuItem::linkToCrud('Config', 'fa fa-cogs', Setting::class)
             ->setPermission('ROLE_ADMIN')
