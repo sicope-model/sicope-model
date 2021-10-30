@@ -12,7 +12,7 @@
 namespace App\Controller;
 
 use App\Form\Task\BrowserType;
-use App\Service\BrowserFormatter;
+use App\Service\SessionHelper;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -27,7 +27,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Entity\Model\Revision;
 use Tienvx\Bundle\MbtBundle\Entity\Task;
@@ -36,11 +36,8 @@ use Tienvx\Bundle\MbtBundle\Model\TaskInterface;
 
 class TaskCrudController extends AbstractCrudController
 {
-    public function __construct(
-        private HttpClientInterface $client,
-        private string $statusUri,
-        private BrowserFormatter $formatter
-    ) {
+    public function __construct(private SessionHelper $sessionHelper, private TranslatorInterface $translator)
+    {
     }
 
     public static function getEntityFqcn(): string
@@ -71,8 +68,15 @@ class TaskCrudController extends AbstractCrudController
             })
             ->setRequired(true)
         ;
+        $browserChoices = $this->sessionHelper->getBrowserChoices();
+        $browserCount = $this->getBrowserCount($browserChoices);
         yield ChoiceField::new('browser', 'Browser')
-            ->setChoices($this->getBrowserChoices())
+            ->setChoices($browserChoices)
+            ->setFormTypeOption('group_by', function ($choice) use ($browserCount): ?string {
+                [$browser] = explode(':', $choice);
+
+                return $browserCount[$browser] > 1 ? $this->translator->trans($browser) : null;
+            })
             ->setFormType(BrowserType::class)
             ->setRequired(true)
         ;
@@ -109,25 +113,14 @@ class TaskCrudController extends AbstractCrudController
         return $this->redirect($this->get(AdminUrlGenerator::class)->setAction(Action::INDEX)->generateUrl());
     }
 
-    private function getBrowserChoices(): array
+    protected function getBrowserCount(array $browserChoices): array
     {
-        $response = $this->client->request(
-            'GET',
-            rtrim($this->statusUri, '/') . '/status'
-        );
-        $choices = [];
-
-        foreach ($response->toArray()['browsers'] ?? [] as $name => $versions) {
-            if (1 === \count($versions)) {
-                $version = key($versions);
-                $choices[$this->formatter->format($name, $version)] = sprintf('%s:%s', $name, $version);
-            } else {
-                foreach ($versions as $version => $session) {
-                    $choices[$name][$this->formatter->format($name, $version)] = sprintf('%s:%s', $name, $version);
-                }
-            }
+        $browserCount = [];
+        foreach ($browserChoices as $choice) {
+            [$browser] = explode(':', $choice);
+            $browserCount[$browser] = isset($browserCount[$browser]) ? ++$browserCount[$browser] : 1;
         }
 
-        return $choices;
+        return $browserCount;
     }
 }
