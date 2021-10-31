@@ -21,6 +21,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\HiddenField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -75,6 +76,7 @@ class ModelCrudController extends AbstractCrudController
             ->setRequired(true)
             ->setDefaultColumns('col-md-8 col-xxl-7');
         yield UrlField::new('image', 'Image')->setTemplatePath('field/modelImage.html.twig')->onlyOnDetail();
+        yield DateTimeField::new('createdAt', 'Created At')->hideOnForm();
     }
 
     public function configureActions(Actions $actions): Actions

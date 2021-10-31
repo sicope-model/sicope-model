@@ -22,6 +22,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
@@ -80,6 +81,7 @@ class TaskCrudController extends AbstractCrudController
             ->setFormType(BrowserType::class)
             ->setRequired(true)
         ;
+        yield DateTimeField::new('createdAt', 'Created At')->hideOnForm();
     }
 
     public function configureActions(Actions $actions): Actions
