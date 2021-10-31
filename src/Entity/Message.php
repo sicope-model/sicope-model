@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Index(fields: ['queueName'])]
 #[ORM\Index(fields: ['availableAt'])]
 #[ORM\Index(fields: ['deliveredAt'])]
-class Error
+class Message
 {
     #[ORM\Id, ORM\Column(type: 'bigint', nullable: false, options: ['autoincrement' => true]), ORM\GeneratedValue()]
     private int $id;
