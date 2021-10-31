@@ -14,7 +14,7 @@
 {% block main %}
     <main>
 
-        <div class="content">
+        <div class="content" data-controller="dashboard">
             <div class="row">
                 <div class="col-md-12 page-header">
                     <h2 class="page-title">Dashboard</h2>
@@ -87,8 +87,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="content">
+                            <div class="head">
+                                <h5 class="mb-0">Messages</h5>
+                                <p class="text-muted">Messages in the last 30 seconds</p>
+                            </div>
+                            <div class="canvas-wrapper">
+                                {{ render_chart(messageChart, {'class': 'message-chart'}) }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6" data-controller="sessions">
+                <div class="col-md-6">
                     <div class="card">
                         <div class="content">
                             <div class="head">
@@ -108,7 +119,7 @@
                                                 <div class="col-sm-8">
                                                     <div class="detail">
                                                         <p class="detail-subtitle">Total</p>
-                                                        <span class="number" data-sessions-target="total">{{ sessions.total }}</span>
+                                                        <span class="number" data-dashboard-target="total">{{ sessions.total }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -127,7 +138,7 @@
                                                 <div class="col-sm-8">
                                                     <div class="detail">
                                                         <p class="detail-subtitle">Used</p>
-                                                        <span class="number" data-sessions-target="used">{{ sessions.used }}</span>
+                                                        <span class="number" data-dashboard-target="used">{{ sessions.used }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -146,7 +157,7 @@
                                                 <div class="col-sm-8">
                                                     <div class="detail">
                                                         <p class="detail-subtitle">Queued</p>
-                                                        <span class="number" data-sessions-target="queued">{{ sessions.queued }}</span>
+                                                        <span class="number" data-dashboard-target="queued">{{ sessions.queued }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -165,7 +176,7 @@
                                                 <div class="col-sm-8">
                                                     <div class="detail">
                                                         <p class="detail-subtitle">Pending</p>
-                                                        <span class="number" data-sessions-target="pending">{{ sessions.pending }}</span>
+                                                        <span class="number" data-dashboard-target="pending">{{ sessions.pending }}</span>
                                                     </div>
                                                 </div>
                                             </div>

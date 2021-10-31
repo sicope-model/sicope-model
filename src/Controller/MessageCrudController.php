@@ -11,7 +11,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Error;
+use App\Entity\Message;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
@@ -38,7 +38,7 @@ use Symfony\Component\Messenger\Transport\Serialization\PhpSerializer;
 use Symfony\Component\Messenger\Transport\Serialization\SerializerInterface;
 
 #[IsGranted('ROLE_ADMIN')]
-class ErrorCrudController extends AbstractCrudController
+class MessageCrudController extends AbstractCrudController
 {
     public function __construct(private SerializerInterface $serializer)
     {
@@ -47,7 +47,7 @@ class ErrorCrudController extends AbstractCrudController
 
     public static function getEntityFqcn(): string
     {
-        return Error::class;
+        return Message::class;
     }
 
     public function configureFields(string $pageName): iterable
@@ -55,7 +55,7 @@ class ErrorCrudController extends AbstractCrudController
         yield IdField::new('id')->hideOnForm();
         yield TextField::new('body')
             ->hideOnForm()
-            ->formatValue(function (string $body, Error $error): string {
+            ->formatValue(function (string $body, Message $error): string {
                 $envelope = $this->serializer->decode([
                     'body' => $error->getBody(),
                     'headers' => $error->getHeaders(),

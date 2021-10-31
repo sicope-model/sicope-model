@@ -11,8 +11,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Error;
+use App\Entity\Message;
 use App\Entity\User;
+use App\Repository\MessageRepository;
 use App\Service\SessionHelper;
 use Craue\ConfigBundle\Entity\Setting;
 use Doctrine\ORM\EntityManagerInterface;
@@ -63,7 +64,8 @@ class DashboardController extends AbstractDashboardController
     public function __construct(
         private ChartBuilderInterface $chartBuilder,
         private EntityManagerInterface $entityManager,
-        private SessionHelper $sessionHelper
+        private SessionHelper $sessionHelper,
+        private MessageRepository $messageRepository
     ) {
     }
 
@@ -73,6 +75,7 @@ class DashboardController extends AbstractDashboardController
         return $this->render('dashboard.html.twig', [
             'overviewChart' => $this->getOverviewChart(),
             'sessionChart' => $this->getSessionChart(),
+            'messageChart' => $this->getMessageChart(),
             'bugs' => $this->getCount(Bug::class),
             'tasks' => $this->getCount(Task::class),
             'models' => $this->getCount(Model::class),
@@ -81,10 +84,16 @@ class DashboardController extends AbstractDashboardController
         ]);
     }
 
-    #[Route('/sessions', name: 'app_sessions')]
-    public function sessions(): JsonResponse
+    #[Route('/status', name: 'app_status')]
+    public function status(): JsonResponse
     {
-        return new JsonResponse($this->sessionHelper->getSessionStatistics());
+        return new JsonResponse([
+            'sessions' => $this->sessionHelper->getSessionStatistics(),
+            'messages' => [
+                'all' => $this->messageRepository->countAll(),
+                'errors' => $this->messageRepository->countErrors(),
+            ],
+        ]);
     }
 
     public function configureDashboard(): Dashboard
@@ -103,7 +112,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Bugs', 'fa fa-bug', Bug::class);
         yield MenuItem::linkToCrud('Users', 'fa fa-users', User::class)
             ->setPermission('ROLE_ADMIN');
-        yield MenuItem::linkToCrud('Errors', 'fa fa-exclamation-circle', Error::class)
+        yield MenuItem::linkToCrud('Errors', 'fa fa-exclamation-circle', Message::class)
             ->setPermission('ROLE_ADMIN');
         yield MenuItem::linkToCrud('Config', 'fa fa-cogs', Setting::class)
             ->setPermission('ROLE_ADMIN')
@@ -216,6 +225,34 @@ class DashboardController extends AbstractDashboardController
                     'fill' => true,
                     'borderWidth' => 1,
                     'borderColor' => '#f2711c',
+                ],
+            ],
+        ]);
+
+        $chart->setOptions(static::OPTIONS);
+
+        return $chart;
+    }
+
+    private function getMessageChart(): Chart
+    {
+        $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
+        $chart->setData([
+            'labels' => [],
+            'datasets' => [
+                [
+                    'label' => 'All',
+                    'data' => [],
+                    'fill' => true,
+                    'borderWidth' => 1,
+                    'borderColor' => '#2185d0',
+                ],
+                [
+                    'label' => 'Error',
+                    'data' => [],
+                    'fill' => true,
+                    'borderWidth' => 1,
+                    'borderColor' => '#767676',
                 ],
             ],
         ]);
