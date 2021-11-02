@@ -12,6 +12,7 @@
 namespace App\Controller;
 
 use App\Form\Task\BrowserType;
+use App\Service\DebugHelper;
 use App\Service\SessionHelper;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -23,11 +24,16 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Entity\Model\Revision;
@@ -37,8 +43,17 @@ use Tienvx\Bundle\MbtBundle\Model\TaskInterface;
 
 class TaskCrudController extends AbstractCrudController
 {
-    public function __construct(private SessionHelper $sessionHelper, private TranslatorInterface $translator)
+    public function __construct(
+        private SessionHelper $sessionHelper,
+        private TranslatorInterface $translator,
+        private DebugHelper $debugHelper
+    ) {
+    }
+
+    #[Route('/task-video/{task}', name: 'app_task_video')]
+    public function taskVideo(Task $task): StreamedResponse
     {
+        return $this->debugHelper->streamVideo($task->getSession());
     }
 
     public static function getEntityFqcn(): string
@@ -82,6 +97,28 @@ class TaskCrudController extends AbstractCrudController
             ->setRequired(true)
         ;
         yield DateTimeField::new('createdAt', 'Created At')->hideOnForm();
+
+        yield FormField::addPanel('Debug');
+        yield BooleanField::new('debug', 'Debug')->onlyWhenCreating();
+        yield TextEditorField::new('session', 'Log')
+            ->onlyOnDetail()
+            ->formatValue(function ($value, TaskInterface $task) {
+                if (!$task->isDebug() || !$task->getSession()) {
+                    return null;
+                }
+
+                return $this->debugHelper->getLog($task->getSession());
+            });
+        yield UrlField::new('session', 'Video')
+            ->onlyOnDetail()
+            ->setTemplatePath('field/video.html.twig')
+            ->formatValue(function ($value, TaskInterface $task) {
+                if (!$task->isDebug() || !$task->getSession()) {
+                    return null;
+                }
+
+                return $this->generateUrl('app_task_video', ['task' => $task->getId()]);
+            });
     }
 
     public function configureActions(Actions $actions): Actions
