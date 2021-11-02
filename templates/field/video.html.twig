@@ -1,0 +1,8 @@
+{% if field.formattedValue %}
+    <video width="320" height="240" controls>
+        <source src="{{ field.formattedValue }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+{% else %}
+    <span class="badge badge-secondary">Null</span>
+{% endif %}
