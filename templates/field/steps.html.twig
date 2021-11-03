@@ -1,0 +1,35 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">{{ 'Transition'|trans }}</th>
+        <th scope="col">{{ 'Variables'|trans }}</th>
+        <th scope="col">{{ 'Places'|trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for index, item in field.value %}
+    <tr>
+        <th scope="row">{{ index + 1 }}</th>
+        <td>{{ entity.instance.task.modelRevision.transition(item.transition).label }}</td>
+        <td>
+            <dl class="datalist">
+                {% for key, value in item.color.values %}
+                    <div class="data-row field-text">
+                        <dt>{{ key }}</dt>
+                        <dd>{{ value }}</dd>
+                    </div>
+                {% endfor %}
+            </dl>
+        </td>
+        <td>
+            <ul>
+                {% for place, tokens in item.places %}
+                    <li>{{ entity.instance.task.modelRevision.place(place).label }}</li>
+                {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
