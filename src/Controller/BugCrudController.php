@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -50,22 +51,23 @@ class BugCrudController extends AbstractCrudController
         yield TextField::new('title');
         yield TextField::new('message');
         yield DateTimeField::new('createdAt', 'Created At')->hideOnForm();
+        yield ArrayField::new('steps', 'Steps')->setTemplatePath('field/steps.html.twig')->onlyOnDetail();
 
         yield FormField::addPanel('Debug');
         yield TextEditorField::new('session', 'Log')
             ->onlyOnDetail()
-            ->formatValue(function ($value, BugInterface $bug) {
-                if (!$bug->getSession()) {
+            ->formatValue(function (?string $session) {
+                if (!$session) {
                     return null;
                 }
 
-                return $this->debugHelper->getLog($bug->getSession());
+                return $this->debugHelper->getLog($session);
             });
         yield UrlField::new('session', 'Video')
             ->onlyOnDetail()
             ->setTemplatePath('field/video.html.twig')
-            ->formatValue(function ($value, BugInterface $bug) {
-                if (!$bug->getSession()) {
+            ->formatValue(function (?string $session, BugInterface $bug) {
+                if (!$session) {
                     return null;
                 }
 
