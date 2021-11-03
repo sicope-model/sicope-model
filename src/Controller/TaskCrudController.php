@@ -102,18 +102,18 @@ class TaskCrudController extends AbstractCrudController
         yield BooleanField::new('debug', 'Debug')->onlyWhenCreating();
         yield TextEditorField::new('session', 'Log')
             ->onlyOnDetail()
-            ->formatValue(function ($value, TaskInterface $task) {
-                if (!$task->isDebug() || !$task->getSession()) {
+            ->formatValue(function (?string $session, TaskInterface $task) {
+                if (!$task->isDebug() || !$session) {
                     return null;
                 }
 
-                return $this->debugHelper->getLog($task->getSession());
+                return $this->debugHelper->getLog($session);
             });
         yield UrlField::new('session', 'Video')
             ->onlyOnDetail()
             ->setTemplatePath('field/video.html.twig')
-            ->formatValue(function ($value, TaskInterface $task) {
-                if (!$task->isDebug() || !$task->getSession()) {
+            ->formatValue(function (?string $session, TaskInterface $task) {
+                if (!$task->isDebug() || !$session) {
                     return null;
                 }
 

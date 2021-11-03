@@ -54,18 +54,18 @@ class BugCrudController extends AbstractCrudController
         yield FormField::addPanel('Debug');
         yield TextEditorField::new('session', 'Log')
             ->onlyOnDetail()
-            ->formatValue(function ($value, BugInterface $bug) {
-                if (!$bug->getSession()) {
+            ->formatValue(function (?string $session) {
+                if (!$session) {
                     return null;
                 }
 
-                return $this->debugHelper->getLog($bug->getSession());
+                return $this->debugHelper->getLog($session);
             });
         yield UrlField::new('session', 'Video')
             ->onlyOnDetail()
             ->setTemplatePath('field/video.html.twig')
-            ->formatValue(function ($value, BugInterface $bug) {
-                if (!$bug->getSession()) {
+            ->formatValue(function (?string $session, BugInterface $bug) {
+                if (!$session) {
                     return null;
                 }
 
