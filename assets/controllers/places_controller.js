@@ -23,7 +23,7 @@ export default class extends Controller {
         if (label) {
             return this.#deletePlaceLabel(event.detail.index);
         }
-        const selects = event.detail.new_elem.querySelectorAll('.places-select');
+        const selects = event.detail.delete_elem.querySelectorAll('.places-select');
         if (selects) {
             return selects.forEach(this.#deletePlacesSelect.bind(this));
         }
