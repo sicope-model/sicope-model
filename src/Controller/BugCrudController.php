@@ -17,6 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -48,9 +49,10 @@ class BugCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id')->onlyOnDetail();
+        yield IdField::new('id')->hideOnForm();
         yield TextField::new('title');
         yield TextareaField::new('message')->setDisabled(true);
+        yield AssociationField::new('task')->hideOnForm();
         yield DateTimeField::new('createdAt', 'Created At')->hideOnForm();
         yield ArrayField::new('steps', 'Steps')->setTemplatePath('field/steps.html.twig')->onlyOnDetail();
 

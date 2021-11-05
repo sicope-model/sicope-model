@@ -49,7 +49,7 @@ class ModelCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id')->onlyOnDetail();
+        yield IdField::new('id')->hideOnForm();
         yield TextField::new('label');
         yield TextField::new('tags')
             ->setFormTypeOptions([

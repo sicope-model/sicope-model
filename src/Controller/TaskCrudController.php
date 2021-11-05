@@ -14,6 +14,7 @@ namespace App\Controller;
 use App\Form\Task\BrowserType;
 use App\Service\DebugHelper;
 use App\Service\SessionHelper;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -26,6 +27,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
@@ -39,7 +41,6 @@ use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Entity\Model\Revision;
 use Tienvx\Bundle\MbtBundle\Entity\Task;
 use Tienvx\Bundle\MbtBundle\Message\RunTaskMessage;
-use Tienvx\Bundle\MbtBundle\Model\Model\RevisionInterface;
 use Tienvx\Bundle\MbtBundle\Model\TaskInterface;
 
 class TaskCrudController extends AbstractCrudController
@@ -64,7 +65,7 @@ class TaskCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id')->onlyOnDetail();
+        yield IdField::new('id')->hideOnForm();
         yield TextField::new('title');
         yield BooleanField::new('running')->setDisabled(true);
         yield IdField::new('author')->hideOnForm();
@@ -98,6 +99,11 @@ class TaskCrudController extends AbstractCrudController
             ->setFormType(BrowserType::class)
             ->setRequired(true)
         ;
+        yield IntegerField::new('bugs', 'Number of bugs')
+            ->formatValue(function (Collection $bugs) {
+                return $bugs->count();
+            })
+            ->hideOnForm();
         yield DateTimeField::new('createdAt', 'Created At')->hideOnForm();
 
         yield FormField::addPanel('Debug')->onlyOnDetail();
