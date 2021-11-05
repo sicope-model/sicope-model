@@ -1,0 +1,1 @@
+{{ field.formattedValue }} <span class="badge bg-{{ field.value.isLatest() ? 'success' : 'danger' }}">{{ (field.value.isLatest() ? 'Latest' : 'Old')|trans }}</span>

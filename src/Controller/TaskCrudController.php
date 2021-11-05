@@ -83,6 +83,7 @@ class TaskCrudController extends AbstractCrudController
                     ));
             })
             ->setRequired(true)
+            ->setTemplatePath('field/model.html.twig')
         ;
         $browserChoices = $this->sessionHelper->getBrowserChoices();
         $browserCount = $this->getBrowserCount($browserChoices);
