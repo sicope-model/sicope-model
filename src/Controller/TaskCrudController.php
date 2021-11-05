@@ -39,6 +39,7 @@ use Tienvx\Bundle\MbtBundle\Entity\Model;
 use Tienvx\Bundle\MbtBundle\Entity\Model\Revision;
 use Tienvx\Bundle\MbtBundle\Entity\Task;
 use Tienvx\Bundle\MbtBundle\Message\RunTaskMessage;
+use Tienvx\Bundle\MbtBundle\Model\Model\RevisionInterface;
 use Tienvx\Bundle\MbtBundle\Model\TaskInterface;
 
 class TaskCrudController extends AbstractCrudController
@@ -53,7 +54,7 @@ class TaskCrudController extends AbstractCrudController
     #[Route('/task-video/{task}', name: 'app_task_video')]
     public function taskVideo(Task $task): StreamedResponse
     {
-        return $this->debugHelper->streamVideo($task->getSession());
+        return $this->debugHelper->streamVideo($task);
     }
 
     public static function getEntityFqcn(): string
@@ -99,26 +100,26 @@ class TaskCrudController extends AbstractCrudController
         ;
         yield DateTimeField::new('createdAt', 'Created At')->hideOnForm();
 
-        yield FormField::addPanel('Debug');
+        yield FormField::addPanel('Debug')->onlyOnDetail();
         yield BooleanField::new('debug', 'Debug')->onlyWhenCreating();
-        yield TextEditorField::new('session', 'Log')
+        yield TextEditorField::new('id', 'Log')
             ->onlyOnDetail()
-            ->formatValue(function (?string $session, TaskInterface $task) {
-                if (!$task->isDebug() || !$session) {
+            ->formatValue(function (int $id, TaskInterface $task) {
+                if (!$task->isDebug()) {
                     return null;
                 }
 
-                return $this->debugHelper->getLog($session);
+                return $this->debugHelper->getLog($task);
             });
-        yield UrlField::new('session', 'Video')
+        yield UrlField::new('id', 'Video')
             ->onlyOnDetail()
             ->setTemplatePath('field/video.html.twig')
-            ->formatValue(function (?string $session, TaskInterface $task) {
-                if (!$task->isDebug() || !$session) {
+            ->formatValue(function (int $id, TaskInterface $task) {
+                if (!$task->isDebug()) {
                     return null;
                 }
 
-                return $this->generateUrl('app_task_video', ['task' => $task->getId()]);
+                return $this->generateUrl('app_task_video', ['task' => $id]);
             });
     }
 
