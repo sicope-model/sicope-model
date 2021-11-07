@@ -15,6 +15,7 @@ use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityDeletedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpClient\Exception\ClientException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Tienvx\Bundle\MbtBundle\Entity\Bug;
@@ -58,7 +59,10 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $this->client->request('DELETE', $this->selenoidHelper->getVideoUrl($entity));
-        $this->client->request('DELETE', $this->selenoidHelper->getLogUrl($entity));
+        try {
+            $this->client->request('DELETE', $this->selenoidHelper->getVideoUrl($entity));
+            $this->client->request('DELETE', $this->selenoidHelper->getLogUrl($entity));
+        } catch (ClientException $exception) {
+        }
     }
 }
