@@ -12,7 +12,7 @@
 namespace App\EventSubscriber;
 
 use App\Entity\User;
-use EasyCorp\Bundle\EasyAdminBundle\Event\AfterEntityDeletedEvent;
+use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityDeletedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpClient\Exception\ClientException;
@@ -33,7 +33,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     {
         return [
             BeforeEntityPersistedEvent::class => ['setAuthor'],
-            AfterEntityDeletedEvent::class => ['deleteVideoAndLog'],
+            BeforeEntityDeletedEvent::class => ['deleteVideoAndLog'],
         ];
     }
 
@@ -51,7 +51,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function deleteVideoAndLog(AfterEntityDeletedEvent $event)
+    public function deleteVideoAndLog(BeforeEntityDeletedEvent $event)
     {
         $entity = $event->getEntityInstance();
 
