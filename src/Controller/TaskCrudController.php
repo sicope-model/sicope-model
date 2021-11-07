@@ -145,7 +145,7 @@ class TaskCrudController extends AbstractCrudController
                 fn (Action $detail) => $detail
                     ->setIcon('fas fa-trash')
                     ->addCssClass('action-delete')
-                    ->displayIf(fn (TaskInterface $task) => $task->getBugs()->count() === 0)
+                    ->displayIf(fn (TaskInterface $task) => 0 === $task->getBugs()->count())
             )
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->update(Crud::PAGE_INDEX, Action::DETAIL, fn (Action $detail) => $detail->setIcon('fas fa-info'))
