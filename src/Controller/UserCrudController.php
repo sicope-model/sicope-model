@@ -14,6 +14,7 @@ namespace App\Controller;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AvatarField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -47,9 +48,12 @@ class UserCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        return $actions->setPermissions(array_fill_keys(
-            (new ReflectionClass(Action::class))->getConstants(),
-            'ROLE_ADMIN'
-        ));
+        return $actions
+            ->update(Crud::PAGE_INDEX, Action::EDIT, fn (Action $detail) => $detail->setIcon('fas fa-edit'))
+            ->update(Crud::PAGE_INDEX, Action::DELETE, fn (Action $detail) => $detail->setIcon('fas fa-trash')->addCssClass('action-delete'))
+            ->setPermissions(array_fill_keys(
+                (new ReflectionClass(Action::class))->getConstants(),
+                'ROLE_ADMIN'
+            ));
     }
 }

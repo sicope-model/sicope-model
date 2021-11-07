@@ -14,6 +14,7 @@ namespace App\Controller;
 use App\Form\Task\BrowserType;
 use App\Service\DebugHelper;
 use App\Service\SessionHelper;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -26,6 +27,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
@@ -53,7 +55,7 @@ class TaskCrudController extends AbstractCrudController
     #[Route('/task-video/{task}', name: 'app_task_video')]
     public function taskVideo(Task $task): StreamedResponse
     {
-        return $this->debugHelper->streamVideo($task->getSession());
+        return $this->debugHelper->streamVideo($task);
     }
 
     public static function getEntityFqcn(): string
@@ -63,7 +65,7 @@ class TaskCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id')->onlyOnDetail();
+        yield IdField::new('id')->hideOnForm();
         yield TextField::new('title');
         yield BooleanField::new('running')->setDisabled(true);
         yield IdField::new('author')->hideOnForm();
@@ -83,6 +85,7 @@ class TaskCrudController extends AbstractCrudController
                     ));
             })
             ->setRequired(true)
+            ->setTemplatePath('field/model.html.twig')
         ;
         $browserChoices = $this->sessionHelper->getBrowserChoices();
         $browserCount = $this->getBrowserCount($browserChoices);
@@ -96,28 +99,33 @@ class TaskCrudController extends AbstractCrudController
             ->setFormType(BrowserType::class)
             ->setRequired(true)
         ;
+        yield IntegerField::new('bugs', 'Number of bugs')
+            ->formatValue(function (Collection $bugs) {
+                return $bugs->count();
+            })
+            ->hideOnForm();
         yield DateTimeField::new('createdAt', 'Created At')->hideOnForm();
 
-        yield FormField::addPanel('Debug');
+        yield FormField::addPanel('Debug')->onlyOnDetail();
         yield BooleanField::new('debug', 'Debug')->onlyWhenCreating();
-        yield TextEditorField::new('session', 'Log')
+        yield TextEditorField::new('id', 'Log')
             ->onlyOnDetail()
-            ->formatValue(function (?string $session, TaskInterface $task) {
-                if (!$task->isDebug() || !$session) {
+            ->formatValue(function (int $id, TaskInterface $task) {
+                if (!$task->isDebug()) {
                     return null;
                 }
 
-                return $this->debugHelper->getLog($session);
+                return $this->debugHelper->getLog($task);
             });
-        yield UrlField::new('session', 'Video')
+        yield UrlField::new('id', 'Video')
             ->onlyOnDetail()
             ->setTemplatePath('field/video.html.twig')
-            ->formatValue(function (?string $session, TaskInterface $task) {
-                if (!$task->isDebug() || !$session) {
+            ->formatValue(function (int $id, TaskInterface $task) {
+                if (!$task->isDebug()) {
                     return null;
                 }
 
-                return $this->generateUrl('app_task_video', ['task' => $task->getId()]);
+                return $this->generateUrl('app_task_video', ['task' => $id]);
             });
     }
 
@@ -131,7 +139,14 @@ class TaskCrudController extends AbstractCrudController
 
         return $actions
             ->update(Crud::PAGE_INDEX, Action::EDIT, fn (Action $detail) => $detail->setIcon('fas fa-edit'))
-            ->update(Crud::PAGE_INDEX, Action::DELETE, fn (Action $detail) => $detail->setIcon('fas fa-trash'))
+            ->update(
+                Crud::PAGE_INDEX,
+                Action::DELETE,
+                fn (Action $detail) => $detail
+                    ->setIcon('fas fa-trash')
+                    ->addCssClass('action-delete')
+                    ->displayIf(fn (TaskInterface $task) => 0 === $task->getBugs()->count())
+            )
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->update(Crud::PAGE_INDEX, Action::DETAIL, fn (Action $detail) => $detail->setIcon('fas fa-info'))
             ->add(Crud::PAGE_DETAIL, $runTask)

@@ -17,9 +17,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
@@ -37,7 +39,7 @@ class BugCrudController extends AbstractCrudController
     #[Route('/bug-video/{bug}', name: 'app_bug_video')]
     public function bugVideo(Bug $bug): StreamedResponse
     {
-        return $this->debugHelper->streamVideo($bug->getSession());
+        return $this->debugHelper->streamVideo($bug);
     }
 
     public static function getEntityFqcn(): string
@@ -47,32 +49,21 @@ class BugCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield IdField::new('id')->onlyOnDetail();
+        yield IdField::new('id')->hideOnForm();
         yield TextField::new('title');
-        yield TextField::new('message');
+        yield TextareaField::new('message')->setDisabled(true);
+        yield AssociationField::new('task')->hideOnForm();
         yield DateTimeField::new('createdAt', 'Created At')->hideOnForm();
         yield ArrayField::new('steps', 'Steps')->setTemplatePath('field/steps.html.twig')->onlyOnDetail();
 
-        yield FormField::addPanel('Debug');
-        yield TextEditorField::new('session', 'Log')
+        yield FormField::addPanel('Debug')->onlyOnDetail();
+        yield TextEditorField::new('id', 'Log')
             ->onlyOnDetail()
-            ->formatValue(function (?string $session) {
-                if (!$session) {
-                    return null;
-                }
-
-                return $this->debugHelper->getLog($session);
-            });
-        yield UrlField::new('session', 'Video')
+            ->formatValue(fn (int $id, BugInterface $bug) => $this->debugHelper->getLog($bug));
+        yield UrlField::new('id', 'Video')
             ->onlyOnDetail()
             ->setTemplatePath('field/video.html.twig')
-            ->formatValue(function (?string $session, BugInterface $bug) {
-                if (!$session) {
-                    return null;
-                }
-
-                return $this->generateUrl('app_bug_video', ['bug' => $bug->getId()]);
-            });
+            ->formatValue(fn (int $id) => $this->generateUrl('app_bug_video', ['bug' => $id]));
     }
 
     public function configureActions(Actions $actions): Actions
@@ -80,7 +71,7 @@ class BugCrudController extends AbstractCrudController
         return $actions
             ->disable(Action::NEW)
             ->update(Crud::PAGE_INDEX, Action::EDIT, fn (Action $detail) => $detail->setIcon('fas fa-edit'))
-            ->update(Crud::PAGE_INDEX, Action::DELETE, fn (Action $detail) => $detail->setIcon('fas fa-trash'))
+            ->update(Crud::PAGE_INDEX, Action::DELETE, fn (Action $detail) => $detail->setIcon('fas fa-trash')->addCssClass('action-delete'))
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->update(Crud::PAGE_INDEX, Action::DETAIL, fn (Action $detail) => $detail->setIcon('fas fa-info'));
     }

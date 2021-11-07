@@ -8697,16 +8697,16 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v3.0.0-alpha.11",
+            "version": "v3.0.0-alpha.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "3ccdaa29a24c4486623a4ec233d663df080e2265"
+                "reference": "4f64a045ea0714d8111896f5dfda13c2b667d1ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/3ccdaa29a24c4486623a4ec233d663df080e2265",
-                "reference": "3ccdaa29a24c4486623a4ec233d663df080e2265",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/4f64a045ea0714d8111896f5dfda13c2b667d1ee",
+                "reference": "4f64a045ea0714d8111896f5dfda13c2b667d1ee",
                 "shasum": ""
             },
             "require": {
@@ -8763,7 +8763,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.11"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.13"
             },
             "funding": [
                 {
@@ -8771,7 +8771,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-11-01T01:58:58+00:00"
+            "time": "2021-11-05T13:31:15+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",
@@ -8836,16 +8836,16 @@
         },
         {
             "name": "tienvx/ux-collection-js",
-            "version": "v1.0.0-beta.2",
+            "version": "v1.0.0-beta.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/ux-collection-js.git",
-                "reference": "f60b24239cadf6c76d4160eabd4c2ea8f79d1b7c"
+                "reference": "38b87d92b155395a98f31f17c0cca5d5cf5fb541"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/ux-collection-js/zipball/f60b24239cadf6c76d4160eabd4c2ea8f79d1b7c",
-                "reference": "f60b24239cadf6c76d4160eabd4c2ea8f79d1b7c",
+                "url": "https://api.github.com/repos/tienvx/ux-collection-js/zipball/38b87d92b155395a98f31f17c0cca5d5cf5fb541",
+                "reference": "38b87d92b155395a98f31f17c0cca5d5cf5fb541",
                 "shasum": ""
             },
             "require": {
@@ -8901,9 +8901,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/ux-collection-js/issues",
-                "source": "https://github.com/tienvx/ux-collection-js/tree/v1.0.0-beta.2"
+                "source": "https://github.com/tienvx/ux-collection-js/tree/v1.0.0-beta.3"
             },
-            "time": "2021-10-18T16:52:03+00:00"
+            "time": "2021-11-05T01:24:09+00:00"
         },
         {
             "name": "twig/extra-bundle",
