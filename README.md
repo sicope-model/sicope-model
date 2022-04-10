@@ -14,7 +14,6 @@ Model Based Testing tool using Single Color Petrinet Model.
 git clone https://github.com/sicope-model/sicope-model.git
 cd sicope-model
 docker-compose --env-file docker/.env up
-docker-compose exec admin php bin/console doctrine:migrations:migrate
 docker-compose exec worker php bin/console app:add-user --admin
 ```
 
@@ -39,7 +38,6 @@ Then run:
 
 ```shell
 docker-compose --env-file docker/.env -f docker-compose.yml -f docker-compose.prod.yml up -d
-docker-compose exec admin php bin/console doctrine:migrations:migrate
 docker-compose exec worker php bin/console app:add-user --admin
 ```
 

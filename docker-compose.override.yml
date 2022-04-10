@@ -64,7 +64,7 @@ services:
     command: ["--selenoid-uri", "http://selenoid:4444"]
 
   database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    image: postgres:${POSTGRES_VERSION:-14}-alpine
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-user}
