@@ -14,7 +14,9 @@ Model Based Testing tool using Single Color Petrinet Model.
 git clone https://github.com/sicope-model/sicope-model.git
 cd sicope-model
 docker-compose --env-file docker/.env up
-docker-compose exec worker php bin/console app:add-user --admin
+docker-compose exec admin php bin/console doctrine:schema:update --force
+docker-compose exec admin php bin/console doctrine:migrations:migrate --no-interaction
+docker-compose exec admin php bin/console app:add-user --admin
 ```
 
 Visit [Admin](http://localhost) to create first model.
@@ -24,6 +26,7 @@ Visit [Admin](http://localhost) to create first model.
 Set values for these environment variables:
 
 ```yaml
+#docker/.env
 SERVER_NAME=your-domain-name.example.com
 APP_SECRET=ChangeMe
 POSTGRES_USER=user
@@ -38,7 +41,9 @@ Then run:
 
 ```shell
 docker-compose --env-file docker/.env -f docker-compose.yml -f docker-compose.prod.yml up -d
-docker-compose exec worker php bin/console app:add-user --admin
+docker-compose exec admin php bin/console doctrine:schema:update --force
+docker-compose exec admin php bin/console doctrine:migrations:migrate --no-interaction
+docker-compose exec admin php bin/console app:add-user --admin
 ```
 
 For more information, see [Deploying in Production](https://github.com/dunglas/symfony-docker/blob/main/docs/production.md)
