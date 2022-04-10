@@ -13,6 +13,7 @@ namespace App\Twig;
 
 use EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension;
 use Symfony\Component\DependencyInjection\ServiceLocator;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Tienvx\Bundle\MbtBundle\Model\Model\Revision\CommandInterface;
 use Tienvx\Bundle\MbtBundle\Model\Model\Revision\PlaceInterface;
@@ -22,9 +23,10 @@ class TwigExtension extends EasyAdminTwigExtension
 {
     public function __construct(
         ServiceLocator $serviceLocator,
+        ?CsrfTokenManagerInterface $csrfTokenManager,
         private TranslatorInterface $translator
     ) {
-        parent::__construct($serviceLocator);
+        parent::__construct($serviceLocator, $csrfTokenManager);
     }
 
     public function representAsString($value): string

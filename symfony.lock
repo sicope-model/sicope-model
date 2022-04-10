@@ -689,6 +689,9 @@
     "tienvx/single-color-petrinet": {
         "version": "v1.3.0"
     },
+    "tienvx/ux-collection-js": {
+        "version": "v1.0.0-beta.4"
+    },
     "twig/extra-bundle": {
         "version": "v3.3.1"
     },
