@@ -64,7 +64,7 @@ services:
     command: ["--selenoid-uri", "http://selenoid:4444"]
 
   database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    image: postgres:${POSTGRES_VERSION:-14}-alpine
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-user}
@@ -72,6 +72,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-db}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
 volumes:
   postgres_data:

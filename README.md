@@ -8,23 +8,38 @@ Model Based Testing tool using Single Color Petrinet Model.
 * [Docker](https://docs.docker.com/get-docker/)
 * [Docker Compose](https://docs.docker.com/compose/install/)
 
-## Development
+## Getting code
 
 ```shell
 git clone https://github.com/sicope-model/sicope-model.git
 cd sicope-model
+```
+
+## Testing
+
+```shell
 docker-compose --env-file docker/.env up
-docker-compose exec admin php bin/console doctrine:migrations:migrate
-docker-compose exec worker php bin/console app:add-user --admin
+docker-compose exec admin php bin/console doctrine:schema:update --force
+docker-compose exec admin php bin/console doctrine:migrations:migrate --no-interaction
+docker-compose exec admin php bin/console app:add-user --admin
 ```
 
 Visit [Admin](http://localhost) to create first model.
+
+## Contributing
+
+```shell
+symfony serve --port=8000
+```
+
+Visit [Admin](http://localhost:8000) to test new code.
 
 ## Production
 
 Set values for these environment variables:
 
 ```yaml
+#docker/.env
 SERVER_NAME=your-domain-name.example.com
 APP_SECRET=ChangeMe
 POSTGRES_USER=user
@@ -39,8 +54,9 @@ Then run:
 
 ```shell
 docker-compose --env-file docker/.env -f docker-compose.yml -f docker-compose.prod.yml up -d
-docker-compose exec admin php bin/console doctrine:migrations:migrate
-docker-compose exec worker php bin/console app:add-user --admin
+docker-compose exec admin php bin/console doctrine:schema:update --force
+docker-compose exec admin php bin/console doctrine:migrations:migrate --no-interaction
+docker-compose exec admin php bin/console app:add-user --admin
 ```
 
 For more information, see [Deploying in Production](https://github.com/dunglas/symfony-docker/blob/main/docs/production.md)
