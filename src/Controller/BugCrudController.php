@@ -35,7 +35,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Bug;
 use Tienvx\Bundle\MbtBundle\Message\RecordVideoMessage;
 use Tienvx\Bundle\MbtBundle\Message\ReduceBugMessage;
-use Tienvx\Bundle\MbtBundle\Message\RunTaskMessage;
 use Tienvx\Bundle\MbtBundle\Model\BugInterface;
 
 class BugCrudController extends AbstractCrudController
