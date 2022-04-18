@@ -34,6 +34,7 @@ use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Tienvx\Bundle\MbtBundle\Entity\Bug;
 use Tienvx\Bundle\MbtBundle\Message\RecordVideoMessage;
+use Tienvx\Bundle\MbtBundle\Message\ReduceBugMessage;
 use Tienvx\Bundle\MbtBundle\Message\RunTaskMessage;
 use Tienvx\Bundle\MbtBundle\Model\BugInterface;
 
@@ -83,6 +84,12 @@ class BugCrudController extends AbstractCrudController
             })
             ->linkToCrudAction('recordVideo');
 
+        $reduceSteps = Action::new('reduceSteps', 'Reduce Steps', 'fa fa-scissors')
+            ->displayIf(static function (BugInterface $bug) {
+                return $bug->getProgress()->getProcessed() === $bug->getProgress()->getTotal();
+            })
+            ->linkToCrudAction('reduceSteps');
+
         return $actions
             ->disable(Action::NEW)
             ->update(Crud::PAGE_INDEX, Action::EDIT, fn (Action $detail) => $detail->setIcon('fas fa-edit'))
@@ -90,7 +97,9 @@ class BugCrudController extends AbstractCrudController
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->update(Crud::PAGE_INDEX, Action::DETAIL, fn (Action $detail) => $detail->setIcon('fas fa-info'))
             ->add(Crud::PAGE_DETAIL, $recordVideo)
-            ->add(Crud::PAGE_INDEX, $recordVideo);
+            ->add(Crud::PAGE_INDEX, $recordVideo)
+            ->add(Crud::PAGE_DETAIL, $reduceSteps)
+            ->add(Crud::PAGE_INDEX, $reduceSteps);
     }
 
     public function recordVideo(AdminContext $context, MessageBusInterface $messageBus): RedirectResponse
@@ -98,9 +107,23 @@ class BugCrudController extends AbstractCrudController
         $bug = $context->getEntity()->getInstance();
 
         if ($bug->getVideo()->isRecording()) {
-            $this->addFlash('error', 'Bug is already recording');
+            $this->addFlash('error', 'Bug is already being recorded');
         } else {
             $messageBus->dispatch(new RecordVideoMessage($bug->getId()));
+            $this->addFlash('success', 'Bug is scheduled');
+        }
+
+        return $this->redirect($this->get(AdminUrlGenerator::class)->setAction(Action::INDEX)->generateUrl());
+    }
+
+    public function reduceSteps(AdminContext $context, MessageBusInterface $messageBus): RedirectResponse
+    {
+        $bug = $context->getEntity()->getInstance();
+
+        if ($bug->getProgress()->getProcessed() < $bug->getProgress()->getTotal()) {
+            $this->addFlash('error', 'Bug is already being reduced');
+        } else {
+            $messageBus->dispatch(new ReduceBugMessage($bug->getId()));
             $this->addFlash('success', 'Bug is scheduled');
         }
 
