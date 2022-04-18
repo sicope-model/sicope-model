@@ -15,12 +15,12 @@ jobs:
             -   name: Build images
                 run: |
                     echo "TAG=${{ github.event.release.tag_name }}" > docker/.env
-                    docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env build
+                    docker-compose -f docker-compose.yml -f docker-compose.prod.yml --env-file ./docker/.env build
 
             -   name: Publish images
                 run: |
                     echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
-                    docker-compose -f docker-compose.yaml -f docker-compose.prod.yaml --env-file ./docker/.env push
+                    docker-compose -f docker-compose.yml -f docker-compose.prod.yml --env-file ./docker/.env push
                 env:
                     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
                     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
