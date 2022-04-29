@@ -42,6 +42,10 @@ class TransitionType extends AbstractType
                 'label' => 'Guard',
                 'required' => false,
             ])
+            ->add('expression', TextType::class, [
+                'label' => 'Expression',
+                'required' => false,
+            ])
             ->add('commands', CollectionJsType::class, [
                 'label' => 'Commands',
                 'entry_type' => CommandType::class,
