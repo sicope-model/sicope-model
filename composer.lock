@@ -8676,16 +8676,16 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v3.0.0-alpha.22",
+            "version": "v3.0.0-alpha.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "be28c205153c1db550dcb6be1529eb99ad7ccf09"
+                "reference": "e37d5e6eedf2503b865ca3d2ee9a082823628d70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/be28c205153c1db550dcb6be1529eb99ad7ccf09",
-                "reference": "be28c205153c1db550dcb6be1529eb99ad7ccf09",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/e37d5e6eedf2503b865ca3d2ee9a082823628d70",
+                "reference": "e37d5e6eedf2503b865ca3d2ee9a082823628d70",
                 "shasum": ""
             },
             "require": {
@@ -8702,7 +8702,7 @@
                 "symfony/http-kernel": "^5.4",
                 "symfony/messenger": "^5.4",
                 "symfony/validator": "^5.4",
-                "tienvx/single-color-petrinet": "^1.3"
+                "tienvx/single-color-petrinet": "^1.5"
             },
             "conflict": {
                 "symfony/symfony": "*"
@@ -8743,7 +8743,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.22"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.28"
             },
             "funding": [
                 {
@@ -8751,20 +8751,20 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-04-18T15:39:42+00:00"
+            "time": "2022-04-29T15:15:22+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",
-            "version": "v1.3.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/single-color-petrinet.git",
-                "reference": "bdbe269f9e104e16ab26df9717a4ecba6623c175"
+                "reference": "44ed2364c8f471b415fee27abcc44af5fbaa0d9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/single-color-petrinet/zipball/bdbe269f9e104e16ab26df9717a4ecba6623c175",
-                "reference": "bdbe269f9e104e16ab26df9717a4ecba6623c175",
+                "url": "https://api.github.com/repos/tienvx/single-color-petrinet/zipball/44ed2364c8f471b415fee27abcc44af5fbaa0d9e",
+                "reference": "44ed2364c8f471b415fee27abcc44af5fbaa0d9e",
                 "shasum": ""
             },
             "require": {
@@ -8772,6 +8772,7 @@
                 "php": ">=7.4"
             },
             "require-dev": {
+                "ext-json": "*",
                 "phpunit/phpunit": "^9.5"
             },
             "type": "library",
@@ -8804,7 +8805,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/single-color-petrinet/issues",
-                "source": "https://github.com/tienvx/single-color-petrinet/tree/v1.3.0"
+                "source": "https://github.com/tienvx/single-color-petrinet/tree/v1.5.0"
             },
             "funding": [
                 {
@@ -8812,7 +8813,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-01-18T11:08:19+00:00"
+            "time": "2022-04-28T16:39:49+00:00"
         },
         {
             "name": "tienvx/ux-collection-js",
