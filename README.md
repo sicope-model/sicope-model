@@ -29,7 +29,11 @@ Visit [Admin](http://localhost) to create first model.
 ## Contributing
 
 ```shell
+composer install
+yarn install
+yarn build
 symfony serve --port=8000
+symfony console messenger:consume async
 ```
 
 Visit [Admin](http://localhost:8000) to test new code.
