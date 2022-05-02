@@ -30,6 +30,9 @@ Visit [Admin](http://localhost) to create first model.
 
 ```shell
 docker-compose --env-file docker/.env -f docker-compose.dependencies.yml up
+docker pull selenoid/video-recorder:latest-release
+docker pull IMAGE_NAME:TAG # in var/selenoid/browsers.json
+sudo apt install php php-fpm php-pgsql php-intl php-zip graphviz
 composer install
 yarn install
 yarn build
