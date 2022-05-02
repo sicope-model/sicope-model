@@ -18,7 +18,7 @@ cd sicope-model
 ## Testing
 
 ```shell
-docker-compose --env-file docker/.env up
+docker-compose --env-file docker/.env -f docker-compose.yml -f docker-compose.dependencies.yml -f docker-compose.testing.yml up
 docker-compose exec admin php bin/console doctrine:schema:update --force
 docker-compose exec admin php bin/console doctrine:migrations:migrate --no-interaction
 docker-compose exec admin php bin/console app:add-user --admin
@@ -29,6 +29,7 @@ Visit [Admin](http://localhost) to create first model.
 ## Contributing
 
 ```shell
+docker-compose --env-file docker/.env -f docker-compose.dependencies.yml up
 composer install
 yarn install
 yarn build
