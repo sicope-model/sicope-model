@@ -18,7 +18,7 @@ cd sicope-model
 ## Testing
 
 ```shell
-docker-compose --env-file docker/.env up
+docker-compose --env-file docker/.env -f docker-compose.yml -f docker-compose.dependencies.yml -f docker-compose.testing.yml up
 docker-compose exec admin php bin/console doctrine:schema:update --force
 docker-compose exec admin php bin/console doctrine:migrations:migrate --no-interaction
 docker-compose exec admin php bin/console app:add-user --admin
@@ -29,7 +29,15 @@ Visit [Admin](http://localhost) to create first model.
 ## Contributing
 
 ```shell
+docker-compose --env-file docker/.env -f docker-compose.dependencies.yml up
+docker pull selenoid/video-recorder:latest-release
+docker pull IMAGE_NAME:TAG # in var/selenoid/browsers.json
+sudo apt install php php-fpm php-pgsql php-intl php-zip graphviz
+composer install
+yarn install
+yarn build
 symfony serve --port=8000
+symfony console messenger:consume async
 ```
 
 Visit [Admin](http://localhost:8000) to test new code.

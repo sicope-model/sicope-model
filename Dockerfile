@@ -21,6 +21,7 @@ RUN apk add --no-cache \
 # PHP extensions
 RUN apk add --no-cache --virtual .build-deps postgresql-dev libxslt-dev libzip-dev; \
 	docker-php-ext-install pdo_pgsql xsl zip; \
+	docker-php-ext-enable zip; \
 	apk del .build-deps
 
 WORKDIR /srv/app
