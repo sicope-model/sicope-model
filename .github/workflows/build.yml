@@ -13,14 +13,26 @@ jobs:
                 uses: actions/checkout@master
 
             -   name: Build images
+                env:
+                    TAG: ${{ github.event.release.tag_name }}
                 run: |
-                    echo "TAG=${{ github.event.release.tag_name }}" > docker/.env
-                    docker-compose -f docker-compose.yml -f docker-compose.prod.yml --env-file ./docker/.env build
+                    docker build -t tienvx/sicope-model-admin:${TAG} --target build-admin .
+                    docker build -t tienvx/sicope-model-worker:${TAG} --target build-worker .
+                    docker build -t tienvx/sicope-model-caddy:${TAG} -t tienvx/sicope-model-caddy:latest --target build-caddy .
+                    docker build -t tienvx/sicope-model-admin-debug:latest --target build-admin-debug .
+                    docker build -t tienvx/sicope-model-worker-debug:latest --target build-worker-debug .
 
             -   name: Publish images
+                env:
+                    TAG: ${{ github.event.release.tag_name }}
                 run: |
                     echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
-                    docker-compose -f docker-compose.yml -f docker-compose.prod.yml --env-file ./docker/.env push
+                    docker push tienvx/sicope-model-admin:${TAG}
+                    docker push tienvx/sicope-model-worker:${TAG}
+                    docker push tienvx/sicope-model-caddy:${TAG}
+                    docker push tienvx/sicope-model-caddy:latest
+                    docker push tienvx/sicope-model-admin-debug:latest
+                    docker push tienvx/sicope-model-worker-debug:latest
                 env:
                     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
                     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
