@@ -15,10 +15,12 @@
 **/Dockerfile
 **/Thumbs.db
 .editorconfig
+.php-version
 .env.*.local
 .env.local
 .env.local.php
 .php_cs.cache
+.php-cs-fixer.dist.php
 bin/*
 !bin/console
 public/bundles/
@@ -27,8 +29,10 @@ vendor/
 
 .github/
 .idea/
+.vscode/
 public/build/
 node_modules/
 tests/
 phpunit.xml.dist
 .phpunit.result.cache
+prod.hcl

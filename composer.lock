@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "98657c751ceb984c65d818bf2f88f007",
+    "content-hash": "809323c5378e17b089db97da94ace5c2",
     "packages": [
         {
             "name": "beberlei/doctrineextensions",
@@ -8676,16 +8676,16 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v3.0.0-alpha.31",
+            "version": "v3.0.0-alpha.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "9690e859d25c5cdc56d9fe9755168fa8d60bcda3"
+                "reference": "918b5941572462c66e64435c6c2435e5986044cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/9690e859d25c5cdc56d9fe9755168fa8d60bcda3",
-                "reference": "9690e859d25c5cdc56d9fe9755168fa8d60bcda3",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/918b5941572462c66e64435c6c2435e5986044cf",
+                "reference": "918b5941572462c66e64435c6c2435e5986044cf",
                 "shasum": ""
             },
             "require": {
@@ -8743,7 +8743,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.31"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.34"
             },
             "funding": [
                 {
@@ -8751,7 +8751,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-05-04T09:23:28+00:00"
+            "time": "2022-05-06T03:16:01+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",
@@ -8817,24 +8817,24 @@
         },
         {
             "name": "tienvx/ux-collection-js",
-            "version": "v1.0.0-beta.4",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/ux-collection-js.git",
-                "reference": "2a767f4d191ce267b5093eeed4e8069343082f72"
+                "reference": "813e927f7b2e239df9b06dc9112b66b15cb40071"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/ux-collection-js/zipball/2a767f4d191ce267b5093eeed4e8069343082f72",
-                "reference": "2a767f4d191ce267b5093eeed4e8069343082f72",
+                "url": "https://api.github.com/repos/tienvx/ux-collection-js/zipball/813e927f7b2e239df9b06dc9112b66b15cb40071",
+                "reference": "813e927f7b2e239df9b06dc9112b66b15cb40071",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4|^8.0",
-                "symfony/config": "^4.4|^5.0",
-                "symfony/dependency-injection": "^4.4.17|^5.0",
-                "symfony/form": "^4.4.17|^5.0",
-                "symfony/http-kernel": "^4.4.17|^5.0",
+                "symfony/config": "^4.4|^5.0|^6.0",
+                "symfony/dependency-injection": "^4.4.17|^5.0|^6.0",
+                "symfony/form": "^4.4.17|^5.0|^6.0",
+                "symfony/http-kernel": "^4.4.17|^5.0|^6.0",
                 "twig/twig": "^2.12|^3.0"
             },
             "conflict": {
@@ -8842,8 +8842,8 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5",
-                "symfony/framework-bundle": "^4.4.17|^5.0",
-                "symfony/twig-bundle": "^4.4.17|^5.0"
+                "symfony/framework-bundle": "^4.4.17|^5.0|^6.0",
+                "symfony/twig-bundle": "^4.4.17|^5.0|^6.0"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -8882,9 +8882,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/ux-collection-js/issues",
-                "source": "https://github.com/tienvx/ux-collection-js/tree/v1.0.0-beta.4"
+                "source": "https://github.com/tienvx/ux-collection-js/tree/v1.0.0"
             },
-            "time": "2022-02-07T16:36:10+00:00"
+            "time": "2022-06-30T01:16:10+00:00"
         },
         {
             "name": "twig/extra-bundle",
@@ -11376,13 +11376,12 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "tienvx/mbt-bundle": 15,
-        "tienvx/ux-collection-js": 10
+        "tienvx/mbt-bundle": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.0",
+        "php": "^8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*"

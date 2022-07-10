@@ -1,67 +1,107 @@
-version: '3.4'
+version: "3.4"
 
 services:
-  admin:
-    image: tienvx/sicope-model-admin:${TAG:-lastest}
-    build:
-      context: .
-      target: build_admin
-    restart: unless-stopped
-    volumes:
-      - php_socket:/var/run/php
-    healthcheck:
-      interval: 10s
-      timeout: 3s
-      retries: 3
-      start_period: 30s
+  adminer:
+    image: adminer
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@${POSTGRES_HOST:-database}:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-14}&charset=UTF-8
-      STATUS_URI: ${STATUS_URI:-http://selenoid:4444}
-      WEBDRIVER_URI: ${WEBDRIVER_URI:-http://selenoid:4444}
-      MAILER_DSN: ${MAILER_DSN:-smtp://mailer:1025}
+      ADMINER_DEFAULT_SERVER: database
+    ports:
+      - "8080:8080"
+
+  mailer:
+    image: mailhog/mailhog:latest
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    logging:
+      driver: 'none'  # disable saving logs
+
+  selenoid:
+    image: aerokube/selenoid:latest-release
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "$PWD/var/selenoid:/etc/selenoid"
+      - "$PWD/var/selenoid/video:/opt/selenoid/video"
+      - "$PWD/var/selenoid/logs:/opt/selenoid/logs"
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD/var/selenoid/video
+    command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-container-network", "${CONTAINER_NETWORK:-sicope-model_default}"]
+    ports:
+      - "4444:4444"
+
+  selenoid-ui:
+    image: aerokube/selenoid-ui:latest-release
+    ports:
+      - "8081:8081"
+    expose:
+      - "8081"
+    command: ["-listen", ":8081", "--selenoid-uri", "http://selenoid:4444"]
+
+  database:
+    image: postgres:${POSTGRES_VERSION}-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./var/postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+
+  admin:
+    image: tienvx/sicope-model-admin-debug:latest
+    environment:
+      APP_ENV: prod
+      APP_SECRET: ${APP_SECRET}
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}?serverVersion=${POSTGRES_VERSION}&charset=UTF-8
+      STATUS_URI: http://selenoid:4444
+      WEBDRIVER_URI: http://selenoid:4444
+      MAILER_DSN: smtp://mailer:1025
       DB_EXTENSION: Postgresql
+      MESSENGER_TRANSPORT_DSN: redis://redis:6379/messages
+      REDIS_DSN: redis://redis:6379
+    depends_on:
+      - database
+      - redis
+    #volumes:
+    #  - .:/srv/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   worker:
-    image: tienvx/sicope-model-worker:${TAG:-lastest}
-    build:
-      context: .
-      target: build_worker
-    restart: unless-stopped
+    image: tienvx/sicope-model-worker-debug:latest
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-pass}@${POSTGRES_HOST:-database}:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-db}?serverVersion=${POSTGRES_VERSION:-14}&charset=UTF-8
-      WEBDRIVER_URI: ${WEBDRIVER_URI:-http://selenoid:4444}
-      MAILER_DSN: ${MAILER_DSN:-smtp://mailer:1025}
+      APP_ENV: prod
+      APP_SECRET: ${APP_SECRET}
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}?serverVersion=${POSTGRES_VERSION}&charset=UTF-8
+      WEBDRIVER_URI: http://selenoid:4444
+      MAILER_DSN: smtp://mailer:1025
       DB_EXTENSION: Postgresql
+      MESSENGER_TRANSPORT_DSN: redis://redis:6379/messages
+      REDIS_DSN: redis://redis:6379
+    depends_on:
+      - database
+      - redis
+    #volumes:
+    #  - .:/srv/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   caddy:
-    image: tienvx/sicope-model-caddy:${TAG:-lastest}
-    build:
-      context: .
-      target: build_caddy
+    image: tienvx/sicope-model-caddy:latest
     depends_on:
       - admin
     environment:
       SERVER_NAME: ${SERVER_NAME:-localhost, caddy:80}
-    restart: unless-stopped
-    volumes:
-      - php_socket:/var/run/php
-      - caddy_data:/data
-      - caddy_config:/config
+      PHP_FPM_ADDRESS: admin:9000
     ports:
-      # HTTP
-      - target: 80
-        published: 80
-        protocol: tcp
-      # HTTPS
-      - target: 443
-        published: 443
-        protocol: tcp
-      # HTTP/3
-      - target: 443
-        published: 443
-        protocol: udp
-
-volumes:
-  php_socket:
-  caddy_data:
-  caddy_config:
+      - "80:80/tcp"
+      - "443:443/tcp"
+      - "443:443/udp"
+    #volumes:
+    #  - ./public:/srv/app/public

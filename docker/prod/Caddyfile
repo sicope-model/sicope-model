@@ -16,7 +16,7 @@ log
 route {
     root * /srv/app/public
     push
-    php_fastcgi unix//var/run/php/php-fpm.sock
+    php_fastcgi {$PHP_FPM_ADDRESS}
     encode zstd gzip
     file_server
 }
