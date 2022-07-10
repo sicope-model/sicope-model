@@ -67,7 +67,7 @@ class TaskCrudController extends AbstractCrudController
     {
         yield IdField::new('id')->hideOnForm();
         yield TextField::new('title');
-        yield BooleanField::new('running')->setDisabled(true);
+        yield BooleanField::new('running')->setDisabled(true)->hideOnForm();
         yield IdField::new('author')->hideOnForm();
         yield AssociationField::new('modelRevision', 'Model')
             ->setQueryBuilder(function (QueryBuilder $queryBuilder) {
