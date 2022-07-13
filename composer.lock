@@ -8727,20 +8727,21 @@
         },
         {
             "name": "tienvx/assignments-evaluator-bundle",
-            "version": "v1.0.1",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/assignments-evaluator-bundle.git",
-                "reference": "3948366a4894182f8caef192606093aebbc5304d"
+                "reference": "d266f8761192a11c4f0e3f88c98bee3c685a8741"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/assignments-evaluator-bundle/zipball/3948366a4894182f8caef192606093aebbc5304d",
-                "reference": "3948366a4894182f8caef192606093aebbc5304d",
+                "url": "https://api.github.com/repos/tienvx/assignments-evaluator-bundle/zipball/d266f8761192a11c4f0e3f88c98bee3c685a8741",
+                "reference": "d266f8761192a11c4f0e3f88c98bee3c685a8741",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4|^8.0",
+                "symfony/config": "^5.4|^6.0",
                 "symfony/dependency-injection": "^5.4|^6.0",
                 "symfony/http-kernel": "^5.4|^6.0",
                 "symfony/validator": "^5.4|^6.0",
@@ -8773,7 +8774,7 @@
             "description": "Symfony Bundle for Assignments Evaluator",
             "support": {
                 "issues": "https://github.com/tienvx/assignments-evaluator-bundle/issues",
-                "source": "https://github.com/tienvx/assignments-evaluator-bundle/tree/v1.0.1"
+                "source": "https://github.com/tienvx/assignments-evaluator-bundle/tree/v1.0.3"
             },
             "funding": [
                 {
@@ -8781,20 +8782,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-12T16:53:51+00:00"
+            "time": "2022-07-13T14:04:28+00:00"
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v3.0.0-alpha.35",
+            "version": "v3.0.0-alpha.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "2f3b5e4ed4ffd2db8a1c2b020bb69218a9881dee"
+                "reference": "0cdea1e0b56f6681f8314864101fc11980560f80"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/2f3b5e4ed4ffd2db8a1c2b020bb69218a9881dee",
-                "reference": "2f3b5e4ed4ffd2db8a1c2b020bb69218a9881dee",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/0cdea1e0b56f6681f8314864101fc11980560f80",
+                "reference": "0cdea1e0b56f6681f8314864101fc11980560f80",
                 "shasum": ""
             },
             "require": {
@@ -8852,7 +8853,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.35"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.37"
             },
             "funding": [
                 {
@@ -8860,7 +8861,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-07-12T17:03:52+00:00"
+            "time": "2022-07-13T14:17:29+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",
