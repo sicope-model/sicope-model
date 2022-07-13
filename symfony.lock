@@ -674,6 +674,12 @@
     "theseer/tokenizer": {
         "version": "1.2.1"
     },
+    "tienvx/assignments-evaluator": {
+        "version": "v1.0.1"
+    },
+    "tienvx/assignments-evaluator-bundle": {
+        "version": "v1.0.1"
+    },
     "tienvx/mbt-bundle": {
         "version": "1.17",
         "recipe": {
