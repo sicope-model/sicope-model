@@ -8675,24 +8675,132 @@
             "time": "2022-01-26T16:32:32+00:00"
         },
         {
-            "name": "tienvx/mbt-bundle",
-            "version": "v3.0.0-alpha.34",
+            "name": "tienvx/assignments-evaluator",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "918b5941572462c66e64435c6c2435e5986044cf"
+                "url": "https://github.com/tienvx/assignments-evaluator.git",
+                "reference": "298dbd73aee84419867f2c4a63434325ea096319"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/918b5941572462c66e64435c6c2435e5986044cf",
-                "reference": "918b5941572462c66e64435c6c2435e5986044cf",
+                "url": "https://api.github.com/repos/tienvx/assignments-evaluator/zipball/298dbd73aee84419867f2c4a63434325ea096319",
+                "reference": "298dbd73aee84419867f2c4a63434325ea096319",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "symfony/expression-language": "^5.4|^6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tienvx\\AssignmentsEvaluator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tien Vo Xuan",
+                    "email": "tien.xuan.vo@gmail.com",
+                    "homepage": "https://tienvx.github.io/"
+                }
+            ],
+            "description": "Allow assign value of Symfony Expression Language's expressions to variables",
+            "support": {
+                "issues": "https://github.com/tienvx/assignments-evaluator/issues",
+                "source": "https://github.com/tienvx/assignments-evaluator/tree/v1.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/tienvx",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-07-12T01:42:23+00:00"
+        },
+        {
+            "name": "tienvx/assignments-evaluator-bundle",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tienvx/assignments-evaluator-bundle.git",
+                "reference": "3948366a4894182f8caef192606093aebbc5304d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tienvx/assignments-evaluator-bundle/zipball/3948366a4894182f8caef192606093aebbc5304d",
+                "reference": "3948366a4894182f8caef192606093aebbc5304d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "symfony/dependency-injection": "^5.4|^6.0",
+                "symfony/http-kernel": "^5.4|^6.0",
+                "symfony/validator": "^5.4|^6.0",
+                "tienvx/assignments-evaluator": "^1.0.1"
+            },
+            "conflict": {
+                "symfony/symfony": "*"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^1.13",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Tienvx\\Bundle\\AssignmentsEvaluatorBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tien Vo Xuan",
+                    "email": "tien.xuan.vo@gmail.com",
+                    "homepage": "https://tienvx.github.io/"
+                }
+            ],
+            "description": "Symfony Bundle for Assignments Evaluator",
+            "support": {
+                "issues": "https://github.com/tienvx/assignments-evaluator-bundle/issues",
+                "source": "https://github.com/tienvx/assignments-evaluator-bundle/tree/v1.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/tienvx",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-07-12T16:53:51+00:00"
+        },
+        {
+            "name": "tienvx/mbt-bundle",
+            "version": "v3.0.0-alpha.35",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tienvx/mbt-bundle.git",
+                "reference": "2f3b5e4ed4ffd2db8a1c2b020bb69218a9881dee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/2f3b5e4ed4ffd2db8a1c2b020bb69218a9881dee",
+                "reference": "2f3b5e4ed4ffd2db8a1c2b020bb69218a9881dee",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "^2.6",
                 "doctrine/orm": "^2.8",
                 "ext-json": "*",
-                "florianv/petrinet": "^2.1",
                 "jmgq/a-star": "^2.1",
                 "php": "^8.0",
                 "php-webdriver/webdriver": "^1.11",
@@ -8702,6 +8810,7 @@
                 "symfony/http-kernel": "^5.4",
                 "symfony/messenger": "^5.4",
                 "symfony/validator": "^5.4",
+                "tienvx/assignments-evaluator-bundle": "^1.0",
                 "tienvx/single-color-petrinet": "^1.5"
             },
             "conflict": {
@@ -8743,7 +8852,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.34"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.35"
             },
             "funding": [
                 {
@@ -8751,7 +8860,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-05-06T03:16:01+00:00"
+            "time": "2022-07-12T17:03:52+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",

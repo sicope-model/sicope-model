@@ -18,4 +18,5 @@ return [
     Symfony\UX\Chartjs\ChartjsBundle::class => ['all' => true],
     Tienvx\UX\CollectionJs\CollectionJsBundle::class => ['all' => true],
     Craue\ConfigBundle\CraueConfigBundle::class => ['all' => true],
+    Tienvx\Bundle\AssignmentsEvaluatorBundle\TienvxAssignmentsEvaluatorBundle::class => ['all' => true],
 ];
