@@ -21,30 +21,29 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'users')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    #[ORM\Id, ORM\Column(type: 'integer'), ORM\GeneratedValue]
-    private int $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string')]
     #[Assert\NotBlank]
-    private string $fullName;
+    private ?string $fullName = null;
 
     #[ORM\Column(type: 'string', unique: true)]
     #[Assert\NotBlank]
     #[Assert\Length(min: 2, max: 50)]
-    private string $username;
+    private ?string $username = null;
 
     #[ORM\Column(type: 'string', unique: true)]
     #[Assert\Email]
-    private string $email;
+    private ?string $email = null;
+
+    #[ORM\Column(type: 'string')]
+    private ?string $password = null;
 
     #[ORM\Column(type: 'json')]
     private array $roles = [];
-
-    /**
-     * @var string The hashed password
-     */
-    #[ORM\Column(type: 'string')]
-    private string $password;
 
     public function __toString()
     {
@@ -91,7 +90,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->email = $email;
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -122,22 +121,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     * Returns the salt that was originally used to encode the password.
      *
-     * @see UserInterface
+     * {@inheritdoc}
      */
     public function getSalt(): ?string
     {
+        // We're using bcrypt in security.yaml to encode the password, so
+        // the salt value is built-in and you don't have to generate one
+        // See https://en.wikipedia.org/wiki/Bcrypt
+
         return null;
     }
 
     /**
-     * @see UserInterface
+     * Removes sensitive data from the user.
+     *
+     * {@inheritdoc}
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
+        // if you had a plainPassword property, you'd nullify it here
         // $this->plainPassword = null;
+    }
+
+    public function __serialize(): array
+    {
+        // add $this->salt too if you don't use Bcrypt or Argon2i
+        return [$this->id, $this->username, $this->password];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        // add $this->salt too if you don't use Bcrypt or Argon2i
+        [$this->id, $this->username, $this->password] = $data;
     }
 }
