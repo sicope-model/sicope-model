@@ -23,6 +23,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -57,6 +58,7 @@ class ConfigCrudController extends AbstractCrudController
         yield BooleanField::new(Config::REPORT_BUG, 'Report Bug');
         yield BooleanField::new(Config::NOTIFY_AUTHOR, 'Notify Author');
         yield ChoiceField::new(Config::NOTIFY_CHANNELS, 'Notify Channels')->setChoices($this->translate($channels))->allowMultipleChoices();
+        yield TextField::new(Config::EMAIL_SENDER, 'Email Sender');
         yield IntegerField::new(Config::MAX_STEPS, 'Max Steps');
     }
 

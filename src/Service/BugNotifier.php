@@ -36,7 +36,7 @@ class BugNotifier implements BugNotifierInterface
     {
         if ($channels = $this->config->getNotifyChannels()) {
             $this->notifier->send(
-                new BugNotification($bug, $this->config->getNotifyEmailSender(), $channels),
+                new BugNotification($bug, $this->config->getEmailSender(), $channels),
                 $this->getRecipient($bug->getTask(), $channels)
             );
         }

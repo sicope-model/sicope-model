@@ -28,7 +28,7 @@ class Config implements ConfigInterface
     public const REPORT_BUG = 'report_bug';
     public const NOTIFY_AUTHOR = 'notify_author';
     public const NOTIFY_CHANNELS = 'notify_channels';
-    public const NOTIFY_EMAIL_SENDER = 'notify_email_sender';
+    public const EMAIL_SENDER = 'email_sender';
     public const MAX_STEPS = 'max_steps';
 
     public function __construct(
@@ -62,9 +62,9 @@ class Config implements ConfigInterface
         return (array) json_decode($this->get(static::NOTIFY_CHANNELS));
     }
 
-    public function getNotifyEmailSender(): string
+    public function getEmailSender(): string
     {
-        return $this->get(static::NOTIFY_EMAIL_SENDER);
+        return $this->get(static::EMAIL_SENDER);
     }
 
     public function getMaxSteps(): int
@@ -80,6 +80,7 @@ class Config implements ConfigInterface
             static::REPORT_BUG => $form->get(static::REPORT_BUG)->getData(),
             static::NOTIFY_AUTHOR => $form->get(static::NOTIFY_AUTHOR)->getData(),
             static::NOTIFY_CHANNELS => json_encode($form->get(static::NOTIFY_CHANNELS)->getData()),
+            static::EMAIL_SENDER => $form->get(static::EMAIL_SENDER)->getData(),
             static::MAX_STEPS => $form->get(static::MAX_STEPS)->getData(),
         ]);
     }
@@ -94,6 +95,7 @@ class Config implements ConfigInterface
             static::REPORT_BUG => (bool) $this->get(static::REPORT_BUG, $all),
             static::NOTIFY_AUTHOR => (bool) $this->get(static::NOTIFY_AUTHOR, $all),
             static::NOTIFY_CHANNELS => (array) json_decode($this->get(static::NOTIFY_CHANNELS, $all)),
+            static::EMAIL_SENDER => $this->get(static::EMAIL_SENDER, $all),
             static::MAX_STEPS => (int) $this->get(static::MAX_STEPS, $all),
         ];
     }

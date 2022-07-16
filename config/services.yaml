@@ -10,7 +10,7 @@ parameters:
     app.default_notify_author: '%env(DEFAULT_NOTIFY_AUTHOR)%'
     app.default_notify_channels: '%env(DEFAULT_NOTIFY_CHANNELS)%'
     app.default_max_steps: '%env(DEFAULT_MAX_STEPS)%'
-    app.default_notify_email_sender: '%env(DEFAULT_NOTIFY_EMAIL_SENDER)%'
+    app.default_email_sender: '%env(DEFAULT_EMAIL_SENDER)%'
 
 services:
     # default configuration for services in *this* file

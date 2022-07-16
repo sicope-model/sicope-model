@@ -133,7 +133,7 @@ class ListUsersCommand extends Command
     private function sendReport(string $contents, string $recipient): void
     {
         $email = (new Email())
-            ->from($this->config->getNotifyEmailSender())
+            ->from($this->config->getEmailSender())
             ->to($recipient)
             ->subject(sprintf('app:list-users report (%s)', date('Y-m-d H:i:s')))
             ->text($contents);
