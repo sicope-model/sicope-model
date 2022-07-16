@@ -28,7 +28,6 @@ docker pull IMAGE_NAME:TAG # in var/selenoid/browsers.json
 ```shell
 docker-compose --env-file docker/.env up
 docker-compose exec admin php bin/console doctrine:schema:update --force
-docker-compose exec admin php bin/console doctrine:migrations:migrate --no-interaction
 docker-compose exec admin php bin/console app:add-user --admin
 ```
 
@@ -103,7 +102,6 @@ vault kv put -mount=secret sicope-model \
     app_secret=a0b30e5d7a5a1f710b766e8ac601af11
 nomad run prod.hcl
 docker-compose exec admin php bin/console doctrine:schema:update --force
-docker-compose exec admin php bin/console doctrine:migrations:migrate --no-interaction
 docker-compose exec admin php bin/console app:add-user --admin
 ```
 
