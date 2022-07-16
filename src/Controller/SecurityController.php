@@ -27,7 +27,6 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('login.html.twig', [
-            'username_label' => 'Email',
             'last_username' => $authenticationUtils->getLastUsername(),
             'error' => $authenticationUtils->getLastAuthenticationError(),
             'csrf_token_intention' => 'authenticate',
