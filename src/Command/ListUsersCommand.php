@@ -13,6 +13,7 @@ namespace App\Command;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Service\Config;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -43,9 +44,9 @@ class ListUsersCommand extends Command
     protected static $defaultName = 'app:list-users';
 
     public function __construct(
-        private MailerInterface $mailer,
-        private string $emailSender,
-        private UserRepository $users
+        protected MailerInterface $mailer,
+        protected Config $config,
+        protected UserRepository $users
     ) {
         parent::__construct();
     }
@@ -131,7 +132,7 @@ HELP
     private function sendReport(string $contents, string $recipient): void
     {
         $email = (new Email())
-            ->from($this->emailSender)
+            ->from($this->config->getNotifyEmailSender())
             ->to($recipient)
             ->subject(sprintf('app:list-users report (%s)', date('Y-m-d H:i:s')))
             ->text($contents);

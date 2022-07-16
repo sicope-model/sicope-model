@@ -12,6 +12,7 @@
 namespace App\Service;
 
 use Craue\ConfigBundle\Util\Config as ConfigUtil;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Form\FormInterface;
 use Tienvx\Bundle\MbtBundle\Service\ConfigInterface;
 
@@ -27,40 +28,48 @@ class Config implements ConfigInterface
     public const REPORT_BUG = 'report_bug';
     public const NOTIFY_AUTHOR = 'notify_author';
     public const NOTIFY_CHANNELS = 'notify_channels';
+    public const NOTIFY_EMAIL_SENDER = 'notify_email_sender';
     public const MAX_STEPS = 'max_steps';
 
-    public function __construct(private ConfigUtil $config)
-    {
+    public function __construct(
+        protected ConfigUtil $config,
+        protected ParameterBagInterface $params
+    ) {
     }
 
     public function getGenerator(): string
     {
-        return (string) $this->config->get(static::GENERATOR);
+        return $this->get(static::GENERATOR);
     }
 
     public function getReducer(): string
     {
-        return (string) $this->config->get(static::REDUCER);
+        return $this->get(static::REDUCER);
     }
 
     public function shouldReportBug(): bool
     {
-        return (bool) $this->config->get(static::REPORT_BUG);
+        return (bool) $this->get(static::REPORT_BUG);
     }
 
     public function shouldNotifyAuthor(): bool
     {
-        return (bool) $this->config->get(static::NOTIFY_AUTHOR);
+        return (bool) $this->get(static::NOTIFY_AUTHOR);
     }
 
     public function getNotifyChannels(): array
     {
-        return (array) json_decode($this->config->get(static::NOTIFY_CHANNELS));
+        return (array) json_decode($this->get(static::NOTIFY_CHANNELS));
+    }
+
+    public function getNotifyEmailSender(): string
+    {
+        return $this->get(static::NOTIFY_EMAIL_SENDER);
     }
 
     public function getMaxSteps(): int
     {
-        return (int) $this->config->get(static::MAX_STEPS);
+        return (int) $this->get(static::MAX_STEPS);
     }
 
     public function saveForm(FormInterface $form): void
@@ -77,15 +86,33 @@ class Config implements ConfigInterface
 
     public function getAll(): array
     {
-        $settings = $this->config->all();
+        $all = $this->config->all();
 
         return [
-            static::GENERATOR => $settings[static::GENERATOR],
-            static::REDUCER => $settings[static::REDUCER],
-            static::REPORT_BUG => (bool) $settings[static::REPORT_BUG],
-            static::NOTIFY_AUTHOR => (bool) $settings[static::NOTIFY_AUTHOR],
-            static::NOTIFY_CHANNELS => (array) json_decode($settings[static::NOTIFY_CHANNELS]),
-            static::MAX_STEPS => (int) $settings[static::MAX_STEPS],
+            static::GENERATOR => $this->get(static::GENERATOR, $all),
+            static::REDUCER => $this->get(static::REDUCER, $all),
+            static::REPORT_BUG => (bool) $this->get(static::REPORT_BUG, $all),
+            static::NOTIFY_AUTHOR => (bool) $this->get(static::NOTIFY_AUTHOR, $all),
+            static::NOTIFY_CHANNELS => (array) json_decode($this->get(static::NOTIFY_CHANNELS, $all)),
+            static::MAX_STEPS => (int) $this->get(static::MAX_STEPS, $all),
         ];
+    }
+
+    protected function get(string $key, ?array $all = null): string
+    {
+        if (is_array($all)) {
+            return $all[$key] ?? $this->getParam($key);
+        }
+
+        try {
+            return (string) $this->config->get($key);
+        } catch (\RuntimeException $th) {
+            return $this->getParam($key);
+        }
+    }
+
+    protected function getParam(string $key): string
+    {
+        return (string) $this->params->get(sprintf('app.default_%s', $key));
     }
 }

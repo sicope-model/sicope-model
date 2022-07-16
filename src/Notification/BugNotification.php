@@ -29,14 +29,11 @@ use Tienvx\Bundle\MbtBundle\Model\BugInterface;
 
 class BugNotification extends Notification implements ChatNotificationInterface, EmailNotificationInterface, SmsNotificationInterface
 {
-    protected BugInterface $bug;
-    protected string $emailSender;
-
-    public function __construct(BugInterface $bug, string $mailSenderAddress, array $channels)
-    {
-        $this->bug = $bug;
-        $this->emailSender = $mailSenderAddress;
-
+    public function __construct(
+        protected BugInterface $bug,
+        protected string $emailSender,
+        array $channels
+    ) {
         parent::__construct('New bug found', $channels);
     }
 
