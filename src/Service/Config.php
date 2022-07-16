@@ -106,7 +106,7 @@ class Config implements ConfigInterface
 
         try {
             return (string) $this->config->get($key);
-        } catch (\RuntimeException $th) {
+        } catch (\RuntimeException $e) {
             return $this->getParam($key);
         }
     }

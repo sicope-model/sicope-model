@@ -11,6 +11,7 @@
 
 namespace App\Service;
 
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class SessionHelper
@@ -52,19 +53,23 @@ class SessionHelper
         }
 
         return [
-            'total' => $status['total'],
-            'used' => $status['used'],
-            'queued' => $status['queued'],
-            'pending' => $status['pending'],
+            'total' => $status['total'] ?? 0,
+            'used' => $status['used'] ?? 0,
+            'queued' => $status['queued'] ?? 0,
+            'pending' => $status['pending'] ?? 0,
             'sessions' => $sessions,
         ];
     }
 
     protected function getStatus(): array
     {
-        return $this->client->request(
-            'GET',
-            rtrim($this->statusUri, '/') . '/status'
-        )->toArray();
+        try {
+            return $this->client->request(
+                'GET',
+                rtrim($this->statusUri, '/') . '/status'
+            )->toArray();
+        } catch (TransportExceptionInterface $e) {
+            return [];
+        }
     }
 }
