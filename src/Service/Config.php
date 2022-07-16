@@ -100,7 +100,7 @@ class Config implements ConfigInterface
 
     protected function get(string $key, ?array $all = null): string
     {
-        if (is_array($all)) {
+        if (\is_array($all)) {
             return $all[$key] ?? $this->getParam($key);
         }
 
