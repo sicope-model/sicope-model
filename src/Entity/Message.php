@@ -21,7 +21,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Index(fields: ['deliveredAt'])]
 class Message
 {
-    #[ORM\Id, ORM\Column(type: 'bigint', nullable: false, options: ['autoincrement' => true]), ORM\GeneratedValue()]
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'bigint', nullable: false, options: ['autoincrement' => true])]
     private int $id;
 
     #[ORM\Column(type: 'text', nullable: false)]
@@ -30,7 +32,7 @@ class Message
     #[ORM\Column(type: 'text', nullable: false)]
     private string $headers;
 
-    #[ORM\Column(name: 'queue_name', type: 'string', nullable: false)]
+    #[ORM\Column(name: 'queue_name', type: 'string', nullable: false, length: 190)]
     private string $queueName;
 
     #[ORM\Column(name: 'created_at', type: 'datetime', nullable: false)]
