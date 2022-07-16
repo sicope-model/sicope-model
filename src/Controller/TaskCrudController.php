@@ -48,7 +48,8 @@ class TaskCrudController extends AbstractCrudController
     public function __construct(
         private SessionHelper $sessionHelper,
         private TranslatorInterface $translator,
-        private DebugHelper $debugHelper
+        private DebugHelper $debugHelper,
+        private AdminUrlGenerator $adminUrlGenerator
     ) {
     }
 
@@ -164,7 +165,7 @@ class TaskCrudController extends AbstractCrudController
             $this->addFlash('success', 'Task is scheduled');
         }
 
-        return $this->redirect($this->get(AdminUrlGenerator::class)->setAction(Action::INDEX)->generateUrl());
+        return $this->redirect($this->adminUrlGenerator->setAction(Action::INDEX)->generateUrl());
     }
 
     protected function getBrowserCount(array $browserChoices): array

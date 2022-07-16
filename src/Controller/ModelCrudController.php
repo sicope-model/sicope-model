@@ -42,6 +42,10 @@ use Tienvx\Bundle\MbtBundle\Service\Model\ModelDumperInterface;
 
 class ModelCrudController extends AbstractCrudController
 {
+    public function __construct(private AdminUrlGenerator $adminUrlGenerator)
+    {
+    }
+
     public static function getEntityFqcn(): string
     {
         return Model::class;
@@ -155,7 +159,7 @@ class ModelCrudController extends AbstractCrudController
             // Add Flash
             $this->addFlash('success', 'Imported model');
 
-            return $this->redirect($this->get(AdminUrlGenerator::class)->setAction(Action::INDEX)->generateUrl());
+            return $this->redirect($this->adminUrlGenerator->setAction(Action::INDEX)->generateUrl());
         }
 
         return $this->render('importModel.html.twig', [

@@ -39,8 +39,10 @@ use Tienvx\Bundle\MbtBundle\Model\BugInterface;
 
 class BugCrudController extends AbstractCrudController
 {
-    public function __construct(private DebugHelper $debugHelper)
-    {
+    public function __construct(
+        private DebugHelper $debugHelper,
+        private AdminUrlGenerator $adminUrlGenerator
+    ) {
     }
 
     #[Route('/bug-video/{bug}', name: 'app_bug_video')]
@@ -112,7 +114,7 @@ class BugCrudController extends AbstractCrudController
             $this->addFlash('success', 'Bug is scheduled');
         }
 
-        return $this->redirect($this->get(AdminUrlGenerator::class)->setAction(Action::INDEX)->generateUrl());
+        return $this->redirect($this->adminUrlGenerator->setAction(Action::INDEX)->generateUrl());
     }
 
     public function reduceSteps(AdminContext $context, MessageBusInterface $messageBus): RedirectResponse
@@ -126,6 +128,6 @@ class BugCrudController extends AbstractCrudController
             $this->addFlash('success', 'Bug is scheduled');
         }
 
-        return $this->redirect($this->get(AdminUrlGenerator::class)->setAction(Action::INDEX)->generateUrl());
+        return $this->redirect($this->adminUrlGenerator->setAction(Action::INDEX)->generateUrl());
     }
 }

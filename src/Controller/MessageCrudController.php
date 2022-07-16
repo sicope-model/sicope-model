@@ -40,8 +40,10 @@ use Symfony\Component\Messenger\Transport\Serialization\SerializerInterface;
 #[IsGranted('ROLE_ADMIN')]
 class MessageCrudController extends AbstractCrudController
 {
-    public function __construct(private SerializerInterface $serializer)
-    {
+    public function __construct(
+        private SerializerInterface $serializer,
+        private AdminUrlGenerator $adminUrlGenerator
+    ) {
         $this->serializer = $this->serializer ?? new PhpSerializer();
     }
 
@@ -125,6 +127,11 @@ class MessageCrudController extends AbstractCrudController
             $this->addFlash('error', sprintf($errorMessage, $error->getId()));
         }
 
-        return $this->redirect($this->get(AdminUrlGenerator::class)->setAction(Action::INDEX)->unset(EA::ENTITY_ID)->generateUrl());
+        return $this->redirect(
+            $this->adminUrlGenerator
+                ->setAction(Action::INDEX)
+                ->unset(EA::ENTITY_ID)
+                ->generateUrl()
+        );
     }
 }
