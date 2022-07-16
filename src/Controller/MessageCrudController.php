@@ -62,6 +62,7 @@ class MessageCrudController extends AbstractCrudController
                     'body' => $error->getBody(),
                     'headers' => $error->getHeaders(),
                 ]);
+                /** @var ErrorDetailsStamp|null $stamp */
                 $stamp = $envelope->last(ErrorDetailsStamp::class);
 
                 return $stamp ? $stamp->getExceptionMessage() : '';
@@ -88,8 +89,12 @@ class MessageCrudController extends AbstractCrudController
             ));
     }
 
-    public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
-    {
+    public function createIndexQueryBuilder(
+        SearchDto $searchDto,
+        EntityDto $entityDto,
+        FieldCollection $fields,
+        FilterCollection $filters
+    ): QueryBuilder {
         $queryBuilder = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
         $queryBuilder
             ->andWhere('entity.queueName = :failed')
@@ -100,16 +105,33 @@ class MessageCrudController extends AbstractCrudController
 
     public function retryError(AdminContext $context, KernelInterface $kernel): RedirectResponse
     {
-        return $this->runCommand($context, $kernel, 'messenger:failed:retry', 'Error %d is retried', 'Can not retry error %d');
+        return $this->runCommand(
+            $context,
+            $kernel,
+            'messenger:failed:retry',
+            'Error %d is retried',
+            'Can not retry error %d'
+        );
     }
 
     public function removeError(AdminContext $context, KernelInterface $kernel): RedirectResponse
     {
-        return $this->runCommand($context, $kernel, 'messenger:failed:remove', 'Error %d is removed', 'Can not remove error %d');
+        return $this->runCommand(
+            $context,
+            $kernel,
+            'messenger:failed:remove',
+            'Error %d is removed',
+            'Can not remove error %d'
+        );
     }
 
-    protected function runCommand(AdminContext $context, KernelInterface $kernel, string $command, string $successMessage, string $errorMessage): RedirectResponse
-    {
+    protected function runCommand(
+        AdminContext $context,
+        KernelInterface $kernel,
+        string $command,
+        string $successMessage,
+        string $errorMessage
+    ): RedirectResponse {
         $error = $context->getEntity()->getInstance();
 
         $application = new Application($kernel);

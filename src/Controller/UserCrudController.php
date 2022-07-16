@@ -50,7 +50,11 @@ class UserCrudController extends AbstractCrudController
     {
         return $actions
             ->update(Crud::PAGE_INDEX, Action::EDIT, fn (Action $detail) => $detail->setIcon('fas fa-edit'))
-            ->update(Crud::PAGE_INDEX, Action::DELETE, fn (Action $detail) => $detail->setIcon('fas fa-trash')->addCssClass('action-delete'))
+            ->update(
+                Crud::PAGE_INDEX,
+                Action::DELETE,
+                fn (Action $detail) => $detail->setIcon('fas fa-trash')->addCssClass('action-delete')
+            )
             ->setPermissions(array_fill_keys(
                 (new ReflectionClass(Action::class))->getConstants(),
                 'ROLE_ADMIN'

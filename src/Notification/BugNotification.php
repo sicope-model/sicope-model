@@ -27,7 +27,10 @@ use Symfony\Component\Notifier\Recipient\RecipientInterface;
 use Symfony\Component\Notifier\Recipient\SmsRecipientInterface;
 use Tienvx\Bundle\MbtBundle\Model\BugInterface;
 
-class BugNotification extends Notification implements ChatNotificationInterface, EmailNotificationInterface, SmsNotificationInterface
+class BugNotification extends Notification implements
+    ChatNotificationInterface,
+    EmailNotificationInterface,
+    SmsNotificationInterface
 {
     public function __construct(
         protected BugInterface $bug,

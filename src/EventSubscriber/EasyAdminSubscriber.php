@@ -25,8 +25,11 @@ use Tienvx\Bundle\MbtBundle\Service\SelenoidHelperInterface;
 
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
-    public function __construct(private Security $security, private HttpClientInterface $client, private SelenoidHelperInterface $selenoidHelper)
-    {
+    public function __construct(
+        private Security $security,
+        private HttpClientInterface $client,
+        private SelenoidHelperInterface $selenoidHelper
+    ) {
     }
 
     public static function getSubscribedEvents()

@@ -94,7 +94,11 @@ class BugCrudController extends AbstractCrudController
         return $actions
             ->disable(Action::NEW)
             ->update(Crud::PAGE_INDEX, Action::EDIT, fn (Action $detail) => $detail->setIcon('fas fa-edit'))
-            ->update(Crud::PAGE_INDEX, Action::DELETE, fn (Action $detail) => $detail->setIcon('fas fa-trash')->addCssClass('action-delete'))
+            ->update(
+                Crud::PAGE_INDEX,
+                Action::DELETE,
+                fn (Action $detail) => $detail->setIcon('fas fa-trash')->addCssClass('action-delete')
+            )
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->update(Crud::PAGE_INDEX, Action::DETAIL, fn (Action $detail) => $detail->setIcon('fas fa-info'))
             ->add(Crud::PAGE_DETAIL, $recordVideo)
