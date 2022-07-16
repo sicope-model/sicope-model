@@ -117,6 +117,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Config', 'fa fa-cogs', Setting::class)
             ->setPermission('ROLE_ADMIN')
             ->setAction(Action::EDIT);
+        yield MenuItem::linkToRoute('Files', 'fa fa-file', 'app_files');
     }
 
     private function getOverviewChart(): Chart

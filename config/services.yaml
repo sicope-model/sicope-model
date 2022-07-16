@@ -43,3 +43,7 @@ services:
     App\Twig\TwigExtension:
         decorates: EasyCorp\Bundle\EasyAdminBundle\Twig\EasyAdminTwigExtension
         arguments: ['@service_locator_EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator']
+
+    App\EventSubscriber\RequestSubscriber:
+        calls:
+            - setProfiler: ['@?profiler']
