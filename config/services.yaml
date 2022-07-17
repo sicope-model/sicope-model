@@ -11,6 +11,7 @@ parameters:
     app.default_notify_channels: '%env(DEFAULT_NOTIFY_CHANNELS)%'
     app.default_max_steps: '%env(DEFAULT_MAX_STEPS)%'
     app.default_email_sender: '%env(DEFAULT_EMAIL_SENDER)%'
+    app.upload_dir: '%kernel.project_dir%/var/uploads'
 
 services:
     # default configuration for services in *this* file
@@ -49,4 +50,4 @@ services:
             - setProfiler: ['@?profiler']
 
     Tienvx\Bundle\MbtBundle\Command\Runner\CustomCommandRunner:
-        arguments: ['%kernel.project_dir%/var/uploads']
+        arguments: ['%app.upload_dir%']

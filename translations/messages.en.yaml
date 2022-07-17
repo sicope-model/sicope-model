@@ -91,3 +91,5 @@ setWindowSize: Set Window Size
 selectWindow: Select Window
 close: Close
 selectFrame: Select Frame
+
+upload: Upload
