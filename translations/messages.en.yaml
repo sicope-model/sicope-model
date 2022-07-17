@@ -93,3 +93,5 @@ close: Close
 selectFrame: Select Frame
 
 upload: Upload
+assertClipboard: Assert Clipboard
+assertFileDownloaded: Assert File Downloaded

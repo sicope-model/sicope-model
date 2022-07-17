@@ -48,6 +48,3 @@ services:
     App\EventSubscriber\RequestSubscriber:
         calls:
             - setProfiler: ['@?profiler']
-
-    Tienvx\Bundle\MbtBundle\Command\Runner\CustomCommandRunner:
-        arguments: ['%app.upload_dir%']
