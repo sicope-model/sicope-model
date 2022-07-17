@@ -56,7 +56,7 @@ services:
   admin:
     image: tienvx/sicope-model-admin-debug:latest
     environment:
-      APP_ENV: prod
+      #APP_ENV: dev
       APP_SECRET: ${APP_SECRET}
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}?serverVersion=${POSTGRES_VERSION}&charset=UTF-8
       STATUS_URI: http://selenoid:4444
@@ -68,7 +68,8 @@ services:
     depends_on:
       - database
       - redis
-    #volumes:
+    volumes:
+      - "$PWD/var/uploads:/srv/app/var/uploads"
     #  - .:/srv/app
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -76,7 +77,7 @@ services:
   worker:
     image: tienvx/sicope-model-worker-debug:latest
     environment:
-      APP_ENV: prod
+      #APP_ENV: dev
       APP_SECRET: ${APP_SECRET}
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}?serverVersion=${POSTGRES_VERSION}&charset=UTF-8
       WEBDRIVER_URI: http://selenoid:4444
@@ -87,7 +88,8 @@ services:
     depends_on:
       - database
       - redis
-    #volumes:
+    volumes:
+      - "$PWD/var/uploads:/srv/app/var/uploads"
     #  - .:/srv/app
     extra_hosts:
       - "host.docker.internal:host-gateway"

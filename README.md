@@ -54,17 +54,13 @@ yarn build
 
 ```diff
 # docker-compose.yml
--    APP_ENV: prod
+-    #APP_ENV: dev
 +    APP_ENV: dev
 
--    #volumes:
 -    #  - .:/srv/app
-+    volumes:
 +      - .:/srv/app
 
--    #volumes:
 -    #  - ./public:/srv/app/public
-+    volumes:
 +      - ./public:/srv/app/public
 ```
 
