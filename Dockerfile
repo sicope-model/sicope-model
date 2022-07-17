@@ -10,6 +10,8 @@ ARG NODE_VERSION=16
 
 FROM php:${PHP_VERSION}-cli-alpine AS build-worker
 
+ENV APP_ENV prod
+
 RUN curl -sSLf \
         -o /usr/local/bin/install-php-extensions \
         https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
@@ -51,6 +53,8 @@ RUN yarn install; \
 	yarn run encore production;
 
 FROM php:${PHP_VERSION}-fpm-alpine AS build-admin
+
+ENV APP_ENV prod
 
 RUN curl -sSLf \
         -o /usr/local/bin/install-php-extensions \
