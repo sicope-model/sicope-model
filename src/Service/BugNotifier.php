@@ -28,8 +28,7 @@ class BugNotifier implements BugNotifierInterface
     public function __construct(
         protected UserRepository $userRepository,
         protected NotifierInterface $notifier,
-        protected Config $config,
-        protected string $emailSender
+        protected Config $config
     ) {
     }
 
@@ -37,7 +36,7 @@ class BugNotifier implements BugNotifierInterface
     {
         if ($channels = $this->config->getNotifyChannels()) {
             $this->notifier->send(
-                new BugNotification($bug, $this->emailSender, $channels),
+                new BugNotification($bug, $this->config->getEmailSender(), $channels),
                 $this->getRecipient($bug->getTask(), $channels)
             );
         }

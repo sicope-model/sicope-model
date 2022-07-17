@@ -1,4 +1,7 @@
 {
+    "artgris/filemanager-bundle": {
+        "version": "2.4.2"
+    },
     "beberlei/doctrineextensions": {
         "version": "v1.3.0"
     },

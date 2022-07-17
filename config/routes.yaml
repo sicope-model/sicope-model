@@ -1,3 +1,4 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+artgris_bundle_file_manager:
+    resource: "@ArtgrisFileManagerBundle/Controller"
+    type:     annotation
+    prefix:   /manager

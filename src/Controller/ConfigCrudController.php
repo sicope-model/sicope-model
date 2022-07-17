@@ -23,6 +23,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -52,11 +53,16 @@ class ConfigCrudController extends AbstractCrudController
         $generators = $this->generatorManager->all();
         $reducers = $this->reducerManager->all();
         $channels = $this->channelManager->all();
-        yield ChoiceField::new(Config::GENERATOR, 'Generator')->setChoices($this->translate($generators))->setRequired(true);
+        yield ChoiceField::new(Config::GENERATOR, 'Generator')
+            ->setChoices($this->translate($generators))
+            ->setRequired(true);
         yield ChoiceField::new(Config::REDUCER, 'Reducer')->setChoices($this->translate($reducers))->setRequired(true);
         yield BooleanField::new(Config::REPORT_BUG, 'Report Bug');
         yield BooleanField::new(Config::NOTIFY_AUTHOR, 'Notify Author');
-        yield ChoiceField::new(Config::NOTIFY_CHANNELS, 'Notify Channels')->setChoices($this->translate($channels))->allowMultipleChoices();
+        yield ChoiceField::new(Config::NOTIFY_CHANNELS, 'Notify Channels')
+            ->setChoices($this->translate($channels))
+            ->allowMultipleChoices();
+        yield TextField::new(Config::EMAIL_SENDER, 'Email Sender');
         yield IntegerField::new(Config::MAX_STEPS, 'Max Steps');
     }
 
@@ -65,8 +71,11 @@ class ConfigCrudController extends AbstractCrudController
         return $actions->remove(Action::EDIT, Action::SAVE_AND_RETURN);
     }
 
-    public function createEditForm(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormInterface
-    {
+    public function createEditForm(
+        EntityDto $entityDto,
+        KeyValueStore $formOptions,
+        AdminContext $context
+    ): FormInterface {
         $formOptions->set('data_class', null);
 
         return parent::createEditForm($entityDto, $formOptions, $context)->setData($this->config->getAll());

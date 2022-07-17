@@ -2,4 +2,4 @@ doctrine:
     orm:
         dql:
             datetime_functions:
-                day: "DoctrineExtensions\\Query\\%env(default:db_extension:DB_EXTENSION)%\\Day"
+                day: "DoctrineExtensions\\Query\\%env(DB_EXTENSION)%\\Day"

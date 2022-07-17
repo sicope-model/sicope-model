@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import { Controller } from '@hotwired/stimulus';
 import TomSelect from "tom-select/dist/js/tom-select.complete.min";
 
 export default class extends Controller {

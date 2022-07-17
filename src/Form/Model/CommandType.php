@@ -34,21 +34,28 @@ class CommandType extends AbstractType
         $builder
             ->add('command', ChoiceType::class, [
                 'label' => 'Command',
-                'choices' => array_combine(array_map(fn (string $command) => $this->translator->trans($command), $commands), $commands),
+                'choices' => array_combine(
+                    array_map(fn (string $command) => $this->translator->trans($command), $commands),
+                    $commands
+                ),
                 'label_attr' => ['class' => 'required'],
                 'attr' => [
                     'required' => 'required',
-                    'data-controller' => 'select accordion-label',
+                    'data-controller' => 'select accordion-label file-select',
                 ],
             ])
             ->add('target', TextType::class, [
                 'label' => 'Target',
                 'required' => false,
-                'help' => "e.g. 'id=email', 'name=userName', 'css=input[name=lastName]' or 'xpath=//form[@name=\"Account\"]'",
+                'help' => "e.g. 'id=email', 'name=userName', 'css=input[name=lastName]' " .
+                    "or 'xpath=//form[@name=\"Account\"]'",
             ])
             ->add('value', TextType::class, [
                 'label' => 'Value',
                 'required' => false,
+                'attr' => [
+                    'class' => 'command-value',
+                ],
             ])
         ;
     }

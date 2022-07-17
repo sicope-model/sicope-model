@@ -117,6 +117,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Config', 'fa fa-cogs', Setting::class)
             ->setPermission('ROLE_ADMIN')
             ->setAction(Action::EDIT);
+        yield MenuItem::linkToRoute('Files', 'fa fa-file', 'app_files');
     }
 
     private function getOverviewChart(): Chart
@@ -152,11 +153,11 @@ class DashboardController extends AbstractDashboardController
         // Optimize Data
         $labels = $tasks = $bugs = $models = [];
         for ($i = static::COLUMNS - 1; $i >= 0; --$i) {
-            $day = explode('/', date('j/m', strtotime("-{$i} day")));
-            $labels[] = $day[0] . '/' . $day[1];
-            $tasks[] = $taskData[$day[0]] ?? 0;
-            $bugs[] = $bugData[$day[0]] ?? 0;
-            $models[] = $modelData[$day[0]] ?? 0;
+            list($day, $month) = explode('/', date('j/m', strtotime("-{$i} day")));
+            $labels[] = $day . '/' . $month;
+            $tasks[] = $taskData[$day] ?? 0;
+            $bugs[] = $bugData[$day] ?? 0;
+            $models[] = $modelData[$day] ?? 0;
         }
 
         $chart = $this->chartBuilder->createChart(Chart::TYPE_BAR);
