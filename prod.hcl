@@ -99,11 +99,21 @@ job "sicope-model-dev" {
         to = "9000"
       }
     }
+    volume "uploads" {
+      type      = "host"
+      read_only = false
+      source    = "uploads"
+    }
     task "admin" {
       driver = "docker"
       config {
         image = "tienvx/sicope-model-admin:${local.tag}"
         ports = ["fpm"]
+      }
+      volume_mount {
+        volume      = "uploads"
+        destination = "/srv/app/var/uploads"
+        read_only   = false
       }
       template {
         data = <<EOH
@@ -184,11 +194,21 @@ job "sicope-model-dev" {
       }
     }
 
+    volume "uploads" {
+      type      = "host"
+      read_only = false
+      source    = "uploads"
+    }
     task "worker" {
       driver = "docker"
       config {
         network_mode = "host"
         image = "tienvx/sicope-model-worker:${local.tag}"
+      }
+      volume_mount {
+        volume      = "uploads"
+        destination = "/srv/app/var/uploads"
+        read_only   = false
       }
       template {
         data = <<EOH

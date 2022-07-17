@@ -35,4 +35,5 @@ node_modules/
 tests/
 phpunit.xml.dist
 .phpunit.result.cache
+client.hcl
 prod.hcl
