@@ -11,17 +11,20 @@
 
 namespace App\EventSubscriber;
 
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\DependencyInjection\Attribute\When;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Profiler\Profiler;
 
+#[When(env: 'dev')]
+#[When(env: 'test')]
 class RequestSubscriber implements EventSubscriberInterface
 {
-    protected ?Profiler $profiler = null;
-
-    public function setProfiler(Profiler $profiler): void
-    {
-        $this->profiler = $profiler;
+    public function __construct(
+        #[Autowire(service: 'profiler')]
+        protected Profiler $profiler
+    ) {
     }
 
     public static function getSubscribedEvents(): array
@@ -33,7 +36,7 @@ class RequestSubscriber implements EventSubscriberInterface
 
     public function onKernelRequest(RequestEvent $event)
     {
-        if ($this->profiler && 'file_manager' === $event->getRequest()->attributes->get('_route')) {
+        if ('file_manager' === $event->getRequest()->attributes->get('_route')) {
             $this->profiler->disable();
         }
     }
