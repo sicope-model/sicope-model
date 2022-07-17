@@ -1,2 +1,3 @@
 tienvx_mbt:
     webdriver_uri: '%env(string:WEBDRIVER_URI)%'
+    upload_dir: '%app.upload_dir%'
