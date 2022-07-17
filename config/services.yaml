@@ -47,3 +47,6 @@ services:
     App\EventSubscriber\RequestSubscriber:
         calls:
             - setProfiler: ['@?profiler']
+
+    Tienvx\Bundle\MbtBundle\Command\Runner\CustomCommandRunner:
+        arguments: ['%kernel.project_dir%/var/uploads']
