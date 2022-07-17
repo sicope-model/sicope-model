@@ -25,6 +25,8 @@ jobs:
             -   name: Publish images
                 env:
                     TAG: ${{ github.event.release.tag_name }}
+                    DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+                    DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
                 run: |
                     echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
                     docker push tienvx/sicope-model-admin:${TAG}
@@ -33,6 +35,3 @@ jobs:
                     docker push tienvx/sicope-model-caddy:latest
                     docker push tienvx/sicope-model-admin-debug:latest
                     docker push tienvx/sicope-model-worker-debug:latest
-                env:
-                    DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-                    DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
