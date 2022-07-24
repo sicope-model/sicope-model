@@ -8704,16 +8704,16 @@
         },
         {
             "name": "tienvx/mbt-bundle",
-            "version": "v3.0.0-alpha.41",
+            "version": "v3.0.0-alpha.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tienvx/mbt-bundle.git",
-                "reference": "29537b5656e878657434abd23b7ac9d080264652"
+                "reference": "cbe7a797d5c535596cc23bdbe44e60ca4770cd9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/29537b5656e878657434abd23b7ac9d080264652",
-                "reference": "29537b5656e878657434abd23b7ac9d080264652",
+                "url": "https://api.github.com/repos/tienvx/mbt-bundle/zipball/cbe7a797d5c535596cc23bdbe44e60ca4770cd9c",
+                "reference": "cbe7a797d5c535596cc23bdbe44e60ca4770cd9c",
                 "shasum": ""
             },
             "require": {
@@ -8726,7 +8726,7 @@
                 "symfony/config": "^6.1",
                 "symfony/dependency-injection": "^6.1",
                 "symfony/expression-language": "^6.1",
-                "symfony/http-client-contracts": "^3.1",
+                "symfony/http-client": "^6.1",
                 "symfony/http-kernel": "^6.1",
                 "symfony/messenger": "^6.1",
                 "symfony/validator": "^6.1",
@@ -8772,7 +8772,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tienvx/mbt-bundle/issues",
-                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.41"
+                "source": "https://github.com/tienvx/mbt-bundle/tree/v3.0.0-alpha.43"
             },
             "funding": [
                 {
@@ -8780,7 +8780,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-07-17T15:26:37+00:00"
+            "time": "2022-07-24T14:51:00+00:00"
         },
         {
             "name": "tienvx/single-color-petrinet",
