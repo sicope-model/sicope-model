@@ -96,3 +96,16 @@ upload: Upload
 assertClipboard: Assert Clipboard
 assertFileDownloaded: Assert File Downloaded
 updateClipboard: Update Clipboard
+
+###
+# Groups
+###
+alert: Alert
+#assert: Assert
+custom: Custom
+keyboard: Keyboard
+mouse: Mouse
+script: Script
+#store: Store
+wait: Wait
+window: Window
