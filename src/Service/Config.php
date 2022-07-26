@@ -30,6 +30,8 @@ class Config implements ConfigInterface
     public const NOTIFY_CHANNELS = 'notify_channels';
     public const EMAIL_SENDER = 'email_sender';
     public const MAX_STEPS = 'max_steps';
+    public const CREATE_NEW_BUG_WHILE_REDUCING = 'create_new_bug_while_reducing';
+    public const DEFAULT_BUG_TITLE = 'default_bug_title';
 
     public function __construct(
         protected ConfigUtil $config,
@@ -72,6 +74,16 @@ class Config implements ConfigInterface
         return (int) $this->get(static::MAX_STEPS);
     }
 
+    public function shouldCreateNewBugWhileReducing(): bool
+    {
+        return (bool) $this->get(static::CREATE_NEW_BUG_WHILE_REDUCING);
+    }
+
+    public function getDefaultBugTitle(): string
+    {
+        return $this->get(static::DEFAULT_BUG_TITLE);
+    }
+
     public function saveForm(FormInterface $form): void
     {
         $this->config->setMultiple([
@@ -82,6 +94,8 @@ class Config implements ConfigInterface
             static::NOTIFY_CHANNELS => json_encode($form->get(static::NOTIFY_CHANNELS)->getData()),
             static::EMAIL_SENDER => $form->get(static::EMAIL_SENDER)->getData(),
             static::MAX_STEPS => $form->get(static::MAX_STEPS)->getData(),
+            static::CREATE_NEW_BUG_WHILE_REDUCING => $form->get(static::CREATE_NEW_BUG_WHILE_REDUCING)->getData(),
+            static::DEFAULT_BUG_TITLE => $form->get(static::DEFAULT_BUG_TITLE)->getData(),
         ]);
     }
 
@@ -97,6 +111,8 @@ class Config implements ConfigInterface
             static::NOTIFY_CHANNELS => (array) json_decode($this->get(static::NOTIFY_CHANNELS, $all)),
             static::EMAIL_SENDER => $this->get(static::EMAIL_SENDER, $all),
             static::MAX_STEPS => (int) $this->get(static::MAX_STEPS, $all),
+            static::CREATE_NEW_BUG_WHILE_REDUCING => (bool) $this->get(static::CREATE_NEW_BUG_WHILE_REDUCING, $all),
+            static::DEFAULT_BUG_TITLE => $this->get(static::DEFAULT_BUG_TITLE, $all),
         ];
     }
 
@@ -115,6 +131,6 @@ class Config implements ConfigInterface
 
     protected function getParam(string $key): string
     {
-        return (string) $this->params->get(sprintf('app.default_%s', $key));
+        return (string) $this->params->get(sprintf('app.%s', $key));
     }
 }
