@@ -4,13 +4,15 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    app.default_generator: '%env(DEFAULT_GENERATOR)%'
-    app.default_reducer: '%env(DEFAULT_REDUCER)%'
-    app.default_report_bug: '%env(DEFAULT_REPORT_BUG)%'
-    app.default_notify_author: '%env(DEFAULT_NOTIFY_AUTHOR)%'
-    app.default_notify_channels: '%env(DEFAULT_NOTIFY_CHANNELS)%'
-    app.default_max_steps: '%env(DEFAULT_MAX_STEPS)%'
-    app.default_email_sender: '%env(DEFAULT_EMAIL_SENDER)%'
+    app.generator: '%env(GENERATOR)%'
+    app.reducer: '%env(REDUCER)%'
+    app.report_bug: '%env(REPORT_BUG)%'
+    app.notify_author: '%env(NOTIFY_AUTHOR)%'
+    app.notify_channels: '%env(NOTIFY_CHANNELS)%'
+    app.max_steps: '%env(MAX_STEPS)%'
+    app.email_sender: '%env(EMAIL_SENDER)%'
+    app.create_new_bug_while_reducing: '%env(CREATE_NEW_BUG_WHILE_REDUCING)%'
+    app.default_bug_title: '%env(DEFAULT_BUG_TITLE)%'
     app.upload_dir: '%kernel.project_dir%/var/uploads'
 
 services:

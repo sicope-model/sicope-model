@@ -64,6 +64,8 @@ class ConfigCrudController extends AbstractCrudController
             ->allowMultipleChoices();
         yield TextField::new(Config::EMAIL_SENDER, 'Email Sender');
         yield IntegerField::new(Config::MAX_STEPS, 'Max Steps');
+        yield BooleanField::new(Config::CREATE_NEW_BUG_WHILE_REDUCING, 'Create New Bug While Reducing');
+        yield TextField::new(Config::DEFAULT_BUG_TITLE, 'Default Bug Title');
     }
 
     public function configureActions(Actions $actions): Actions
